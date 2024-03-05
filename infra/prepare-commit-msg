@@ -13,5 +13,7 @@ BRANCH_IN_COMMIT=$(grep -c "$JIRA_ID" $1)
 
 REGEX="^[0-9]+$"
 if [[ $BRANCH_NAME =~ $REGEX ]] && [ -n $JIRA_ID ] && ! [[ $BRANCH_EXCLUDED -eq 1 ]] && ! [[ $BRANCH_IN_COMMIT -ge 1 ]]; then
-  sed -i.bak -e "1s/^/$JIRA_ID /" $1
+    # echo "Adding JIRA ID to commit message"
+    # echo $1
+    sed -i.bak -e "1s/^/$JIRA_ID /" $1
 fi
