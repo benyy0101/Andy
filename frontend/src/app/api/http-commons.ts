@@ -27,3 +27,16 @@ export const imageAxios: AxiosInstance = axios.create({
     },
     withCredentials: true,
   });
+
+localAxios.interceptors.response.use(
+    (response) =>{
+        if(response.data.jwtToken){
+            sessionStorage.setItem("jwtToken", response.data.jwtToken);
+        }
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
+    
+    
