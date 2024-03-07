@@ -1,3 +1,4 @@
+import { KakaoAuth } from "../_models/login.interface";
 import { kakaoAxios,localAxios } from "./http-commons";
 
 export const kakaoLogin = (code: string) => {
@@ -10,8 +11,7 @@ export const kakaoLogout = (code: string) => {
     });
 };
 
-export const kakaoRedirect = (code: string) => {
-    return kakaoAxios.post("/v1/user/logout", {
-    });
+export const kakaoRedirect = (kakaoAuth: KakaoAuth) => {
+    return kakaoAxios.post("/member/login",kakaoAuth);
 };
 

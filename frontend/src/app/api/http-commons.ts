@@ -1,5 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
-import nookies from "nookies";
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 const serverUrl = process.env.SERVER_URL || "http://localhost:8080";
 const imageBaseUrl = process.env.IMAGE_BASE_URL || "http://localhost:8080";
 const kakaoURl = "https://kapi.kakao.com";
@@ -28,15 +27,11 @@ export const imageAxios: AxiosInstance = axios.create({
     withCredentials: true,
   });
 
-localAxios.interceptors.response.use(
-    (response) =>{
-        if(response.data.jwtToken){
-            sessionStorage.setItem("jwtToken", response.data.jwtToken);
-        }
-    },
-    (error) => {
-        return Promise.reject(error);
+localAxios.interceptors.response.use((response)=>{
+    if(response.data.jwtToken ! =null){
+        localStorage.setItem('jwtToken',response.data.jwtToken);
     }
-);
+    return response;
+});
     
     
