@@ -21,6 +21,7 @@ export const kakaoAxios = axios.create({
 
 export const imageAxios: AxiosInstance = axios.create({
     baseURL: imageBaseUrl,
+    timeout: 10000,
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -33,5 +34,13 @@ localAxios.interceptors.response.use((response)=>{
     }
     return response;
 });
+
+localAxios.interceptors.request.use((config)=>{
+    const token = localStorage.getItem('jwtToken');
+    if(token){
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+})
     
     

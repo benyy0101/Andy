@@ -1,4 +1,4 @@
-import { KakaoAuth } from "../_models/login.interface";
+import { KakaoAuth,KakaoLoginResponse } from "../_models/login.interface";
 import { kakaoAxios,localAxios } from "./http-commons";
 
 export const kakaoLogin = (code: string) => {
@@ -11,7 +11,7 @@ export const kakaoLogout = (code: string) => {
     });
 };
 
-export const kakaoRedirect = (kakaoAuth: KakaoAuth) => {
-    return kakaoAxios.post("/member/login",kakaoAuth);
+export const authCodetoServer = async (kakaoAuth: KakaoAuth) : Promise<KakaoLoginResponse> => {
+    return await kakaoAxios.post("/member/login", kakaoAuth);
 };
 
