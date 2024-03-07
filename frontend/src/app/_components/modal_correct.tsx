@@ -14,21 +14,10 @@ interface CorrectModalProps {
 }
 
 const CorrectModal: React.FC<CorrectModalProps> = ({ isOpen, onClose }) => {
-  const [conductor, setConductor] = useState<TConductorInstance>(null);
-  const [isConductorInit, setIsConductorInit] = useState(false);
 
-  // const onInit = useCallback(({ conductor }: { conductor: TConductorInstance }) => {
-  //   if(conductor == null){
-  //     console.log(conductor);
-  //     setConductor(conductor);
-  //   }
-  // },[]);
   const onInit = ({ conductor }: { conductor: TConductorInstance }) => {
     conductor.shoot();
   };
-
-  // 의존성 문제 
-  // Maximum update depth exceeded.
 
   const CorrectBackground = tw.div`
   fixed 
