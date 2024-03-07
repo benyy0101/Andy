@@ -1,7 +1,9 @@
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+
 const serverUrl = process.env.SERVER_URL || "http://localhost:8080";
 const imageBaseUrl = process.env.IMAGE_BASE_URL || "http://localhost:8080";
 const kakaoURl = "https://kapi.kakao.com";
+const localDev = process.env.LOCAL_DEV || false;
 
 export const localAxios = axios.create({
     baseURL: serverUrl,
@@ -29,18 +31,32 @@ export const imageAxios: AxiosInstance = axios.create({
   });
 
 localAxios.interceptors.response.use((response)=>{
-    if(response.data.jwtToken ! =null){
-        localStorage.setItem('jwtToken',response.data.jwtToken);
-    }
+    saveToken(response);
+    
     return response;
+},
+(error)=>{
+    if(localDev) console.error(error);
+    return error;
 });
 
 localAxios.interceptors.request.use((config)=>{
-    const token = localStorage.getItem('jwtToken');
-    if(token){
-        config.headers.Authorization = `Bearer ${token}`;
-    }
+    loadToken(config);
     return config;
 })
+
+const saveToken = (response: AxiosResponse)=>{
+    if(response.data.jwtToken ! =null){
+        localStorage.setItem('jwtToken',response.data.jwtToken);
+    }
+}
+
+const loadToken = (config: AxiosRequestConfig): null =>{
+    const token = localStorage.getItem('jwtToken');
+    if(token && config.headers){
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return null;
+}
     
     
