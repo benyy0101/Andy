@@ -11,43 +11,7 @@ import WrongModal from "@/app/_components/modal_wrong";
 
 
 const Quiz1Page: React.FC = () => {
-    const Wrapper = tw.div`
-    h-screen
-    flex
-    flex-col
-    items-center
-    justify-start
-    `;
     
-    const Wrapper2 = tw.div`
-    w-full
-    p-1
-    h-full
-    `;
-    
-    const Title = tw.h1`
-    mt-10
-    text-3xl
-    font-bold
-    mb-10
-    `;
-    
-    const Explain = tw.h3`
-    text-xl
-    `;
-    
-    // 진행바 전체 틀
-    const ProgressBarWrapper = tw.div`
-    relative 
-    flex 
-    justify-center 
-    items-center 
-    p-1 
-    rounded-full 
-    bg-black 
-    bg-opacity-25
-    h-10
-    `;
     
     // 진행 상황 나타내는 진행바 (움직이는 바)
     const ProgressBar = styled.div.attrs({
@@ -105,9 +69,6 @@ const Quiz1Page: React.FC = () => {
     const handleCloseWrongModal = () => {
         setIsWrongModalOpen(false);
     };
-
-
-
     
     return (
     
@@ -147,6 +108,44 @@ const Quiz1Page: React.FC = () => {
         </Wrapper>
     );
 };
+
+const Wrapper = tw.div`
+    h-screen
+    flex
+    flex-col
+    items-center
+    justify-start
+    `;
+    
+    const Wrapper2 = tw.div`
+    w-full
+    p-1
+    h-full
+    `;
+    
+    const Title = tw.h1`
+    mt-10
+    text-3xl
+    font-bold
+    mb-10
+    `;
+    
+    const Explain = tw.h3`
+    text-xl
+    `;
+    
+    // 진행바 전체 틀
+    const ProgressBarWrapper = tw.div`
+    relative 
+    flex 
+    justify-center 
+    items-center 
+    p-1 
+    rounded-full 
+    bg-black 
+    bg-opacity-25
+    h-10
+    `;
 
 export default Quiz1Page;
 

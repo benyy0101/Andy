@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { TConductorInstance } from "react-canvas-confetti/dist/types";
 import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 import tw from 'tailwind-styled-components';
@@ -14,10 +14,16 @@ interface CorrectModalProps {
 }
 
 const CorrectModal: React.FC<CorrectModalProps> = ({ isOpen, onClose }) => {
-  const [conductor, setConductor] = useState<TConductorInstance>();
+  const [conductor, setConductor] = useState<TConductorInstance>(null);
+  const [isConductorInit, setIsConductorInit] = useState(false);
 
+  // const onInit = useCallback(({ conductor }: { conductor: TConductorInstance }) => {
+  //   if(conductor == null){
+  //     console.log(conductor);
+  //     setConductor(conductor);
+  //   }
+  // },[]);
   const onInit = ({ conductor }: { conductor: TConductorInstance }) => {
-    setConductor(conductor);
     conductor.shoot();
   };
 
@@ -48,7 +54,6 @@ const CorrectModal: React.FC<CorrectModalProps> = ({ isOpen, onClose }) => {
     <>
       {isOpen && (
         <CorrectBackground>
-          <Fireworks onInit={onInit} />
           <CorrectContent>
             {/* 정답 이미지 */}
             <div className="mb-10 flex items-center justify-center">
@@ -60,6 +65,7 @@ const CorrectModal: React.FC<CorrectModalProps> = ({ isOpen, onClose }) => {
             {/* 멘트 */}
             <button onClick={onClose} className="font-bold text-xl">정답입니다 !</button>
           </CorrectContent>
+          <Fireworks onInit={onInit}/>
         </CorrectBackground>
       )}
     </>
