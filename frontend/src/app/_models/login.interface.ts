@@ -1,6 +1,6 @@
 import { gender } from "./enums";
 
-export interface KakaoAuthCode {
+export interface KakaoAuth {
     code: string;
 }
 
