@@ -1,0 +1,1 @@
+export type gender = "F" | "M" ;
