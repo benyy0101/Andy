@@ -1,4 +1,4 @@
-import { CategoriesResponse, ProblemResultRequest, ProblemResultResponse, ReexamineResponse, WrongProblemsResponse, ReexamineRequest, GamebyCategoryResponse, GamebyCategoryRequest, WrongProblemsReqeust, GameResultResponse, } from "../_models/gameA.interface";
+import { CategoriesResponse, ProblemResultRequest, ProblemResultResponse, ReexamineResponse, WrongProblemsResponse, ReexamineRequest, GamebyCategoryResponse, GamebyCategoryRequest, WrongProblemsReqeust, GameResultResponse, GameResultRequest, } from "../_models/gameA.interface";
 import { localAxios } from "./http-commons";
 
 //GAME-001
@@ -24,7 +24,7 @@ export const getGamebyCategory = async (request: GamebyCategoryRequest): Promise
 }
 
 //GAME-003
-export const getGameResult = async (request:ProblemResultRequest ) : Promise<GameResultResponse> => {
+export const getGameResult = async (request:GameResultRequest ) : Promise<GameResultResponse> => {
     try{
         const response = await localAxios.post("/game/result", request);
         return response.data;
