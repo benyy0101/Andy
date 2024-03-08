@@ -24,10 +24,11 @@ public class OAuthController {
     @Value("${spring.jwt.refresh-token-validity-in-seconds}")
     private long refreshTokenValidityInSeconds;
 
-    @GetMapping("login/github")
-    public ResponseEntity<LoginResponseDto> gitHubLogin(@RequestParam String code){
-        LoginResponseDto res = oAuthService.githubOAuthLogin(code);
+    @GetMapping("login/kakao")
+    public ResponseEntity<LoginResponseDto> kakaoLogin(@RequestParam String code){
+        LoginResponseDto res = oAuthService.kakaoOAuthLogin(code);
         HttpHeaders headers = getHeadersWithCookie(res);
+        System.out.println(res);
         return new ResponseEntity<>(res, headers, HttpStatus.OK);
     }
 

@@ -27,8 +27,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     // 멤버 정보를 UserDetail 객체로 변경하여 return
     private UserDetails createUserDetails(Member member) {
         return User.builder()
-                .username(member.getUsername())
-                .password(member.getPassword())
+                .username(member.getMemberId())
+                .password("")
                 .roles(member.getRoles().toArray(new String[0]))
                 .build();
     }

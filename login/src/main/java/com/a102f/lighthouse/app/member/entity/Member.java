@@ -34,33 +34,25 @@ public class Member extends BaseEntity implements UserDetails {
     @Id
     @Column(name="member_id", updatable = false, unique = true, nullable = false)
     private String memberId;
-    @Column(nullable = false)
-    private String name;
+
     @Column(nullable = false)
     private String password;
+
     @Column(nullable = false, unique = true)
     private String nickname;
-    @Builder.Default
-    private String link = "";
+
     @Column(name = "profile_image")
     @Builder.Default
     private String profileImage = "";
-    @Column(unique = true)
-    private String email;
-
-    @Builder.Default
-    private String description = "";
 
     @Builder.Default
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
     public void updateMember(MemberUpdateRequestDto dto){
-        if (dto.getName() != null) this.name = dto.getName();
         if (dto.getPassword() != null) this.password = dto.getPassword();
         if (dto.getNickname() != null) this.nickname = dto.getNickname();
         if (dto.getProfileImage() != null) this.profileImage = dto.getProfileImage();
-        if (dto.getEmail() != null) this.email = dto.getEmail();
     }
 
     public void delete(){

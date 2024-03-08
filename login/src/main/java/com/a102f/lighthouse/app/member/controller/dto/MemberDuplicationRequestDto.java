@@ -11,18 +11,14 @@ public class MemberDuplicationRequestDto {
     private String memberId;
     @Nullable
     private String nickname;
-    @Nullable
-    @Email
-    private String email;
 
     @Builder
-    public MemberDuplicationRequestDto(String memberId, String nickname, String email) {
+    public MemberDuplicationRequestDto(String memberId, String nickname) {
         this.memberId = memberId;
         this.nickname = nickname;
-        this.email = email;
     }
 
     public boolean isAllNull(){
-        return memberId == null && nickname == null && email == null;
+        return memberId == null && nickname == null;
     }
 }

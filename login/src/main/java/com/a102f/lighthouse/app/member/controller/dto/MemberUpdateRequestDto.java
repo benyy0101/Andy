@@ -12,22 +12,17 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class MemberUpdateRequestDto {
-    private String name;
     @Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,16}", message = "비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.")
     private String password;
     private String nickname;
     @Null
     private String profileImage;
-    @Email
-    private String email;
 
     @Builder
-    public MemberUpdateRequestDto(String name, String password, String nickname, String profileImage, String email) {
-        this.name = name;
+    public MemberUpdateRequestDto(String password, String nickname, String profileImage) {
         this.password = password;
         this.nickname = nickname;
         this.profileImage = profileImage;
-        this.email = email;
     }
 
 }

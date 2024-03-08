@@ -4,6 +4,7 @@ import com.a102f.lighthouse.app.member.entity.Member;
 import com.a102f.lighthouse.app.member.repository.MemberRepository;
 import com.a102f.lighthouse.auth.JwtToken;
 import com.a102f.lighthouse.auth.JwtTokenProvider;
+import com.a102f.lighthouse.auth.controller.dto.KakaoOAuthMemberInfoResponse;
 import com.a102f.lighthouse.auth.controller.dto.LoginResponseDto;
 import com.a102f.lighthouse.auth.controller.dto.OAuthAccessTokenResponse;
 import com.a102f.lighthouse.auth.controller.dto.OAuthMemberInfoResponse;
@@ -32,25 +33,23 @@ public class OAuthService {
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final MemberRepository memberRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final OAuthClient githubOAuthClient;
+    private final KakaoOAuthClient kakaoOAuthClient;
 
     @Value("spring.security.oauth2.client.registration.password-salt")
     private String salt;
 
-    public OAuthService(JwtTokenProvider jwtTokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, MemberRepository memberRepository, PasswordEncoder passwordEncoder, OAuthClient githubOAuthClient) {
-        this.jwtTokenProvider = jwtTokenProvider;
+    public OAuthService(JwtTokenProvider jwtTokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, MemberRepository memberRepository, KakaoOAuthClient kakaoOAuthClient) {        this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.memberRepository = memberRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.githubOAuthClient = githubOAuthClient;
+        this.kakaoOAuthClient = kakaoOAuthClient;
     }
 
     @Transactional
-    public LoginResponseDto githubOAuthLogin(String code) {
-        OAuthMemberInfoResponse res = getGithubUserInfo(code);
-        String memberId = res.getOauthId();
+    public LoginResponseDto kakaoOAuthLogin(String code) {
+        KakaoOAuthMemberInfoResponse res = getKakaoUserInfo(code);
+        String memberId = res.getId();
         createIfNewMember(memberId, res);
+        System.out.println(memberId);
         return login(memberId);
     }
 
@@ -67,12 +66,12 @@ public class OAuthService {
                 .build();
     }
 
-    private OAuthMemberInfoResponse getGithubUserInfo(String code) {
+    private KakaoOAuthMemberInfoResponse getKakaoUserInfo(String code) {
         try {
-            OAuthAccessTokenResponse tokenResponse = githubOAuthClient.getAccessToken(code);
-            return githubOAuthClient.getMemberInfo(tokenResponse.getAccessToken());
+            OAuthAccessTokenResponse tokenResponse = kakaoOAuthClient.getAccessToken(code);
+            return kakaoOAuthClient.getMemberInfo(tokenResponse.getAccessToken());
         } catch (HttpClientErrorException e) {
-            throw new RestApiException(CustomErrorCode.GITHUB_AUTHORIZATION_ERROR);
+            throw new RestApiException(CustomErrorCode.KAKAO_AUTHORIZATION_ERROR);
         }
     }
 
@@ -87,8 +86,6 @@ public class OAuthService {
             Member member =
                     Member.builder()
                             .memberId(memberId)
-                            .password(passwordEncoder.encode(memberId + salt))
-                            .name(res.getName()==null? "" : res.getName())
                             .profileImage(res.getProfileUrl())
                             .nickname("User" + RandomStringUtils.randomAlphanumeric(8))
                             .roles(List.of("SOCIAL")).build();

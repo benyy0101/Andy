@@ -21,25 +21,24 @@ public class KakaoOAuthClientTest {
 
     @BeforeEach
     public void setUp() {
-        authorizationCode = "VcY8r4RLx3cI-z-QRnJebTdHDpgvCxpn-75GnkFKzMssfUXWC30aZW5lwLcKKwymAAABjhc3LBuGtS2__sNdBQ";
+        authorizationCode = "nPGgVNanMkKBIkhMspVikYsO74ftkM2iMKR--R6FJGj_ZfQHpJNEKcgqSl0KKwzUAAABjhzoNCN-jFVpBnvzXw";
     }
 
     @Test
     public void testGetAccessToken() {
-//        OAuthAccessTokenResponse response = kakaoOAuthClient.getAccessToken(authorizationCode);
-//
-//        assertNotNull(response);
-//        assertNotNull(response.getAccessToken());
+        OAuthAccessTokenResponse response = kakaoOAuthClient.getAccessToken(authorizationCode);
+        assertNotNull(response);
+        assertNotNull(response.getAccessToken());
     }
 
     @Test
     public void testGetMemberInfo() {
-//        OAuthAccessTokenResponse accessTokenResponse = kakaoOAuthClient.getAccessToken(authorizationCode);
-//
-//        KakaoOAuthMemberInfoResponse memberInfoResponse = (KakaoOAuthMemberInfoResponse)kakaoOAuthClient.getMemberInfo(accessTokenResponse.getAccessToken());
-//
-//        assertNotNull(memberInfoResponse);
-//        assertNotNull(memberInfoResponse.getKakaoAccount().profile.nickname);
+        OAuthAccessTokenResponse accessTokenResponse = kakaoOAuthClient.getAccessToken(authorizationCode);
+
+        KakaoOAuthMemberInfoResponse memberInfoResponse = kakaoOAuthClient.getMemberInfo(accessTokenResponse.getAccessToken());
+
+        assertNotNull(memberInfoResponse);
+        assertNotNull(memberInfoResponse.getKakaoAccount().profile.nickname);
 
     }
 }

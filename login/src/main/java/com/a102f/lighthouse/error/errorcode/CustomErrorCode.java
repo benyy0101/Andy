@@ -30,8 +30,7 @@ public enum CustomErrorCode implements ErrorCode{
     WRONG_PASSWORD(HttpStatus.BAD_REQUEST, "잘못된 비밀번호입니다."),
     ENCRYPTION_FAILED(HttpStatus.INTERNAL_SERVER_ERROR, "token 암호화가 실패하였습니다"),
     DECRYPTION_FAILED(HttpStatus.INTERNAL_SERVER_ERROR, "token 복호화가 실패하였습니다"),
-    GITHUB_AUTHORIZATION_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "GITHUB 정보를 얻어오는데 실패하였습니다"),
-    FULL_ROOM(HttpStatus.BAD_REQUEST, "방이 가득 찼습니다");
+    KAKAO_AUTHORIZATION_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Kakao 정보를 얻어오는데 실패하였습니다");
 
     private final HttpStatus httpStatus;
     private final String message;

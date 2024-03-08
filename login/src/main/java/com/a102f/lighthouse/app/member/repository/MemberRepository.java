@@ -11,17 +11,10 @@ public interface MemberRepository extends JpaRepository<Member, String>, MemberC
 
     Optional<Member> findByNickname(String nickname);
 
-    boolean existsByMemberIdOrEmailOrNickname(String memberId, String email, String nickname);
-
-    boolean existsByEmail(String email);
-
     boolean existsByNickname(String nickname);
 
     @Query("SELECT count(m) FROM Member m WHERE m.memberId = :memberId")
     int countByMemberIdDeletedIncluded(@Param("memberId") String memberId);
-
-    @Query("SELECT count(m) FROM Member m WHERE m.email = :email")
-    int countByEmailDeletedIncluded(@Param("email") String email);
 
     @Query("SELECT count(m) FROM Member m WHERE m.nickname = :nickname")
     int countByNicknameDeletedIncluded(@Param("nickname") String nickname);

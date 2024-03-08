@@ -49,7 +49,7 @@ public class KakaoOAuthClient implements OAuthClient {
 
 
     @Override
-    public OAuthMemberInfoResponse getMemberInfo(String accessToken) {
+    public KakaoOAuthMemberInfoResponse getMemberInfo(String accessToken) {
         // 헤더 설정
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(accessToken);

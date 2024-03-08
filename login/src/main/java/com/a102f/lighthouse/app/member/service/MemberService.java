@@ -29,9 +29,7 @@ public class MemberService {
     public Member create(MemberSigninRequestDto req) {
         Member member = Member.builder()
                 .memberId(req.getMemberId())
-                .name(req.getName())
                 .password(passwordEncoder.encode(req.getPassword()))
-                .email(req.getEmail())
                 .nickname(req.getNickname())
                 .roles(req.roles)
                 .build();
@@ -42,7 +40,6 @@ public class MemberService {
     public void update(MemberUpdateRequestDto req, String memberId) {
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new RestApiException(CustomErrorCode.NO_MEMBER));
 
-        emailDuplicateValidation(req);
         nicknameDuplicateValidation(req);
         socialUserPasswordValidation(req, member);
 
@@ -61,9 +58,6 @@ public class MemberService {
     public boolean duplicationValid(MemberDuplicationRequestDto req) {
         if(req.getMemberId() != null){
             return memberRepository.countByMemberIdDeletedIncluded(req.getMemberId()) == 0;
-        }
-        if (req.getEmail() != null){
-            return memberRepository.countByEmailDeletedIncluded(req.getEmail()) == 0;
         }
         if (req.getNickname() != null){
             return memberRepository.countByNicknameDeletedIncluded(req.getNickname()) == 0;
@@ -88,10 +82,10 @@ public class MemberService {
             throw new RestApiException(CustomErrorCode.DUPLICATE_VALUE, "이미 존재하는 닉네임입니다");
     }
 
-    private void emailDuplicateValidation(MemberUpdateRequestDto req) {
-        if(req.getEmail() != null && memberRepository.existsByEmail(req.getEmail()))
-            throw new RestApiException(CustomErrorCode.DUPLICATE_VALUE, "이미 존재하는 이메일입니다");
-    }
+//    private void emailDuplicateValidation(MemberUpdateRequestDto req) {
+//        if(req.getEmail() != null && memberRepository.existsByEmail(req.getEmail()))
+//            throw new RestApiException(CustomErrorCode.DUPLICATE_VALUE, "이미 존재하는 이메일입니다");
+//    }
 
 //    private void S3ImageDelete(MemberUpdateRequestDto req, Member member) {
 //        if (req.getProfileImage() != null) {

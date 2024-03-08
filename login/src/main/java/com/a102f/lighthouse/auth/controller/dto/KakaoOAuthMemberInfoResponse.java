@@ -13,7 +13,7 @@ import lombok.Setter;
 public class KakaoOAuthMemberInfoResponse extends OAuthMemberInfoResponse{
 
     @JsonProperty("id")
-    private Long id;
+    private String id;
 
     @JsonProperty("properties")
     private Properties properties;

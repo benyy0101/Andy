@@ -29,10 +29,8 @@ public class MemberCustomRepositoryImpl implements MemberCustomRepository {
                 .select(Projections.constructor(
                         MemberDetailResponseDto.class,
                         member.memberId,
-                        member.name,
                         member.nickname,
-                        member.profileImage,
-                        member.email
+                        member.profileImage
                 ))
                 .from(member)
                 .where(member.memberId.eq(memberId))
@@ -63,9 +61,6 @@ public class MemberCustomRepositoryImpl implements MemberCustomRepository {
         }
         if (req.getNickname() != null) {
             builder.or(member.nickname.eq(req.getNickname()));
-        }
-        if (req.getEmail() != null) {
-            builder.or(member.email.eq(req.getEmail()));
         }
 
         return builder;

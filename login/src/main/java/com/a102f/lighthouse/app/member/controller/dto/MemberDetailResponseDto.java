@@ -8,16 +8,12 @@ import java.util.List;
 @Getter
 public class MemberDetailResponseDto {
     private String memberId;
-    private String name;
     private String nickname;
     private String profileImage;
-    private String email;
 
-    public MemberDetailResponseDto(String memberId, String name, String nickname, String profileImage, String email) {
+    public MemberDetailResponseDto(String memberId, String nickname, String profileImage) {
         this.memberId = memberId;
-        this.name = name;
         this.nickname = nickname;
         this.profileImage = profileImage;
-        this.email = email;
     }
 }
