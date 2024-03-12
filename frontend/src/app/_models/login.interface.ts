@@ -13,10 +13,13 @@ export interface KakaoLoginResponse {
     refresh_token_expires_in: number
 }
 
-export interface LoginInfo{
+export interface LoginResponse{
     kakao_name: string,
+    access_token: string,
     profiles: BabyProfile[],
 }
+
+
 
 export interface KakaoLogoutRequest {
     logout_redirect_uri: string,
@@ -44,4 +47,13 @@ export interface CreateBabyProfileResponse{
 
 export interface RemoveBabyProfileRequest {
     child_seq: string;
+}
+
+export interface ProfileState extends BabyProfile{
+    kakao_name: string,
+}
+
+interface ProfileActions {
+    setProfileInfo: (profile: ProfileState) => void;
+    removeProfileInfo: () => void;
 }
