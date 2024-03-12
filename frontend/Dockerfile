@@ -13,18 +13,11 @@ RUN npm install
 # 프로젝트 파일 복사
 COPY . .
 
-# React 앱 빌드
+# Next 앱 빌드
 RUN npm run build
 
-# Nginx를 사용하여 빌드된 앱 서비스
-FROM nginx:stable-alpine as production-stage
+# 서버 실행을 위한 포트 설정. Next.js의 기본 포트는 3000입니다.
+EXPOSE 3000
 
-# 빌드 단계에서 생성된 빌드 파일을 Nginx가 서비스할 수 있는 경로로 복사
-COPY --from=build-stage /app/build /usr/share/nginx/html
-
-# 80 포트 열기
-EXPOSE 80
-
-# Nginx 실행
-CMD ["nginx", "-g", "daemon off;"]
-
+# Next.js 서버 실행
+CMD ["npm", "start"]
