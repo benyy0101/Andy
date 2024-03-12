@@ -1,5 +1,5 @@
 # 기본 이미지로 node의 최신 LTS 버전을 사용합니다.
-FROM node:lts as build-stage
+FROM node:20.11.1 as build-stage
 
 # 작업 디렉토리 설정
 WORKDIR /app
