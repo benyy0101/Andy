@@ -1,5 +1,6 @@
 import {create} from 'zustand';
 import { ProfileState,ProfileActions } from '../_models/login.interface';
+import {persist} from 'zustand/middleware';;
 
 const defaultProfile: ProfileState = {
     kakao_name: '',
@@ -17,11 +18,15 @@ const testProfile: ProfileState = {
 interface ProfileStore{
     profile: ProfileState;
 }
-export const useProfile = create<ProfileStore & ProfileActions>((set) => ({
+export const useProfile = create(persist<ProfileStore & ProfileActions>((set) => ({
     profile: process.env.LOCAL_DEV === 'true' ? testProfile : defaultProfile,
     setProfileInfo: (profile: ProfileState) => set({profile}),
-    removeProfileInfo: () => set({}),
-}));
+    removeProfileInfo: () => set({}),}),
+    {
+        name: 'profile',
+        getStorage: () => sessionStorage,
+    })
+);
 
 export default useProfile;
 
