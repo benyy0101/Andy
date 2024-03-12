@@ -53,7 +53,7 @@ export interface ProfileState extends BabyProfile{
     kakao_name: string,
 }
 
-interface ProfileActions {
+export interface ProfileActions {
     setProfileInfo: (profile: ProfileState) => void;
     removeProfileInfo: () => void;
 }
