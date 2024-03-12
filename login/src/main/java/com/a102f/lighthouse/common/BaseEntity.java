@@ -24,6 +24,19 @@ public class BaseEntity {
     @Column(name = "is_deleted")
     private Boolean isDeleted = Boolean.FALSE;
 
+    @PrePersist // 엔티티가 영속성 컨텍스트에 저장되기 전에 실행
+    private void prePersist() {
+        if (this.createdAt == null) {
+            this.createdAt = LocalDateTime.now();
+            this.updatedAt = LocalDateTime.now();
+        }
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now(); // 객체 업데이트 시, 현재 시각으로 업데이트
+    }
+
     public void deleteSoftly() {
         this.isDeleted = Boolean.TRUE;
         updatedAt = LocalDateTime.now();

@@ -50,7 +50,7 @@ public class KakaoOAuthMemberInfoResponse extends OAuthMemberInfoResponse{
             private String thumbnailImageUrl;
 
             @JsonProperty("profile_image_url")
-            private String profileImageUrl;
+            public String profileImageUrl;
 
             @JsonProperty("is_default_image")
             private Boolean isDefaultImage;

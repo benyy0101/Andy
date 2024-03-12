@@ -30,6 +30,7 @@ public class MemberCustomRepositoryImpl implements MemberCustomRepository {
                         MemberDetailResponseDto.class,
                         member.memberId,
                         member.nickname,
+                        member.password,
                         member.profileImage
                 ))
                 .from(member)
@@ -46,6 +47,7 @@ public class MemberCustomRepositoryImpl implements MemberCustomRepository {
                 MemberSimpleResponseDto.class,
                 member.memberId,
                 member.nickname,
+                member.password,
                 member.profileImage
                 )).from(member)
                 .where(member.memberId.in(currentMemberIdSet))

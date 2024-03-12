@@ -4,6 +4,7 @@ import com.a102f.lighthouse.error.errorcode.CustomErrorCode;
 import com.a102f.lighthouse.error.exception.RestApiException;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -30,12 +31,31 @@ public class AES128Util {
     private Cipher cipher;
 
     @PostConstruct
-    public void init() throws NoSuchPaddingException, NoSuchAlgorithmException {
+    public void init() throws NoSuchAlgorithmException, NoSuchPaddingException {
         SecureRandom secureRandom = new SecureRandom();
         byte[] iv = new byte[16];
         secureRandom.nextBytes(iv);
         ivParameterSpec = new IvParameterSpec(iv);
-        secretKeySpec = new SecretKeySpec(secretKey.getBytes(ENCODING_TYPE), "AES");
+
+        byte[] keyBytes = secretKey.getBytes(ENCODING_TYPE);
+
+        // AES 키 길이 검증 및 조정
+        if (keyBytes.length != 16 && keyBytes.length != 24 && keyBytes.length != 32) {
+            log.warn("제공된 AES 키의 길이가 128, 192, 또는 256비트가 아닙니다. 키 길이를 조정합니다.");
+
+            // 키 길이가 16, 24, 32 바이트 중 하나가 되도록 조정
+            byte[] adjustedKeyBytes = new byte[16]; // 기본값으로 128비트(16바이트) 키 사용
+            if (keyBytes.length < 16) {
+                System.arraycopy(keyBytes, 0, adjustedKeyBytes, 0, keyBytes.length);
+            } else if (keyBytes.length > 16 && keyBytes.length <= 24) {
+                adjustedKeyBytes = ArrayUtils.subarray(keyBytes, 0, 24); // 192비트
+            } else if (keyBytes.length > 24) {
+                adjustedKeyBytes = ArrayUtils.subarray(keyBytes, 0, 32); // 256비트
+            }
+            keyBytes = adjustedKeyBytes;
+        }
+
+        secretKeySpec = new SecretKeySpec(keyBytes, "AES");
         cipher = Cipher.getInstance(INSTANCE_TYPE);
     }
 

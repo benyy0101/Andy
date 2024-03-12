@@ -111,7 +111,7 @@ public class JwtTokenProvider {
         // UsernamePasswordAuthenticationToken : Authentication 구현체
         // credentials : 패스워드나 토큰과 같은 비밀번호 인증 정보 ( 보안을 위해 비워둠 )
         // credentials이 없어도 principal, authorities정보에 중점을 두고 처리
-        UserDetails principal = new User(claims.getSubject(), "", authorities);
+        UserDetails principal = new User(claims.getSubject(), "{noop}123", authorities);
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
     }
 

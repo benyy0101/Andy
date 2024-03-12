@@ -34,13 +34,16 @@ public class OAuthService {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final MemberRepository memberRepository;
     private final KakaoOAuthClient kakaoOAuthClient;
+    private final PasswordEncoder passwordEncoder;
 
     @Value("spring.security.oauth2.client.registration.password-salt")
     private String salt;
 
-    public OAuthService(JwtTokenProvider jwtTokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, MemberRepository memberRepository, KakaoOAuthClient kakaoOAuthClient) {        this.jwtTokenProvider = jwtTokenProvider;
+    public OAuthService(JwtTokenProvider jwtTokenProvider, PasswordEncoder passwordEncoder, AuthenticationManagerBuilder authenticationManagerBuilder, MemberRepository memberRepository, KakaoOAuthClient kakaoOAuthClient) {
+        this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.memberRepository = memberRepository;
+        this.passwordEncoder = passwordEncoder;
         this.kakaoOAuthClient = kakaoOAuthClient;
     }
 
@@ -49,7 +52,6 @@ public class OAuthService {
         KakaoOAuthMemberInfoResponse res = getKakaoUserInfo(code);
         String memberId = res.getId();
         createIfNewMember(memberId, res);
-        System.out.println(memberId);
         return login(memberId);
     }
 
@@ -81,13 +83,14 @@ public class OAuthService {
         return jwtTokenProvider.generateToken(authentication);
     }
 
-    private void createIfNewMember(String memberId, OAuthMemberInfoResponse res) {
+    private void createIfNewMember(String memberId, KakaoOAuthMemberInfoResponse res) {
         if (!memberRepository.existsById(memberId)) {
             Member member =
                     Member.builder()
                             .memberId(memberId)
-                            .profileImage(res.getProfileUrl())
-                            .nickname("User" + RandomStringUtils.randomAlphanumeric(8))
+                            .profileImage(res.getKakaoAccount().profile.profileImageUrl)
+                            .password(passwordEncoder.encode(memberId + salt))
+                            .nickname(res.getKakaoAccount().profile.nickname)
                             .roles(List.of("SOCIAL")).build();
             memberRepository.save(member);
         }
