@@ -10,7 +10,6 @@ interface Exam{
 
 //MYPAGE-001
 export interface MyInfoByMonthRequest{
-    child_seq: string;
     year: number;
     month: number;
 }
@@ -21,7 +20,6 @@ export interface MyInfoByMonthResponse{
 
 //MYPAGE-002
 export interface MyInfoByDateRequest{
-    child_seq: string;
     year: number;
     month: number;
     day: number;

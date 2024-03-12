@@ -6,7 +6,7 @@ import { localAxios } from "./http-commons";
 
 const {profile} = useProfile();
 
-export const getMyInfoByMonth = async () => {
+export const getMyInfoByMonth = async (request: MyInfoByMonthRequest | null) => {
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -14,16 +14,20 @@ export const getMyInfoByMonth = async () => {
     if(profile.child_seq === ''){
         throw new Error('child_seq is empty');
     }
-
-    try{        
-        const request:MyInfoByMonthRequest  = {
-            child_seq: profile.child_seq,
+    if(!request)(
+        request = {
             year: year,
             month: month,
         }
+    )
+
+    try{        
         if(year && month){
             const reponse = await localAxios.post(`/mypage/${profile.child_seq}/month`,request);
             return reponse.data;
+        }
+        else{
+            throw new Error('year or month is empty');
         }
     }
     catch (error){
@@ -32,15 +36,9 @@ export const getMyInfoByMonth = async () => {
 }
 //MYPAGE-002
 
-export const getMyInfoByDate = async (year: number, month: number, day: number) => {
+export const getMyInfoByDate = async (request: MyInfoByDateRequest) => {
     try{
-        const request:MyInfoByDateRequest = {
-            child_seq: profile.child_seq,
-            year: year,
-            month: month,
-            day: day,
-        }
-        const response = await localAxios.get(`/mypage/${profile.child_seq}/day`,);
+        const response = await localAxios.post(`/mypage/${profile.child_seq}/day`,request);
         return response.data;
     }
     catch (error){
