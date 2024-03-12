@@ -1,28 +1,36 @@
+'use client'
 import tw from "tailwind-styled-components";
-// import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation"
 
 export const Logo = () => {
-    // const navigate = useNavigate();
+    const router = useRouter();
 
-    // const navigatetoHome = () => {
-    //     navigate(`/profile_list`);
-    // };
+    const routetoHome = () => {
+        router.push('/main')
+    }
 
     return (
         <Wrapper>
-            <Title>로고</Title>
+            <Title onClick={routetoHome}>로고</Title>
         </Wrapper>
     )
 }
 
+// const Wrapper = tw.div`
+// flex
+// justify-center
+// w-[100vw]
+// absolute
+// top-[40px]
+// `
+
 const Wrapper = tw.div`
+absolute
+top-[40px]
+left-0
+right-0
 flex
 justify-center
-absolute
-top-[20px]
-left-[50%]
-transform
--translate-x-1/2
 `
 
 const Title = tw.div`
