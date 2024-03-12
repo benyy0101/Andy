@@ -19,6 +19,8 @@ export interface LoginResponse{
     profiles: BabyProfile[],
 }
 
+
+
 export interface KakaoLogoutRequest {
     logout_redirect_uri: string,
 }
@@ -45,4 +47,13 @@ export interface CreateBabyProfileResponse{
 
 export interface RemoveBabyProfileRequest {
     child_seq: string;
+}
+
+export interface ProfileState extends BabyProfile{
+    kakao_name: string,
+}
+
+interface ProfileActions {
+    setProfileInfo: (profile: ProfileState) => void;
+    removeProfileInfo: () => void;
 }
