@@ -1,6 +1,6 @@
 import { gender } from "./enums";
 
-export interface KakaoAuthCode {
+export interface KakaoAuth {
     code: string;
 }
 
@@ -13,8 +13,9 @@ export interface KakaoLoginResponse {
     refresh_token_expires_in: number
 }
 
-export interface LoginInfo{
+export interface LoginResponse{
     kakao_name: string,
+    access_token: string,
     profiles: BabyProfile[],
 }
 
