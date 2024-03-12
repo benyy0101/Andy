@@ -2,7 +2,7 @@ import tw from "tailwind-styled-components"
 import { Logo } from "../../_components/logo/Logo"
 import { Profile } from "./_components/profile"
 import { Profile_add } from "./_components/profile_add"
-import { Tutorial_Btn } from "../../_components/tutorial_btn/tutorial_btn";
+import { Tutorial_Btn } from "../../_components/tutorial_btn/tutorial_btn"
 
 export default function Profile_list() {
     return (
@@ -21,10 +21,12 @@ const Wrapper = tw.div`
 flex
 flex-col
 justify-center
-h-[100vh]
 `
 
 const Profiles = tw.div`
 flex
 justify-center
+mt-30
+h-[100vh]
 `
+// flex-wrap

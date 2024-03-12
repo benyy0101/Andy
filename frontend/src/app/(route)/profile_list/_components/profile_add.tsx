@@ -23,7 +23,10 @@ export const Profile_add = () => {
 const Wrapper = tw.div`
 flex
 flex-col
-px-5
+px-10
+py-10
+justify-center
+items-center
 `
 
 const Profile_img = tw.button`
