@@ -1,10 +1,18 @@
+'use client'
 import tw from "tailwind-styled-components";
+// import { useRouter } from "next/navigation"
 
 export const Profile = () => {
+    // const router = useRouter();
+
+    // const routetoProfileEdit = () => {
+    //     router.push('/profile_edit')
+    // }
+
     return (
         <Wrapper>
             <Profile_img />
-            <Profile_name>이름</Profile_name>
+            <Profile_name>박수민</Profile_name>
         </Wrapper>
     )
 };
@@ -12,7 +20,10 @@ export const Profile = () => {
 const Wrapper = tw.div`
 flex
 flex-col
-px-5
+px-10
+py-10
+justify-center
+items-center
 `
 
 const Profile_img = tw.button`

@@ -19,12 +19,15 @@ export default function Profile_add() {
 
 const Wrapper = tw.div`
 flex
-flex-col
 justify-center
-h-[100vh]
+items-center
 `
 
 const Profile_wrapper = tw.div`
 flex
 justify-center
+items-center
+h-[100vh]
 `
+
+// flex-wrap
