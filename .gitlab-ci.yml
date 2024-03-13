@@ -5,6 +5,8 @@ stages:
 build_job:
   stage: build
   script:
+    - nvm install 20.11.1
+    - nvm use 20.11.1
     - npm install
     - npm run build # 프로젝트를 빌드합니다.
   only:
