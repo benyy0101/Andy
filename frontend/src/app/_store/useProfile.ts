@@ -1,5 +1,5 @@
 import {create} from 'zustand';
-import { ProfileState,ProfileActions } from '../_models/login.interface';
+import { ProfileState,ProfileActions } from '../_models/profile.interface';
 import {persist} from 'zustand/middleware';;
 
 const defaultProfile: ProfileState = {

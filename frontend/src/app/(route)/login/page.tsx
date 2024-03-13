@@ -10,9 +10,8 @@ function page() {
     // const AuthCode = params.get('code');
     // useLogin({code: AuthCode ?? ""});
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-        <div>히히 카카오 로그인 리다이렉트</div>
-    </Suspense>
+    <div>히히 카카오 로그인 리다이렉트</div>
+    
   )
 }
 
