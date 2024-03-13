@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* #root {
+body {
 	margin: 0 auto;
 	padding: 2rem;
 	text-align: center;
 	background-color: #295F2E;
 	color: #FFE67C;
-} */
+  }
