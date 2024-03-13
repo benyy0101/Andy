@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.1",
+    "@picocss/pico": "^2.0.6",
     "@tanstack/react-query": "^5.24.8",
     "@tanstack/react-query-devtools": "^5.25.0",
     "@types/axios": "^0.14.0",

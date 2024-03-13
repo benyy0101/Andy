@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ReactQueryProviders from "./utils/reactQueryProvider";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
         <body className={inter.className}>
-          <ReactQueryProviders>{children}</ReactQueryProviders>
+        {children}
         </body>
     </html>
   );
