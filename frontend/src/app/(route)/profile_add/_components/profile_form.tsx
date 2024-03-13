@@ -59,13 +59,13 @@ w-[250px]
 rounded-[7px]
 border 
 border-gray-300
-bg-transparent
+bg-[#FFFFFF]
 px-3
 py-2.5
 font-sans
 text-sm 
 font-normal 
-text-blue-gray-700
+text-black
 outline-0
 transition-all
 placeholder-shown:border 
@@ -85,13 +85,13 @@ w-[250px]
 rounded-[7px]
 border 
 border-gray-300
-bg-transparent
+bg-[#FFFFFF]
 px-3
 py-2.5
 font-sans 
-text-sm 
-font-normal 
-text-blue-gray-700
+text-sm
+font-normal
+text-black
 outline-0
 transition-all
 focus:border-gray-900
@@ -163,7 +163,7 @@ disabled:bg-blue-gray-50
 // py-2.5
 // font-sans 
 // text-sm 
-// font-normal 
+// font-normal
 // text-blue-gray-700
 // outline-0
 // transition-all 
@@ -205,6 +205,7 @@ const Btn = tw.div`
 mb-3
 flex
 w-[250px]
+text-black
 `
 
 const Boy = tw.button`
@@ -233,4 +234,5 @@ rounded-[5px]
 bg-gray-100
 py-2.5
 hover:bg-gray-300
+text-black
 `
