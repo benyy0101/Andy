@@ -1,6 +1,6 @@
 'use client'
 
-import { use, useState } from 'react'
+import { Suspense, use, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useSearchParams } from 'next/navigation';
@@ -21,9 +21,12 @@ export default function ReactQueryProviders({ children }: React.PropsWithChildre
   )
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <Suspense>
+        <QueryClientProvider client={queryClient}>
       {children}
       <ReactQueryDevtools initialIsOpen={isDevOn} />
     </QueryClientProvider>
+    </Suspense>
+    
   )
 }

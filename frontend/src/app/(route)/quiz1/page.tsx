@@ -75,11 +75,12 @@ const Quiz1Page: React.FC = () => {
         <Wrapper>
             <Wrapper2>
                 {/* 진행바 */}
-                <div className="container">
+                {/* <div className="container">
                 <ProgressBarWrapper>
                     <ProgressBar className="progress-moved" />
                 </ProgressBarWrapper>
-                </div>
+                </div> */}
+                <progress className="w-full color-" value="63" max="100" />
                 
                 <div className="flex w-full items-center">
                     <div className="flex-grow text-center">
