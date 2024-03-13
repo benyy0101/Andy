@@ -38,7 +38,7 @@ w-[18%]
 `
 
 const Label = tw.div`
-color-[#000000]
+text-black
 opacity-[85%]
 w-[65%]
 font-bold
