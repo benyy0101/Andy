@@ -1,0 +1,30 @@
+{
+    "name": "ANDY",
+    "short_name": "andy",
+    "theme_color": "#ed8b0e",
+    "background_color": "#FFE67C",
+    "display": "fullscreen",
+    "orientation": "any",
+    "scope": "/",
+    "start_url": "/main",
+    "icons": [
+      {
+        "src": "/logo192.png",
+        "type": "image/png",
+        "sizes": "192x192",
+        "purpose": "maskable any"
+      },
+      {
+        "src": "/logo512.png",
+        "type": "image/png",
+        "sizes": "256x256",
+        "purpose": "maskable any"
+      },
+      {
+        "src": "/logo512.png",
+        "type": "image/png",
+        "sizes": "512x512",
+        "purpose": "maskable any"
+      }
+    ]
+  }
