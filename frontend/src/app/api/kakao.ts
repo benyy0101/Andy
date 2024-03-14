@@ -4,7 +4,7 @@ import { kakaoAxios,localAxios } from "./http-commons";
 //MEMBER-001
 export const kakaoLogin = async (kakaoAuth: KakaoAuth): Promise<LoginResponse> => {
     try{
-        const response = await kakaoAxios.post("/member/login", kakaoAuth);
+        const response = await kakaoAxios.post("/auth/login", kakaoAuth);
         return response.data;
     }
     catch (error){
@@ -14,7 +14,7 @@ export const kakaoLogin = async (kakaoAuth: KakaoAuth): Promise<LoginResponse> =
 
 //MEMBER-???
 export const kakaoLogout = (code: string) => {
-    return kakaoAxios.post("/v1/user/logout", {
+    return kakaoAxios.post("/auth/logout", {
     });
 };
 

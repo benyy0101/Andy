@@ -1,8 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-const serverUrl = process.env.SERVER_URL || "http://localhost:8080";
-const imageBaseUrl = process.env.IMAGE_BASE_URL || "http://localhost:8080";
-const kakaoURl = "https://kapi.kakao.com";
+const serverUrl = process.env.SERVER_URL || "";
+const imageBaseUrl = process.env.IMAGE_BASE_URL || "";
 const localDev = process.env.LOCAL_DEV || false;
 
 export const localAxios = axios.create({
@@ -14,7 +13,7 @@ export const localAxios = axios.create({
 });
 
 export const kakaoAxios = axios.create({
-    baseURL: "https://kapi.kakao.com",
+    baseURL: serverUrl,
     headers: {
         "Content-type": "application/json",
         withCredentials: true,
