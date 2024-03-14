@@ -33,7 +33,7 @@ export const Profile_img = () => {
         if (file !== undefined) {
             try{
                 const formData = new FormData();
-                formData.append('file', file)
+                formData.append('profileImageFile', file)
 
                 try {
                     // const res = await s3업로드(formData)
