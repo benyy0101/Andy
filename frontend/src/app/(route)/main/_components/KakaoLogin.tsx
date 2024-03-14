@@ -4,8 +4,9 @@ import kakao_logo from "../../../asset/_img/kakao_logo.png"
 import { useLogin } from "../../../hooks/useLogin"
 
 export const KakaoLogin = () => {
-    const KAKAO_REST_API_KEY = process.env.API_KEY;
-    const KAKAO_REDIRECT_URL = process.env.SERVER_URL;
+    const KAKAO_REST_API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+    // const KAKAO_REDIRECT_URL = process.env.SERVER_URL;
+    const KAKAO_REDIRECT_URL = "https://localhost:3000/login/kakao"
     const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URL}&response_type=code`;
 
     const handleLogin = () => {
@@ -13,14 +14,13 @@ export const KakaoLogin = () => {
     }
 
     let code = ""
-
     if (typeof window !== "undefined") {
         // 인가코드 받아오기
         const codeParam = new URL(window.location.href).searchParams.get("code");
         code = codeParam !== null ? codeParam : "";
     }
 
-    const { data } = useLogin({ code });
+    useLogin({ code });
 
     return (
         <div>
