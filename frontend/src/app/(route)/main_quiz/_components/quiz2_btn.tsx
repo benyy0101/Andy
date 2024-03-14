@@ -1,18 +1,17 @@
 'use client'
 import tw from "tailwind-styled-components";
-// import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 export const Quiz2_btn = () => {
-    // const router = useRouter();
+    const router = useRouter();
 
-    // const routetoQuiz2 = () => {
-    //     router.push('퀴즈2 url')
-    // }
+    const routetoQuiz2 = () => {
+        router.push('/quiz2')
+    }
 
     return (
         <Wrapper>
-            {/* <Quiz_img onClick={routetoQuiz2}> */}
-            <Quiz_img>
+            <Quiz_img onClick={routetoQuiz2}>
                 퀴즈 2
             </Quiz_img>
         </Wrapper>
