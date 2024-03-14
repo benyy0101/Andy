@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import tw from 'tailwind-styled-components';
 
 import Timer from "@/app/_components/timer";
-import Word1 from "./components/word1";
-import Camera from "./components/camera";
+import Word1 from "./_components/word1";
+import Camera from "./_components/camera";
 import CorrectModal from "@/app/_components/modal_correct";
 import WrongModal from "@/app/_components/modal_wrong";
 
