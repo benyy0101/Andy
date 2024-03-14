@@ -1,12 +1,17 @@
 import tw from "tailwind-styled-components";
 import kakao_logo from "../../../asset/_img/kakao_logo.png"
+import Image from "next/image";
 
 export const KakaoLogin = () => {
     return (
         <div>
             <LoginBtn>
                 <Symbol>
-                    <img src={kakao_logo.src} style={{ width: "24px", height: "21px", filter: "invert(0%) sepia(1%) saturate(4%) hue-rotate(25deg) brightness(98%) contrast(101%)" }}></img>
+                    <Image src={kakao_logo.src}
+                    alt="kakao logo"
+                    height={21}
+                    width={24}
+                    style={{filter: "invert(0%) sepia(1%) saturate(4%) hue-rotate(25deg) brightness(98%) contrast(101%)" }}/>
                 </Symbol>
                 <Label>카카오 로그인</Label>
             </LoginBtn>

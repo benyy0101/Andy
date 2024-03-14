@@ -2,13 +2,17 @@ import tw from "tailwind-styled-components";
 import { Logo } from "../../_components/logo/Logo"
 import { KakaoLogin } from "./_components/KakaoLogin"
 import Main_Character from "../../asset/_img/character.png"
+import Image from "next/image";
 
 export default function Main() {
     return (
         <Wrapper>
             <Logo />
             <Character>
-                <img src={Main_Character.src} style={{ width: '300px', height: 'auto' }}/>
+                <Image alt="ANDY" src={Main_Character}
+                    height={800}
+                    width={300}
+                 />
             </Character>
             <KakaoLogin />
         </Wrapper>
@@ -25,5 +29,5 @@ h-[100vh]
 const Character = tw.div`
 flex
 justify-center
-mt-30
+items-center
 `
