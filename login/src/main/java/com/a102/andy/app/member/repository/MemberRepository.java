@@ -13,6 +13,8 @@ public interface MemberRepository extends JpaRepository<Member, String>, MemberC
 
     boolean existsByNickname(String nickname);
 
+    boolean existsByMemberId(String id);
+
     @Query("SELECT count(m) FROM Member m WHERE m.memberId = :memberId")
     int countByMemberIdDeletedIncluded(@Param("memberId") String memberId);
 
