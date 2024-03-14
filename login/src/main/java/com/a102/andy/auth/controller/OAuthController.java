@@ -1,6 +1,7 @@
 package com.a102.andy.auth.controller;
 
 import com.a102.andy.auth.controller.dto.LoginResponseDto;
+import com.a102.andy.auth.controller.dto.OAuthLoginResponse;
 import com.a102.andy.auth.service.OAuthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/auth/oauth2")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 @Slf4j
 public class OAuthController {
@@ -25,11 +26,12 @@ public class OAuthController {
     @Value("${spring.jwt.refresh-token-validity-in-seconds}")
     private long refreshTokenValidityInSeconds;
 
-    @GetMapping("login/kakao")
-    public ResponseEntity<LoginResponseDto> kakaoLogin(@RequestParam String code){
+    @GetMapping("/login")
+    public ResponseEntity<OAuthLoginResponse> kakaoLogin(@RequestParam String code){
         LoginResponseDto res = oAuthService.kakaoOAuthLogin(code);
         HttpHeaders headers = getHeadersWithCookie(res);
-        return new ResponseEntity<>(res, headers, HttpStatus.OK);
+        OAuthLoginResponse oAuthLoginResponse = new OAuthLoginResponse(res);
+        return new ResponseEntity<>(oAuthLoginResponse, headers, HttpStatus.OK);
     }
 
     private HttpHeaders getHeadersWithCookie(LoginResponseDto res) {
