@@ -8,12 +8,14 @@ import com.a102.andy.app.member.controller.dto.MemberDuplicationRequestDto;
 import com.a102.andy.app.member.entity.Member;
 import com.a102.andy.error.errorcode.CommonErrorCode;
 import com.a102.andy.error.exception.RestApiException;
+import com.a102.andy.image.service.S3UploadService;
 import com.a102.andy.util.MemberUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -24,7 +26,7 @@ import java.util.List;
 public class MemberController {
 
     private final MemberService memberService;
-//    private final S3UploadService s3UploadService;
+    private final S3UploadService s3UploadService;
 
     @PostMapping("")
     public ResponseEntity<String> signup(@RequestBody @Valid MemberSigninRequestDto req){
@@ -39,30 +41,6 @@ public class MemberController {
         memberService.update(req, memberId);
         return ResponseEntity.ok().build();
     }
-
-
-//    @PostMapping("/image")
-//    public ResponseEntity<Void> updateImage(
-//            @RequestParam("profileImageFile") MultipartFile multipartFile) {
-//        String memberId = MemberUtil.getMemberId();
-//        String url = s3UploadService.saveFile(multipartFile, "profileImage/");
-//        log.info("created url: {}", url);
-//        memberService.update(MemberUpdateRequestDto
-//                .builder()
-//                .profileImage(url)
-//                .build(), memberId);
-//        return ResponseEntity.ok().build();
-//    }
-
-//    @DeleteMapping("/image")
-//    public ResponseEntity<Void> deleteImage() {
-//        String memberId = MemberUtil.getMemberId();
-//        memberService.update(MemberUpdateRequestDto
-//                .builder()
-//                .profileImage("")
-//                .build(), memberId);
-//        return ResponseEntity.ok().build();
-//    }
 
     @DeleteMapping("")
     public ResponseEntity<Void> delete(){

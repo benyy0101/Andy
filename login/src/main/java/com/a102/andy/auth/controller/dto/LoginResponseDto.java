@@ -12,7 +12,6 @@ public class LoginResponseDto {
 
     private String memberId;
     private String nickname;
-    private String profileImage;
     private JwtToken jwtToken;
 
 }

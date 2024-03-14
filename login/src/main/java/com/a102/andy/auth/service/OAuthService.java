@@ -61,7 +61,6 @@ public class OAuthService {
         return LoginResponseDto.builder()
                 .memberId(memberId)
                 .nickname(member.getNickname())
-                .profileImage(member.getProfileImage())
                 .jwtToken(jwtToken)
                 .build();
     }
@@ -82,11 +81,10 @@ public class OAuthService {
     }
 
     private void createIfNewMember(String memberId, KakaoOAuthMemberInfoResponse res) {
-        if (!memberRepository.existsById(memberId)) {
+        if (!memberRepository.existsByMemberId(memberId)) {
             Member member =
                     Member.builder()
                             .memberId(memberId)
-                            .profileImage(res.getKakaoAccount().profile.profileImageUrl)
                             .password(passwordEncoder.encode(memberId + salt))
                             .nickname(res.getKakaoAccount().profile.nickname)
                             .roles(List.of("SOCIAL")).build();

@@ -38,12 +38,8 @@ public class Member extends BaseEntity implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String nickname;
-
-    @Column(name = "profile_image")
-    @Builder.Default
-    private String profileImage = "";
 
     @Builder.Default
     @ElementCollection(fetch = FetchType.EAGER)
@@ -52,7 +48,6 @@ public class Member extends BaseEntity implements UserDetails {
     public void updateMember(MemberUpdateRequestDto dto){
         if (dto.getPassword() != null) this.password = dto.getPassword();
         if (dto.getNickname() != null) this.nickname = dto.getNickname();
-        if (dto.getProfileImage() != null) this.profileImage = dto.getProfileImage();
     }
 
     public void delete(){
