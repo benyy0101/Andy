@@ -4,14 +4,16 @@ import styled from 'styled-components';
 import tw from 'tailwind-styled-components';
 
 import Timer from "@/app/_components/timer";
-import Word1 from "./_components/word1";
-import Camera from "./_components/camera";
+import Photo from "./_components/photo";
+import InputComponent from "./_components/input";
 import CorrectModal from "@/app/_components/modal_correct";
 import WrongModal from "@/app/_components/modal_wrong";
+import { Input } from "postcss";
 
 
-const Quiz1Page: React.FC = () => {
+const Quiz2Page: React.FC = () => {
     
+
     
     // 가능하면 음악도 나오게 할 것
     // const audio = new Audio('audio_file.mp3');
@@ -54,21 +56,23 @@ const Quiz1Page: React.FC = () => {
                         <Timer />
                     </div>
                 </div>
-                <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
-                <div className="flex justify-center gap-20">
-                    <Word1 />
-                    <Camera />
+                <Explain>이건 무엇일까요?</Explain>
+                <div className="justify-center">
+                    <Photo />
+                    <InputComponent />
                 </div>
 
             </Wrapper2>
 
-
+            
             {/* 조건에 따라서 정답 맞추면 정답 모달/ 틀리면 오답 모달 */}
-            <button onClick={handleCorrectAnswer}>Show Correct Modal</button>
+            {/* <button onClick={handleCorrectAnswer}>Show Correct Modal</button>
             <CorrectModal isOpen={isCorrectModalOpen} onClose={handleCloseCorrectModal} />
             
             <button onClick={handleWrongAnswer}>Show Wrong Modal</button>
-            <WrongModal isOpen={isWrongModalOpen} onClose={handleCloseWrongModal} />
+            <WrongModal isOpen={isWrongModalOpen} onClose={handleCloseWrongModal} /> */}
+
+
             
         </Wrapper>
     );
@@ -81,7 +85,7 @@ flex-col
 items-center
 justify-start
 `;
-
+    
 const Wrapper2 = tw.div`
 w-full
 p-1
@@ -99,7 +103,6 @@ const Explain = tw.h3`
 text-xl
 font-bold
 `;
-    
 
-export default Quiz1Page;
+export default Quiz2Page;
 

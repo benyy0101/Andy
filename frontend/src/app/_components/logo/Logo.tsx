@@ -1,6 +1,9 @@
 'use client'
 import tw from "tailwind-styled-components";
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation";
+
+import Image from "next/image";
+import logo from "../../asset/_img/Andylogo.png";
 
 export const Logo = () => {
     const router = useRouter();
@@ -11,7 +14,7 @@ export const Logo = () => {
 
     return (
         <Wrapper>
-            <Title onClick={routetoHome}>로고</Title>
+            <Title onClick={routetoHome}>로고 이미지 삽입</Title>
         </Wrapper>
     )
 }
