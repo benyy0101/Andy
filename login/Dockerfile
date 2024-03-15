@@ -5,7 +5,7 @@ FROM openjdk:17
 WORKDIR /app
 
 # Copy the built JAR file into the container
-COPY login.jar /app/
+COPY AndyLogin.jar /app/
 
 # Expose the port
 EXPOSE 8080
