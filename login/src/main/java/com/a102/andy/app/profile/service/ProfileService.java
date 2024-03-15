@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static com.a102.andy.error.errorcode.CustomErrorCode.NO_MEMBER;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -25,7 +27,7 @@ public class ProfileService {
                 .profileName(req.getProfileName())
                 .profileNickname(req.getProfileNickname())
                 .profileGender(req.getProfileGender())
-                .profileBirthday(req.getProfileBirthday().atStartOfDay())
+                .profileBirthday(req.getProfileBirthday())
                 .profilePicture(req.getProfilePicture())
                 .memberId(req.getKakaoId())
                 .build();
@@ -33,19 +35,18 @@ public class ProfileService {
     }
 
     public void deleteProfile(Integer profileSeq) {
-        Profile profile = profileRepository.findById(profileSeq).orElseThrow(() -> new RestApiException(CustomErrorCode.NO_MEMBER));
+        Profile profile = profileRepository.findById(profileSeq).orElseThrow(() -> new RestApiException(NO_MEMBER));
         profile.delete();
     }
 
     @Transactional
     public ProfileResponseDto updateProfile(ProfileUpdateRequestDto req) {
-
-        profileRepository.updateProfile(req.getProfileSeq(), req.getProfileName(), req.getProfileBirthday().atStartOfDay(), req.getProfilePicture(), req.getProfileGender(), req.getProfileNickname());
-
-        return new ProfileResponseDto(profileRepository.findById(req.getProfileSeq()).get());
+        Profile profile = profileRepository.findById(req.getProfileSeq()).orElseThrow();
+        profile.updateProfile(req);
+        return new ProfileResponseDto(profile);
     }
 
-    public ProfileResponseDto getProfile(String profileSeq) {
-        return null;
+    public ProfileResponseDto getProfile(Integer profileSeq) {
+        return new ProfileResponseDto(profileRepository.findById(profileSeq).orElseThrow(() -> new RestApiException(NO_MEMBER)));
     }
 }

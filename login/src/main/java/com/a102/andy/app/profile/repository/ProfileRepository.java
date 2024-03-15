@@ -11,13 +11,5 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public interface ProfileRepository extends JpaRepository<Profile, Integer>, CustomProfileRepository {
-    @Modifying
-    @Query("UPDATE Profile p SET p.profileName = :profileName, p.profileBirthday = :profileBirthday, p.profilePicture = :profilePicture, p.profileGender = :profileGender, p.profileNickname = :profileNickname WHERE p.id = :profileSeq")
-    void updateProfile(@Param("profileSeq") Integer profileSeq,
-                       @Param("profileName") String profileName,
-                       @Param("profileBirthday") LocalDateTime profileBirthday,
-                       @Param("profilePicture") String profilePicture,
-                       @Param("profileGender") String profileGender,
-                       @Param("profileNickname") String profileNickname);
 
 }

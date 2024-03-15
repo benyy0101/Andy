@@ -1,6 +1,7 @@
 package com.a102.andy;
 
 import com.a102.andy.app.profile.controller.dto.ProfileCreateRequestDto;
+import com.a102.andy.app.profile.controller.dto.ProfileResponseDto;
 import com.a102.andy.app.profile.controller.dto.ProfileUpdateRequestDto;
 import com.a102.andy.app.profile.entity.Profile;
 import com.a102.andy.app.profile.repository.ProfileRepository;
@@ -10,9 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -79,14 +78,13 @@ public class ProfileServiceTest {
     void updateProfileTest() {
         // given: 프로필 생성
         Profile createdProfile = createTestProfile();
-        System.out.println(createdProfile.getProfileSeq());
         // 새로운 프로필 정보 설정
         ProfileUpdateRequestDto updateReq = ProfileUpdateRequestDto.builder()
                 .profileSeq(createdProfile.getProfileSeq())
                 .profileName("변경된홍길동")
                 .profileNickname("변경된길동이")
-                .profileGender("F")
                 .profileBirthday(LocalDateTime.now().minusYears(1).toLocalDate()) // 예시로 1년 전으로 설정
+                .profileGender("F")
                 .profilePicture("updatedProfilePictureUrl")
                 .build();
 
@@ -95,13 +93,10 @@ public class ProfileServiceTest {
 
         // then: 업데이트된 프로필 정보 확인
         Profile updatedProfile = profileRepository.findById(createdProfile.getProfileSeq()).get();
-        System.out.println(updatedProfile.getProfileNickname());
-        System.out.println(updatedProfile.getProfileSeq());
         // 업데이트된 값들이 정상적으로 반영되었는지 검증
         assertEquals(updateReq.getProfileName(), updatedProfile.getProfileName());
         assertEquals(updateReq.getProfileNickname(), updatedProfile.getProfileNickname());
         assertEquals(updateReq.getProfileGender(), updatedProfile.getProfileGender());
-        // 그 외 필요한 필드들에 대한 검증도 추가할 수 있습니다.
 
         // 기존의 정보와 업데이트된 정보가 다른지 확인
         assertNotEquals(req.getProfileName(), updatedProfile.getProfileName());
@@ -109,4 +104,18 @@ public class ProfileServiceTest {
         assertNotEquals(req.getProfileGender(), updatedProfile.getProfileGender());
     }
 
+    @Test
+    void getProfile() {
+        // given: 테스트용 프로필 생성
+        Profile createdProfile = createTestProfile();
+
+        // when: 생성된 프로필 조회
+        ProfileResponseDto resultDto = profileService.getProfile(createdProfile.getProfileSeq());
+
+        // then: 조회된 프로필의 정보가 올바른지 확인
+        assertNotNull(resultDto, "프로필 조회 결과가 null입니다.");
+        assertEquals(createdProfile.getProfileSeq(), resultDto.getChildSeq(), "프로필 seq가 일치하지 않습니다.");
+        assertEquals(createdProfile.getProfileName(), resultDto.getChildName(), "프로필 이름이 일치하지 않습니다.");
+        assertEquals(createdProfile.getProfilePicture(), resultDto.getChildPicture(), "프로필 사진이 일치하지 않습니다.");
+    }
 }

@@ -1,5 +1,6 @@
 package com.a102.andy.app.profile.entity;
 
+import com.a102.andy.app.profile.controller.dto.ProfileUpdateRequestDto;
 import com.a102.andy.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,7 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import static lombok.AccessLevel.PROTECTED;
 
@@ -34,7 +35,7 @@ public class Profile extends BaseEntity {
     private String profileNickname;
 
     @Column(name = "child_birthday", nullable = false)
-    private LocalDateTime profileBirthday;
+    private LocalDate profileBirthday;
 
     @Column(name = "child_gender", nullable = false, length = 1)
     private String profileGender;
@@ -44,5 +45,13 @@ public class Profile extends BaseEntity {
 
     public void delete(){
         deleteSoftly();
+    }
+
+    public void updateProfile(ProfileUpdateRequestDto req) {
+        this.profileName = req.getProfileName();
+        this.profileBirthday = req.getProfileBirthday();
+        this.profilePicture = req.getProfilePicture();
+        this.profileGender = req.getProfileGender();
+        this.profileNickname = req.getProfileNickname();
     }
 }

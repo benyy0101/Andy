@@ -44,7 +44,7 @@ public class ProfileController {
     }
 
     @GetMapping("/{profileSeq}")
-    public ResponseEntity<ProfileResponseDto> getProfile(@PathVariable String profileSeq) {
+    public ResponseEntity<ProfileResponseDto> getProfile(@PathVariable Integer profileSeq) {
         return ResponseEntity.ok(profileService.getProfile(profileSeq));
     }
 
