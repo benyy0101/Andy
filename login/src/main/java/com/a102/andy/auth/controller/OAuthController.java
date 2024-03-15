@@ -10,10 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -26,7 +23,7 @@ public class OAuthController {
     @Value("${spring.jwt.refresh-token-validity-in-seconds}")
     private long refreshTokenValidityInSeconds;
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<OAuthLoginResponse> kakaoLogin(@RequestParam String code){
         LoginResponseDto res = oAuthService.kakaoOAuthLogin(code);
         HttpHeaders headers = getHeadersWithCookie(res);
