@@ -1,8 +1,8 @@
-import tw from "tailwind-styled-components";
+import Image from "next/image";
 import { Logo } from "../../_components/logo/Logo"
 import { KakaoLogin } from "./_components/KakaoLogin"
 import Main_Character from "../../asset/_img/character.png"
-import Image from "next/image";
+import { Character, Wrapper } from "./styles/Page.styled";
 
 export default function Main() {
     return (
@@ -19,15 +19,3 @@ export default function Main() {
     )
 };
 
-const Wrapper = tw.div`
-flex
-flex-col
-justify-center
-h-[100vh]
-`
-
-const Character = tw.div`
-flex
-justify-center
-items-center
-`

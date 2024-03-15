@@ -2,7 +2,7 @@
 
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useSearchParams } from 'next/navigation';
-import React, { use, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 function Devtool() {
     const params = useSearchParams();
