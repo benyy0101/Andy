@@ -1,7 +1,7 @@
 package com.a102.andy.common.enums;
 
 public enum RedirectUri {
-    KAKAO_OAUTH("http://localhost:8080/api/code");
+    KAKAO_OAUTH("http://localhost:3000/login/kakao");
 
     private final String uri;
 

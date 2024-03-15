@@ -25,7 +25,7 @@ public class Profile extends BaseEntity {
     @Column(name = "child_seq")
     private Integer profileSeq;
 
-    @Column(name = "member_id", nullable = false)
+    @Column(name = "parent_kakao_id", nullable = false)
     private String memberId;
 
     @Column(name = "child_name", nullable = false, length = 10)
