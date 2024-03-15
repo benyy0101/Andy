@@ -1,15 +1,7 @@
-# Base image
 FROM openjdk:17
 
-# Set the working directory
-WORKDIR ./build/libs
-
-# Copy the built JAR file into the container
-COPY AndyLogin.jar .
-
-# Expose the port
+ARG JAR_FILE=*.jar
+COPY ./build/libs/*.jar app.jar
+ENTRYPOINT ["java","-jar","app.jar"]
 EXPOSE 8080
-
-# Command to run the application
-CMD ["java", "-jar", "login.jar"]
 
