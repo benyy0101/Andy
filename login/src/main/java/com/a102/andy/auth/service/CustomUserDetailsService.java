@@ -19,7 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
-        return memberRepository.findById(memberId)
+        return memberRepository.findByParentId(memberId)
                 .map(this::createUserDetails)
                 .orElseThrow(() -> new RestApiException(CustomErrorCode.NO_MEMBER));
     }
