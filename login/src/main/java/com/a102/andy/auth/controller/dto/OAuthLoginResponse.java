@@ -7,14 +7,15 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.util.List;
-
 @Getter
 @Builder
 @AllArgsConstructor
-public class LoginResponseDto {
-
-    private String memberId;
-    private String nickname;
-    private JwtToken jwtToken;
+public class OAuthLoginResponse {
+    private String kakaoNickname;
     private List<ProfileResponseDto> profiles;
+
+    public OAuthLoginResponse(LoginResponseDto loginResponseDto) {
+        this.kakaoNickname = loginResponseDto.getNickname();
+        this.profiles = loginResponseDto.getProfiles();
+    }
 }
