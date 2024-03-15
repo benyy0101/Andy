@@ -10,7 +10,6 @@ import com.a102.andy.auth.controller.dto.LoginResponseDto;
 import com.a102.andy.auth.controller.dto.OAuthAccessTokenResponse;
 import com.a102.andy.app.member.entity.Member;
 import com.a102.andy.app.member.repository.MemberRepository;
-import com.a102.andy.auth.controller.dto.OAuthLoginResponse;
 import com.a102.andy.error.errorcode.CustomErrorCode;
 import com.a102.andy.error.exception.RestApiException;
 import lombok.extern.slf4j.Slf4j;

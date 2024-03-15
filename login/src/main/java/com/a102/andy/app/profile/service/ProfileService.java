@@ -23,6 +23,8 @@ public class ProfileService {
 
     @Transactional
     public Profile createProfile(ProfileCreateRequestDto req) {
+        System.out.println(req.getKakaoId());
+        System.out.println(req.getProfileNickname());
         Profile profile = Profile.builder()
                 .profileName(req.getProfileName())
                 .profileNickname(req.getProfileNickname())

@@ -1,7 +1,6 @@
 package com.a102.andy.auth.controller;
 
 import com.a102.andy.auth.controller.dto.LoginResponseDto;
-import com.a102.andy.auth.controller.dto.OAuthLoginResponse;
 import com.a102.andy.auth.service.OAuthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,11 +23,10 @@ public class OAuthController {
     private long refreshTokenValidityInSeconds;
 
     @PostMapping("/login")
-    public ResponseEntity<OAuthLoginResponse> kakaoLogin(@RequestParam String code){
+    public ResponseEntity<LoginResponseDto> kakaoLogin(@RequestParam String code){
         LoginResponseDto res = oAuthService.kakaoOAuthLogin(code);
         HttpHeaders headers = getHeadersWithCookie(res);
-        OAuthLoginResponse oAuthLoginResponse = new OAuthLoginResponse(res);
-        return new ResponseEntity<>(oAuthLoginResponse, headers, HttpStatus.OK);
+        return new ResponseEntity<>(res, headers, HttpStatus.OK);
     }
 
     private HttpHeaders getHeadersWithCookie(LoginResponseDto res) {

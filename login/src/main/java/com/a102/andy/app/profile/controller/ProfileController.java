@@ -2,6 +2,7 @@ package com.a102.andy.app.profile.controller;
 
 import com.a102.andy.app.profile.controller.dto.ProfileCreateRequestDto;
 import com.a102.andy.app.profile.controller.dto.ProfileResponseDto;
+import com.a102.andy.app.profile.controller.dto.ProfileUpdateRequestDto;
 import com.a102.andy.app.profile.service.ProfileService;
 import com.a102.andy.image.service.S3UploadService;
 import com.a102.andy.util.MemberUtil;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/profile")
@@ -24,23 +26,21 @@ public class ProfileController {
 
     @PostMapping("")
     public ResponseEntity<ProfileResponseDto> createProfile(@RequestBody ProfileCreateRequestDto req) {
+        System.out.println(req.getProfileNickname());
         ProfileResponseDto res = new ProfileResponseDto(profileService.createProfile(req));
         return ResponseEntity.ok(res);
     }
 
     @DeleteMapping("")
-    public ResponseEntity<Void> deleteProfile(@RequestParam Integer profileSeq) {
-        profileService.deleteProfile(profileSeq);
+    public ResponseEntity<Void> deleteProfile(@RequestBody Map<String, Integer> req) {
+        profileService.deleteProfile(req.get("child_seq"));
         return ResponseEntity.ok().build();
     }
 
     @PatchMapping("")
-    public ResponseEntity<ProfileResponseDto> updateProfile(@RequestBody ProfileCreateRequestDto req) {
-        String memberId = MemberUtil.getMemberId();
-        System.out.println(memberId);
-//        ProfileResponseDto res = profileService.updateProfile(req);
-//        return ResponseEntity.ok(res);
-        return null;
+    public ResponseEntity<ProfileResponseDto> updateProfile(@RequestBody ProfileUpdateRequestDto req) {
+        ProfileResponseDto res = profileService.updateProfile(req);
+        return ResponseEntity.ok(res);
     }
 
     @GetMapping("/{profileSeq}")
