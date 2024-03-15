@@ -25,7 +25,7 @@ public class OAuthController {
     @Value("${spring.jwt.refresh-token-validity-in-seconds}")
     private long refreshTokenValidityInSeconds;
 
-    @GetMapping("login/kakao")
+    @GetMapping("/login/kakao")
     public ResponseEntity<LoginResponseDto> kakaoLogin(@RequestParam String code){
         LoginResponseDto res = oAuthService.kakaoOAuthLogin(code);
         HttpHeaders headers = getHeadersWithCookie(res);

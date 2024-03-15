@@ -11,7 +11,10 @@ public interface MemberRepository extends JpaRepository<Member, String>, MemberC
 
     Optional<Member> findByNickname(String nickname);
 
+    @Query("SELECT m from Member m WHERE m.memberId = :memberId")
+    Optional<Member> findByParentId(@Param("memberId") String memberId);
     boolean existsByNickname(String nickname);
+
 
     boolean existsByMemberId(String id);
 

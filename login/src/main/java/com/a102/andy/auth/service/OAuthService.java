@@ -48,6 +48,7 @@ public class OAuthService {
     @Transactional
     public LoginResponseDto kakaoOAuthLogin(String code) {
         KakaoOAuthMemberInfoResponse res = getKakaoUserInfo(code);
+        System.out.println(res.getId());
         String memberId = res.getId();
         createIfNewMember(memberId, res);
         return login(memberId);
@@ -56,13 +57,17 @@ public class OAuthService {
     private LoginResponseDto login(String memberId) {
         JwtToken jwtToken = makeJwtToken(memberId);
 
-        Member member = memberRepository.findById(memberId).orElseThrow(() -> new RestApiException(NO_MEMBER));
+        Member member = memberRepository.findByParentId(memberId).orElseThrow(() -> new RestApiException(NO_MEMBER));
 
-        return LoginResponseDto.builder()
+        System.out.println(member.getMemberSeq()+" " + member.getMemberId() + " " + member.getUsername());
+        LoginResponseDto dto = LoginResponseDto.builder()
                 .memberId(memberId)
                 .nickname(member.getNickname())
                 .jwtToken(jwtToken)
                 .build();
+        System.out.println(dto.getMemberId()+" "+dto.getNickname()+ " "+dto.getJwtToken());
+
+        return dto;
     }
 
     private KakaoOAuthMemberInfoResponse getKakaoUserInfo(String code) {
