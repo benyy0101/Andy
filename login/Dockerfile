@@ -2,10 +2,10 @@
 FROM openjdk:17
 
 # Set the working directory
-WORKDIR /app
+WORKDIR ./build/libs
 
 # Copy the built JAR file into the container
-COPY AndyLogin.jar /app/
+COPY AndyLogin.jar .
 
 # Expose the port
 EXPOSE 8080
