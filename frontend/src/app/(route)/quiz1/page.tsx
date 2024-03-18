@@ -1,12 +1,15 @@
 'use client'
+import React, { useState, useRef } from "react";
+import styled from 'styled-components';
+import tw from 'tailwind-styled-components';
 
-import React, { useState } from "react";
+
+import Timer from "@/app/_components/timer";
+import { CameraComponent } from "./_components/camera";
+import { Word1 } from "./_components/word1";
 
 import CorrectModal from "@/app/_components/modal_correct";
 import WrongModal from "@/app/_components/modal_wrong";
-import Timer from "@/app/_components/timer";
-import Word1 from "./_components/word1";
-import Camera from "./_components/camera";
 
 import {
     Wrapper,
@@ -20,6 +23,10 @@ function Quiz1Page (){
     // 가능하면 음악도 나오게 할 것
     // const audio = new Audio('audio_file.mp3');
     // audio.play();
+
+    // 카메라 컴포넌트
+    const camera = useRef(null);
+    const [image, setImage] = useState(null);
 
     const [isCorrectModalOpen, setIsCorrectModalOpen] = useState(false);
 
@@ -41,6 +48,7 @@ function Quiz1Page (){
         setIsWrongModalOpen(false);
     };
     
+    
     return (
     
         <Wrapper>
@@ -58,7 +66,8 @@ function Quiz1Page (){
                 <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
                 <div className="flex justify-center gap-20">
                     <Word1 />
-                    <Camera />
+                    {/* <Camera /> */}
+
                 </div>
 
             </Wrapper2>
