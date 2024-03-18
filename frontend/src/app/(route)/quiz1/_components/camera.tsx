@@ -1,12 +1,26 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+// import { useSendResult } from "@/app/hooks/useGameA";
 import { Wrapper2 } from "./styles/Camera.styled";
 
 function Camera() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const videoRef = useRef<any>(null);
   const [imgSrc, setImgSrc] = useState("");
+
+  //   const {
+  //     data: sendResultData,
+  //     isLoading: sendResultLoading,
+  //     isError: sendResultError,
+  //   } = useSendResult(
+  //     "user",
+  //     {
+  //       picture: imgSrc,
+  //       question_name: "camera",
+  //     },
+  //     !!imgSrc,
+  //   );
 
   useEffect(() => {
     const constraints = { audio: false, video: true };
@@ -39,6 +53,7 @@ function Camera() {
       console.error(canvas.toDataURL("image/png"));
     }
   };
+
   return (
     <Wrapper2>
       <video ref={videoRef} autoPlay height={300} width={300} />

@@ -1,12 +1,13 @@
-//MYPAGE-001
+// MYPAGE-001
 
 import { MyInfoByDateRequest, MyInfoByMonthRequest } from "../_models/mypage.interface";
-import useProfile from "../_store/useProfile";
+import storeProfile from "../_store/storeProfile";
 import { localAxios } from "./http-commons";
 
-const {profile} = useProfile();
+const {profile} = storeProfile();
 
 export const getMyInfoByMonth = async (request: MyInfoByMonthRequest | null) => {
+    
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -15,33 +16,22 @@ export const getMyInfoByMonth = async (request: MyInfoByMonthRequest | null) => 
         throw new Error('child_seq is empty');
     }
     if(!request)(
+        // eslint-disable-next-line no-param-reassign
         request = {
-            year: year,
-            month: month,
+            year,
+            month
         }
     )
 
-    try{        
-        if(year && month){
-            const reponse = await localAxios.post(`/mypage/${profile.child_seq}/month`,request);
-            return reponse.data;
-        }
-        else{
-            throw new Error('year or month is empty');
-        }
+    if(year && month){
+        const reponse = await localAxios.post(`/mypage/${profile.child_seq}/month`,request);
+        return reponse.data;
     }
-    catch (error){
-        throw error;
-    }
+    return null;
 }
-//MYPAGE-002
+// MYPAGE-002
 
 export const getMyInfoByDate = async (request: MyInfoByDateRequest) => {
-    try{
-        const response = await localAxios.post(`/mypage/${profile.child_seq}/day`,request);
-        return response.data;
-    }
-    catch (error){
-        throw error;
-    }
+    const response = await localAxios.post(`/mypage/${profile.child_seq}/day`,request);
+    return response.data;
 }
