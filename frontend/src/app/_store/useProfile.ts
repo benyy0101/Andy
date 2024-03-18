@@ -1,6 +1,6 @@
-import {create} from 'zustand';
+import { create } from 'zustand';
 import { ProfileState,ProfileActions } from '../_models/profile.interface';
-import {persist} from 'zustand/middleware';;
+import {persist} from 'zustand/middleware';
 
 const defaultProfile: ProfileState = {
     kakao_name: '',
