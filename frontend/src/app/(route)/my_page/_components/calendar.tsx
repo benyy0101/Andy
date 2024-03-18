@@ -1,14 +1,14 @@
 'use client'
-import tw from "tailwind-styled-components";
 
-export const Calendar_box: React.FC = () => {
+/* eslint-disable no-plusplus */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React from "react";
+import { CalendarWrapper } from "../styles/Page.styled"
+
+export default function CalendarBox() {
     return (
-        <Wrapper>
+        <CalendarWrapper>
             달력
-        </Wrapper>
+        </CalendarWrapper>
     )
 };
-
-const Wrapper = tw.div`
-flex
-`

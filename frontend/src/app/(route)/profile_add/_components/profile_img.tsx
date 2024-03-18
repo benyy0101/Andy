@@ -1,12 +1,15 @@
 'use client'
-import tw from "tailwind-styled-components";
+
 import { CameraIcon } from '@heroicons/react/24/solid';
 import { useState, useRef } from "react";
+import Image from "next/image";
+import { ProfileImage, ProfileChange } from "../styles/Page.styled";
 
-export const Profile_img = () => {
+export default function ProfileImg() {
     const [isHovered, setIsHovered] = useState(false);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [selectedFile, setSelectedFile] = useState<File>();
-    const [imagePreview, setImagePreview] = useState<string>("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
+    const [imagePreview, setImagePreview] = useState<string>("");
     const imgRef = useRef<HTMLInputElement>(null);
 
     const handleMouseEnter = () => {
@@ -17,6 +20,7 @@ export const Profile_img = () => {
         setIsHovered(false);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const EditImage = (e: any) => {
         e.preventDefault();
         const file = e.target.files[0];
@@ -38,20 +42,23 @@ export const Profile_img = () => {
                 try {
                     // const res = await s3업로드(formData)
                 } catch(error) {
+                    // eslint-disable-next-line no-console
                     console.log(error)
                 }
 
             } catch {
+                // eslint-disable-next-line no-alert
                 alert("프로필 이미지 변경에 실패하였습니다.")
             }
         } else {
+            // eslint-disable-next-line no-alert
             alert("파일을 찾을 수 없습니다.")
         }
     }
 
     return (
         <div>
-            <Profile_image onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <ProfileImage onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                 <input 
                     id="file"
                     name="file"
@@ -61,43 +68,22 @@ export const Profile_img = () => {
                     onChange={EditImage}
                     ref={imgRef}
                 />
-                <img src={imagePreview ? imagePreview: ``} style={{borderRadius: "100%"}} />
+                <Image 
+                    src={imagePreview || ``}
+                    style={{ borderRadius: "100%", backgroundColor: "#FFFFFF" }}
+                    alt = "profileimage"
+                    fill
+                />
                 <label htmlFor="file">
                     {isHovered && (
                         <div>
-                            <Profile_change>
+                            <ProfileChange>
                                 <CameraIcon fill="white" className="w-7 h-7"/>
-                            </Profile_change>
+                            </ProfileChange>
                         </div>
                     )}
                 </label>
-            </Profile_image>
+            </ProfileImage>
         </div>
     )
 };
-
-const Profile_image = tw.div`
-rounded-[100%]
-w-[200px]
-h-[200px]
-shadow-md
-flex
-justify-center
-align-center
-relative
-`
-
-const Profile_change = tw.div`
-bg-[rgba(0,0,0,0.5)]
-rounded-[100%]
-w-[200px]
-h-[200px]
-shadow-md
-flex
-justify-center
-items-center
-absolute
-top-0
-left-0
-cursor-pointer
-`
