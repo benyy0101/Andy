@@ -1,6 +1,6 @@
 import tw from 'tailwind-styled-components';
 
-export const CameraBox = tw.div`
+export const Wrapper = tw.div`
     flex
     items-center
     justify-center
@@ -12,4 +12,9 @@ export const CameraBox = tw.div`
     w-100
     h-80
     p-20
+`
+
+export const Wrapper2 = tw.div`
+flex
+flex-col
 `
