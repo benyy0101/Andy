@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { KakaoAuth, LoginResponse } from "../_models/login.interface";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { kakaoLogin } from "../api/kakao";
+import { KakaoAuth, LoginResponse } from "../_models/login.interface";
 
 export const useLogin = (data: KakaoAuth) => {
     const router = useRouter();

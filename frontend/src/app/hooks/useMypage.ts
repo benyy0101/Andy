@@ -17,4 +17,5 @@ export const useMypageByDate = (data:MyInfoByDateRequest) => {
         queryKey:["mypageByDate"],
         queryFn: () => getMyInfoByDate(data),
     });
+    return query;
 }

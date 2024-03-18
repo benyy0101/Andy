@@ -2,8 +2,6 @@ import type { Metadata,Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ReactQueryProviders from "./utils/reactQueryProvider";
-import { Suspense } from "react";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Devtool from "./_components/devtool";
 
 const inter = Inter({ subsets: ["latin"] });

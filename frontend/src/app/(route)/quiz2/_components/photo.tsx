@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import tw from "tailwind-styled-components";
 
-export const Photo = () => {
+function Photo() {
     const Photobox = tw.div`
     flex
     items-center
