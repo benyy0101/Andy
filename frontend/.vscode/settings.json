@@ -1,14 +1,25 @@
 {
-    "material-icon-theme.folders.associations": {
-      "_components": "Components",
-      "_constants": "Constant",
-      "_hooks": "Hook",
-      "_store": "Container",
-      "_types": "Typescript",
-      "_utils": "Utils",
-      "(route)": "Routes",
-      "_mocks": "Mock",
-      "_api":"Api",
-      "_models": "Class"
-    }
+  "material-icon-theme.folders.associations": {
+    "_components": "Components",
+    "_constants": "Constant",
+    "_hooks": "Hook",
+    "_store": "Container",
+    "_types": "Typescript",
+    "_utils": "Utils",
+    "(route)": "Routes",
+    "_mocks": "Mock",
+    "_api": "Api",
+    "_models": "Class"
+  },
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "eslint.autoFixOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "prettier.disableLanguages": ["js"],
+  "files.autoSave": "onFocusChange",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
   }
+}
