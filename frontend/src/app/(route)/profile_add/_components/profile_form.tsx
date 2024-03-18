@@ -41,7 +41,7 @@ export const Profile_form: React.FC = () => {
     )
 };
 
-const Form = tw.div`
+const Form = tw.form`
 flex
 flex-col
 px-5
