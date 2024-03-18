@@ -1,9 +1,6 @@
 'use client'
+
 import React, { useState, useRef } from "react";
-import styled from 'styled-components';
-import tw from 'tailwind-styled-components';
-
-
 import Timer from "@/app/_components/timer";
 import { CameraComponent } from "./_components/camera";
 import { Word1 } from "./_components/word1";

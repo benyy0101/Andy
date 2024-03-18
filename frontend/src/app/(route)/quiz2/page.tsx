@@ -1,26 +1,15 @@
 'use client'
+
 import React, { useState } from "react";
-import styled from 'styled-components';
-import tw from 'tailwind-styled-components';
-
 import Timer from "@/app/_components/timer";
-import Photo from "./_components/photo";
 import InputComponent from "./_components/input";
-import CorrectModal from "@/app/_components/modal_correct";
-import WrongModal from "@/app/_components/modal_wrong";
-import { Input } from "postcss";
+import Photo from "./_components/photo";
+import { Wrapper, Wrapper2, Title, Explain } from "./styles/pages.styled";
 
-
-const Quiz2Page: React.FC = () => {
-    
-
-    
+function Quiz2Page() {    
     // 가능하면 음악도 나오게 할 것
     // const audio = new Audio('audio_file.mp3');
     // audio.play();
-
-
-
     const [isCorrectModalOpen, setIsCorrectModalOpen] = useState(false);
 
     const handleCorrectAnswer = () => {
@@ -71,38 +60,11 @@ const Quiz2Page: React.FC = () => {
             
             <button onClick={handleWrongAnswer}>Show Wrong Modal</button>
             <WrongModal isOpen={isWrongModalOpen} onClose={handleCloseWrongModal} /> */}
-
-
-            
         </Wrapper>
     );
 };
 
-const Wrapper = tw.div`
-h-screen
-flex
-flex-col
-items-center
-justify-start
-`;
-    
-const Wrapper2 = tw.div`
-w-full
-p-1
-h-full
-`;
 
-const Title = tw.h1`
-mt-10
-text-3xl
-font-extrabold
-mb-10
-`;
-
-const Explain = tw.h3`
-text-xl
-font-bold
-`;
 
 export default Quiz2Page;
 
