@@ -1,10 +1,11 @@
 'use client'
+
 import tw from "tailwind-styled-components";
 import { useState } from 'react';
-import Main_Character from "../../asset/_img/character.png"
 import { useRouter } from "next/navigation"
+import Main_Character from "../../asset/_img/character.png"
 
-export const My_profile = () => {
+export function My_profile() {
     const [showInfo, setShowInfo] = useState(false);
     const router = useRouter();
 
