@@ -4,7 +4,9 @@ import React, { useState } from "react";
 import Timer from "@/app/_components/timer";
 import CorrectModal from "@/app/_components/modal_correct";
 import WrongModal from "@/app/_components/modal_wrong";
+import { useGamebyCategory, useProblemResult } from "@/app/hooks/useGameA";
 import Word1 from "./_components/word1";
+import Camera from "./_components/camera";
 
 import { Wrapper, Wrapper2, Title, Explain } from "./styles/page.styled";
 
@@ -18,6 +20,29 @@ function Quiz1Page() {
   // const [image, setImage] = useState(null);
 
   const [isCorrectModalOpen, setIsCorrectModalOpen] = useState(false);
+
+  // 카테고리 가져오는 커스텀 훅
+  //   const {
+  //     data: gameData,
+  //     isLoading: isGameDataLoading,
+  //     isError: isGameDataError,
+  //   } = useGamebyCategory(0);
+
+  // 문제 결과를 보내는 훅
+  //   const {
+  //     data: ProblemResult,
+  //     isLoading: isProblemResultLoading,
+  //     isError: isProbelemResultError,
+  //   } = useProblemResult("user", {
+  //     question_category_seq: 0,
+  //     mode: "A",
+  //     questions: [
+  //       {
+  //         question_seq: 0,
+  //         question_history_is_ok: true,
+  //       },
+  //     ],
+  //   });
 
   const handleCorrectAnswer = () => {
     setIsCorrectModalOpen(true);
@@ -53,7 +78,7 @@ function Quiz1Page() {
         <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
         <div className="flex justify-center gap-20">
           <Word1 />
-          {/* <Camera /> */}
+          <Camera />
         </div>
       </Wrapper2>
 

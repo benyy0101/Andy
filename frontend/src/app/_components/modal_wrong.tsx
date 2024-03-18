@@ -1,19 +1,19 @@
-'use client'
-import React, { useState, useEffect } from 'react';
-import tw from 'tailwind-styled-components';
+"use client";
 
-import Image from 'next/image';
-import WrongImage from '@/app/asset/_img/wrong.png';
-
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import WrongImage from "@/app/asset/_img/wrong.png";
+import { CorrectBackground, CorrectContent } from "./styles/ModalWrong.styled";
 
 interface WrongModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const WrongModal: React.FC<WrongModalProps> = ({ isOpen, onClose }) => {
+function WrongModal(props: WrongModalProps) {
+  const { isOpen, onClose } = props;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isExploding, setIsExploding] = useState(false);
-  
 
   useEffect(() => {
     if (isOpen) {
@@ -23,30 +23,9 @@ const WrongModal: React.FC<WrongModalProps> = ({ isOpen, onClose }) => {
     }
   }, [isOpen]);
 
-
-  const CorrectBackground = tw.div`
-  fixed 
-  top-0 
-  left-0 
-  w-full 
-  h-full 
-  flex items-center 
-  justify-center 
-  bg-black
-  bg-opacity-60
-  `
-
-  const CorrectContent = tw.div`
-  text-white
-  bg-red
-  p-8
-  rounded-lg
-  text-center
-  w-96
-  `
-
   return (
     <>
+      <div />
       {isOpen && (
         <CorrectBackground>
           <CorrectContent>
@@ -56,12 +35,18 @@ const WrongModal: React.FC<WrongModalProps> = ({ isOpen, onClose }) => {
             </div>
             <br />
             {/* 멘트 */}
-            <button onClick={onClose} className="font-bold text-xl">다시 생각해봐요..!</button>
+            <button
+              onClick={onClose}
+              className="font-bold text-xl"
+              type="button"
+            >
+              다시 생각해봐요..!
+            </button>
           </CorrectContent>
         </CorrectBackground>
       )}
     </>
   );
-};
+}
 
 export default WrongModal;

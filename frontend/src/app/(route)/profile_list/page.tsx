@@ -2,7 +2,7 @@ import tw from "tailwind-styled-components";
 import { Logo } from "../../_components/logo/Logo";
 import { Profile } from "./_components/profile";
 import { Profile_add } from "./_components/profile_add";
-import { Tutorial_Btn } from "../../_components/tutorial_btn/tutorial_btn";
+import { Tutorial_Btn } from "../../_components/tutorial_btn/tutorialBtn";
 
 export default function Profile_list() {
   return (
