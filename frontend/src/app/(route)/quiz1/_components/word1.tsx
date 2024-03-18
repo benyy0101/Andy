@@ -1,7 +1,8 @@
 import React from "react";
-import tw from "tailwind-styled-components";
+import { Wordbox } from "./styles/Word1.styled";
 
-export const Word1 = () => {
+function Word1() {
+    
     
     return (
         // 랜덤으로 카테고리에 해당하는 키워드 내기 (코드 추가할 예정)

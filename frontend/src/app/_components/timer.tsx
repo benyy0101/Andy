@@ -1,7 +1,8 @@
 'use client'
+
 import React, { useEffect, useState } from "react";
 
-const Timer: React.FC = () => {
+function Timer () {
     const [timer, setTimer] = useState<number>(30); // 타이머 시간 30초로 설정
 
     useEffect(() => {
@@ -9,7 +10,7 @@ const Timer: React.FC = () => {
 
         if (timer >= 0) {
             interval = window.setTimeout(() => {
-                setTimer(timer => timer -1);
+                setTimer(time => time -1);
             }, 1000);
         }
 
@@ -23,8 +24,8 @@ const Timer: React.FC = () => {
         let seconds: string | number = Math.floor(timer % 60);
 
         // minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
+        seconds = seconds < 10 ? `0${seconds}` : seconds;
+ 
         return timer >= 0 ? `${seconds}` : "시간이 다 되었습니다!";
     }
     
