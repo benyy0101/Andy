@@ -1,8 +1,22 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 const serverUrl = process.env.SERVER_URL || "";
 const imageBaseUrl = process.env.IMAGE_BASE_URL || "";
 const localDev = process.env.LOCAL_DEV || false;
+
+const saveToken = (response: AxiosResponse) => {
+    if(response.data.jwtToken !== null){
+        localStorage.setItem('jwtToken',response.data.jwtToken);
+    }
+}
+
+const loadToken = (config: AxiosRequestConfig) => {
+    const token = localStorage.getItem('jwtToken');
+    if(token && config.headers){
+        return Object.assign(config.headers, {Authorization: `Bearer ${token}`});
+    }
+    return null;    
+}
 
 export const localAxios = axios.create({
     baseURL: serverUrl,
@@ -35,27 +49,15 @@ localAxios.interceptors.response.use((response)=>{
     return response;
 },
 (error)=>{
+    // eslint-disable-next-line no-console
     if(localDev) console.error(error);
     return error;
 });
 
-localAxios.interceptors.request.use((config)=>{
+localAxios.interceptors.request.use((config) => {
     loadToken(config);
     return config;
 })
 
-const saveToken = (response: AxiosResponse)=>{
-    if(response.data.jwtToken ! =null){
-        localStorage.setItem('jwtToken',response.data.jwtToken);
-    }
-}
-
-const loadToken = (config: AxiosRequestConfig): null =>{
-    const token = localStorage.getItem('jwtToken');
-    if(token && config.headers){
-        config.headers.Authorization = `Bearer ${token}`;
-    }
-    return null;
-}
     
     
