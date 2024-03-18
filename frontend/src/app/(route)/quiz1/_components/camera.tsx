@@ -1,25 +1,17 @@
-import React from "react";
-import tw from "tailwind-styled-components";
+'use client';
 
+import React, { useEffect } from "react";
+import { CameraBox } from "./styles/Camera.styled";
+import { PhotoBooth } from "./photobooth";
 
-const Camera = () => {
-    const Camerabox = tw.div`
-    flex
-    items-center
-    justify-center
-    text-4xl
-    font-bold
-    mt-20
-    bg-white
-    rounded-md
-    w-100
-    h-80
-    p-20
-    `
+function Camera() {
+    useEffect(() => {
+        PhotoBooth.init();
+    },[]);
 
     return (
-        <Camerabox>카메라</Camerabox>
+        <CameraBox>카메라</CameraBox>
     );
-};
+}
 
 export default Camera
