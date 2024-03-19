@@ -1,9 +1,10 @@
 "use client";
-import tw from "tailwind-styled-components";
-import kakao_logo from "../../../asset/_img/kakao_logo.png";
-import Image from "next/image";
 
-export const KakaoLogin = () => {
+import Image from "next/image";
+import kakao_logo from "../../../asset/_img/kakao_logo.png";
+import { Label, LoginBtn, Symbol } from "./styles/KakaoLogin.styled";
+
+export function KakaoLogin() {
   const KAKAO_REST_API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const KAKAO_REDIRECT_URL = process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URL;
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URL}&response_type=code`;
@@ -31,35 +32,4 @@ export const KakaoLogin = () => {
       </LoginBtn>
     </div>
   );
-};
-
-const LoginBtn = tw.button`
-w-[230px]
-h-[60px]
-absolute
-left-[50%]
-bottom-[15%]
-transform
--translate-x-1/2
-bg-[#FEE500]
-rounded-[12px]
-flex
-flex-row
-justify-center
-items-center
-border-[3px]
-border-[white]
-`;
-
-const Symbol = tw.div`
-color-[#000000]
-w-[18%]
-`;
-
-const Label = tw.div`
-text-black
-opacity-[85%]
-w-[65%]
-font-bold
-text-[16px]
-`;
+}

@@ -26,6 +26,7 @@ export interface Problem {
   exam_mode: string | null;
   question_history_seq: number | null;
   question_history_is_ok: boolean | null;
+  created_at: string | null;
 }
 
 // GAME-003
