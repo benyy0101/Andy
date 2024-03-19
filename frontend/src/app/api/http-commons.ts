@@ -7,7 +7,9 @@ const localDev = process.env.LOCAL_DEV || false;
 
 const saveToken = (response: AxiosResponse) => {
   if (response.data.jwtToken !== null) {
-    localStorage.setItem("jwtToken", response.data.jwtToken);
+    // eslint-disable-next-line no-console
+    console.log(response.data.jwtToken.accessToken);
+    localStorage.setItem("jwtToken", response.data.jwtToken.accessToken);
   }
 };
 
@@ -21,17 +23,17 @@ const loadToken = (config: AxiosRequestConfig) => {
 
 export const localAxios = axios.create({
   baseURL: serverUrl,
+  withCredentials: true,
   headers: {
-    "Content-type": "application/json",
-    withCredentials: true,
+    "Content-Type": "application/json",
   },
 });
 
 export const kakaoAxios = axios.create({
   baseURL: loginUrl,
+  withCredentials: true,
   headers: {
-    "Content-type": "application/json",
-    withCredentials: true,
+    "Content-Type": "application/json",
   },
 });
 
@@ -44,10 +46,10 @@ export const imageAxios: AxiosInstance = axios.create({
   withCredentials: true,
 });
 
-localAxios.interceptors.response.use(
+kakaoAxios.interceptors.response.use(
   (response) => {
+    // eslint-disable-next-line no-console
     saveToken(response);
-
     return response;
   },
   (error) => {
