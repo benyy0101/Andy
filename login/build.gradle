@@ -16,9 +16,6 @@ configurations {
 		extendsFrom annotationProcessor
 	}
 }
-bootJar {
-    archiveFileName = 'AndyLogin.jar'
-}
 repositories {
 	mavenCentral()
 }
