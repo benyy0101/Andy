@@ -14,6 +14,7 @@ RUN pip install fastapi
 
 RUN pip install uvicorn
 
+RUN pip install matplotlib
 
 # 컨테이너가 시작될 때 실행될 명령어
 CMD ["uvicorn", "main:app", "--port", "80"]
