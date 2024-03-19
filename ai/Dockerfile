@@ -1,5 +1,5 @@
-# 기본 이미지로 python 3.8을 사용
-FROM python:3.8
+# 기본 이미지로 python 3.12.2을 사용
+FROM python:3.12.2
 
 # 작업 디렉토리 설정
 WORKDIR /app
