@@ -16,6 +16,7 @@ RUN pip install uvicorn
 
 RUN pip install matplotlib
 
+RUN pip install cv2
 # 컨테이너가 시작될 때 실행될 명령어
 CMD ["uvicorn", "ObjectiDetection:app", "--port", "80"]
 
