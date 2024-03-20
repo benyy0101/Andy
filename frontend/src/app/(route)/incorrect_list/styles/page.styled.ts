@@ -50,13 +50,14 @@ export const OnedayLists = tw.div`
 flex
 grid 
 grid-cols-2 
-gap-4
+gap-8
 `;
 
 export const List = tw.div`
+relative
+cursor-pointer
 font-bold
 container-md
-bg-[#ffff]/50
 mt-3
 pt-5
 pb-5
@@ -65,5 +66,15 @@ pr-10
 rounded-lg
 shadow-md
 text-lg
+overflow-hidden
+
+transition 
+ease-in-out 
+delay-20
+bg-[#ffff]/50 
+hover:-translate-y-1 
+hover:scale-110 
+hover:bg-orange hover:text-white 
+duration-300
 `;
 
