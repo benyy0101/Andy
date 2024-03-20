@@ -1,4 +1,4 @@
-import { gender } from "./enums";
+import { Gender } from "./enums";
 
 export interface BabyProfile {
   child_seq: string;
@@ -10,7 +10,7 @@ export interface CreateBabyProfileRequest {
   kakao_id: string;
   child_name: string;
   child_birthday: string;
-  child_gender: gender;
+  child_gender: Gender;
   child_picture: string | null;
 }
 

@@ -1,8 +1,9 @@
-'use client'
-import React, { useState } from 'react';
+"use client";
+
+import React, { useState } from "react";
 import tw from "tailwind-styled-components";
 
-const InputComponent: React.FC = () => {
+function InputComponent() {
   const [isFocused, setIsFocused] = useState(false);
   const [isValid, setIsValid] = useState(false);
 
@@ -12,20 +13,19 @@ const InputComponent: React.FC = () => {
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     setIsFocused(false);
-    setIsValid(e.target.value !== '');
+    setIsValid(e.target.value !== "");
   };
 
   return (
     <Wrapper>
-        <div className="flex items-center space-x-4">
-            <Input>
-            <input
-                type="text"
-                required
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                className={
-                    `w-72 
+      <div className="flex items-center space-x-4">
+        <Input>
+          <input
+            type="text"
+            required
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            className={`w-72 
                     border-b 
                     border-lightorange 
                     pb-2 
@@ -34,26 +34,24 @@ const InputComponent: React.FC = () => {
                     text-base 
                     text-orange focus:outline-none 
                     placeholder-lightorange
-                    ${isFocused || isValid ? 'border-orange' : 'border-lightorange'}`
-                }
-                />
+                    ${isFocused || isValid ? "border-orange" : "border-lightorange"}`}
+          />
 
-            <label
-                className={
-                    `absolute 
+          <label
+            className={`absolute 
                     text-lightorange
                     left-2 
                     text-lg 
                     bottom-2 
                     transition-all 
                     duration-200 
-                    ${isFocused || isValid ? 'top-[-30px] text-orange text-base bottom-10 font-bold' : ''}`
-                }>
-                정답
-            </label>
+                    ${isFocused || isValid ? "top-[-30px] text-orange text-base bottom-10 font-bold" : ""}`}
+          >
+            정답
+          </label>
 
-            <span className={
-                `block 
+          <span
+            className={`block 
                 absolute 
                 bottom-0 
                 left-0 
@@ -62,12 +60,12 @@ const InputComponent: React.FC = () => {
                 rounded 
                 transition-all 
                 duration-500 
-                ${isFocused || isValid ? 'w-full' : 'w-0'}`
-            }></span>
-            </Input>
-            <div>
-                <button 
-                    className="
+                ${isFocused || isValid ? "w-full" : "w-0"}`}
+          />
+        </Input>
+        <div>
+          <button
+            className="
                     mt-12
                     flex-shrink-0 
                     bg-lightorange 
@@ -80,14 +78,15 @@ const InputComponent: React.FC = () => {
                     py-4
                     px-3
                     rounded"
-                    type="button">
-                    채점하기
-                </button>
-            </div>
+            type="button"
+          >
+            채점하기
+          </button>
         </div>
+      </div>
     </Wrapper>
   );
-};
+}
 
 export default InputComponent;
 
@@ -102,4 +101,4 @@ const Wrapper = tw.div`
 flex
 items-center
 justify-center
-`
+`;

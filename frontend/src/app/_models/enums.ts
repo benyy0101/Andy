@@ -1,2 +1,2 @@
-export type gender = "F" | "M" ;
-export type mode = "A" | "B";
+export type Gender = "F" | "M";
+export type Mode = "A" | "B";

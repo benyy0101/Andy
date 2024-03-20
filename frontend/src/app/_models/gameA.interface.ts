@@ -1,4 +1,4 @@
-import { mode } from "./enums";
+import { Mode } from "./enums";
 
 // GAME-001
 export interface CategoriesResponse {
@@ -42,7 +42,7 @@ export interface ProblemResultResponse {
 // GAME-004
 export interface GameResultRequest {
   question_category_seq: number;
-  mode: mode;
+  mode: Mode;
   questions: SmallProblem[];
 }
 

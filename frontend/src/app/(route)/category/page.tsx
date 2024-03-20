@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
 import Image from "next/image";
-import { useCategories } from "@/app/hooks/useGameA";
 import fruit from "../../asset/_img/category_fruit.jpg";
 import fancy from "../../asset/_img/category_fancy.jpg";
 import body from "../../asset/_img/category_body.jpg";
