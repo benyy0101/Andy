@@ -1,8 +1,6 @@
 package com.a102.andy.auth;
 
-import com.a102.andy.auth.repository.JwtRedisRepository;
 import com.a102.andy.util.AES128Util;
-import com.a102.andy.util.KeyUtil;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -29,7 +27,6 @@ import java.util.stream.Collectors;
 @Component
 public class JwtTokenProvider {
 
-    private JwtRedisRepository jwtRedisRepository;
     private Key key;
     private long accessTokenValidityInSeconds;
     private long refreshTokenValidityInSeconds;
@@ -39,53 +36,12 @@ public class JwtTokenProvider {
     public JwtTokenProvider(@Value("${spring.jwt.secret}") String secretKey,
                             @Value("${spring.jwt.access-token-validity-in-seconds}") long accessTokenValidityInSeconds,
                             @Value("${spring.jwt.refresh-token-validity-in-seconds}") long refreshTokenValidityInSeconds,
-                            JwtRedisRepository jwtRedisRepository,
                             AES128Util aes128Util) {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey); // base64로 디코딩 -> 바이트 배열로 변환
         this.key = Keys.hmacShaKeyFor(keyBytes); // hmacsha256으로 다시 암호화?
         this.accessTokenValidityInSeconds = accessTokenValidityInSeconds;
         this.refreshTokenValidityInSeconds = refreshTokenValidityInSeconds;
-        this.jwtRedisRepository = jwtRedisRepository;
         this.aes128Util = aes128Util;
-    }
-
-    // Member 정보를 가지고 AccessToken, RefreshToken을 생성하는 메서드
-    public JwtToken generateToken(Authentication authentication) {
-        // 권한 가져오기
-        String authorities = authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.joining(","));
-
-        long now = (new Date()).getTime();
-
-        // Access Token 생성
-        String accessToken = Jwts.builder()
-                .setSubject(authentication.getName())
-                .claim("auth", authorities)
-                .setExpiration(new Date(now + accessTokenValidityInSeconds * 1000))
-                .signWith(key, SignatureAlgorithm.HS256)
-                .compact();
-
-        // Refresh Token 생성
-        String refreshToken = Jwts.builder()
-                .setSubject(authentication.getName())
-                .claim("auth", authorities)
-                .setExpiration(new Date(now + refreshTokenValidityInSeconds * 1000))
-                .signWith(key, SignatureAlgorithm.HS256)
-                .compact();
-
-        String encryptedRefreshToken = aes128Util.encryptAes(refreshToken);
-
-        // refreshToken redis에 저장
-       jwtRedisRepository.save(
-               KeyUtil.getRefreshTokenKey(authentication.getName()),
-               refreshToken, refreshTokenValidityInSeconds);
-
-        return JwtToken.builder()
-                .grantType("Bearer")
-                .accessToken(accessToken)
-                .refreshToken(encryptedRefreshToken)
-                .build();
     }
 
 
@@ -159,16 +115,6 @@ public class JwtTokenProvider {
             return bearerToken.substring(7);
         }
         return null;
-    }
-
-    public String generateAccessToken(String memberId, String authorities){
-        Date accessTokenExpiresIn = new Date((new Date()).getTime() + accessTokenValidityInSeconds * 1000);
-        return Jwts.builder()
-                .setSubject(memberId)
-                .claim("auth", authorities)
-                .setExpiration(accessTokenExpiresIn)
-                .signWith(key, SignatureAlgorithm.HS256)
-                .compact();
     }
 
 }
