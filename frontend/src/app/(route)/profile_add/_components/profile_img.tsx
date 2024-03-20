@@ -4,13 +4,15 @@ import { CameraIcon } from '@heroicons/react/24/solid';
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { ProfileImage, ProfileChange } from "../styles/Page.styled";
+import { useUploadProfileImage } from "../../../hooks/useProfile"
 
-export default function ProfileImg() {
+export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: string) => void }) {
     const [isHovered, setIsHovered] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [selectedFile, setSelectedFile] = useState<File>();
     const [imagePreview, setImagePreview] = useState<string>("");
     const imgRef = useRef<HTMLInputElement>(null);
+    const { mutate } = useUploadProfileImage();
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -26,7 +28,6 @@ export default function ProfileImg() {
         const file = e.target.files[0];
         setSelectedFile(file);
 
-
         // 미리보기
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -39,16 +40,15 @@ export default function ProfileImg() {
                 const formData = new FormData();
                 formData.append('profileImageFile', file)
 
-                try {
-                    // const res = await s3업로드(formData)
-                } catch(error) {
-                    // eslint-disable-next-line no-console
-                    console.log(error)
+                const res = mutate(formData)
+                if (res !== null && res !== undefined) {
+                    onImageUpload(res);
+                } else {
+                    // 에러
                 }
 
             } catch {
-                // eslint-disable-next-line no-alert
-                alert("프로필 이미지 변경에 실패하였습니다.")
+                // alert("프로필 이미지 변경에 실패하였습니다.")
             }
         } else {
             // eslint-disable-next-line no-alert

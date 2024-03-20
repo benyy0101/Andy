@@ -1,39 +1,91 @@
 'use client'
 
+import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Form, Label, Input, InputBirth, Name, Nickname, Birth, Gender, Btn, Girl, Boy, SubmitBtn} from "../styles/Page.styled";
+import { Form, Label, Input, InputBirth, Name, Nickname, Birth, Gender, Btn, Girl, Boy, SubmitBtn } from "../styles/Page.styled";
+import { useCreateProfile } from "../../../hooks/useProfile"
 
-// export const ProfileForm: React.FC = () => {
-export default function ProfileForm() {
+export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
     const router = useRouter();
+    const { mutate } = useCreateProfile();
+
+    const [name, setName] = useState("");
+    const [nickname, setNickname] = useState("");
+    const [birthday, setBirthday] = useState("");
+    const [gender, setGender] = useState("");
+
+    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value);
+    };
+
+    const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setNickname(e.target.value);
+    };
+
+    const handleBirthdayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setBirthday(e.target.value);
+    };
+
+    const handleGenderChange = (selectedGender: string) => {
+        setGender(selectedGender);
+    };
 
     const routetoProfileList = () => {
         router.push('/profile_list')
     }
 
+    const formSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const ProfileData = {
+            // "kakao_id":string,
+            "child_name": name,
+            "child_nickname": nickname,
+            "child_birthday": birthday,
+            "child_gender": gender,
+            "child_picture": imageUrl
+        }
+
+        try {
+            const res = mutate(ProfileData)
+            if (res != null) {
+                router.push("/profile_list")
+            } else {
+                // 에러
+            }   
+        } catch {
+            // 에러
+        }
+    }
+
     return (
         <div>
-            <Form>
+            <Form onSubmit = {formSubmit}>
                 <Name>
                     <Label>이름</Label>
-                    <Input />
+                    <Input value={name} onChange={handleNameChange}/>
                 </Name>
                 <Nickname>
                     <Label>닉네임</Label>
-                    <Input />
+                    <Input value={nickname} onChange={handleNicknameChange}/>
                 </Nickname>
                 <Birth>
                     <Label>생년월일</Label>
-                    <InputBirth type="date" />
-                        {/* <InputYear placeholder="YYYY" maxLength={4} />
-                        <InputMonth placeholder="MM" maxLength={2}/>
-                        <InputDay placeholder="DD" maxLength={2}/> */}
+                    <InputBirth type="date" value={birthday} onChange={handleBirthdayChange}/>
                 </Birth>
                 <Gender>
                     <Label>성별</Label>
                     <Btn>
-                        <Boy>남자</Boy>
-                        <Girl>여자</Girl>
+                        <Boy
+                            className={gender === "M" ? "active" : ""} 
+                            onClick={() => handleGenderChange("M")}>
+                            남자
+                        </Boy>
+                        <Girl 
+                            className={gender === "F" ? "active" : ""} 
+                            onClick={() => handleGenderChange("F")}>
+                            여자
+                        </Girl>
                     </Btn>
                 </Gender>
 

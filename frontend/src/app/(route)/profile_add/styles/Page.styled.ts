@@ -115,6 +115,7 @@ mr-2
 px-3
 py-2.5
 hover:bg-gray-300
+focus:bg-gray-300
 `
 
 export const Girl = tw.button`
@@ -125,6 +126,7 @@ mb-3
 px-3
 py-2.5
 hover:bg-gray-300
+focus:bg-gray-300
 `
 
 export const SubmitBtn = tw.button`
