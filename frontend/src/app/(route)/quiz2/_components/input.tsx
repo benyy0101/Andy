@@ -1,8 +1,10 @@
 'use client'
-import React, { useState } from 'react';
-import tw from "tailwind-styled-components";
 
-const InputComponent: React.FC = () => {
+import React, { useState } from 'react';
+import { Wrapper, Input } from "./styles/input.styled";
+
+
+function InputComponent() {
   const [isFocused, setIsFocused] = useState(false);
   const [isValid, setIsValid] = useState(false);
 
@@ -38,7 +40,7 @@ const InputComponent: React.FC = () => {
                 }
                 />
 
-            <label
+            <div
                 className={
                     `absolute 
                     text-lightorange
@@ -50,7 +52,7 @@ const InputComponent: React.FC = () => {
                     ${isFocused || isValid ? 'top-[-30px] text-orange text-base bottom-10 font-bold' : ''}`
                 }>
                 정답
-            </label>
+            </div>
 
             <span className={
                 `block 
@@ -63,7 +65,7 @@ const InputComponent: React.FC = () => {
                 transition-all 
                 duration-500 
                 ${isFocused || isValid ? 'w-full' : 'w-0'}`
-            }></span>
+            } />
             </Input>
             <div>
                 <button 
@@ -90,16 +92,3 @@ const InputComponent: React.FC = () => {
 };
 
 export default InputComponent;
-
-const Input = tw.div`
-relative 
-w-72 
-ml-12 
-mt-24
-`;
-
-const Wrapper = tw.div`
-flex
-items-center
-justify-center
-`
