@@ -9,11 +9,11 @@ export default function ProfileBox() {
             <Form>
                 <Name>
                     <Label>이름</Label>
-                    <Input />
+                    <Input placeholder="김태수"/>
                 </Name>
                 <Nickname>
                     <Label>닉네임</Label>
-                    <Input />
+                    <Input placeholder="태수"/>
                 </Nickname>
                 <Birth>
                     <Label>생년월일</Label>

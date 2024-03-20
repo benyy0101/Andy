@@ -6,10 +6,8 @@ import { Wrapper, Title, Explain, ListCon1, ListCon2, ListDate, OnedayLists, Lis
 
 
 function IncorrectListPage() {
-
   // const { data } = useWrongProblems({ user, data });
 
-  
   return (
     <Wrapper>
         <Title>틀린 문제 다시 풀기</Title>

@@ -17,12 +17,10 @@ function KakaoLogin() {
   const { data } = useLogin({ code });
 
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    // console.log(code);
     if (data) {
       router.push("/profile_list");
     }
-  }, [data]);
+  }, [data, router]);
 
   return <div>히히 카카오 로그인 성공!</div>;
 }
