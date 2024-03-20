@@ -1,6 +1,5 @@
 import {
   CategoriesResponse,
-  ProblemResultRequest,
   ProblemResultResponse,
   ReexamineResponse,
   WrongProblemsResponse,
@@ -31,7 +30,7 @@ export const getGamebyCategory = async (
 
 // GAME-003
 export const sendProblemResult = async (
-  request: ProblemResultRequest,
+  request: FormData,
 ): Promise<ProblemResultResponse> => {
   const response = await imageAxios.post("/game/result", request);
   return response.data;

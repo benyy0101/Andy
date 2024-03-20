@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { useSendResult } from "@/app/hooks/useGameA";
+import { useSendResultMutation } from "@/app/hooks/useGameA";
 import { Wrapper2 } from "./styles/Camera.styled";
 
 function Camera() {
@@ -9,19 +9,7 @@ function Camera() {
   const videoRef = useRef<any>(null);
   const [imgSrc, setImgSrc] = useState("");
 
-  const { data } = useSendResult(
-    "user",
-    {
-      picture: imgSrc,
-      question_name: "camera",
-    },
-    !!imgSrc,
-  );
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-  }, [data]);
-
+  const { mutate } = useSendResultMutation();
   useEffect(() => {
     const constraints = { audio: false, video: true };
     const getMediaStream = async () => {
@@ -51,8 +39,18 @@ function Camera() {
       setImgSrc(canvas.toDataURL("image/png"));
       // eslint-disable-next-line no-console
       console.error(canvas.toDataURL("image/png"));
+      const formData = new FormData();
+      formData.append("file", canvas.toDataURL("image/png"));
+      mutate(formData, {
+        onSuccess: (data) => {
+          // eslint-disable-next-line no-console
+          console.error(data);
+        },
+      });
     }
   };
+
+  useEffect(() => {}, [imgSrc]);
 
   return (
     <Wrapper2>
