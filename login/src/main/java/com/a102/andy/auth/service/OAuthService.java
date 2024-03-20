@@ -64,19 +64,11 @@ public class OAuthService {
         JwtToken jwtToken = makeJwtToken(memberId);
 
         Member member = memberRepository.findByParentId(memberId).orElseThrow(() -> new RestApiException(NO_MEMBER));
-        List<Profile> profiles = profileRepository.findByMemberId(memberId);
-
-        // profile 리스트를 profileResponseDto 리스트로 변환
-        List<ProfileResponseDto> profileResponseDtos = profiles.stream()
-                .map(ProfileResponseDto::new) // profile 객체를 profileResponseDto 객체로 변환
-                .collect(Collectors.toList()); // 결과를 List로 수집
-
 
         return LoginResponseDto.builder()
                 .memberId(memberId)
                 .nickname(member.getNickname())
                 .jwtToken(jwtToken)
-                .profiles(profileResponseDtos)
                 .build();
     }
 

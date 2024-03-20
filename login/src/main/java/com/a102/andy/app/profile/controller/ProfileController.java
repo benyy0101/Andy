@@ -5,7 +5,6 @@ import com.a102.andy.app.profile.controller.dto.ProfileResponseDto;
 import com.a102.andy.app.profile.controller.dto.ProfileUpdateRequestDto;
 import com.a102.andy.app.profile.service.ProfileService;
 import com.a102.andy.image.service.S3UploadService;
-import com.a102.andy.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -46,6 +46,11 @@ public class ProfileController {
     @GetMapping("/{profileSeq}")
     public ResponseEntity<ProfileResponseDto> getProfile(@PathVariable Integer profileSeq) {
         return ResponseEntity.ok(profileService.getProfile(profileSeq));
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<ProfileResponseDto>> getProfileList() throws IOException {
+        return ResponseEntity.ok(profileService.getProfileList());
     }
 
     @PostMapping("/image")

@@ -10,14 +10,30 @@ import com.a102.andy.error.exception.RestApiException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+/**
+ * TODO: Mockito를 활용하도록 리팩토링 필요
+ */
 
 @SpringBootTest
 @Transactional
@@ -31,6 +47,9 @@ public class ProfileServiceTest {
 
     private ProfileCreateRequestDto req;
     private Profile testProfile;
+    @Mock
+    private Authentication authentication;
+    List<ProfileResponseDto> profileList = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
@@ -40,9 +59,19 @@ public class ProfileServiceTest {
                 .profileGender("M")
                 .profileBirthday(LocalDateTime.now().toLocalDate())
                 .profilePicture("profilePictureUrl")
-                .kakaoId("3378155911")
+                .kakaoId("3378155912")
                 .build();
         testProfile = profileService.createProfile(req);
+
+        //Authentication 확인용
+        MockitoAnnotations.openMocks(this);
+        SecurityContext securityContext = mock(SecurityContext.class);
+        when(securityContext.getAuthentication()).thenReturn(authentication);
+        SecurityContextHolder.setContext(securityContext);
+
+        when(authentication.getName()).thenReturn("3378155912");
+
+        profileList.add(new ProfileResponseDto(testProfile));
     }
 
     @AfterEach
@@ -107,5 +136,15 @@ public class ProfileServiceTest {
         assertEquals(testProfile.getProfileSeq(), resultDto.getChildSeq());
         assertEquals(testProfile.getProfileName(), resultDto.getChildName());
         assertEquals(testProfile.getProfilePicture(), resultDto.getChildPicture());
+    }
+
+    @Test
+    void getProfileListTest() {
+        // when
+        List<ProfileResponseDto> resultDtos = profileService.getProfileList();
+
+        // then
+        assertNotNull(resultDtos);
+        assertEquals(resultDtos.get(0).getChildSeq(), profileList.get(0).getChildSeq());
     }
 }

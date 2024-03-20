@@ -16,5 +16,4 @@ public class LoginResponseDto {
     private String memberId;
     private String nickname;
     private JwtToken jwtToken;
-    private List<ProfileResponseDto> profiles;
 }
