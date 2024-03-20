@@ -19,5 +19,5 @@ async def get_image(request: ImageRequest):
         return ObjectDetection(File, answer)
 
     except Exception as e:
-        # 예외 처리
+        # 예외 처리 열심히
         raise HTTPException(status_code=404, detail="Image not found")
