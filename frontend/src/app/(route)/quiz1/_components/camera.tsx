@@ -27,7 +27,7 @@ function Camera() {
     getMediaStream();
   }, []);
 
-  const takePhoto = () => {
+  const takePhoto = async () => {
     const canvas = document.createElement("canvas");
     const video = videoRef.current;
     if (video) {
@@ -36,12 +36,18 @@ function Camera() {
       canvas
         .getContext("2d")!
         .drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      const canvasBlob: Blob = await new Promise((resolve) => {
+        canvas.toBlob((blob) => {
+          if (blob) {
+            resolve(blob);
+          }
+        }, "image/png");
+      });
       setImgSrc(canvas.toDataURL("image/png"));
-      // eslint-disable-next-line no-console
-      console.error(canvas.toDataURL("image/png"));
       const formData = new FormData();
-      formData.append("picture", canvas.toDataURL("image/png"));
-      formData.append("question_name", "camera");
+      formData.append("picture", canvasBlob, "image.png");
+      formData.append("question_name", "user");
       mutate(formData, {
         onSuccess: (data) => {
           // eslint-disable-next-line no-console
