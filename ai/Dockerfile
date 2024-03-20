@@ -16,5 +16,7 @@ RUN pip install uvicorn
 
 RUN pip install matplotlib
 
+RUN pip install opencv-python
 # 컨테이너가 시작될 때 실행될 명령어
-CMD ["uvicorn", "main:app", "--port", "80"]
+CMD ["uvicorn", "ObjectiDetection:app", "--port", "80"]
+
