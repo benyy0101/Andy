@@ -40,7 +40,8 @@ function Camera() {
       // eslint-disable-next-line no-console
       console.error(canvas.toDataURL("image/png"));
       const formData = new FormData();
-      formData.append("file", canvas.toDataURL("image/png"));
+      formData.append("picture", canvas.toDataURL("image/png"));
+      formData.append("question_name", "camera");
       mutate(formData, {
         onSuccess: (data) => {
           // eslint-disable-next-line no-console
