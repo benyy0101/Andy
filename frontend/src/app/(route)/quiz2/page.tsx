@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useState } from "react";
 import Timer from "@/app/_components/timer";
 import InputComponent from "./_components/input";
 import Photo from "./_components/photo";
@@ -10,25 +9,25 @@ function Quiz2Page() {
   // 가능하면 음악도 나오게 할 것
   // const audio = new Audio('audio_file.mp3');
   // audio.play();
-  const [isCorrectModalOpen, setIsCorrectModalOpen] = useState(false);
+  // const [isCorrectModalOpen, setIsCorrectModalOpen] = useState(false);
 
-  const handleCorrectAnswer = () => {
-    setIsCorrectModalOpen(true);
-  };
+  // const handleCorrectAnswer = () => {
+  //   setIsCorrectModalOpen(true);
+  // };
 
-  const handleCloseCorrectModal = () => {
-    setIsCorrectModalOpen(false);
-  };
+  // const handleCloseCorrectModal = () => {
+  //   setIsCorrectModalOpen(false);
+  // };
 
-  const [isWrongModalOpen, setIsWrongModalOpen] = useState(false);
+  // const [isWrongModalOpen, setIsWrongModalOpen] = useState(false);
 
-  const handleWrongAnswer = () => {
-    setIsWrongModalOpen(true);
-  };
+  // const handleWrongAnswer = () => {
+  //   setIsWrongModalOpen(true);
+  // };
 
-  const handleCloseWrongModal = () => {
-    setIsWrongModalOpen(false);
-  };
+  // const handleCloseWrongModal = () => {
+  //   setIsWrongModalOpen(false);
+  // };
 
   // 문제 결과를 보내는 훅
   //   const {
