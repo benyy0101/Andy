@@ -23,6 +23,7 @@ text-black
 rounded-[15px]
 w-[65%]
 flex
+flex-col
 justify-center
 items-center
 shadow-md
@@ -61,7 +62,138 @@ shadow-md
 // 캘린더
 export const CalendarWrapper = tw.div`
 flex
+flex-col
+w-[80%]
 `
+
+export const StyledHeader = tw.div`
+flex
+justify-center
+items-center
+`
+
+export const StyledBody = tw.div`
+mb-[15px]
+`
+
+export const StyledBody1 = styled(StyledBody)`
+  text-align: center;
+
+  .holiday,
+  .grayed{
+    color: #484848;
+    pointer-events: none;
+  }
+
+  .selected{
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    background : rgba(255, 230, 124, 0.7);
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .today{
+    border-radius: 50%;
+    font-weight: bold;
+    background : rgba(238, 162, 65, 0.8);
+  }
+
+  .isSelected{
+    position: relative;
+    color: pink;
+    font-size: 10px;
+    font-weight: 400;
+  }
+
+  .isToday{
+    position: relative;
+    color: #292929;
+    font-size: 10px;
+    font-weight: 400;
+  }
+
+  .none{
+    display: none;
+  }
+`;
+
+// Calendar Header
+export const ThisMonth = tw.span`
+font-bold
+text-[35px]
+ml-[20px]
+mr-[20px]
+text-[#EEA241]
+`
+
+export const PreviousIcon = tw.button`
+w-[24px]
+h-[24px]
+ml-[8px]
+mr-[8px]
+`
+
+export const NextIcon = tw.button`
+w-[24px]
+h-[24px]
+ml-[8px]
+mr-[8px]
+`
+
+export const Row1 = tw.div`
+flex
+justify-center
+items-center
+cursor-pointer
+w-[100%]
+h-[65px]
+`
+
+export const RowWeek = tw.div`
+border-b
+border-solid
+border-gray-300
+flex
+justify-center
+items-center
+cursor-pointer
+w-[100%]
+h-[65px]
+`
+
+// Calendar Body
+export const Box = tw.div`
+w-[80px]
+h-[0]
+m-[6px]
+text-[14px]
+`
+
+export const DayImg = tw.div`
+flex
+justify-center
+`
+
+export const Text = tw.span`
+static
+w-[65px]
+h-[65px]
+text-[#292929]
+`
+
+export const Day = tw.span`
+relative
+flex
+flex-col
+justify-center
+items-center
+w-[80px]
+`
+
 
 // 프로필
 export const ProfileWrapper = tw.div`
@@ -86,32 +218,28 @@ export const Input = tw.input`
 ml-auto
 w-[150px]
 rounded-[7px]
-border 
-border-gray-300
 bg-[#FFFFFF]
 px-3
 py-2
 font-sans
-text-sm 
+text-sm
 font-normal 
 text-black
 outline-0
 transition-all
-placeholder-shown:border 
-placeholder-shown:border-blue-gray-200 
-placeholder-shown:border-blue-gray-200 
 focus:border-gray-900 
 focus:outline-0 
-disabled:border-0 
+disabled:border-0
 disabled:bg-blue-gray-50
 `
+// placeholder-shown:border 
+// placeholder-shown:border-blue-gray-200 
+// placeholder-shown:border-blue-gray-200 
 
 export const InputBirth = tw.input`
 ml-auto
 w-[150px]
 rounded-[7px]
-border 
-border-gray-300
 bg-[#FFFFFF]
 px-3
 py-2
@@ -203,6 +331,7 @@ mr-[auto]
 text-[18px]
 mb-[20px]
 ml-[3px]
+text-[#FFFFFF]
 `
 
 export const ScoreList = tw.div`
