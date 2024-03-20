@@ -8,6 +8,15 @@ const nextConfig = withPWA({
   compiler: {               // 추가
     styledComponents: true, // 추가
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/main',
+        permanent: true,
+      },
+    ]
+  },
   async headers() {
     return [
       {
