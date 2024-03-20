@@ -17,6 +17,10 @@ RUN pip install uvicorn
 RUN pip install matplotlib
 
 RUN pip install opencv-python
+
+RUN apt-get update
+RUN apt-get -y install libgl1-mesa-glx
+
 # 컨테이너가 시작될 때 실행될 명령어
 CMD ["uvicorn", "ObjectiDetection:app", "--port", "80"]
 
