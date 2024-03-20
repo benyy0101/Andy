@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-// import { useSendResult } from "@/app/hooks/useGameA";
+import { useSendResult } from "@/app/hooks/useGameA";
 import { Wrapper2 } from "./styles/Camera.styled";
 
 function Camera() {
@@ -9,18 +9,18 @@ function Camera() {
   const videoRef = useRef<any>(null);
   const [imgSrc, setImgSrc] = useState("");
 
-  //   const {
-  //     data: sendResultData,
-  //     isLoading: sendResultLoading,
-  //     isError: sendResultError,
-  //   } = useSendResult(
-  //     "user",
-  //     {
-  //       picture: imgSrc,
-  //       question_name: "camera",
-  //     },
-  //     !!imgSrc,
-  //   );
+  const { data } = useSendResult(
+    "user",
+    {
+      picture: imgSrc,
+      question_name: "camera",
+    },
+    !!imgSrc,
+  );
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log(data);
+  }, [data]);
 
   useEffect(() => {
     const constraints = { audio: false, video: true };

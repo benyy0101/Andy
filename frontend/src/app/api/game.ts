@@ -11,7 +11,7 @@ import {
   GameResultResponse,
   GameResultRequest,
 } from "../_models/gameA.interface";
-import { localAxios } from "./http-commons";
+import { imageAxios, localAxios } from "./http-commons";
 
 // GAME-001
 export const getCategories = async (): Promise<CategoriesResponse> => {
@@ -33,7 +33,7 @@ export const getGamebyCategory = async (
 export const sendProblemResult = async (
   request: ProblemResultRequest,
 ): Promise<ProblemResultResponse> => {
-  const response = await localAxios.post("/game/result", request);
+  const response = await imageAxios.post("/game/result", request);
   return response.data;
 };
 
