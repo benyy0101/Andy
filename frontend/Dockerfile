@@ -20,4 +20,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Next.js 서버 실행
-CMD ["npm", "server.js"]
+CMD ["npm", "start"]
