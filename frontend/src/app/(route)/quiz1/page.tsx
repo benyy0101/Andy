@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Timer from "@/app/_components/timer";
 import CorrectModal from "@/app/_components/modal_correct";
 import WrongModal from "@/app/_components/modal_wrong";
-import { useGamebyCategory, useProblemResult } from "@/app/hooks/useGameA";
 import Word1 from "./_components/word1";
 import Camera from "./_components/camera";
 
