@@ -11,6 +11,18 @@ export default function ScoreBox() {
                     <TestNum>퀴즈 1</TestNum>
                     <TestRes>4/5</TestRes>
                 </Score1>
+                <Score1>
+                    <TestNum>퀴즈 2</TestNum>
+                    <TestRes>2/5</TestRes>
+                </Score1>
+                <Score1>
+                    <TestNum>퀴즈 3</TestNum>
+                    <TestRes>3/5</TestRes>
+                </Score1>
+                <Score1>
+                    <TestNum>퀴즈 4</TestNum>
+                    <TestRes>4/5</TestRes>
+                </Score1>
             </ScoreListScrollbar>
         </ScoreWrapper>
     )
