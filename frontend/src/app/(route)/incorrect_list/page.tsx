@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useWrongProblems } from "@/app/hooks/useGameA";
+// import { useWrongProblems } from "@/app/hooks/useGameA";
 import { Wrapper, Title, Explain, ListCon1, ListCon2, ListDate, OnedayLists, List } from "./styles/page.styled";
 
 
