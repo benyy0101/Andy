@@ -41,7 +41,7 @@ justify-between
 export const Profile = tw.div`
 bg-[#ffffff]
 h-[40%]
-p-8
+p-[30px]
 rounded-[15px]
 flex
 items-center
@@ -167,10 +167,12 @@ h-[65px]
 
 // Calendar Body
 export const Box = tw.div`
-w-[80px]
+flex
+w-[12%]
 h-[0]
 m-[6px]
 text-[14px]
+justify-center
 `
 
 export const DayImg = tw.div`
@@ -191,32 +193,37 @@ flex
 flex-col
 justify-center
 items-center
-w-[80px]
+w-[100%]
 `
 
 
 // 프로필
 export const ProfileWrapper = tw.div`
 flex
-justify-center
 items-center
+w-[100%]
+h-[100%]
 `
 
 export const Form = tw.form`
 flex
 flex-col
 pl-4
+w-[70%]
 `
 
 export const Label = tw.div`
 flex
 items-center
 mr-4
+w-[30%]
+font-bold
+text-[#EEA241]
 `
 
 export const Input = tw.input`
 ml-auto
-w-[150px]
+w-[70%]
 rounded-[7px]
 bg-[#FFFFFF]
 px-3
@@ -238,7 +245,7 @@ disabled:bg-blue-gray-50
 
 export const InputBirth = tw.input`
 ml-auto
-w-[150px]
+w-[70%]
 rounded-[7px]
 bg-[#FFFFFF]
 px-3
@@ -281,12 +288,13 @@ justify-between
 export const Btn = tw.div`
 flex
 text-black
+w-[70%]
 `
 
 export const Boy = tw.button`
 bg-gray-100
 rounded-[5px]
-w-[70px]
+w-[50%]
 mr-2
 px-3
 py-2
@@ -296,7 +304,7 @@ hover:bg-gray-300
 export const Girl = tw.button`
 bg-gray-100
 rounded-[5px]
-w-[70px]
+w-[50%]
 px-3
 py-2
 hover:bg-gray-300
@@ -311,10 +319,10 @@ hover:bg-gray-300
 // `
 
 export const ProfileImage = tw.div`
+w-[30%]
 rounded-[100%]
-w-[120px]
-h-[120px]
 bg-[#FFE67C]
+aspect-square
 `
 
 // 점수
