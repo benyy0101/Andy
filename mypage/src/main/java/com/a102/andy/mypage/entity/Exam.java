@@ -2,17 +2,20 @@ package com.a102.andy.mypage.entity;
 
 import com.a102.andy.common.BaseEntity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 @Entity
 @Getter
+@AllArgsConstructor
 @Table(name = "exam")
 public class Exam extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "exam_seq")
-    private Long examSeq;
+    private Integer examSeq;
 
     @Column(name = "child_seq", nullable = false)
     private Integer childSeq;

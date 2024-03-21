@@ -1,11 +1,15 @@
 package com.a102.andy.mypage.controller.dto;
 
 import lombok.Getter;
-import org.joda.time.DateTime;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 public class MypageHistoryMonthResponseDto {
-    private List<DateTime> exams;
+    private Set<Integer> exams;
+
+    public MypageHistoryMonthResponseDto(Set<Integer> res) {
+        this.exams = res;
+    }
 }

@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface MypageCustomRepository {
-    Optional<MypageHistoryMonthResponseDto> readMonthHistory(Integer childSeq);
+    Optional<MypageHistoryMonthResponseDto> readMonthHistory(int childSeq, int year, int month);
 }

@@ -4,11 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Entity
 @Table(name = "category")
 @Getter
+@AllArgsConstructor
 public class Category {
 
     @Id
@@ -17,4 +19,5 @@ public class Category {
 
     @Column(name = "question_category_name", nullable = false, length = 50)
     private String questionCategoryName;
+
 }

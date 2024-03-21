@@ -1,5 +1,7 @@
 package com.a102.andy.mypage.service;
 
+import com.a102.andy.mypage.controller.dto.MypageHistoryDayRequestDto;
+import com.a102.andy.mypage.controller.dto.MypageHistoryDayResponseDto;
 import com.a102.andy.mypage.controller.dto.MypageHistoryMonthRequestDto;
 import com.a102.andy.mypage.controller.dto.MypageHistoryMonthResponseDto;
 import com.a102.andy.mypage.repository.MypageRepository;
@@ -10,11 +12,11 @@ import java.util.List;
 @Service
 public class MypageService {
     private MypageRepository mypageRepository;
-    public List<MypageHistoryMonthResponseDto> readMonthHistory(MypageHistoryMonthRequestDto req) {
-        return mypageRepository.readMonthHistory(req.getChildSeq());
+    public MypageHistoryMonthResponseDto readMonthHistory(MypageHistoryMonthRequestDto req) {
+        return mypageRepository.readMonthHistory(req.getChildSeq(), req.getYear(), req.getMonth()).orElseThrow();
     }
 
-    public MypageHistoryMonthResponseDto readDayHistory(MypageHistoryMonthRequestDto req) {
+    public MypageHistoryDayResponseDto readDayHistory(MypageHistoryDayRequestDto req) {
         return null;
     }
 }

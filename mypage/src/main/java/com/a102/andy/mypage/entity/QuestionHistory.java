@@ -2,10 +2,12 @@ package com.a102.andy.mypage.entity;
 
 import com.a102.andy.common.BaseEntity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @Entity
+@AllArgsConstructor
 @Table(name = "question_history")
 public class QuestionHistory extends BaseEntity {
 

@@ -1,6 +1,7 @@
 package com.a102.andy.mypage.controller.dto;
 
 import com.a102.andy.mypage.entity.Exam;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +19,7 @@ public class MypageHistoryDayResponseDto {
     @Getter
     @Setter
     @Builder
+    @AllArgsConstructor
     public static class ExamDetail {
         private Integer examScore;
         private String questionCategoryName;
