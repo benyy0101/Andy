@@ -1,16 +1,29 @@
-'use client'
+"use client";
 
 /* eslint-disable no-plusplus */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
-import dayjs from 'dayjs';
-import { CalendarWrapper, StyledHeader, StyledBody, StyledBody1, 
-    Box, ThisMonth, PreviousIcon, NextIcon, DayImg, Text, RowWeek, Row1, Day } from "../styles/Page.styled"
-import { ChevronLeftIcon } from '@heroicons/react/24/solid';
-import { ChevronRightIcon } from '@heroicons/react/24/solid';
-import { useMypageByMonth } from "../../../hooks/useMypage"
+import dayjs from "dayjs";
+import {
+  CalendarWrapper,
+  StyledHeader,
+  StyledBody,
+  StyledBody1,
+  Box,
+  ThisMonth,
+  PreviousIcon,
+  NextIcon,
+  DayImg,
+  Text,
+  RowWeek,
+  Row1,
+  Day,
+} from "../styles/Page.styled";
+import { ChevronLeftIcon } from "@heroicons/react/24/solid";
+import { ChevronRightIcon } from "@heroicons/react/24/solid";
+import { useMypageByMonth } from "../../../hooks/useMypage";
 import Stamp from "../../../asset/_img/smile_stamp.png";
-import Image from "next/image"
+import Image from "next/image";
 
 export default function CalenderBox({ clickdate } : { clickdate: (date: string) => void}) {
     // const dayjs = require('dayjs');
@@ -59,18 +72,18 @@ export default function CalenderBox({ clickdate } : { clickdate: (date: string) 
     //     fetchMonth();
     // }, [requestData]);
 
-    const getDayImage = (current: any) => {
-        const isSolveDay = SolveDay.includes(current);
-        const opacity = isSolveDay ? 1 : 0.3;
-        return { image: Stamp, opacity };
-    }
+  const getDayImage = (current: any) => {
+    const isSolveDay = SolveDay.includes(current);
+    const opacity = isSolveDay ? 1 : 0.3;
+    return { image: Stamp, opacity };
+  };
 
-    const createCalendar = () => {
-        const daysInMonth = viewDate.daysInMonth();
-        const firstDayOfMonth = viewDate.startOf('month').day();
-        const calender = [];
+  const createCalendar = () => {
+    const daysInMonth = viewDate.daysInMonth();
+    const firstDayOfMonth = viewDate.startOf("month").day();
+    const calender = [];
 
-        let dayCounter = 1;
+    let dayCounter = 1;
 
         for (let i = 0; i < 6; i++) {
             const week = [];
@@ -105,24 +118,27 @@ export default function CalenderBox({ clickdate } : { clickdate: (date: string) 
         return calender;
     }
 
-    const changegeMonth = (date: any, changeString: string) => {
-        switch (changeString) {
-            case 'add':
-                return setViewDate(viewDate.add(1, 'month'))
-            case 'subtract':
-                return setViewDate(viewDate.subtract(1, 'month'))
-            default:
-                return date;
-        }
+  const changegeMonth = (date: any, changeString: string) => {
+    switch (changeString) {
+      case "add":
+        return setViewDate(viewDate.add(1, "month"));
+      case "subtract":
+        return setViewDate(viewDate.subtract(1, "month"));
+      default:
+        return date;
     }
-
+  };
 
   return (
     <CalendarWrapper>
       <StyledHeader>
-            <PreviousIcon onClick={() => changegeMonth(viewDate, 'subtract')}><ChevronLeftIcon style={{color: "#EEA241"}}/></PreviousIcon>
-            <ThisMonth>{viewDate.format("MM")}월</ThisMonth>
-            <NextIcon onClick={() => changegeMonth(viewDate, 'add')}><ChevronRightIcon style={{color: "#EEA241"}}/></NextIcon>
+        <PreviousIcon onClick={() => changegeMonth(viewDate, "subtract")}>
+          <ChevronLeftIcon style={{ color: "#EEA241" }} />
+        </PreviousIcon>
+        <ThisMonth>{viewDate.format("MM")}월</ThisMonth>
+        <NextIcon onClick={() => changegeMonth(viewDate, "add")}>
+          <ChevronRightIcon style={{ color: "#EEA241" }} />
+        </NextIcon>
       </StyledHeader>
       <StyledBody>
         <StyledBody1>
@@ -141,5 +157,5 @@ export default function CalenderBox({ clickdate } : { clickdate: (date: string) 
         </StyledBody1>
       </StyledBody>
     </CalendarWrapper>
-  )
+  );
 }

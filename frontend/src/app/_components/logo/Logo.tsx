@@ -1,6 +1,8 @@
 'use client'
 
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import logo from "@/app/asset/_img/Andylogo.png";
 import {Wrapper, Title} from './styles/Logo.styled';
 
 function Logo() {
@@ -12,18 +14,10 @@ function Logo() {
 
     return (
         <Wrapper>
-            <Title onClick={routetoHome}>로고 이미지 삽입</Title>
+            <Title onClick={routetoHome}><Image width={350} height={350} src={logo} alt="andy" /></Title>
         </Wrapper>
     )
 }
 
 export default Logo;
-
-// const Wrapper = tw.div`
-// flex
-// justify-center
-// w-[100vw]
-// absolute
-// top-[40px]
-// `
 
