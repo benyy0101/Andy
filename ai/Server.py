@@ -1,6 +1,8 @@
-from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse
+from fastapi import FastAPI, File, Form, HTTPException
 from pydantic import BaseModel
+from PIL import Image
+from io import BytesIO
+
 from ObjectiDetection import ObjectDetection
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -16,16 +18,19 @@ app.add_middleware(
 )
 
 class ImageRequest(BaseModel):
-    picture: str
+    picture: bytes
     question_name: str
 
 @app.post("/")
-async def get_image(request: ImageRequest):
+async def get_image(picture: bytes = File(...), question_name: str = Form(...)):
     try:
-        # 이미지 파일 경로와 answer 받기
-        File = FileResponse(request.picture, media_type="image/jpeg")
-        answer = request.question_name
-        return ObjectDetection(File, answer)
+
+        # 객체 감지 함수 호출하여 결과 반환
+        result = ObjectDetection(picture, question_name)
+
+
+
+        return result
 
     except Exception as e:
         # 예외 처리
