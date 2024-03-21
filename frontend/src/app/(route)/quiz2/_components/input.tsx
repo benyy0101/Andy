@@ -5,14 +5,15 @@ import { Wrapper, Input } from "./styles/input.styled";
 
 interface InputComponentProps {
   onSubmit: (answer: string) => void;
+  onInputChange: (value: string) => void;
 }
 
-
-function InputComponent({ onInputChange, onSubmit }) {
+function InputComponent(props: InputComponentProps) {
+  const { onSubmit, onInputChange } = props;
   const [isFocused, setIsFocused] = useState(false);
   const [isValid, setIsValid] = useState(false);
 
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -23,14 +24,11 @@ function InputComponent({ onInputChange, onSubmit }) {
     setIsValid(e.target.value !== "");
   };
 
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setInputValue(newValue);
     onInputChange(newValue);
   };
-
-
 
   return (
     <Wrapper>

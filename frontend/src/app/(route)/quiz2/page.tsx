@@ -2,27 +2,21 @@
 
 import { useState } from "react";
 import Timer from "@/app/_components/timer";
-import CorrectModal from "@/app/_components/modal_correct";
-import WrongModal from "@/app/_components/modal_wrong";
 import AnswerModal from "@/app/_components/modal_answer";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import InputComponent from "./_components/input";
 import Photo from "./_components/photo";
 import { Wrapper, Wrapper2, Title, Explain } from "./styles/pages.styled";
 
 function Quiz2Page() {
-
   const [currentRound, setCurrentRound] = useState(1);
-  const [userAnswer, setUserAnswer] = useState('');
-  
+  const [userAnswer, setUserAnswer] = useState("");
+
   const [isCorrectModalOpen, setIsCorrectModalOpen] = useState(false);
   const [isWrongModalOpen, setIsWrongModalOpen] = useState(false);
   const [isAnswerModalOpen, setIsAnswerModalOpen] = useState(false);
 
-
   const router = useRouter();
-
-
 
   // 정답 채점 및 모달 처리 로직
   const checkAnswer = (userInput: string) => {
@@ -31,10 +25,10 @@ function Quiz2Page() {
 
     if (userInput === correctAnswer) {
       setIsCorrectModalOpen(true);
-      setTimeout(() =>{
+      setTimeout(() => {
         setIsCorrectModalOpen(false);
         setIsAnswerModalOpen(true);
-      }, 3000);  // 3초 모달 열기 
+      }, 3000); // 3초 모달 열기
     } else {
       setIsWrongModalOpen(true);
       setTimeout(() => {
@@ -43,12 +37,11 @@ function Quiz2Page() {
       }, 3000);
     }
   };
-  
 
   // 다음 라운드로 넘어가긔
   // const goToNextRound = () => {
   //   setIsAnswerModalOpen(false);
-    
+
   //   if (currentRound < 5) {
   //     setCurrentRound(currentRound + 1);
   //   } else {
@@ -56,12 +49,10 @@ function Quiz2Page() {
   //   }
   // };
 
-
-  
   const handleAnswer = () => {
     setIsAnswerModalOpen(true);
   };
-  
+
   const handleCloseAnswerModal = () => {
     setIsAnswerModalOpen(false);
   };
@@ -73,7 +64,6 @@ function Quiz2Page() {
   // const handleCloseCorrectModal = () => {
   //   setIsCorrectModalOpen(false);
   // };
-
 
   // const handleWrongAnswer = () => {
   //   setIsWrongModalOpen(true);
@@ -115,7 +105,10 @@ function Quiz2Page() {
         <Explain>이건 무엇일까요?</Explain>
         <div className="justify-center">
           <Photo />
-          <InputComponent onInputChange={setUserAnswer} onSubmit={() => checkAnswer(userAnswer)} />
+          <InputComponent
+            onInputChange={setUserAnswer}
+            onSubmit={() => checkAnswer(userAnswer)}
+          />
         </div>
       </Wrapper2>
 
@@ -126,10 +119,12 @@ function Quiz2Page() {
             <button onClick={handleWrongAnswer}>Show Wrong Modal</button>
             <WrongModal isOpen={isWrongModalOpen} onClose={handleCloseWrongModal} /> */}
 
-          
-             {/* eslint-disable-next-line react/button-has-type */}
-            <button onClick={handleAnswer}>Show Answer</button>
-            <AnswerModal isOpen={isAnswerModalOpen} onClose={handleCloseAnswerModal} />
+      {/* eslint-disable-next-line react/button-has-type */}
+      <button onClick={handleAnswer}>Show Answer</button>
+      <AnswerModal
+        isOpen={isAnswerModalOpen}
+        onClose={handleCloseAnswerModal}
+      />
     </Wrapper>
   );
 }
