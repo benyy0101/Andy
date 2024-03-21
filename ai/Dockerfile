@@ -18,6 +18,8 @@ RUN pip install matplotlib
 
 RUN pip install opencv-python
 
+RUN pip install python-multipart
+
 RUN apt-get update
 RUN apt-get -y install libgl1-mesa-glx
 
