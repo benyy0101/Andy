@@ -8,7 +8,7 @@ app = FastAPI()
 # CORS 미들웨어 설정
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 모든 출처에서의 요청 허용 (* 대신에 특정 출처를 명시할 수 있음)
+    allow_origins=["j10a102.p.ssafy.io:3000", "https://j10a102.p.ssafy.io", "http://localhost:3000"],  # 모든 출처에서의 요청 허용 (* 대신에 특정 출처를 명시할 수 있음)
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
