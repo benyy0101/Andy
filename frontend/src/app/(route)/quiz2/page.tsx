@@ -1,15 +1,70 @@
 "use client";
 
+import { useState } from "react";
 import Timer from "@/app/_components/timer";
+import CorrectModal from "@/app/_components/modal_correct";
+import WrongModal from "@/app/_components/modal_wrong";
+import AnswerModal from "@/app/_components/modal_answer";
+import { useRouter } from "next/router";
 import InputComponent from "./_components/input";
 import Photo from "./_components/photo";
 import { Wrapper, Wrapper2, Title, Explain } from "./styles/pages.styled";
 
 function Quiz2Page() {
-  // 가능하면 음악도 나오게 할 것
-  // const audio = new Audio('audio_file.mp3');
-  // audio.play();
-  // const [isCorrectModalOpen, setIsCorrectModalOpen] = useState(false);
+
+  const [currentRound, setCurrentRound] = useState(1);
+  const [userAnswer, setUserAnswer] = useState('');
+  
+  const [isCorrectModalOpen, setIsCorrectModalOpen] = useState(false);
+  const [isWrongModalOpen, setIsWrongModalOpen] = useState(false);
+  const [isAnswerModalOpen, setIsAnswerModalOpen] = useState(false);
+
+
+  const router = useRouter();
+
+
+
+  // 정답 채점 및 모달 처리 로직
+  const checkAnswer = (userInput: string) => {
+    // db에서 가져온 정답이라 가정하고 일단 진행시켜
+    const correctAnswer = "정답";
+
+    if (userInput === correctAnswer) {
+      setIsCorrectModalOpen(true);
+      setTimeout(() =>{
+        setIsCorrectModalOpen(false);
+        setIsAnswerModalOpen(true);
+      }, 3000);  // 3초 모달 열기 
+    } else {
+      setIsWrongModalOpen(true);
+      setTimeout(() => {
+        setIsWrongModalOpen(false);
+        setIsAnswerModalOpen(true);
+      }, 3000);
+    }
+  };
+  
+
+  // 다음 라운드로 넘어가긔
+  // const goToNextRound = () => {
+  //   setIsAnswerModalOpen(false);
+    
+  //   if (currentRound < 5) {
+  //     setCurrentRound(currentRound + 1);
+  //   } else {
+  //     router.push('/ending')
+  //   }
+  // };
+
+
+  
+  const handleAnswer = () => {
+    setIsAnswerModalOpen(true);
+  };
+  
+  const handleCloseAnswerModal = () => {
+    setIsAnswerModalOpen(false);
+  };
 
   // const handleCorrectAnswer = () => {
   //   setIsCorrectModalOpen(true);
@@ -19,7 +74,6 @@ function Quiz2Page() {
   //   setIsCorrectModalOpen(false);
   // };
 
-  // const [isWrongModalOpen, setIsWrongModalOpen] = useState(false);
 
   // const handleWrongAnswer = () => {
   //   setIsWrongModalOpen(true);
@@ -52,7 +106,7 @@ function Quiz2Page() {
 
         <div className="flex w-full items-center">
           <div className="flex-grow text-center">
-            <Title>ROUND 1</Title>
+            <Title>문제 1</Title>
           </div>
           <div>
             <Timer />
@@ -61,16 +115,21 @@ function Quiz2Page() {
         <Explain>이건 무엇일까요?</Explain>
         <div className="justify-center">
           <Photo />
-          <InputComponent />
+          <InputComponent onInputChange={setUserAnswer} onSubmit={() => checkAnswer(userAnswer)} />
         </div>
       </Wrapper2>
 
       {/* 조건에 따라서 정답 맞추면 정답 모달/ 틀리면 오답 모달 */}
-      {/* <button onClick={handleCorrectAnswer}>Show Correct Modal</button>
-            <CorrectModal isOpen={isCorrectModalOpen} onClose={handleCloseCorrectModal} />
+      {/* <button onClick={handleCorrectAnswer}>Show Answer Modal</button>
+            <CorrectModal isOpen={isAnswerModalOpen} onClose={handleCloseCorrectModal} />
             
             <button onClick={handleWrongAnswer}>Show Wrong Modal</button>
             <WrongModal isOpen={isWrongModalOpen} onClose={handleCloseWrongModal} /> */}
+
+          
+             {/* eslint-disable-next-line react/button-has-type */}
+            <button onClick={handleAnswer}>Show Answer</button>
+            <AnswerModal isOpen={isAnswerModalOpen} onClose={handleCloseAnswerModal} />
     </Wrapper>
   );
 }
