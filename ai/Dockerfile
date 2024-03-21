@@ -24,5 +24,5 @@ RUN apt-get update
 RUN apt-get -y install libgl1-mesa-glx
 
 # 컨테이너가 시작될 때 실행될 명령어
-CMD ["uvicorn", "Server:app", "--port", "80"]
+CMD ["uvicorn", "Server:app", "--host", "0.0.0.0","--port", "80"]
 
