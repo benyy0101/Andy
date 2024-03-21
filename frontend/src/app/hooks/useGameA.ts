@@ -1,10 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   CategoriesResponse,
   GameResultRequest,
   GameResultResponse,
   GamebyCategoryResponse,
-  ProblemResultRequest,
   ProblemResultResponse,
   ReexamineRequest,
   ReexamineResponse,
@@ -41,17 +40,25 @@ export const useGamebyCategory = (question_category_seq: number) => {
 };
 
 // GAME-003
-export const useSendResult = (
-  user: string,
-  data: ProblemResultRequest,
-  enabled: boolean,
-) => {
-  const query = useQuery<ProblemResultResponse>({
-    queryKey: ["sendResult", { resultData: data, user }],
-    queryFn: () => sendProblemResult(data),
-    enabled,
+// export const useSendResult = (
+//   user: string,
+//   data: ProblemResultRequest,
+//   enabled: boolean,
+// ) => {
+//   const query = useQuery<ProblemResultResponse>({
+//     queryKey: ["sendResult", { resultData: data, user }],
+//     queryFn: () => sendProblemResult(data),
+//     enabled,
+//   });
+//   return query;
+// };
+
+export const useSendResultMutation = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const mutate = useMutation<ProblemResultResponse, Error, FormData, any>({
+    mutationFn: (formData: FormData) => sendProblemResult(formData),
   });
-  return query;
+  return mutate;
 };
 
 // GAME-004
