@@ -2,7 +2,7 @@ import tw from 'tailwind-styled-components';
 
 export const Wrapper = tw.div`
 absolute
-top-[40px]
+top-[15px]
 left-0
 right-0
 flex

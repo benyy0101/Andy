@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { AnswerBackground, NextButton } from "./styles/ModalAnswer.styled";
+import { AnswerBackground, AnswerContent, NextButton } from "./styles/ModalAnswer.styled";
 
 interface AnswerModalProps {
   isOpen: boolean;
@@ -19,11 +19,13 @@ function AnswerModal(props: AnswerModalProps) {
     }
   }, [isOpen, onClose]);
 
+
   return (
     <>
       <div />
       {isOpen && (
         <AnswerBackground>
+          <AnswerContent>정답 : 사과</AnswerContent>
           <NextButton onClick={onClose}>다음으로</NextButton>
         </AnswerBackground>
       )}
