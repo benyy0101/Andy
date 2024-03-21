@@ -5,6 +5,8 @@ import cv2
 
 def ObjectDetection(image_Source, answer):
 
+    print(image_Source)
+
     with open("image.jpg", "wb") as f:
         f.write(image_Source)
 
@@ -13,6 +15,8 @@ def ObjectDetection(image_Source, answer):
         # 학습된 모델이 있는 곳은 여기.
         'C:/Users/SSAFY/Desktop/image/pretrained/ssd_inception_v2_coco_2017_11_17/frozen_inference_graph.pb',
         'C:/Users/SSAFY/Desktop/image/pretrained/ssd_config_01.pbtxt')
+
+    print("Check OK")
 
     # 탐지된 모델에 대한 레이블
     labels_to_names = {1: 'person', 2: 'bicycle', 3: 'car', 4: 'motorcycle', 5: 'airplane', 6: 'bus', 7: 'train',
