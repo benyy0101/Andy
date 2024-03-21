@@ -1,7 +1,5 @@
 package com.a102.andy.auth.service;
 
-import com.a102.andy.app.profile.controller.dto.ProfileResponseDto;
-import com.a102.andy.app.profile.entity.Profile;
 import com.a102.andy.app.profile.repository.ProfileRepository;
 import com.a102.andy.auth.JwtToken;
 import com.a102.andy.auth.JwtTokenProvider;
@@ -23,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.a102.andy.error.errorcode.CustomErrorCode.NO_MEMBER;
 
@@ -52,9 +49,8 @@ public class OAuthService {
     }
 
     @Transactional
-    public LoginResponseDto kakaoOAuthLogin(String code) {
-        KakaoOAuthMemberInfoResponse res = getKakaoUserInfo(code);
-        System.out.println(res.getId());
+    public LoginResponseDto kakaoOAuthLogin(String status, String code) {
+        KakaoOAuthMemberInfoResponse res = getKakaoUserInfo(status, code);
         String memberId = res.getId();
         createIfNewMember(memberId, res);
         return login(memberId);
@@ -72,10 +68,12 @@ public class OAuthService {
                 .build();
     }
 
-    private KakaoOAuthMemberInfoResponse getKakaoUserInfo(String code) {
+    private KakaoOAuthMemberInfoResponse getKakaoUserInfo(String status, String code) {
         try {
-            OAuthAccessTokenResponse tokenResponse = kakaoOAuthClient.getAccessToken(code);
-            System.out.println(tokenResponse);
+            log.info("getKakaoUserInfo 들어왔다");
+            OAuthAccessTokenResponse tokenResponse = kakaoOAuthClient.getAccessToken(status, code);
+            log.info("아 accessToken 받았어요");
+            log.info(tokenResponse.getAccessToken());
             return kakaoOAuthClient.getMemberInfo(tokenResponse.getAccessToken());
         } catch (HttpClientErrorException e) {
             throw new RestApiException(CustomErrorCode.KAKAO_AUTHORIZATION_ERROR);
