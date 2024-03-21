@@ -13,8 +13,8 @@ def ObjectDetection(image_Source, answer):
     # 학습된 객체 탐지 모델을 불러온다.
     cv_net = cv2.dnn.readNetFromTensorflow(
         # 학습된 모델이 있는 곳은 여기.
-        'C:/Users/SSAFY/Desktop/image/pretrained/ssd_inception_v2_coco_2017_11_17/frozen_inference_graph.pb',
-        'C:/Users/SSAFY/Desktop/image/pretrained/ssd_config_01.pbtxt')
+        './pretrained/ssd_inception_v2_coco_2017_11_17/frozen_inference_graph.pb',
+        './pretrained/ssd_config_01.pbtxt')
 
     print("Check OK")
 
