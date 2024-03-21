@@ -39,7 +39,26 @@ def ObjectDetection(image_Source, answer):
                        87: 'scissors', 88: 'teddy bear', 89: 'hair drier', 90: 'toothbrush',
                        91: 'hair brush'}
 
-
+    names_to_labels_korean = {'사람': 'person', '자전거': 'bicycle', '자동차': 'car', '오토바이': 'motorcycle', '비행기': 'airplane',
+                              '버스': 'bus', '기차': 'train', '트럭': 'truck', '보트': 'boat', '신호등': 'traffic light',
+                              '소화전': 'fire hydrant', '도로 표지판': 'street sign', '정지 신호': 'stop sign',
+                              '주차 요금 징수기': 'parking meter', '벤치': 'bench', '새': 'bird', '고양이': 'cat',
+                              '개': 'dog', '말': 'horse', '양': 'sheep', '소': 'cow', '코끼리': 'elephant',
+                              '곰': 'bear', '얼룩말': 'zebra', '기린': 'giraffe', '모자': 'hat', '배낭': 'backpack',
+                              '우산': 'umbrella', '신발': 'shoe', '안경': 'eye glasses', '핸드백': 'handbag', '넥타이': 'tie',
+                              '여행가방': 'suitcase', '프리스비': 'frisbee', '스키': 'skis', '스노보드': 'snowboard',
+                              '스포츠 공': 'sports ball', '연': 'kite', '야구배트': 'baseball bat', '야구 글러브': 'baseball glove',
+                              '스케이트보드': 'skateboard', '서핑보드': 'surfboard', '테니스 라켓': 'tennis racket',
+                              '병': 'bottle', '접시': 'plate', '와인잔': 'wine glass', '컵': 'cup', '포크': 'fork',
+                              '나이프': 'knife', '숟가락': 'spoon', '그릇': 'bowl', '바나나': 'banana', '사과': 'apple',
+                              '샌드위치': 'sandwich', '오렌지': 'orange', '브로콜리': 'broccoli', '당근': 'carrot',
+                              '핫도그': 'hot dog', '피자': 'pizza', '도넛': 'donut', '케이크': 'cake', '의자': 'chair',
+                              '소파': 'couch', '화분': 'potted plant', '침대': 'bed', '거울': 'mirror', '식탁': 'dining table',
+                              '창문': 'window', '책상': 'desk', '화장실': 'toilet', '문': 'door', '텔레비전': 'tv',
+                              '노트북': 'laptop', '마우스': 'mouse', '리모컨': 'remote', '키보드': 'keyboard', '휴대전화': 'cell phone',
+                              '전자레인지': 'microwave', '오븐': 'oven', '토스터': 'toaster', '싱크대': 'sink',
+                              '냉장고': 'refrigerator', '믹서': 'blender', '책': 'book', '시계': 'clock', '꽃병': 'vase',
+                              '가위': 'scissors', '테디 베어': 'teddy bear', '헤어 드라이어': 'hair drier', '칫솔': 'toothbrush'}
 
     # 탐지할 이미지를 불러온다.
     img = cv2.imread("image.jpg")
@@ -95,7 +114,7 @@ def ObjectDetection(image_Source, answer):
 
     os.remove("image.jpg")
 
-    if answer in check:
+    if answer in check or names_to_labels_korean.get(answer) in check:
         return True
     else:
         return False
