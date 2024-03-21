@@ -38,8 +38,10 @@ public class KakaoOAuthClient implements OAuthClient {
         params.add("grant_type", "authorization_code");
         params.add("client_id", clientId);
 
+//        log.info(String.valueOf("prod".equals(status)));
         String uri = "prod".equals(status) ? RedirectUri.KAKAO_PROD_OAUTH.getUri() : RedirectUri.KAKAO_DEV_OAUTH.getUri();
-        log.info(uri);
+//        log.info(uri);
+
         params.add("redirect_uri", uri);
         params.add("code", code);
 
