@@ -13,6 +13,7 @@ export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: str
     const [imagePreview, setImagePreview] = useState<string>("");
     const imgRef = useRef<HTMLInputElement>(null);
     const { mutate } = useUploadProfileImage();
+    const emptyImageUrl = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -22,10 +23,22 @@ export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: str
         setIsHovered(false);
     }
 
+    const MAX_FILE_SIZE = 5 * 1024 * 1024;
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const EditImage = (e: any) => {
         e.preventDefault();
         const file = e.target.files[0];
+
+        if (!file) {
+            return;
+        }
+
+        if (file && file.size > MAX_FILE_SIZE) {
+            alert('파일 크기는 5MB 이하여야 합니다.');
+            return;
+        }
+
         setSelectedFile(file);
 
         // 미리보기
@@ -39,6 +52,8 @@ export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: str
             try{
                 const formData = new FormData();
                 formData.append('profileImageFile', file)
+
+                console.log(file)
 
                 const res = mutate(formData)
                 if (res !== null && res !== undefined) {
@@ -69,7 +84,7 @@ export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: str
                     ref={imgRef}
                 />
                 <Image 
-                    src={imagePreview || ``}
+                    src={imagePreview || emptyImageUrl}
                     style={{ borderRadius: "100%", backgroundColor: "#FFFFFF" }}
                     alt = "profileimage"
                     fill

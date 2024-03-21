@@ -30,6 +30,8 @@ export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
         setGender(selectedGender);
     };
 
+    const childpicture = imageUrl;
+
     const routetoProfileList = () => {
         router.push('/profile_list')
     }
@@ -43,16 +45,16 @@ export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
             "child_nickname": nickname,
             "child_birthday": birthday,
             "child_gender": gender,
-            "child_picture": imageUrl
+            "child_picture": childpicture,
         }
 
         try {
-            const res = mutate(ProfileData)
-            if (res != null) {
-                router.push("/profile_list")
-            } else {
-                // 에러
-            }   
+            // const res = mutate(ProfileData)
+            // if (res != null) {
+            //     router.push("/profile_list")
+            // } else {
+            //     // 에러
+            // }   
         } catch {
             // 에러
         }
