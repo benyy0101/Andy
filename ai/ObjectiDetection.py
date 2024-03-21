@@ -35,13 +35,11 @@ def ObjectDetection(image_Source, answer):
                        87: 'scissors', 88: 'teddy bear', 89: 'hair drier', 90: 'toothbrush',
                        91: 'hair brush'}
 
-    print("check point2")
 
 
     # 탐지할 이미지를 불러온다.
     img = cv2.imread("image.jpg")
 
-    print("check point3")
 
     # 원본 이미지 (633, 806)를 네트웍에 입력시에는 (300, 300)로 resize 함.
     # 이후 결과가 출력되면 resize된 이미지 기반으로 bounding box 위치가 예측 되므로 이를 다시 원복하기 위해 원본 이미지 shape정보 필요
@@ -85,7 +83,6 @@ def ObjectDetection(image_Source, answer):
             cv2.rectangle(draw_img, (int(left), int(top)), (int(right), int(bottom)), color=green_color, thickness=2)
             cv2.putText(draw_img, caption, (int(left), int(top - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.7, red_color, 2)
 
-            print(caption, class_id)
 
     img_rgb = cv2.cvtColor(draw_img, cv2.COLOR_BGR2RGB)
 
