@@ -1,6 +1,7 @@
 import tw from 'tailwind-styled-components';
 
 export const Wrapper = tw.div`
+relative
 h-screen
 flex
 flex-col
@@ -24,4 +25,11 @@ mb-10
 export const Explain = tw.h3`
 text-xl
 font-bold
+`;
+
+
+export const Quitbtn = tw.div`
+absolute
+left--10
+bottom-0
 `;

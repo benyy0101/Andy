@@ -5,9 +5,11 @@ import Timer from "@/app/_components/timer";
 import CorrectModal from "@/app/_components/modal_correct";
 import WrongModal from "@/app/_components/modal_wrong";
 import AnswerModal from "@/app/_components/modal_answer";
+import QuitModal from "@/app/_components/modal_quit";
+import { Quit } from "@/app/_components/quit_btn/quit";
 import InputComponent from "./_components/input";
 import Photo from "./_components/photo";
-import { Wrapper, Wrapper2, Title, Explain } from "./styles/pages.styled";
+import { Wrapper, Wrapper2, Title, Explain, Quitbtn } from "./styles/pages.styled";
 
 function Quiz2Page() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -15,6 +17,7 @@ function Quiz2Page() {
   const [isAnswerModadlOpen, setIsAnswerModalOpen] = useState(false);
   const [isCorrectModalOpen, setIsCorrectModalOpen] = useState(false);
   const [isWrongModalOpen, setIsWrongModalOpen] = useState(false);
+  const [isQuitModalOpen, setIsQuitModalOpen] = useState(false);
 
   // 임시 DB용으로 하나 넣어놓음
   const correctAnswer = "사과";
@@ -43,6 +46,9 @@ function Quiz2Page() {
     setIsWrongModalOpen(false);
     setIsAnswerModalOpen(true);
   };
+
+  const handleOpenQuitModal = () => setIsQuitModalOpen(true);
+  const handleCloseQuitModal = () => setIsQuitModalOpen(false);
 
 
   // ----------------------------------------------------------------------
@@ -84,11 +90,18 @@ function Quiz2Page() {
           <Photo />
           <InputComponent onAnswerSubmit={handleDataChange} />
         </div>
+
+        {/* 게임 도중 나가기  */}
+        <Quitbtn  onClick={handleOpenQuitModal}>
+          <Quit />
+        </Quitbtn>
+      
       </Wrapper2>
       {/* eslint-disable-next-line react/button-has-type */}
       <CorrectModal isOpen={isCorrectModalOpen} onClose={handleCloseCorrectModal} />
       <WrongModal isOpen={isWrongModalOpen} onClose={handleCloseWrongModal} />
       <AnswerModal isOpen={isAnswerModadlOpen} onClose={handleCloseAnswerModal} />
+      <QuitModal isOpen={isQuitModalOpen} onClose={handleCloseQuitModal} />
     </Wrapper>
   );
 }
