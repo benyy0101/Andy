@@ -40,7 +40,7 @@ export const sendProblemResult = async (
 export const getGameResult = async (
   request: GameResultRequest,
 ): Promise<GameResultResponse> => {
-  const response = await localAxios.post("/game/result", request);
+  const response = await localAxios.post("/", request);
   return response.data;
 };
 
