@@ -3,9 +3,16 @@
 import React, { useState } from "react";
 import { Wrapper, Input } from "./styles/input.styled";
 
-function InputComponent() {
+interface InputComponentProps {
+  onSubmit: (answer: string) => void;
+}
+
+
+function InputComponent({ onInputChange, onSubmit }) {
   const [isFocused, setIsFocused] = useState(false);
   const [isValid, setIsValid] = useState(false);
+
+  const [inputValue, setInputValue] = useState('');
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -15,6 +22,15 @@ function InputComponent() {
     setIsFocused(false);
     setIsValid(e.target.value !== "");
   };
+
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setInputValue(newValue);
+    onInputChange(newValue);
+  };
+
+
 
   return (
     <Wrapper>
@@ -35,6 +51,7 @@ function InputComponent() {
                     text-orange focus:outline-none 
                     placeholder-lightorange
                     ${isFocused || isValid ? "border-orange" : "border-lightorange"}`}
+            onChange={(e) => setInputValue(e.target.value)}
           />
 
           <div
@@ -79,6 +96,8 @@ function InputComponent() {
                     px-3
                     rounded"
             type="button"
+            value={inputValue}
+            onClick={() => onSubmit(inputValue)}
           >
             채점하기
           </button>
