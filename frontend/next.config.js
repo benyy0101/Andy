@@ -7,6 +7,16 @@ const nextConfig = withPWA({
   compiler: {               // 추가
     styledComponents: true, // 추가
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        port: '',
+        pathname: '/200',
+      },
+    ],
+  },
   async redirects() {
     return [
       {
