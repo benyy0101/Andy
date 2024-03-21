@@ -13,18 +13,24 @@ export const AnswerBackground = tw.div`
   `;
 
 export const AnswerContent = tw.div`
-  bg-white
+  text-orange
   p-8
   rounded-lg
   text-center
+  font-extrabold
+  text-6xl
   `;
 
 export const NextButton = tw.button`
-    mt-4
-    px-4
-    py-2
-    bg-blue-500
-    text-white
-    rounded
-    hover:bg-blue-600
+  mt-4
+  px-4
+  py-2
+  bg-orange
+  text-white
+  rounded
+  hover:bg-yellow
+  hover:text-orange
+  fixed
+  right-5
+  bottom-5
   `;

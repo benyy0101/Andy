@@ -3,7 +3,9 @@
 import React, { useState } from "react";
 import { Wrapper, Input } from "./styles/input.styled";
 
-function InputComponent() {
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function InputComponent({ onAnswerSubmit }: any) {
   const [isFocused, setIsFocused] = useState(false);
   const [isValid, setIsValid] = useState(false);
 
@@ -14,6 +16,8 @@ function InputComponent() {
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     setIsFocused(false);
     setIsValid(e.target.value !== "");
+    // 상위 컴포넌트의 함수를 호출해서 입력값을 전달해줌
+    onAnswerSubmit(e.target.value);
   };
 
   return (
