@@ -40,6 +40,7 @@ const mockQuizData = {
     },
   ],
 };
+// const mockQuizData = [{}];
 
 function Quiz1Page() {
   const { data } = mockQuizData;

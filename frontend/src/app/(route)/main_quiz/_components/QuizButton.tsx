@@ -11,6 +11,9 @@ interface IQuizButton {
 
 export default function QuizButton(props: IQuizButton) {
   const { quizName, quizImg, quizRoute } = props;
+  // eslint-disable-next-line no-console
+  console.log(quizImg);
+  const router = useRouter();
 
   const router = useRouter();
   const routetoQuiz = () => {

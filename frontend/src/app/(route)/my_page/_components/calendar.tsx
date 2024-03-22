@@ -4,6 +4,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import dayjs from "dayjs";
+import Image from "next/image";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+
 import {
   CalendarWrapper,
   StyledHeader,
@@ -19,59 +22,60 @@ import {
   Row1,
   Day,
 } from "../styles/Page.styled";
-import { ChevronLeftIcon } from "@heroicons/react/24/solid";
-import { ChevronRightIcon } from "@heroicons/react/24/solid";
-import { useMypageByMonth } from "../../../hooks/useMypage";
 import Stamp from "../../../asset/_img/smile_stamp.png";
-import Image from "next/image";
 
-export default function CalenderBox({ clickdate } : { clickdate: (date: string) => void}) {
-    // const dayjs = require('dayjs');
-    const today = dayjs();
-    const [viewDate, setViewDate] = useState(dayjs());
-    const [selectDate, setSelectDate] = useState(dayjs());
+export default function CalenderBox({
+  clickdate,
+}: {
+  clickdate: (date: string) => void;
+}) {
+  // const dayjs = require('dayjs');
+  const today = dayjs();
+  const [viewDate, setViewDate] = useState(dayjs());
+  const [selectDate, setSelectDate] = useState(dayjs());
 
-    // 점수 목록으로 날짜 넘기기
-    const dateselect = selectDate.format('YYYYMMDD')
-    clickdate(dateselect)
-    // console.log(selectDate.format('YYYYMMDD'))
-    
-    // 월별 기록 받아오기
-    // 자식번호, 년, 월
-    // const child_num = ?
-    const view_year = viewDate.format("YYYY")
-    const view_month = viewDate.format("MM")
+  // 점수 목록으로 날짜 넘기기
+  const dateselect = selectDate.format("YYYYMMDD");
+  clickdate(dateselect);
+  // console.log(selectDate.format('YYYYMMDD'))
 
-    const request_year = parseInt(view_year, 10);
-    const request_month = parseInt(view_month, 10);
+  // 월별 기록 받아오기
+  // 자식번호, 년, 월
+  // const child_num = ?
+  const viewYear = viewDate.format("YYYY");
+  const viewMonth = viewDate.format("MM");
 
-    const requestData = {
-        // "child_seq": child_num,
-        "year": request_year,
-        "month": request_month,
-    }
+  const requestYear = parseInt(viewYear, 10);
+  const requestMonth = parseInt(viewMonth, 10);
 
-    // const { data, error } = useMypageByMonth(requestData)
+  const requestData = {
+    // "child_seq": child_num,
+    year: requestYear,
+    month: requestMonth,
+  };
 
-    // 받아온 배열
-    const exams = [4, 6, 9, 15, 20, 25, 30, 31];
-    const SolveDay = exams.map(day => {
-        const view_day = day.toString().padStart(2, '0');
-        return `${view_year}-${view_month}-${view_day}`;
-    });
+  // const { data, error } = useMypageByMonth(requestData)
 
-    // 년, 월 불러오기
-    // useEffect(() => {
-    //     const fetchMonth = async () => {
-    //         try {
-    //             const { data, error } = useMypageByMonth(requestData);
-    //         } catch (error) {
-    //         }
-    //     };
-    
-    //     fetchMonth();
-    // }, [requestData]);
+  // 받아온 배열
+  const exams = [4, 6, 9, 15, 20, 25, 30, 31];
+  const SolveDay = exams.map((day) => {
+    const viewDay = day.toString().padStart(2, "0");
+    return `${viewYear}-${viewMonth}-${viewDay}`;
+  });
 
+  // 년, 월 불러오기
+  // useEffect(() => {
+  //     const fetchMonth = async () => {
+  //         try {
+  //             const { data, error } = useMypageByMonth(requestData);
+  //         } catch (error) {
+  //         }
+  //     };
+
+  //     fetchMonth();
+  // }, [requestData]);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getDayImage = (current: any) => {
     const isSolveDay = SolveDay.includes(current);
     const opacity = isSolveDay ? 1 : 0.3;
@@ -85,39 +89,64 @@ export default function CalenderBox({ clickdate } : { clickdate: (date: string) 
 
     let dayCounter = 1;
 
-        for (let i = 0; i < 6; i++) {
-            const week = [];
-            for (let j = 0; j < 7; j++) {
-                if ((i === 0 && j < firstDayOfMonth) || dayCounter > daysInMonth) {
-                    week.push(<Box key={`${i}_${j}`} />);
-                } else {
-                    const current = dayjs(viewDate).date(dayCounter);
-                    const isSelected = selectDate.format('YYYYMMDD') === current.format('YYYYMMDD') ? 'selected' : '';
-                    const isToday = today.format('YYYYMMDD') === current.format('YYYYMMDD') ? 'today' : '';
-                    const { image, opacity } = getDayImage(current.format('YYYY-MM-DD'));
-                    
-                    week.push(
-                        <Box key={`${i}_${j}`}>
-                            <Text className={`text ${isSelected} ${isToday}`} style={{ position: "static", width: "65px", height: "65px", color: "#292929", display: "flex", justifyContent: "center" }}>
-                                <Day onClick={() => { setSelectDate(current) }}>
-                                    {current.format('D')}
-                                    {image &&
-                                        <DayImg style={{opacity: opacity}}>
-                                            <Image src={image} alt={`Day ${current.format('D')}`} style={{ width: "40px", height: "40px" }} />
-                                        </DayImg>
-                                    }
-                                </Day>
-                            </Text>
-                        </Box>
-                    );
-                    dayCounter++;
-                }
-            }
-            calender.push(<Row1 key={i}>{week}</Row1>);
-        }
-        return calender;
-    }
+    for (let i = 0; i < 6; i++) {
+      const week = [];
+      for (let j = 0; j < 7; j++) {
+        if ((i === 0 && j < firstDayOfMonth) || dayCounter > daysInMonth) {
+          week.push(<Box key={`${i}_${j}`} />);
+        } else {
+          const current = dayjs(viewDate).date(dayCounter);
+          const isSelected =
+            selectDate.format("YYYYMMDD") === current.format("YYYYMMDD")
+              ? "selected"
+              : "";
+          const isToday =
+            today.format("YYYYMMDD") === current.format("YYYYMMDD")
+              ? "today"
+              : "";
+          const { image, opacity } = getDayImage(current.format("YYYY-MM-DD"));
 
+          week.push(
+            <Box key={`${i}_${j}`}>
+              <Text
+                className={`text ${isSelected} ${isToday}`}
+                style={{
+                  position: "static",
+                  width: "65px",
+                  height: "65px",
+                  color: "#292929",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Day
+                  onClick={() => {
+                    setSelectDate(current);
+                  }}
+                >
+                  {current.format("D")}
+                  {image && (
+                    <DayImg style={{ opacity }}>
+                      <Image
+                        src={image}
+                        alt={`Day ${current.format("D")}`}
+                        style={{ width: "40px", height: "40px" }}
+                      />
+                    </DayImg>
+                  )}
+                </Day>
+              </Text>
+            </Box>,
+          );
+          dayCounter++;
+        }
+      }
+      calender.push(<Row1 key={i}>{week}</Row1>);
+    }
+    return calender;
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const changegeMonth = (date: any, changeString: string) => {
     switch (changeString) {
       case "add":
@@ -142,18 +171,30 @@ export default function CalenderBox({ clickdate } : { clickdate: (date: string) 
       </StyledHeader>
       <StyledBody>
         <StyledBody1>
-            <RowWeek>
-                <Box><Text>일</Text></Box>
-                <Box><Text>월</Text></Box>
-                <Box><Text>화</Text></Box>
-                <Box><Text>수</Text></Box>
-                <Box><Text>목</Text></Box>
-                <Box><Text>금</Text></Box>
-                <Box><Text>토</Text></Box>
-            </RowWeek>
-            <>
-                {createCalendar()}
-            </>
+          <RowWeek>
+            <Box>
+              <Text>일</Text>
+            </Box>
+            <Box>
+              <Text>월</Text>
+            </Box>
+            <Box>
+              <Text>화</Text>
+            </Box>
+            <Box>
+              <Text>수</Text>
+            </Box>
+            <Box>
+              <Text>목</Text>
+            </Box>
+            <Box>
+              <Text>금</Text>
+            </Box>
+            <Box>
+              <Text>토</Text>
+            </Box>
+          </RowWeek>
+          <>{createCalendar()}</>
         </StyledBody1>
       </StyledBody>
     </CalendarWrapper>
