@@ -1,8 +1,21 @@
-'use client'
+"use client";
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Form, Label, Input, InputBirth, Name, Nickname, Birth, Gender, Btn, Girl, Boy, SubmitBtn } from "../styles/Page.styled";
+import {
+    Form,
+    Label,
+    Input,
+    InputBirth,
+    Name,
+    Nickname,
+    Birth,
+    Gender,
+    Btn,
+    Girl,
+    Boy,
+    SubmitBtn,
+  } from "../styles/Page.styled";
 import { useCreateProfile } from "../../../hooks/useProfile"
 import testimage from "../../../asset/_img/smile_stamp.png"
 

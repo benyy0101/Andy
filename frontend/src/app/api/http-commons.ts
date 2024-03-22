@@ -1,20 +1,24 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
-const serverUrl = process.env.SERVER_URL || "";
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || "";
 const loginUrl = process.env.NEXT_PUBLIC_LOGIN_URL || "";
-const imageBaseUrl = process.env.IMAGE_BASE_URL || "";
+const imageBaseUrl = process.env.NEXT_PUBLIC_IMG_URL || "";
 const localDev = process.env.LOCAL_DEV || false;
 
 const saveToken = (response: AxiosResponse) => {
   if (response.data.jwtToken !== null) {
     // eslint-disable-next-line no-console
-    console.log(response.data.jwtToken.accessToken);
+    // console.log(response.data.jwtToken.accessToken);
     localStorage.setItem("jwtToken", response.data.jwtToken.accessToken);
   }
 };
 
 const loadToken = (config: AxiosRequestConfig) => {
-  const token = localStorage.getItem("jwtToken");
+  let token = null;
+  if (typeof window !== "undefined") {
+    token = localStorage.getItem("jwtToken");
+  }
+
   if (token && config.headers) {
     return Object.assign(config.headers, { Authorization: `Bearer ${token}` });
   }

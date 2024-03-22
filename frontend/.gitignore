@@ -26,7 +26,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
+.env*
 
 # vercel
 .vercel
@@ -39,6 +39,7 @@ next-env.d.ts
 **/public/precache.*.*.js
 **/public/sw.js
 **/public/workbox-*.js
+**/public/workbox-*.js.map
 **/public/worker-*.js
 **/public/fallback-*.js
 **/public/precache.*.*.js.map

@@ -47,7 +47,7 @@ function Camera() {
       setImgSrc(canvas.toDataURL("image/png"));
       const formData = new FormData();
       formData.append("picture", canvasBlob, "image.png");
-      formData.append("question_name", "user");
+      formData.append("question_name", "도넛");
       mutate(formData, {
         onSuccess: (data) => {
           // eslint-disable-next-line no-console

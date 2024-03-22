@@ -9,6 +9,8 @@ import Camera from "./_components/camera";
 
 import { Wrapper, Wrapper2, Title, Explain } from "./styles/page.styled";
 
+const mockQuizData = [{}];
+
 function Quiz1Page() {
   // 가능하면 음악도 나오게 할 것
   // const audio = new Audio('audio_file.mp3');
