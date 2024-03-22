@@ -53,14 +53,13 @@ export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: str
                 const formData = new FormData();
                 formData.append('profileImageFile', file)
 
-                console.log(file)
-
-                const res = mutate(formData)
-                if (res !== null && res !== undefined) {
-                    onImageUpload(res);
-                } else {
-                    // 에러
-                }
+                mutate(formData, {
+                    onSuccess: (data: string) => {
+                        onImageUpload(data);
+                        // eslint-disable-next-line no-console
+                       console.error(data);
+                    },
+                  });
 
             } catch {
                 // alert("프로필 이미지 변경에 실패하였습니다.")
@@ -83,7 +82,7 @@ export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: str
                     onChange={EditImage}
                     ref={imgRef}
                 />
-                <Image 
+                <Image
                     src={imagePreview || emptyImageUrl}
                     style={{ borderRadius: "100%", backgroundColor: "#FFFFFF" }}
                     alt = "profileimage"

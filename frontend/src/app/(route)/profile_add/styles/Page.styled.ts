@@ -106,7 +106,7 @@ w-[250px]
 text-black
 `
 
-export const Boy = tw.button`
+export const Boy = tw.div`
 bg-gray-100
 rounded-[5px]
 w-[150px]
@@ -118,7 +118,7 @@ hover:bg-gray-300
 focus:bg-gray-300
 `
 
-export const Girl = tw.button`
+export const Girl = tw.div`
 bg-gray-100
 rounded-[5px]
 w-[150px]

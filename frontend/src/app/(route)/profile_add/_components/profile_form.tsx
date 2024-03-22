@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Form, Label, Input, InputBirth, Name, Nickname, Birth, Gender, Btn, Girl, Boy, SubmitBtn } from "../styles/Page.styled";
 import { useCreateProfile } from "../../../hooks/useProfile"
+import testimage from "../../../asset/_img/smile_stamp.png"
 
 export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
     const router = useRouter();
@@ -32,29 +33,29 @@ export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
 
     const childpicture = imageUrl;
 
-    const routetoProfileList = () => {
-        router.push('/profile_list')
-    }
+    console.log(name, nickname, birthday, gender, testimage)
 
     const formSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const ProfileData = {
-            // "kakao_id":string,
+            // "kakao_id": "",
             "child_name": name,
             "child_nickname": nickname,
             "child_birthday": birthday,
             "child_gender": gender,
-            "child_picture": childpicture,
+            "child_picture": testimage,
         }
 
         try {
-            // const res = mutate(ProfileData)
-            // if (res != null) {
-            //     router.push("/profile_list")
-            // } else {
-            //     // 에러
-            // }   
+            const res = mutate(ProfileData)
+
+            console.log(res)
+            if (res != null) {
+                router.push("/profile_list")
+            } else {
+                // 에러
+            }   
         } catch {
             // 에러
         }
@@ -91,7 +92,7 @@ export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
                     </Btn>
                 </Gender>
 
-                <SubmitBtn onClick={routetoProfileList}>프로필 생성하기</SubmitBtn>
+                <SubmitBtn>프로필 생성하기</SubmitBtn>
             </Form>
         </div>
     )
