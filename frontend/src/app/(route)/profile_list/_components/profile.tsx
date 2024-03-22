@@ -1,9 +1,10 @@
 "use client";
-import { ProfileWrapper, ProfileImg, ProfileName } from "../styles/Page.styled";
+
 import Image from "next/image";
 import { motion } from "framer-motion";
-import storeProfile from "../../../_store/storeProfile";
 import { useRouter } from "next/navigation";
+import storeProfile from "../../../_store/storeProfile";
+import { ProfileWrapper, ProfileImg, ProfileName } from "../styles/Page.styled";
 
 interface IProfile {
   profile: {
@@ -17,6 +18,7 @@ export default function Profile(props: IProfile) {
   const { profile } = props;
   const router = useRouter();
   const setProfileInfo = storeProfile(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (state: { setProfileInfo: any }) => state.setProfileInfo,
   );
   const handleProfileClick = () => {

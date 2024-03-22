@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect } from "react";
-import Profile from "./profile";
+import React from "react";
 import { motion } from "framer-motion";
+import Profile from "./profile";
 
 const mockData = [
   {
@@ -43,7 +43,7 @@ const item = {
 };
 
 function ProfileContainer() {
-  //const { data } = useProfileList();
+  // const { data } = useProfileList();
 
   return (
     <motion.div

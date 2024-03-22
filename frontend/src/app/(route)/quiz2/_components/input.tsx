@@ -9,6 +9,7 @@ interface InputComponentProps {
 }
 
 function InputComponent(props: InputComponentProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { onSubmit, onInputChange } = props;
   const [isFocused, setIsFocused] = useState(false);
   const [isValid, setIsValid] = useState(false);
@@ -24,11 +25,11 @@ function InputComponent(props: InputComponentProps) {
     setIsValid(e.target.value !== "");
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    setInputValue(newValue);
-    onInputChange(newValue);
-  };
+  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const newValue = e.target.value;
+  //   setInputValue(newValue);
+  //   onInputChange(newValue);
+  // };
 
   return (
     <Wrapper>
