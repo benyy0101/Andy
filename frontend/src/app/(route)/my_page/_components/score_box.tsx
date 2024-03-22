@@ -21,10 +21,8 @@ export default function ScoreBox({ dateSelect } : { dateSelect: string}) {
 
     // const { data, error } = useMypageByDate(requestData)
 
-    // 날짜별 받아온 기록 저장?
     // data.exam_score?
-    const test_num = []
-    const test_res = [60, 70, 80, 90]
+    const test_res = ['4/5', '3/5', '4/5', '2/5']
 
     return (
         <ScoreWrapper>

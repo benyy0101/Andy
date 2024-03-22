@@ -32,7 +32,7 @@ shadow-md
 export const Info = tw.div`
 text-black
 w-[35%]
-pl-4
+pl-6
 flex
 flex-col
 justify-between
@@ -40,7 +40,7 @@ justify-between
 
 export const Profile = tw.div`
 bg-[#ffffff]
-h-[40%]
+h-[44%]
 p-[30px]
 rounded-[15px]
 flex
@@ -52,11 +52,34 @@ shadow-md
 export const Score = tw.div`
 bg-[#EEA241]
 text-black
-h-[57%]
+h-[53%]
 rounded-[15px]
 p-8
 pr-7
 shadow-md
+`
+
+export const ProfileEdit = tw.div`
+flex
+w-[100%]
+mt-2
+items-center
+`
+
+export const EditBtn = tw.button`
+ml-auto
+rounded-[10px]
+pt-1
+pb-1
+pr-2
+pl-2
+bg-[#EEA241]
+text-[#fff]
+`
+
+export const ProfileContent = tw.div`
+w-[100%]
+flex
 `
 
 // 캘린더
@@ -200,9 +223,9 @@ w-[100%]
 // 프로필
 export const ProfileWrapper = tw.div`
 flex
+flex-col
 items-center
 w-[100%]
-h-[100%]
 `
 
 export const Form = tw.form`
@@ -225,6 +248,8 @@ export const Input = tw.input`
 ml-auto
 w-[70%]
 rounded-[7px]
+border
+border-blue-gray-200
 bg-[#FFFFFF]
 px-3
 py-2
@@ -247,6 +272,8 @@ export const InputBirth = tw.input`
 ml-auto
 w-[70%]
 rounded-[7px]
+border
+border-blue-gray-200
 bg-[#FFFFFF]
 px-3
 py-2
@@ -289,6 +316,7 @@ export const Btn = tw.div`
 flex
 text-black
 w-[70%]
+text-sm
 `
 
 export const Boy = tw.button`
@@ -310,19 +338,34 @@ py-2
 hover:bg-gray-300
 `
 
-// const Submit_btn = tw.button`
-// rounded-[5px]
-// bg-gray-100
-// py-2.5
-// hover:bg-gray-300
-// text-black
-// `
-
 export const ProfileImage = tw.div`
 w-[30%]
+flex
+justify-center
+items-center
+`
+
+export const ImageTest = tw.div`
+w-[100%]
 rounded-[100%]
 bg-[#FFE67C]
 aspect-square
+`
+
+export const CurrentInfo = tw.div`
+w-[70%]
+rounded-[7px]
+border-[white]
+bg-[#FFFFFF]
+px-3
+py-2
+text-sm
+font-sans
+font-normal 
+text-black
+outline-0
+flex
+flex-start
 `
 
 // 점수
