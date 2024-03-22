@@ -42,7 +42,6 @@ const mockQuizData = {
     },
   ],
 };
-// const mockQuizData = [{}];
 
 interface IQuizData {
   question_seq: number;
@@ -58,7 +57,39 @@ function Quiz1Page() {
   const [currentSeq, setCurrentSeq] = useState(0);
   const [isTrue, setIsTrue] = useState<boolean>();
   const { mutate } = useGameResultMutation();
+  const [reset, setReset] = useState(false);
   const category = useSearchParams().get("category");
+
+  const handleResetTimer = () => {
+    setReset(true); // Set reset to true to trigger Timer component to reset
+    setTimeout(() => {
+      setReset(false); // Reset reset state after a short delay to allow Timer component to reset
+    }, 100);
+  };
+
+  const handleIsTrue = (stat: boolean) => {
+    setIsTrue(stat);
+  };
+
+  const handleCorrectAnswer = () => {
+    setIsCorrectModalOpen(true);
+  };
+
+  const handleCloseCorrectModal = () => {
+    setIsCorrectModalOpen(false);
+    handleResetTimer();
+  };
+
+  const [isWrongModalOpen, setIsWrongModalOpen] = useState(false);
+
+  const handleWrongAnswer = () => {
+    setIsWrongModalOpen(true);
+  };
+
+  const handleCloseWrongModal = () => {
+    setIsWrongModalOpen(false);
+    handleResetTimer();
+  };
 
   useEffect(() => {
     if (isTrue !== undefined) {
@@ -70,7 +101,11 @@ function Quiz1Page() {
         },
       ]);
       setCurrentSeq(currentSeq + 1);
-      setIsCorrectModalOpen(true);
+      if (isTrue) {
+        handleCorrectAnswer();
+      } else {
+        handleWrongAnswer();
+      }
     }
     setIsTrue(undefined);
   }, [isTrue]);
@@ -92,50 +127,19 @@ function Quiz1Page() {
     }
   }, [currentSeq]);
 
-  const handleIsTrue = (stat: boolean) => {
-    setIsTrue(stat);
-  };
-
-  const handleCorrectAnswer = () => {
-    setIsCorrectModalOpen(true);
-  };
-
-  const handleCloseCorrectModal = () => {
-    setIsCorrectModalOpen(false);
-  };
-
-  const [isWrongModalOpen, setIsWrongModalOpen] = useState(false);
-
-  const handleWrongAnswer = () => {
-    setIsWrongModalOpen(true);
-  };
-
-  const handleCloseWrongModal = () => {
-    setIsWrongModalOpen(false);
-  };
-
   return (
     <Wrapper>
-      <Wrapper2>
-        <ProgressBar max={numProblems} value={status.length} />
-        <progress className="w-full " value="63" max="100" />
-        <div className="flex w-full items-center">
-          <div className="flex-grow text-center">
-            <Title>ROUND 1</Title>
-          </div>
-          <div>
-            <Timer />
-          </div>
-        </div>
-        <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
-        <div className="flex justify-center gap-20">
-          <Word1 />
-          <Camera
-            setIsTrue={handleIsTrue}
-            input={data[currentSeq].question_name}
-          />
-        </div>
-      </Wrapper2>
+      <ProgressBar max={numProblems} value={status.length} />
+      <Title>라운드 {currentSeq + 1}</Title>
+      <Timer reset={reset} />
+      <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
+      <div className="flex justify-center gap-20">
+        <Word1 />
+        <Camera
+          setIsTrue={handleIsTrue}
+          input={data[currentSeq].question_name}
+        />
+      </div>
       {/* 조건에 따라서 정답 맞추면 정답 모달/ 틀리면 오답 모달 */}
       <button onClick={handleCorrectAnswer} type="button">
         Show Correct Modal

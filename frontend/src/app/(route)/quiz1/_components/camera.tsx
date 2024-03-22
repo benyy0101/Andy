@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { useSendResultMutation } from "@/app/hooks/useGameA";
-import { Wrapper2 } from "./styles/Camera.styled";
+import { motion } from "framer-motion";
+import { Wrapper2, Video } from "./styles/Camera.styled";
 
 interface ICamera {
   setIsTrue: (stat: boolean) => void;
@@ -68,10 +68,9 @@ function Camera(props: ICamera) {
 
   return (
     <Wrapper2>
-      <video ref={videoRef} autoPlay height={300} width={300} />
-      {imgSrc && (
-        <Image src={imgSrc} id="target" alt="INKN" height={300} width={300} />
-      )}
+      <motion.div>
+        <Video ref={videoRef} autoPlay height={300} width={300} />
+      </motion.div>
       <button name="take_photo" type="button" onClick={takePhoto}>
         사진찍기
       </button>
