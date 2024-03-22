@@ -1,10 +1,16 @@
 /* eslint-disable jsx-a11y/media-has-caption */
+
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useSendResultMutation } from "@/app/hooks/useGameA";
 import { Wrapper2 } from "./styles/Camera.styled";
 
-function Camera() {
+interface ICamera {
+  setIsTrue: (stat: boolean) => void;
+  input: string;
+}
+function Camera(props: ICamera) {
+  const { setIsTrue, input } = props;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const videoRef = useRef<any>(null);
   const [imgSrc, setImgSrc] = useState("");
@@ -47,11 +53,12 @@ function Camera() {
       setImgSrc(canvas.toDataURL("image/png"));
       const formData = new FormData();
       formData.append("picture", canvasBlob, "image.png");
-      formData.append("question_name", "도넛");
+      formData.append("question_name", input);
       mutate(formData, {
         onSuccess: (data) => {
           // eslint-disable-next-line no-console
-          console.error(data);
+          console.log(data);
+          setIsTrue(data.question_history_is_ok);
         },
       });
     }

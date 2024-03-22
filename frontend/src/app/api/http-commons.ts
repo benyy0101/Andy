@@ -80,3 +80,8 @@ imageAxios.interceptors.request.use((config) => {
   loadToken(config);
   return config;
 });
+
+gameAxios.interceptors.request.use((config) => {
+  loadToken(config);
+  return config;
+});

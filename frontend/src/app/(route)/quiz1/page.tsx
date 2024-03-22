@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Timer from "@/app/_components/timer";
 import CorrectModal from "@/app/_components/modal_correct";
 import WrongModal from "@/app/_components/modal_wrong";
 import ProgressBar from "@/app/_components/ProgressBar";
-import { useSendResultMutation } from "@/app/hooks/useGameA";
+import { useGameResultMutation } from "@/app/hooks/useGameA";
+import storeProfile from "@/app/_store/storeProfile";
 import Word1 from "./_components/word1";
 import Camera from "./_components/camera";
 
@@ -19,22 +20,22 @@ const mockQuizData = {
       question_picture: "사과 이미지",
     },
     {
-      question_seq: 2,
+      question_seq: 3,
       question_name: "배",
       question_picture: "배 이미지",
     },
     {
-      question_seq: 3,
+      question_seq: 523,
       question_name: "포도",
       question_picture: "포도 이미지",
     },
     {
-      question_seq: 4,
+      question_seq: 33,
       question_name: "참외",
       question_picture: "참외 이미지",
     },
     {
-      question_seq: 5,
+      question_seq: 87,
       question_name: "키위",
       question_picture: "키위 이미지",
     },
@@ -42,14 +43,56 @@ const mockQuizData = {
 };
 // const mockQuizData = [{}];
 
+interface IQuizData {
+  question_seq: number;
+  question_history_is_ok: boolean;
+}
+
 function Quiz1Page() {
   const { data } = mockQuizData;
-
+  const { profile } = storeProfile();
   const [isCorrectModalOpen, setIsCorrectModalOpen] = useState(false);
   const numProblems: number = data.length;
-  const [status, setStatus] = useState([]);
-  const [currentStatus, setCurrentStatus] = useState<boolean>();
-  const { mutate } = useSendResultMutation();
+  const [status, setStatus] = useState<IQuizData[]>([]);
+  const [currentSeq, setCurrentSeq] = useState(0);
+  const [isTrue, setIsTrue] = useState<boolean>();
+  const { mutate } = useGameResultMutation();
+
+  useEffect(() => {
+    if (isTrue !== undefined) {
+      setStatus([
+        ...status,
+        {
+          question_seq: data[currentSeq].question_seq,
+          question_history_is_ok: isTrue,
+        },
+      ]);
+      setCurrentSeq(currentSeq + 1);
+      setIsCorrectModalOpen(true);
+    }
+    setIsTrue(undefined);
+  }, [isTrue]);
+
+  useEffect(() => {
+    if (currentSeq >= numProblems) {
+      const req = {
+        child_seq: profile.child_seq,
+        question_category_seq: 123,
+        mode: "A",
+        questions: status,
+      };
+      mutate(req, {
+        onSuccess: (newData) => {
+          // eslint-disable-next-line no-console
+          console.log(newData);
+        },
+      });
+    }
+  }, [currentSeq]);
+
+  const handleIsTrue = (stat: boolean) => {
+    setIsTrue(stat);
+  };
 
   const handleCorrectAnswer = () => {
     setIsCorrectModalOpen(true);
@@ -85,10 +128,12 @@ function Quiz1Page() {
         <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
         <div className="flex justify-center gap-20">
           <Word1 />
-          <Camera />
+          <Camera
+            setIsTrue={handleIsTrue}
+            input={data[currentSeq].question_name}
+          />
         </div>
       </Wrapper2>
-
       {/* 조건에 따라서 정답 맞추면 정답 모달/ 틀리면 오답 모달 */}
       <button onClick={handleCorrectAnswer} type="button">
         Show Correct Modal

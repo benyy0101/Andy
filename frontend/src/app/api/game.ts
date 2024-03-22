@@ -32,7 +32,7 @@ export const getGamebyCategory = async (
 export const sendProblemResult = async (
   request: FormData,
 ): Promise<ProblemResultResponse> => {
-  const response = await gameAxios.post("", request);
+  const response = await gameAxios.post("/object", request);
   return response.data;
 };
 
@@ -40,7 +40,7 @@ export const sendProblemResult = async (
 export const getGameResult = async (
   request: GameResultRequest,
 ): Promise<GameResultResponse> => {
-  const response = await localAxios.post("/", request);
+  const response = await localAxios.post("/game/result", request);
   return response.data;
 };
 

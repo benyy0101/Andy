@@ -43,7 +43,7 @@ const item = {
 };
 
 function ProfileContainer() {
-  const { data } = useProfileList();
+  // const { data } = useProfileList();
 
   return (
     <motion.div

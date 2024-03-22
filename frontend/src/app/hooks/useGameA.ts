@@ -64,7 +64,7 @@ export const useSendResultMutation = () => {
 };
 
 // GAME-004
-export const useProblemResult = () => {
+export const useGameResultMutation = () => {
   const mutate = useMutation<GameResultResponse, Error, GameResultRequest, any>(
     {
       mutationFn: (request: GameResultRequest) => getGameResult(request),

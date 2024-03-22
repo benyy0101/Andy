@@ -23,6 +23,7 @@ const testProfile: ProfileState = {
 interface ProfileStore {
   profile: ProfileState;
 }
+
 const storeProfile = create(
   persist<ProfileStore & ProfileActions>(
     (set) => ({
