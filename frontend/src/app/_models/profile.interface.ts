@@ -33,3 +33,7 @@ export interface ProfileActions {
   setName: (kakaoname: string) => void;
   removeProfileInfo: () => void;
 }
+
+export interface ProfileListResponse {
+  profiles: BabyProfile[];
+}
