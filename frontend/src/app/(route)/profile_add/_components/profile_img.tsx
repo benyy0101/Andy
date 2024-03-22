@@ -54,12 +54,12 @@ export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: str
                 formData.append('profileImageFile', file)
 
                 mutate(formData, {
-                    onSuccess: (data: string) => {
+                    onSuccess: (data: any) => {
                         onImageUpload(data);
                         // eslint-disable-next-line no-console
-                       console.error(data);
+                        console.error(data)
                     },
-                  });
+                });
 
             } catch {
                 // alert("프로필 이미지 변경에 실패하였습니다.")

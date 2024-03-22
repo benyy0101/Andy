@@ -17,7 +17,7 @@ import {
     SubmitBtn,
   } from "../styles/Page.styled";
 import { useCreateProfile } from "../../../hooks/useProfile"
-import testimage from "../../../asset/_img/smile_stamp.png"
+// import testimage from "../../../asset/_img/smile_stamp.png"
 
 export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
     const router = useRouter();
@@ -46,22 +46,30 @@ export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
 
     const childpicture = imageUrl;
 
-    console.log(name, nickname, birthday, gender, testimage)
+    console.log(name, nickname, birthday, gender, childpicture)
 
     const formSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const ProfileData = {
-            // "kakao_id": "",
+            "kakao_id": "leeyj1624@naver.com",
             "child_name": name,
             "child_nickname": nickname,
             "child_birthday": birthday,
             "child_gender": gender,
-            "child_picture": testimage,
+            "child_picture": childpicture,
         }
 
         try {
             const res = mutate(ProfileData)
+
+            // mutate(ProfileData, {
+            //     onSuccess: (data: any) => {
+            //         onImageUpload(data);
+            //         // eslint-disable-next-line no-console
+            //         console.error(data)
+            //     },
+            // });
 
             console.log(res)
             if (res != null) {
