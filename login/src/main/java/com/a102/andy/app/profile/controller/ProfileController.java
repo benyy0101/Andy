@@ -26,7 +26,6 @@ public class ProfileController {
 
     @PostMapping("")
     public ResponseEntity<ProfileResponseDto> createProfile(@RequestBody ProfileCreateRequestDto req) {
-        System.out.println(req.getProfileNickname());
         ProfileResponseDto res = new ProfileResponseDto(profileService.createProfile(req));
         return ResponseEntity.ok(res);
     }

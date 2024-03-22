@@ -7,6 +7,7 @@ import com.a102.andy.app.profile.entity.Profile;
 import com.a102.andy.app.profile.repository.ProfileRepository;
 import com.a102.andy.auth.JwtTokenProvider;
 import com.a102.andy.error.exception.RestApiException;
+import com.a102.andy.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -36,7 +37,7 @@ public class ProfileService {
                 .profileGender(req.getProfileGender())
                 .profileBirthday(req.getProfileBirthday())
                 .profilePicture(req.getProfilePicture())
-                .memberId(req.getKakaoId())
+                .memberId(MemberUtil.getMemberId())
                 .build();
         return profileRepository.save(profile);
     }

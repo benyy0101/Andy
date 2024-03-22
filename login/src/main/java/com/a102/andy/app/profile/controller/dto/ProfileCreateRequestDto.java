@@ -11,8 +11,6 @@ import java.time.LocalDate;
 @Setter
 @Builder
 public class ProfileCreateRequestDto {
-    @JsonProperty("kakao_id")
-    private String kakaoId;
     @JsonProperty("child_name")
     private String profileName;
     @JsonProperty("child_nickname")
@@ -24,8 +22,7 @@ public class ProfileCreateRequestDto {
     @JsonProperty("child_picture")
     private String profilePicture;
 
-    public ProfileCreateRequestDto(String kakaoId, String profileName, String profileNickname, LocalDate profileBirthday, String profileGender, String profilePicture) {
-        this.kakaoId = kakaoId;
+    public ProfileCreateRequestDto(String profileName, String profileNickname, LocalDate profileBirthday, String profileGender, String profilePicture) {
         this.profileName = profileName;
         this.profileNickname = profileNickname;
         this.profileBirthday = profileBirthday;
