@@ -52,7 +52,7 @@ export const useGamebyCategory = (question_category_seq: number) => {
 //   });
 //   return query;
 // };
-
+// GAME-003
 export const useSendResultMutation = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const mutate = useMutation<ProblemResultResponse, Error, FormData, any>({

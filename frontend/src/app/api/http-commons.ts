@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || "";
 const loginUrl = process.env.NEXT_PUBLIC_LOGIN_URL || "";
-const imageBaseUrl = process.env.IMAGE_BASE_URL || "";
+const imageBaseUrl = process.env.NEXT_PUBLIC_IMG_URL || "";
 const localDev = process.env.LOCAL_DEV || false;
 
 const saveToken = (response: AxiosResponse) => {
