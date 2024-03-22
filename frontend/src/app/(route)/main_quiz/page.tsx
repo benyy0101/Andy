@@ -7,17 +7,17 @@ const btnData = [
   {
     quiz_name: "퀴즈 1",
     quiz_img: "",
-    quiz_route: "/quiz1",
+    quiz_route: "quiz1",
   },
   {
     quiz_name: "퀴즈 2",
     quiz_img: "",
-    quiz_route: "/quiz2",
+    quiz_route: "quiz2",
   },
   {
     quiz_name: "다시 풀기",
     quiz_img: "",
-    quiz_route: "/incorrect_list",
+    quiz_route: "incorrect_list",
   },
 ];
 

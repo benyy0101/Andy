@@ -14,7 +14,13 @@ export default function QuizButton(props: IQuizButton) {
   const router = useRouter();
 
   const routetoQuiz = () => {
-    router.push(quiz_route);
+    if (quiz_route === "incorrect_list") {
+      const route = "/incorrect_list";
+      router.push(route);
+    } else {
+      const route = `/category?mode=${quiz_route}`;
+      router.push(route);
+    }
   };
 
   return (
