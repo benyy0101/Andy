@@ -119,3 +119,4 @@ def ObjectDetection(image_Source, answer):
         return {"question_history_is_ok": "true"}
     else:
         return {"question_history_is_ok": "false"}
+
