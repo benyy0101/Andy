@@ -5,19 +5,19 @@ import { Wrapper, Btn } from "./styles/Page.styled";
 
 const btnData = [
   {
-    quiz_name: "퀴즈 1",
-    quiz_img: "",
-    quiz_route: "quiz1",
+    quizName: "퀴즈 1",
+    quizImg: "",
+    quizRoute: "quiz1",
   },
   {
-    quiz_name: "퀴즈 2",
-    quiz_img: "",
-    quiz_route: "quiz2",
+    quizName: "퀴즈 2",
+    quizImg: "",
+    quizRoute: "quiz2",
   },
   {
-    quiz_name: "다시 풀기",
-    quiz_img: "",
-    quiz_route: "incorrect_list",
+    quizNAme: "다시 풀기",
+    quizImg: "",
+    quizRoute: "incorrect_list",
   },
 ];
 
@@ -29,10 +29,10 @@ export default function MainQuiz() {
       <Btn>
         {btnData.map((btn) => (
           <QuizButton
-            key={btn.quiz_name}
-            quiz_name={btn.quiz_name}
-            quiz_img={btn.quiz_img}
-            quiz_route={btn.quiz_route}
+            key={btn.quizName}
+            quizName={btn.quizName}
+            quizImg={btn.quizImg}
+            quizRoute={btn.quizRoute}
           />
         ))}
       </Btn>

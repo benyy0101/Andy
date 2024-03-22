@@ -4,46 +4,51 @@ import React, { useState } from "react";
 import Timer from "@/app/_components/timer";
 import CorrectModal from "@/app/_components/modal_correct";
 import WrongModal from "@/app/_components/modal_wrong";
+import ProgressBar from "@/app/_components/ProgressBar";
+import { useSendResultMutation } from "@/app/hooks/useGameA";
 import Word1 from "./_components/word1";
 import Camera from "./_components/camera";
 
 import { Wrapper, Wrapper2, Title, Explain } from "./styles/page.styled";
 
-const mockQuizData = [{}];
+const mockQuizData = {
+  data: [
+    {
+      question_seq: 1,
+      question_name: "사과",
+      question_picture: "사과 이미지",
+    },
+    {
+      question_seq: 2,
+      question_name: "배",
+      question_picture: "배 이미지",
+    },
+    {
+      question_seq: 3,
+      question_name: "포도",
+      question_picture: "포도 이미지",
+    },
+    {
+      question_seq: 4,
+      question_name: "참외",
+      question_picture: "참외 이미지",
+    },
+    {
+      question_seq: 5,
+      question_name: "키위",
+      question_picture: "키위 이미지",
+    },
+  ],
+};
 
 function Quiz1Page() {
-  // 가능하면 음악도 나오게 할 것
-  // const audio = new Audio('audio_file.mp3');
-  // audio.play();
-
-  // 카메라 컴포넌트
-  // const camera = useRef(null);
-  // const [image, setImage] = useState(null);
+  const { data } = mockQuizData;
 
   const [isCorrectModalOpen, setIsCorrectModalOpen] = useState(false);
-
-  // 카테고리 가져오는 커스텀 훅
-  //   const {
-  //     data: gameData,
-  //     isLoading: isGameDataLoading,
-  //     isError: isGameDataError,
-  //   } = useGamebyCategory(0);
-
-  // 문제 결과를 보내는 훅
-  //   const {
-  //     data: ProblemResult,
-  //     isLoading: isProblemResultLoading,
-  //     isError: isProbelemResultError,
-  //   } = useProblemResult("user", {
-  //     question_category_seq: 0,
-  //     mode: "A",
-  //     questions: [
-  //       {
-  //         question_seq: 0,
-  //         question_history_is_ok: true,
-  //       },
-  //     ],
-  //   });
+  const numProblems: number = data.length;
+  const [status, setStatus] = useState([]);
+  const [currentStatus, setCurrentStatus] = useState<boolean>();
+  const { mutate } = useSendResultMutation();
 
   const handleCorrectAnswer = () => {
     setIsCorrectModalOpen(true);
@@ -66,8 +71,8 @@ function Quiz1Page() {
   return (
     <Wrapper>
       <Wrapper2>
-        <progress className="w-full color-" value="63" max="100" />
-
+        <ProgressBar max={numProblems} value={status.length} />
+        <progress className="w-full " value="63" max="100" />
         <div className="flex w-full items-center">
           <div className="flex-grow text-center">
             <Title>ROUND 1</Title>
