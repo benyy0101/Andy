@@ -7,6 +7,7 @@ import WrongModal from "@/app/_components/modal_wrong";
 import ProgressBar from "@/app/_components/ProgressBar";
 import { useGameResultMutation } from "@/app/hooks/useGameA";
 import storeProfile from "@/app/_store/storeProfile";
+import { useSearchParams } from "next/navigation";
 import Word1 from "./_components/word1";
 import Camera from "./_components/camera";
 
@@ -57,6 +58,7 @@ function Quiz1Page() {
   const [currentSeq, setCurrentSeq] = useState(0);
   const [isTrue, setIsTrue] = useState<boolean>();
   const { mutate } = useGameResultMutation();
+  const category = useSearchParams().get("category");
 
   useEffect(() => {
     if (isTrue !== undefined) {
@@ -77,7 +79,7 @@ function Quiz1Page() {
     if (currentSeq >= numProblems) {
       const req = {
         child_seq: profile.child_seq,
-        question_category_seq: 123,
+        question_category_seq: Number(category),
         mode: "A",
         questions: status,
       };

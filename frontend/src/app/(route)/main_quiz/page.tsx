@@ -15,7 +15,7 @@ const btnData = [
     quizRoute: "quiz2",
   },
   {
-    quizNAme: "다시 풀기",
+    quizName: "다시 풀기",
     quizImg: "",
     quizRoute: "incorrect_list",
   },
