@@ -3,21 +3,12 @@
 import React, { useEffect } from "react";
 import Profile from "./profile";
 import { motion } from "framer-motion";
+import { useProfileList } from "../../../hooks/useProfile"
 
 const mockData = [
   {
     child_seq: "1",
     child_name: "박수민",
-    child_picture: "",
-  },
-  {
-    child_seq: "2",
-    child_name: "김아린",
-    child_picture: "",
-  },
-  {
-    child_seq: "3",
-    child_name: "이동훈",
     child_picture: "",
   },
 ];
@@ -43,7 +34,9 @@ const item = {
 };
 
 function ProfileContainer() {
-  //const { data } = useProfileList();
+  const { data } = useProfileList();
+
+  console.log(data)
 
   return (
     <motion.div

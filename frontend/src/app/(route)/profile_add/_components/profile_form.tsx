@@ -46,13 +46,10 @@ export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
 
     const childpicture = imageUrl;
 
-    console.log(name, nickname, birthday, gender, childpicture)
-
     const formSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const ProfileData = {
-            "kakao_id": "leeyj1624@naver.com",
             "child_name": name,
             "child_nickname": nickname,
             "child_birthday": birthday,
@@ -60,23 +57,16 @@ export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
             "child_picture": childpicture,
         }
 
+        console.log(name, nickname, birthday, gender, childpicture)
+
         try {
-            const res = mutate(ProfileData)
-
-            // mutate(ProfileData, {
-            //     onSuccess: (data: any) => {
-            //         onImageUpload(data);
-            //         // eslint-disable-next-line no-console
-            //         console.error(data)
-            //     },
-            // });
-
-            console.log(res)
-            if (res != null) {
-                router.push("/profile_list")
-            } else {
-                // 에러
-            }   
+            mutate(ProfileData, {
+                onSuccess: (data: any) => {
+                    console.log(data)
+                    router.push("/profile_list")
+                    // console.error(data)
+                },
+            });
         } catch {
             // 에러
         }
