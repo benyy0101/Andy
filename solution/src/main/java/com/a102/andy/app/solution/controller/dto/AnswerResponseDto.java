@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Builder
-public class ResultRequestDto {
-    private String question_name;
-    private String picture;
-
+public class AnswerResponseDto {
+    private int AnswerSeq;
+    private boolean AnswerIsOk;
 }

@@ -15,7 +15,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "question_category_seq")
-    private byte questionCategorySeq;
+    private int questionCategorySeq;
 
     @Column(name = "question_category_name")
     private String questionCategoryName;

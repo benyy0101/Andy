@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class Question extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int question_seq;
+    private int questionSeq;
 
     @Column(name = "question_category_seq", nullable = false)
     private int questionCategotySeq;

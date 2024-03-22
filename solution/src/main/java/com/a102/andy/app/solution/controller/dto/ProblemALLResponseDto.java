@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Builder
-public class ResultRequestDto {
-    private String question_name;
-    private String picture;
+public class ProblemALLResponseDto {
+    private String  exam_mode;
+    private int question_history_seq;
+    private ProblemResponseDto problemResponseDto;
+    private String created_at;
 
 }

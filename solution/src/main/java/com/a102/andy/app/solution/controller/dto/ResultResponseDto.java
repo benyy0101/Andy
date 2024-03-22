@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Builder
-public class ResultRequestDto {
-    private String question_name;
-    private String picture;
-
+public class ResultResponseDto {
+    private String question_history_is_ok;
 }
