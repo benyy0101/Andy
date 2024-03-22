@@ -3,6 +3,8 @@ package com.a102.andy;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.a102.andy.mypage.controller.dto.MypageHistoryDayRequestDto;
+import com.a102.andy.mypage.controller.dto.MypageHistoryDayResponseDto;
 import com.a102.andy.mypage.controller.dto.MypageHistoryMonthRequestDto;
 import com.a102.andy.mypage.controller.dto.MypageHistoryMonthResponseDto;
 import com.a102.andy.mypage.repository.MypageCustomRepository;
@@ -39,7 +41,7 @@ public class MypageServiceTest {
         MypageHistoryMonthResponseDto expectedResponse = new MypageHistoryMonthResponseDto(days);
 
         // Mock 설정
-        when(mypageRepository.readMonthHistory(requestDto.getChildSeq(), requestDto.getYear(), requestDto.getMonth()))
+        when(mypageRepository.readMonthHistory(requestDto))
                 .thenReturn(Optional.of(expectedResponse));
 
         // 테스트 대상 메소드 실행
@@ -47,5 +49,33 @@ public class MypageServiceTest {
 
         // 검증
         assertEquals(expectedResponse, result);
+    }
+
+    @Test
+    public void testReadDayHistory() {
+        // 입력 값 준비
+        MypageHistoryDayRequestDto requestDto = new MypageHistoryDayRequestDto(1, 2024, 3, 22);
+
+        // 예상되는 반환 값 준비
+        List<MypageHistoryDayResponseDto.ExamDetail> examDetails = new ArrayList<>();
+        examDetails.add(new MypageHistoryDayResponseDto.ExamDetail(10, "수학", "A")); // 직접 생성자를 수정하거나, 적절한 설정 메소드를 사용해야 함
+
+        MypageHistoryDayResponseDto expectedResponse = MypageHistoryDayResponseDto.builder()
+                .exams(examDetails)
+                .build();
+
+        // Mock 설정
+        when(mypageRepository.readDayHistory(requestDto))
+                .thenReturn(Optional.of(expectedResponse));
+
+        // 테스트 대상 메소드 실행
+        MypageHistoryDayResponseDto result = mypageService.readDayHistory(requestDto);
+
+        // 검증
+        assertNotNull(result);
+        assertEquals(expectedResponse, result);
+
+        // Mockito를 사용한 상호 작용 검증
+        verify(mypageRepository, times(1)).readDayHistory(requestDto);
     }
 }

@@ -20,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class MypageController {
-    private MypageService mypageService;
+    private final MypageService mypageService;
 
     @PostMapping("/month")
     public ResponseEntity<MypageHistoryMonthResponseDto> readMonthHistory(@RequestBody MypageHistoryMonthRequestDto req) {

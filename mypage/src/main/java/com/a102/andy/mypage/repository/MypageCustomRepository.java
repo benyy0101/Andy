@@ -1,12 +1,14 @@
 package com.a102.andy.mypage.repository;
 
+import com.a102.andy.mypage.controller.dto.MypageHistoryDayRequestDto;
+import com.a102.andy.mypage.controller.dto.MypageHistoryDayResponseDto;
+import com.a102.andy.mypage.controller.dto.MypageHistoryMonthRequestDto;
 import com.a102.andy.mypage.controller.dto.MypageHistoryMonthResponseDto;
-import com.a102.andy.mypage.entity.QuestionHistory;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
 public interface MypageCustomRepository {
-    Optional<MypageHistoryMonthResponseDto> readMonthHistory(int childSeq, int year, int month);
+    Optional<MypageHistoryMonthResponseDto> readMonthHistory(MypageHistoryMonthRequestDto req);
+
+    Optional<MypageHistoryDayResponseDto> readDayHistory(MypageHistoryDayRequestDto req);
 }

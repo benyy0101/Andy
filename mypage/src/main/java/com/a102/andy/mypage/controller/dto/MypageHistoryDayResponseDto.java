@@ -1,10 +1,8 @@
 package com.a102.andy.mypage.controller.dto;
 
-import com.a102.andy.mypage.entity.Exam;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import com.querydsl.core.Tuple;
+import com.querydsl.core.types.dsl.Expressions;
+import lombok.*;
 import org.joda.time.DateTime;
 
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.List;
 @Setter
 @Builder
 public class MypageHistoryDayResponseDto {
-    private List<ExamDetail> exam;
+    private List<ExamDetail> exams;
     private PaginationObject paginationObject;
 
     @Getter
@@ -23,12 +21,12 @@ public class MypageHistoryDayResponseDto {
     public static class ExamDetail {
         private Integer examScore;
         private String questionCategoryName;
-        private String mode;
+        private String examMode;
 
-        public ExamDetail(Exam exam) {
-            this.examScore = exam.getExamScore();
-            this.questionCategoryName = exam.getCategory().getQuestionCategoryName();
-            this.mode = exam.getExamMode();
+        public ExamDetail(Tuple tuple) {
+            this.examScore = tuple.get(Expressions.path(Integer.class, "examScore"));
+            this.questionCategoryName = tuple.get(Expressions.path(String.class, "questionCategoryName"));
+            this.examMode = tuple.get(Expressions.path(String.class, "examMode"));
         }
     }
 
