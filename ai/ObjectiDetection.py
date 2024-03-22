@@ -39,6 +39,7 @@ def ObjectDetection(image_Source, answer):
                        87: 'scissors', 88: 'teddy bear', 89: 'hair drier', 90: 'toothbrush',
                        91: 'hair brush'}
 
+    # 한국어를 입력하면 영어 lable과 비교할 수 있도록
     names_to_labels_korean = {'사람': 'person', '자전거': 'bicycle', '자동차': 'car', '오토바이': 'motorcycle', '비행기': 'airplane',
                               '버스': 'bus', '기차': 'train', '트럭': 'truck', '보트': 'boat', '신호등': 'traffic light',
                               '소화전': 'fire hydrant', '도로 표지판': 'street sign', '정지 신호': 'stop sign',
@@ -115,6 +116,7 @@ def ObjectDetection(image_Source, answer):
     os.remove("image.jpg")
 
     if answer in check or names_to_labels_korean.get(answer) in check:
-        return True
+        return {"question_history_is_ok": "true"}
     else:
-        return False
+        return {"question_history_is_ok": "false"}
+
