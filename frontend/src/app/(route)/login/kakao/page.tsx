@@ -2,11 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
+import storeProfile from "@/app/_store/storeProfile";
 import { useLogin } from "../../../hooks/useLogin";
 
 function KakaoLogin() {
   const router = useRouter();
-
+  const { profile, setName } = storeProfile((state) => state);
   let code = "";
   if (typeof window !== "undefined") {
     // 인가코드
@@ -18,6 +19,7 @@ function KakaoLogin() {
 
   useEffect(() => {
     if (data) {
+      setName(data.nickname);
       router.push("/profile_list");
     }
   }, [data, router]);
