@@ -1,4 +1,4 @@
-import tw from 'tailwind-styled-components';
+import tw from "tailwind-styled-components";
 
 export const Wordbox = tw.div`
     flex
@@ -6,10 +6,6 @@ export const Wordbox = tw.div`
     justify-center
     text-4xl
     font-bold
-    mt-20
     bg-white
     rounded-md
-    w-100
-    h-80
-    p-20
-`
+`;

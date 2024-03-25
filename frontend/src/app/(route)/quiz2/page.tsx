@@ -100,9 +100,7 @@ function Quiz2Page() {
           <div className="flex-grow text-center">
             <Title>문제 1</Title>
           </div>
-          <div>
-            <Timer />
-          </div>
+          <div>{/* <Timer /> */}</div>
         </div>
         <Explain>이건 무엇일까요?</Explain>
         <div className="justify-center">

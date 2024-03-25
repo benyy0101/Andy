@@ -14,7 +14,6 @@ export default function QuizButton(props: IQuizButton) {
   // eslint-disable-next-line no-console
   console.log(quizImg);
   const router = useRouter();
-
   const routetoQuiz = () => {
     if (quizRoute === "incorrect_list") {
       const route = "/incorrect_list";
