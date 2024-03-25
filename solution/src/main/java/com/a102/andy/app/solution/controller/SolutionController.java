@@ -3,8 +3,10 @@ package com.a102.andy.app.solution.controller;
 import com.a102.andy.app.solution.controller.dto.*;
 import com.a102.andy.app.solution.service.SolutionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,9 +28,15 @@ public class SolutionController {
     public ResponseEntity<List<ProblemResponseDto>> readExamByCategoryAll(@PathVariable("question_category") int category){
         return ResponseEntity.ok(solutionService.readExamByCategoryAll(category));
     }
-    @PostMapping
-    public ResponseEntity<ResultResponseDto> readProblemAnswer(@RequestBody ResultRequestDto resultRequestDto){
-        return ResponseEntity.ok(solutionService.readProblemAnswer(resultRequestDto));
+//    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    @PostMapping("")
+    public ResponseEntity<ResultResponseDto> readProblemAnswer(@RequestPart MultipartFile picture, @RequestPart String question_name){
+//        ResultRequestDto resultRequestDto = ResultRequestDto.builder()
+//                                            .picture(pictures)
+//                                            .question_name(questionName)
+//                                            .build();
+        System.out.println(picture.toString() + " " + question_name);
+        return ResponseEntity.ok(solutionService.readProblemAnswer(picture, question_name));
     }
 
     @PostMapping("/result")

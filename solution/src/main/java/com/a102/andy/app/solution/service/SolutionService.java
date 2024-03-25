@@ -1,7 +1,6 @@
 package com.a102.andy.app.solution.service;
 
 import com.a102.andy.app.solution.controller.dto.*;
-import com.a102.andy.app.solution.entity.Category;
 import com.a102.andy.app.solution.entity.Exam;
 import com.a102.andy.app.solution.entity.QuestionHistory;
 import com.a102.andy.app.solution.repository.CategoryRepository;
@@ -9,7 +8,6 @@ import com.a102.andy.app.solution.repository.ExamRepository;
 import com.a102.andy.app.solution.repository.QuestionHistoryRepository;
 import com.a102.andy.app.solution.repository.SolutionRepository;
 import com.a102.andy.error.errorcode.CommonErrorCode;
-import com.a102.andy.error.errorcode.CustomErrorCode;
 import com.a102.andy.error.exception.RestApiException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +17,15 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.*;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-
-import java.lang.module.ResolutionException;
-import java.time.LocalDateTime;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -41,20 +41,46 @@ public class SolutionService {
 
     public List<ProblemResponseDto> readExamByCategoryAll(int category){return solutionRepository.findExamByCategoryAll(category);}
 
-    public ResultResponseDto readProblemAnswer(ResultRequestDto resultRequestDto) {
-        // RestTemplate 생성
+    public ResultResponseDto readProblemAnswer(MultipartFile multipartFile, String answer) {
         RestTemplate restTemplate = new RestTemplate();
 
         // 요청 매개변수 설정
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
-        HttpEntity<ResultRequestDto> request = new HttpEntity<>(resultRequestDto, headers);
+        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+
+        try {
+            // ByteArrayResource를 사용하여 MultipartFile을 전송 가능한 형태로 변환
+            ByteArrayResource byteArrayResource = new ByteArrayResource(multipartFile.getBytes()) {
+                @Override
+                public String getFilename() {
+                    return multipartFile.getOriginalFilename(); // 파일 이름 설정이 필요함
+                }
+            };
+            body.add("picture", new HttpEntity<>(byteArrayResource, headers));
+        } catch (IOException e) {
+            // 파일 처리 중 예외 발생 시 처리
+            e.printStackTrace();
+            return null; // 적절한 예외 처리 또는 오류 응답 반환 필요
+        }
+
+        body.add("question_name", answer);
+
+        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 
         // HTTP 요청 및 응답 처리
-        ResultResponseDto responseDto = restTemplate.exchange("https://j10a102.p.ssafy.io:8000/Detection", HttpMethod.POST, request, ResultResponseDto.class).getBody();
-        return responseDto;
+        ResponseEntity<ResultResponseDto> responseEntity = restTemplate.exchange(
+                "http://j10a102.p.ssafy.io:8000/Detection",
+                HttpMethod.POST,
+                requestEntity,
+                ResultResponseDto.class
+        );
+
+        // 응답 본문을 가져와서 처리
+        return responseEntity.getBody();
     }
+
 
     public void createExamResult(GameResultRequestDto gameResultRequestDto) {
         Exam exam = Exam.builder()
