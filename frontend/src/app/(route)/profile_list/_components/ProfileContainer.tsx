@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
 import React, { Suspense } from "react";
@@ -30,24 +32,25 @@ function ProfileContainer() {
   // console.log(data);
 
   return (
-    <Suspense>
+    <Suspense
+      fallback={
+        <div>
+          제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발
+        </div>
+      }
+    >
       <motion.div
         className="container flex justify-center items-center w-full h-full"
         variants={container}
         initial="hidden"
         animate="visible"
       >
-        {data?.map(
-          (profile: {
-            childSeq: string;
-            childName?: string;
-            childPicture?: string;
-          }) => (
+        {data &&
+          data.map((profile: any) => (
             <motion.div key={profile.childSeq} className="item" variants={item}>
               <Profile key={profile.childSeq} profile={profile} />
             </motion.div>
-          ),
-        )}
+          ))}
       </motion.div>
     </Suspense>
   );
