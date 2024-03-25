@@ -47,8 +47,12 @@ function ProfileContainer() {
       >
         {data &&
           data.map((profile: any) => (
-            <motion.div key={profile.childSeq} className="item" variants={item}>
-              <Profile key={profile.childSeq} profile={profile} />
+            <motion.div
+              key={profile.child_seq}
+              className="item"
+              variants={item}
+            >
+              <Profile key={profile.child_seq} profile={profile} />
             </motion.div>
           ))}
       </motion.div>

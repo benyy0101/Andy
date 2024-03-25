@@ -7,10 +7,10 @@ import {
 } from "../_models/profile.interface";
 
 const testProfile: ProfileState = {
-  kakaoName: "test",
-  childSeq: "1",
-  childName: "테스트",
-  childPicture: "https://picsum.photos/400",
+  kakao_name: "test",
+  child_seq: "1",
+  child_name: "테스트",
+  child_picture: "https://picsum.photos/400",
 };
 
 interface ProfileStore {
@@ -25,16 +25,16 @@ const storeProfile = create(
         set((prev) => ({
           profile: {
             ...prev.profile,
-            kakaoName: kakaoname,
+            kakao_name: kakaoname,
           },
         })),
       setProfileInfo: (profile: BabyProfile) =>
         set((prev) => ({
           profile: {
-            kakaoName: prev.profile.kakaoName,
-            childSeq: profile.childSeq,
-            childName: profile.childName,
-            childPicture: profile.childPicture,
+            kakao_name: prev.profile.kakao_name,
+            child_seq: profile.child_seq,
+            child_name: profile.child_name,
+            child_picture: profile.child_picture,
           },
         })),
       removeProfileInfo: () => set({}),
