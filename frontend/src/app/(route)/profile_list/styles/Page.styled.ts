@@ -73,5 +73,11 @@ items-center
 // `
 
 export const DeleteBtn = tw.button`
-border
+p-2
+m-2
+rounded-[10px]
+bg-[#EEA241]
+text-white
+text-sm
+hover:bg-[#f08a07]
 `

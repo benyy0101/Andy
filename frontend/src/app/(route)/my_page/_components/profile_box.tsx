@@ -1,11 +1,13 @@
 'use client'
 
 import { useState } from "react"
-// import Image from "next/image";
-// import storeProfile from "@/app/_store/storeProfile"
+import Image from "next/image";
+// import { CameraIcon } from '@heroicons/react/24/solid';
+import storeProfile from "@/app/_store/storeProfile"
 // import styled from "styled-components";
-import { ProfileWrapper, ProfileImage, Form, Input, InputBirth, Label, Name, Nickname, Birth, Gender, EditBtn, ProfileContent, ProfileEdit, ImageTest, CurrentInfo, Btn, BtnLabel } from "../styles/Page.styled"
+import { ProfileWrapper, ProfileImage, Form, Input, InputBirth, Label, Name, Nickname, Birth, Gender, EditBtn, ProfileContent, ProfileEdit, ImageTest, CurrentInfo, Btn, BtnLabel} from "../styles/Page.styled"
 // import { useUpdateProfile } from "../../../hooks/useProfile"
+import { useGetProfile } from "../../../hooks/useProfile"
 
 const TestData = {
 //   child_seq: ""
@@ -17,14 +19,31 @@ const TestData = {
 
 export default function ProfileBox() {
     const [isEditing, setIsEditing] = useState(false);
-    const [name, setName] = useState(TestData.child_name);
+    const { profile } = storeProfile();
+    const [name, setName] = useState(profile.childName);
     const [nickname, setNickname] = useState(TestData.nickname);
     const [birthDate, setBirthDate] = useState(TestData.birthday);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [gender, setGender] = useState(TestData.gender);
+    // const [isHovered, setIsHovered] = useState(false);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     // const [selectedGender, setSelectedGender] = useState(TestData.gender); // 새로운 상태 추가
-    // const { profile } = storeProfile();
     // const [updateInfo, setUpdatedInfo] = useState(null);
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // const [selectedFile, setSelectedFile] = useState<File>();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // const [imagePreview, setImagePreview] = useState<string>("");
+    // const { mutate } = useUploadProfileImage();
+    // const imgRef = useRef<HTMLInputElement>(null);
+
+    const childnum = String(profile.childSeq);
+    const { data } = useGetProfile(childnum);
+    // eslint-disable-next-line no-console, no-console
+    console.log(data)
+    // eslint-disable-next-line no-console, no-console
+    // console.log(data.child_name)
+    // eslint-disable-next-line no-console, no-console
+    // console.log(profile)
 
     const handleEditClick = () => {
         setIsEditing(true);
@@ -34,8 +53,64 @@ export default function ProfileBox() {
         setGender(selectedGender);
     };
 
+    // const handleMouseEnter = () => {
+    //     setIsHovered(true);
+    // }
+
+    // const handleMouseLeave = () => {
+    //     setIsHovered(false);
+    // }
+
     // eslint-disable-next-line no-console
-    console.log(name, nickname, birthDate, gender)
+    // console.log(name, nickname, birthDate, gender)
+
+
+    // const MAX_FILE_SIZE = 5 * 1024 * 1024;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // const EditImage = (e: any) => {
+    //     e.preventDefault();
+    //     const file = e.target.files[0];
+
+    //     if (!file) {
+    //         return;
+    //     }
+
+    //     if (file && file.size > MAX_FILE_SIZE) {
+    //         // eslint-disable-next-line no-alert
+    //         alert('파일 크기는 5MB 이하여야 합니다.');
+    //         return;
+    //     }
+
+    //     setSelectedFile(file);
+
+    //     // 미리보기
+    //     const reader = new FileReader();
+    //     reader.readAsDataURL(file);
+    //     reader.onloadend = () => {
+    //         setImagePreview(reader.result as string);
+    //     };
+
+    //     if (file !== undefined) {
+    //         try{
+    //             const formData = new FormData();
+    //             formData.append('profileImageFile', file)
+
+    //             mutate(formData, {
+    //                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //                 onSuccess: (imagedata: any) => {
+    //                     // eslint-disable-next-line no-console
+    //                     console.log(imagedata)
+    //                 },
+    //             });
+
+    //         } catch {
+    //             // alert("프로필 이미지 변경에 실패하였습니다.")
+    //         }
+    //     } else {
+    //         // eslint-disable-next-line no-alert
+    //         alert("파일을 찾을 수 없습니다.")
+    //     }
+    // }
 
     const handleSaveClick = () => {
         setIsEditing(false);
@@ -54,20 +129,38 @@ export default function ProfileBox() {
         // setUpdatedInfo(data);
     };
 
-    // eslint-disable-next-line no-console
-    // console.log(profile)
-
     return (
         <ProfileWrapper>
             <ProfileContent>
                 <ProfileImage>
                     <ImageTest>
-                        {/* {isEditing ? (
-                                <Input value={name} onChange={(e) => setName(e.target.value)} />
+                        {isEditing ? (
+                                // <ProfileImage1 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                                // <input 
+                                //     id="file"
+                                //     name="file"
+                                //     type="file"
+                                //     style={{ display: "none" }} 
+                                //     accept="image/*"
+                                //     onChange={EditImage}
+                                //     ref={imgRef}
+                                // />
+                                // <Image src={profile.childPicture} alt="프로필사진" width="150" height="150" className="rounded-[100%] shadow-lg"/>
+                                // <label htmlFor="file">
+                                //     {isHovered && (
+                                //         <div>
+                                //             <ProfileChange>
+                                //                 <CameraIcon fill="white" className="w-7 h-7"/>
+                                //             </ProfileChange>
+                                //         </div>
+                                //     )}
+                                // </label>
+                                // </ProfileImage1>
+                                <Image src={profile.childPicture} alt="프로필사진" width="150" height="150" className="rounded-[100%] shadow-lg"/>
                             ) : (
-                            // <Image src={childpicture} alt="프로필사진"/>
-                            <div>프로필</div>
-                        )} */}
+                            <Image src={profile.childPicture} alt="프로필사진" width="150" height="150" className="rounded-[100%] shadow-lg"/>
+                            // <div>프로필</div>
+                        )}
                     </ImageTest>
                 </ProfileImage>
                 <Form>
@@ -76,7 +169,7 @@ export default function ProfileBox() {
                         {isEditing ? (
                             <Input value={name} onChange={(e) => setName(e.target.value)} />
                         ) : (
-                            <CurrentInfo>{TestData.child_name}</CurrentInfo>
+                            <CurrentInfo>{profile.childName}</CurrentInfo>
                             // <CurrentInfo>
                             //     {updatedInfo ? updatedInfo.child_name : TestData.child_name}
                             // </CurrentInfo>

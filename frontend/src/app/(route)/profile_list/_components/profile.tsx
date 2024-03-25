@@ -9,9 +9,9 @@ import { ProfileWrapper, ProfileImg, ProfileName } from "../styles/Page.styled";
 
 interface IProfile {
   profile: {
-    childSeq: string;
-    childName: string;
-    childPicture: string;
+    child_seq: string;
+    child_name: string;
+    child_picture: string;
   };
 }
 
@@ -47,18 +47,18 @@ export default function Profile(props: IProfile) {
         >
           <Image
             priority
-            src={profile.childPicture}
-            alt={profile.childName}
+            src={profile.child_picture}
+            alt={profile.child_seq}
             height="500"
             width="500"
-            objectFit="cover"
+            // objectFit="cover"
             className="rounded-[100%] shadow-lg"
           />
         </motion.div>
       </ProfileImg>
-      <ProfileName>{profile.childName}</ProfileName>
+      <ProfileName>{profile.child_name}</ProfileName>
       {/* <DeleteBtn onClick={ProfileDelete}>삭제 테스트</DeleteBtn> */}
-      {/* <DeleteBtn>삭제 버튼</DeleteBtn> */}
+      {/* <DeleteBtn>프로필 삭제</DeleteBtn> */}
     </ProfileWrapper>
   );
 }
