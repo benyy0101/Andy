@@ -2,7 +2,7 @@
 
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { motion } from "framer-motion";
 import { useProfileList } from "@/app/hooks/useProfile";
 import Profile from "./profile";
@@ -29,34 +29,30 @@ const item = {
 
 function ProfileContainer() {
   const { data } = useProfileList();
-
-  // const [fetchData, setFetchData] = useState(true);
-
-  // eslint-disable-next-line no-console
-  console.log(data);
-
-  // Fetch data only if it's not already present and the flag allows fetching
-  // useEffect(() => {
-  //   if (fetchData && !data) {
-  //     // Fetch data here
-  //     setFetchData(false); // Prevent further fetching
-  //   }
-  // }, [fetchData, data]);
+  // console.log(data);
 
   return (
-    <motion.div
-      className="container flex justify-center items-center w-full h-full"
-      variants={container}
-      initial="hidden"
-      animate="visible"
+    <Suspense
+      fallback={
+        <div>
+          제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발
+        </div>
+      }
     >
-      {data &&
-        data.map((profile: any) => (
-          <motion.div key={profile.childSeq} className="item" variants={item}>
-            <Profile key={profile.childSeq} profile={profile} />
-          </motion.div>
-        ))}
-    </motion.div>
+      <motion.div
+        className="container flex justify-center items-center w-full h-full"
+        variants={container}
+        initial="hidden"
+        animate="visible"
+      >
+        {data &&
+          data.map((profile: any) => (
+            <motion.div key={profile.childSeq} className="item" variants={item}>
+              <Profile key={profile.childSeq} profile={profile} />
+            </motion.div>
+          ))}
+      </motion.div>
+    </Suspense>
   );
 }
 
