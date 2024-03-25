@@ -11,6 +11,7 @@ import com.a102.andy.app.solution.repository.SolutionRepository;
 import com.a102.andy.error.errorcode.CustomErrorCode;
 import com.a102.andy.error.exception.RestApiException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -26,6 +27,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class SolutionService {
     private final SolutionRepository solutionRepository;
     private final ExamRepository examRepository;
@@ -53,17 +55,10 @@ public class SolutionService {
     }
 
     public void createExamResult(GameResultRequestDto gameResultRequestDto) {
-        int score = 0;
-        for(int i=0; i<10; i++){
-          if(gameResultRequestDto.getAnswerResponseDtos().get(i).isAnswerIsOk())
-              score++;
-        }
-        gameResultRequestDto.setExam_score(score);
-
         Exam exam = Exam.builder()
                 .childSeq(gameResultRequestDto.getChild_seq())
                 .questionCategorySeq(gameResultRequestDto.getQuestion_category_seq())
-                .examScore(gameResultRequestDto.getExam_score())
+                .examScore(calExamScore(gameResultRequestDto))
                 .examMode(gameResultRequestDto.getMode())
                 .build();
         exam = examRepository.save(exam);
@@ -74,6 +69,7 @@ public class SolutionService {
         for(AnswerResponseDto answerResponseDto : gameResultRequestDto.getAnswerResponseDtos()){
             QuestionHistory questionHistory = QuestionHistory.builder()
                     .examSeq(exam.getExamSeq())
+                    .examMode(gameResultRequestDto.getMode())
                     .questionSeq(answerResponseDto.getAnswerSeq())
                     .childSeq(gameResultRequestDto.getChild_seq())
                     .questionHistoryIsOk(answerResponseDto.isAnswerIsOk())
@@ -84,6 +80,12 @@ public class SolutionService {
 
         questionHistoryRepository.saveAll(questionHistories);
 
+    }
+
+    private int calExamScore(GameResultRequestDto req) {
+        return (int) req.getAnswerResponseDtos().stream()
+                .filter(AnswerResponseDto::isAnswerIsOk)
+                .count();
     }
 
     public List<ProblemALLResponseDto> readProblemsALL(int Child_seq, String date) {
