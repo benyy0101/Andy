@@ -84,10 +84,10 @@ public class SolutionService {
 
     public void createExamResult(GameResultRequestDto gameResultRequestDto) {
         Exam exam = Exam.builder()
-                .childSeq(gameResultRequestDto.getChild_seq())
-                .questionCategorySeq(gameResultRequestDto.getQuestion_category_seq())
+                .childSeq(gameResultRequestDto.getChildSeq())
+                .questionCategorySeq(gameResultRequestDto.getQuestionCategorySeq())
                 .examScore(calExamScore(gameResultRequestDto))
-                .examMode(gameResultRequestDto.getMode())
+                .examMode(gameResultRequestDto.getExamMode())
                 .build();
         exam = examRepository.save(exam);
 
@@ -97,9 +97,9 @@ public class SolutionService {
         for(AnswerResponseDto answerResponseDto : gameResultRequestDto.getAnswerResponseDtos()){
             QuestionHistory questionHistory = QuestionHistory.builder()
                     .examSeq(exam.getExamSeq())
-                    .examMode(gameResultRequestDto.getMode())
+                    .examMode(gameResultRequestDto.getExamMode())
                     .questionSeq(answerResponseDto.getAnswerSeq())
-                    .childSeq(gameResultRequestDto.getChild_seq())
+                    .childSeq(gameResultRequestDto.getChildSeq())
                     .questionHistoryIsOk(answerResponseDto.isAnswerIsOk())
                     .build();
             questionHistories.add(questionHistory);

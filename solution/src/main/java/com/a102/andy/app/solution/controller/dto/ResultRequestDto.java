@@ -1,5 +1,6 @@
 package com.a102.andy.app.solution.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,6 +14,7 @@ import java.util.List;
 @Getter
 @Builder
 public class ResultRequestDto {
-    private String question_name;
+    @JsonProperty("question_name")
+    private String questionName;
     private MultipartFile picture;
 }

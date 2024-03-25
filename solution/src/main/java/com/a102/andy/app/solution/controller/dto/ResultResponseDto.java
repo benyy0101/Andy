@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class ResultResponseDto {
     @JsonProperty("question_history_is_ok")
-    private String question_history_is_ok;
+    private String questionHistoryIsOk;
 
 
 }

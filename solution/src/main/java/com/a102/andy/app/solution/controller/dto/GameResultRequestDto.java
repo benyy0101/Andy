@@ -12,10 +12,12 @@ import java.util.List;
 @Setter
 @ToString
 public class GameResultRequestDto {
-    private int child_seq;
-    private int question_category_seq;
-    private String mode;
-//    private int exam_score;
+    @JsonProperty("child_seq")
+    private int childSeq;
+    @JsonProperty("question_category_seq")
+    private int questionCategorySeq;
+    @JsonProperty("mode")
+    private String examMode;
     @JsonProperty("questions")
     private List<AnswerResponseDto> answerResponseDtos;
 

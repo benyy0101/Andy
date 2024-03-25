@@ -1,5 +1,6 @@
 package com.a102.andy.app.solution.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,15 +14,18 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 public class ProblemALLResponseDto {
-    private String  exam_mode;
-    private int question_history_seq;
+    @JsonProperty("exam_mode")
+    private String examMode;
+    @JsonProperty("queestion_history_seq")
+    private int questionHistorySeq;
     private ProblemResponseDto problemResponseDto;
-    private LocalDateTime created_at;
+    @JsonProperty("created_at")
+    private LocalDateTime createdAt;
 
     public ProblemALLResponseDto(String exam_mode, int question_history_seq, int questionSeq, String questionPicture, String questionName, LocalDateTime created_at) {
-        this.exam_mode = exam_mode;
-        this.question_history_seq = question_history_seq;
+        this.examMode = exam_mode;
+        this.questionHistorySeq = question_history_seq;
         this.problemResponseDto = new ProblemResponseDto(questionSeq, questionPicture, questionName);
-        this.created_at = created_at;
+        this.createdAt = created_at;
     }
 }
