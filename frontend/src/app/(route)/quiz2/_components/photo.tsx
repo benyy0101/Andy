@@ -1,30 +1,24 @@
 "use client";
 
-import React, { useState } from "react";
-
+import React  from "react";
 import Image from "next/image";
 import { Photobox } from "./styles/photo.styled";
 
-function Photo() {
-  // 이미지
-  const [selectedImage] = useState("");
+interface PhotoProps {
+  question_picture: string;
+}
 
-  // 새로고침 시 랜덤으로 이미지 나옴
-  // useEffect(() => {
-  //     const randomImage = images[Math.floor(Math.random() * images.length)];
-  //     setSelectedImage(randomImage);
-  // }, [images]);
 
+function Photo({ question_picture }: PhotoProps) {
   return (
-    // 랜덤으로 카테고리에 해당하는 사진 내기 (코드 추가할 예정)
     <Photobox>
-      <Image
-        width={300}
-        height={200}
-        src={selectedImage}
-        alt="랜덤 이미지"
-        className="object-cover"
-      />
+        <Image
+          width={300}
+          height={200}
+          src={question_picture}
+          alt="랜덤 이미지"
+          className="object-cover"
+        />
     </Photobox>
   );
 }

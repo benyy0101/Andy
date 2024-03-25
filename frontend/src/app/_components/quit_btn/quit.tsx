@@ -1,5 +1,5 @@
 import React from "react";
-import { Btn } from "./styles/Quitbtn.styled";
+import { Btn } from "./styles/QuitBtn.styled";
 
 export function Quit() {
     return (
