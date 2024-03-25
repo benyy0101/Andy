@@ -3,7 +3,7 @@
 
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
-  CategoriesResponse,
+  Category,
   GameResultRequest,
   GameResultResponse,
   GamebyCategoryResponse,
@@ -24,7 +24,7 @@ import {
 
 // GAME-001
 export const useCategories = () => {
-  const query = useQuery<CategoriesResponse>({
+  const query = useQuery<Category[]>({
     queryKey: ["categories"],
     queryFn: getCategories,
   });

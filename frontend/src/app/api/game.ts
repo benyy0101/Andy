@@ -1,5 +1,4 @@
 import {
-  CategoriesResponse,
   ProblemResultResponse,
   ReexamineResponse,
   WrongProblemsResponse,
@@ -9,11 +8,12 @@ import {
   WrongProblemsReqeust,
   GameResultResponse,
   GameResultRequest,
+  Category,
 } from "../_models/gameA.interface";
 import { gameAxios, localAxios, quizAxios } from "./http-commons";
 
 // GAME-001
-export const getCategories = async (): Promise<CategoriesResponse> => {
+export const getCategories = async (): Promise<Category[]> => {
   const response = await quizAxios.get("/game/category");
   return response.data;
 };
