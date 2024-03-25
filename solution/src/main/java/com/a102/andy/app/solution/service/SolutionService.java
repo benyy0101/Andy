@@ -8,6 +8,7 @@ import com.a102.andy.app.solution.repository.CategoryRepository;
 import com.a102.andy.app.solution.repository.ExamRepository;
 import com.a102.andy.app.solution.repository.QuestionHistoryRepository;
 import com.a102.andy.app.solution.repository.SolutionRepository;
+import com.a102.andy.error.errorcode.CommonErrorCode;
 import com.a102.andy.error.errorcode.CustomErrorCode;
 import com.a102.andy.error.exception.RestApiException;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.lang.module.ResolutionException;
@@ -92,14 +94,13 @@ public class SolutionService {
         return solutionRepository.findProblemsALL(Child_seq, date);
     }
 
+    @Transactional
     public ResultUpdateResponseDto updateProblem(ResultUpdateRequestDto resultUpdateRequestDto) {
-        QuestionHistory questionHistory =questionHistoryRepository.
-                findById(Long.valueOf(resultUpdateRequestDto.getQuestionHistorySeq())).orElseThrow(() -> new RestApiException(CustomErrorCode.NO_MEMBER));;
+        QuestionHistory questionHistory = questionHistoryRepository.
+                findById(resultUpdateRequestDto.getQuestionHistorySeq()).orElseThrow(() -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND));;
 
         questionHistory.update(resultUpdateRequestDto);
-        ResultUpdateResponseDto resultUpdateResponseDto = new ResultUpdateResponseDto().builder()
-                .question_history_seq(questionHistory.getQuestionSeq())
-                .build();
-        return resultUpdateResponseDto;
+
+        return new ResultUpdateResponseDto(questionHistory.getQuestionHistorySeq());
     }
 }

@@ -48,10 +48,8 @@ public class SolutionController {
     }
 
     @PatchMapping("/review")
-    public ResponseEntity<ResultUpdateResponseDto> readProblemsALL(@RequestBody ResultUpdateRequestDto resultUpdateRequestDto){
+    public ResponseEntity<ResultUpdateResponseDto> updateProblem(@RequestBody ResultUpdateRequestDto resultUpdateRequestDto){
         return ResponseEntity.ok(solutionService.updateProblem(resultUpdateRequestDto));
     }
-
-
 
 }
