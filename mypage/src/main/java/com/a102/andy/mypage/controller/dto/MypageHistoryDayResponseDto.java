@@ -1,5 +1,6 @@
 package com.a102.andy.mypage.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.dsl.Expressions;
 import lombok.*;
@@ -11,6 +12,7 @@ import java.util.List;
 @Setter
 @Builder
 public class MypageHistoryDayResponseDto {
+    @JsonProperty("exam")
     private List<ExamDetail> exams;
     private PaginationObject paginationObject;
 
@@ -19,8 +21,11 @@ public class MypageHistoryDayResponseDto {
     @Builder
     @AllArgsConstructor
     public static class ExamDetail {
+        @JsonProperty("exam_score")
         private Integer examScore;
+        @JsonProperty("question_category_name")
         private String questionCategoryName;
+        @JsonProperty("mode")
         private String examMode;
 
         public ExamDetail(Tuple tuple) {
