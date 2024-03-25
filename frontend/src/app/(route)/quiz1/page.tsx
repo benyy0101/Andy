@@ -84,7 +84,7 @@ function Quiz1Page() {
   useEffect(() => {
     if (currentSeq >= numProblems) {
       const req = {
-        child_seq: profile.child_seq,
+        child_seq: profile.childSeq,
         question_category_seq: Number(category),
         mode: "A",
         questions: status,

@@ -1,9 +1,9 @@
 import { Gender } from "./enums";
 
 export interface BabyProfile {
-  child_seq: string;
-  child_name: string;
-  child_picture: string;
+  childSeq: string;
+  childName: string;
+  childPicture: string;
 }
 
 export interface CreateBabyProfileRequest {
@@ -25,7 +25,7 @@ export interface RemoveBabyProfileResponse {
 }
 
 export interface ProfileState extends BabyProfile {
-  kakao_name: string;
+  kakaoName: string;
 }
 
 export interface ProfileActions {
@@ -35,6 +35,5 @@ export interface ProfileActions {
 }
 
 export interface ProfileListResponse {
-  map(arg0: (profile: any) => import("react").JSX.Element): import("react").ReactNode | import("framer-motion").MotionValue<number> | import("framer-motion").MotionValue<string>;
   profiles: BabyProfile[];
 }
