@@ -6,20 +6,17 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Builder
-public class ProblemALLResponseDto {
-    @JsonProperty("exam_mode")
-    private String examMode;
-    @JsonProperty("question_history_seq")
-    private int questionHistorySeq;
+public class ProblemDto {
+    @JsonProperty("problem")
     private ProblemResponseDto problemResponseDto;
-    @JsonProperty("created_at")
-    private LocalDateTime createdAt;
 
+    public ProblemDto(int seq, String name, String picture) {
+        this.problemResponseDto = new ProblemResponseDto(seq,name,picture);
+    }
 }

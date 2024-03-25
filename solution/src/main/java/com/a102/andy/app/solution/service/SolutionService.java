@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 @Service
@@ -39,7 +40,13 @@ public class SolutionService {
         return solutionRepository.findCategoryAll();
     }
 
-    public List<ProblemResponseDto> readExamByCategoryAll(int category){return solutionRepository.findExamByCategoryAll(category);}
+    public ProblemsDto readExamByCategoryAll(int category){
+        List<ProblemDto> problemResponseDtos = solutionRepository.findExamByCategoryAll(category);
+        ProblemsDto problemsDto = ProblemsDto.builder()
+                .problem(problemResponseDtos)
+                .build();
+        return problemsDto;
+    }
 
     public ResultResponseDto readProblemAnswer(MultipartFile multipartFile, String answer) {
         RestTemplate restTemplate = new RestTemplate();

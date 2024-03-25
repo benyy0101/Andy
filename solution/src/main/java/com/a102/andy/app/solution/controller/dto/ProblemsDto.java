@@ -6,17 +6,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Builder
-public class ProblemResponseDto {
-
-    @JsonProperty("question_seq")
-    private int questionSeq;
-    @JsonProperty("question_picture")
-    private String questionPicture;
-    @JsonProperty("question_name")
-    private String questionName;
-
+public class ProblemsDto {
+    @JsonProperty("problems")
+    private List<ProblemDto> problem;
 }

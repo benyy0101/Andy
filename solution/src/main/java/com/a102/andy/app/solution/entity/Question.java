@@ -16,7 +16,7 @@ public class Question extends BaseEntity {
     private int questionSeq;
 
     @Column(name = "question_category_seq", nullable = false)
-    private int questionCategotySeq;
+    private int questionCategorySeq;
 
     @Column(name = "question_picture", nullable = false)
     private String questionPicture;

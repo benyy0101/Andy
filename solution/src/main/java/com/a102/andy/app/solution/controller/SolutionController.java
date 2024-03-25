@@ -25,7 +25,7 @@ public class SolutionController {
     }
 
     @GetMapping("/{question_category}")
-    public ResponseEntity<List<ProblemResponseDto>> readExamByCategoryAll(@PathVariable("question_category") int category){
+    public ResponseEntity<ProblemsDto> readExamByCategoryAll(@PathVariable("question_category") int category){
         return ResponseEntity.ok(solutionService.readExamByCategoryAll(category));
     }
 //    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})

@@ -29,12 +29,12 @@ public class SolutionRepository {
     }
 
 
-    public List<ProblemResponseDto> findExamByCategoryAll(int category) {
-        return jpaQueryFactory.select(Projections.constructor(ProblemResponseDto.class,
+    public List<ProblemDto> findExamByCategoryAll(int category) {
+        return jpaQueryFactory.select(Projections.constructor(ProblemDto.class,
                         qQuestion.questionSeq,
                         qQuestion.questionPicture,
                         qQuestion.questionName)).from(qQuestion)
-                .where(qQuestion.questionCategotySeq.eq(category))
+                .where(qQuestion.questionCategorySeq.eq(category))
                 .fetch();
     }
 
