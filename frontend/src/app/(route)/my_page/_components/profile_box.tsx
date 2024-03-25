@@ -2,16 +2,17 @@
 
 import { useState } from "react"
 // import Image from "next/image";
-import storeProfile from "@/app/_store/storeProfile"
+// import storeProfile from "@/app/_store/storeProfile"
 // import styled from "styled-components";
-import { ProfileWrapper, ProfileImage, Form, Input, InputBirth, Label, Name, Nickname, Birth, Gender, EditBtn, ProfileContent, ProfileEdit, ImageTest, CurrentInfo } from "../styles/Page.styled"
-// import { useGetProfile } from "../../../hooks/useProfile"
+import { ProfileWrapper, ProfileImage, Form, Input, InputBirth, Label, Name, Nickname, Birth, Gender, EditBtn, ProfileContent, ProfileEdit, ImageTest, CurrentInfo, Btn, BtnLabel } from "../styles/Page.styled"
+// import { useUpdateProfile } from "../../../hooks/useProfile"
 
 const TestData = {
+//   child_seq: ""
   child_name: "김태수",
   nickname: "태수",
   birthday: "2020-03-05",
-  gender: "여자",
+  gender: "남자",
 };
 
 // const StyledButtonGroup = styled.div`
@@ -40,32 +41,31 @@ export default function ProfileBox() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [gender, setGender] = useState(TestData.gender);
     // const [selectedGender, setSelectedGender] = useState(TestData.gender); // 새로운 상태 추가
-    const { profile } = storeProfile();
+    // const { profile } = storeProfile();
     // const [updateInfo, setUpdatedInfo] = useState(null);
 
     const handleEditClick = () => {
         setIsEditing(true);
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    // const handleGenderChange = (selectedGender: string) => {
-    //     setSelectedGender(selectedGender);
-    // };
+    const handleGenderChange = (selectedGender: string) => {
+        setGender(selectedGender);
+    };
+
+    // eslint-disable-next-line no-console
+    console.log(name, nickname, birthDate, gender)
 
     const handleSaveClick = () => {
         setIsEditing(false);
-        // setGender(selectedGender);
         // 수정 코드
 
-        // const childGender = selectedGender === "여자" ? "F" : "M";
-
         // const UpdateProfile = {
-        //     "child_seq": profile.childSeq,
+        //     // "child_seq": profile.childSeq,
         //     "child_name": name,
         //     "child_nickname": nickname,
         //     "child_birthday": birthDate,
-        //     "child_gender": childGender,
-        //     "child_picture": string,
+        //     "child_gender": gender,
+        //     // "child_picture": string,
         // }
 
         // const { data } = useUpdateProfile(UpdateProfile);
@@ -73,7 +73,7 @@ export default function ProfileBox() {
     };
 
     // eslint-disable-next-line no-console
-    console.log(profile)
+    // console.log(profile)
 
     return (
         <ProfileWrapper>
@@ -119,15 +119,38 @@ export default function ProfileBox() {
                     <Gender>
                         <Label>성별</Label>
                         {isEditing ? (
-                            // <StyledButtonGroup>
-                            //     {/* <StyledButton isselected={selectedGender === "남자"} onClick={() => handleGenderChange("남자")}> */}
-                            //         남자
-                            //     {/* </StyledButton> */}
-                            //     {/* <StyledButton isselected={selectedGender === "여자"} onClick={() => handleGenderChange("여자")}> */}
-                            //         여자
-                            //     {/* </StyledButton> */}
-                            // </StyledButtonGroup>
-                            <div>수정중</div>
+                            <Btn>
+                                <BtnLabel 
+                                    className={`${TestData.gender === "M" ? "bg-[#EEA241] text-white" : ""} 
+                                    ${gender === "M" ? "bg-[#EEA241] text-white" : ""}`} 
+                                    onClick={() => handleGenderChange("M")}
+                                >
+                                    <input
+                                        type="radio"
+                                        name="gender"
+                                        value="M"
+                                        checked={gender === "M"}
+                                        onChange={() => {}}
+                                        className="sr-only"
+                                    />
+                                    남자
+                                </BtnLabel>
+                                <BtnLabel
+                                    className={`${TestData.gender === "F" ? "bg-[#EEA241] text-white" : ""} 
+                                    ${gender === "F" ? "bg-[#EEA241] text-white" : ""}`} 
+                                    onClick={() => handleGenderChange("F")}
+                                >
+                                        <input
+                                            type="radio"
+                                            name="gender"
+                                            value="F"
+                                            checked={gender === "F"}
+                                            onChange={() => {}}
+                                            className="sr-only"
+                                        />
+                                        여자
+                                </BtnLabel>
+                            </Btn>
                             ) : (
                             <CurrentInfo>{TestData.gender}</CurrentInfo>
                             )}

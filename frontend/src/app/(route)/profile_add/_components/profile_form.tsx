@@ -12,8 +12,7 @@ import {
     Birth,
     Gender,
     Btn,
-    Girl,
-    Boy,
+    BtnLabel,
     SubmitBtn,
   } from "../styles/Page.styled";
 import { useCreateProfile } from "../../../hooks/useProfile"
@@ -45,6 +44,9 @@ export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
     };
 
     const childpicture = imageUrl;
+
+    // eslint-disable-next-line no-console
+    console.log(name, nickname, birthday, gender, childpicture)
 
     const formSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -93,16 +95,34 @@ export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
                 <Gender>
                     <Label>성별</Label>
                     <Btn>
-                        <Boy
-                            className={gender === "M" ? "active" : ""} 
-                            onClick={() => handleGenderChange("M")}>
+                        <BtnLabel 
+                            className={`${gender === "M" ? "bg-[#EEA241] text-white" : ""}`} 
+                            onClick={() => handleGenderChange("M")}
+                        >
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="M"
+                                checked={gender === "M"}
+                                onChange={() => {}}
+                                className="sr-only"
+                            />
                             남자
-                        </Boy>
-                        <Girl 
-                            className={gender === "F" ? "active" : ""} 
-                            onClick={() => handleGenderChange("F")}>
-                            여자
-                        </Girl>
+                        </BtnLabel>
+                        <BtnLabel
+                            className={`${gender === "F" ? "bg-[#EEA241] text-white" : ""}`} 
+                            onClick={() => handleGenderChange("F")}
+                        >
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="F"
+                                    checked={gender === "F"}
+                                    onChange={() => {}}
+                                    className="sr-only"
+                                />
+                                여자
+                        </BtnLabel>
                     </Btn>
                 </Gender>
 

@@ -71,3 +71,7 @@ items-center
 // flex
 // justify-center
 // `
+
+export const DeleteBtn = tw.button`
+border
+`

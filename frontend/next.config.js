@@ -3,7 +3,7 @@ const withPWA = require('@ducanh2912/next-pwa').default({
   dest: "public",
 });
 const nextConfig = withPWA({
-  reactStrictMode: true,
+  reactStrictMode: false,
   compiler: {               // 추가
     styledComponents: true, // 추가
   },

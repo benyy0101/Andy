@@ -26,6 +26,7 @@ ml-10
 export const Label = tw.div`
 mt-2
 mr-10
+font-bold
 `
 
 export const Input = tw.input`
@@ -33,8 +34,6 @@ ml-auto
 h-full
 w-[250px]
 rounded-[7px]
-border 
-border-gray-300
 bg-[#FFFFFF]
 px-3
 py-2.5
@@ -59,8 +58,6 @@ ml-auto
 h-full
 w-[250px]
 rounded-[7px]
-border 
-border-gray-300
 bg-[#FFFFFF]
 px-3
 py-2.5
@@ -104,37 +101,33 @@ mb-3
 flex
 w-[250px]
 text-black
+justify-between
 `
 
-export const Boy = tw.div`
-bg-gray-100
+export const BtnLabel = tw.label`
+bg-[#FFFFFF]
 rounded-[5px]
-w-[150px]
-mb-3
-mr-2
-px-3
-py-2.5
-hover:bg-gray-300
-focus:bg-gray-300
-`
-
-export const Girl = tw.div`
-bg-gray-100
-rounded-[5px]
-w-[150px]
+w-[120px]
 mb-3
 px-3
 py-2.5
-hover:bg-gray-300
-focus:bg-gray-300
+hover:bg-[#EEA241]
+hover:text-white
+focus:bg-[#EEA241]
+focus:text-white
+cursor-pointer
+font-bold
+text-[#EEA241]
 `
 
 export const SubmitBtn = tw.button`
-rounded-[5px]
-bg-gray-100
+font-bold
+h-[50px]
+rounded-[10px]
+bg-[#EEA241]
+text-white
 py-2.5
-hover:bg-gray-300
-text-black
+hover:bg-[#f08a07]
 `
 
 // 프로필 이미지
