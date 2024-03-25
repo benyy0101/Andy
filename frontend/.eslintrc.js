@@ -44,7 +44,7 @@ module.exports = {
     },
     
     "rules": {
-        'linebreak-style': ["error", "windows"],
+        'linebreak-style': ["error", process.env.NEXT_PUBLIC_STATUS === 'dev' ? "windows":"unix"],
         "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
         "react/jsx-props-no-spreading": "off",
         "no-console": "error",
