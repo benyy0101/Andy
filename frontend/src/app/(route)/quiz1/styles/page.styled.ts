@@ -1,12 +1,12 @@
 import tw from "tailwind-styled-components";
 
 export const Wrapper = tw.div`
-h-screen
 flex
 flex-col
 items-center
 justify-start
 w-full
+space-y-4
 `;
 
 export const Title = tw.h1`
