@@ -24,7 +24,7 @@ public class SolutionRepository {
     public List<CategoriesResponseDto> findCategoryAll(){
            return jpaQueryFactory.select(Projections.constructor(CategoriesResponseDto.class,
                  qCategory.questionCategorySeq,
-                 qCategory.questionCategoryName)).from(qCategory)
+                 qCategory.questionCategoryName)).from(qCategory).limit(5)
                    .fetch();
     }
 
