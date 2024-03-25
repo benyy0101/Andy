@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import storeProfile from "../../../_store/storeProfile";
-import { ProfileWrapper, ProfileImg, ProfileName, DeleteBtn } from "../styles/Page.styled";
+import { ProfileWrapper, ProfileImg, ProfileName } from "../styles/Page.styled";
 // import { useRemoveProfile } from "../../../hooks/useProfile"
 
 interface IProfile {
@@ -57,7 +57,7 @@ export default function Profile(props: IProfile) {
       </ProfileImg>
       <ProfileName>{profile.childName}</ProfileName>
       {/* <DeleteBtn onClick={ProfileDelete}>삭제 테스트</DeleteBtn> */}
-      <DeleteBtn>삭제 버튼</DeleteBtn>
+      {/* <DeleteBtn>삭제 버튼</DeleteBtn> */}
     </ProfileWrapper>
   );
 }

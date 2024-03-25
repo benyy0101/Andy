@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { useProfileList } from "@/app/hooks/useProfile";
 import Profile from "./profile";
@@ -29,8 +29,18 @@ const item = {
 function ProfileContainer() {
   const { data } = useProfileList();
 
+  // const [fetchData, setFetchData] = useState(true);
+
   // eslint-disable-next-line no-console
   console.log(data)
+
+  // Fetch data only if it's not already present and the flag allows fetching
+  // useEffect(() => {
+  //   if (fetchData && !data) {
+  //     // Fetch data here
+  //     setFetchData(false); // Prevent further fetching
+  //   }
+  // }, [fetchData, data]);
 
   return (
     <motion.div
@@ -39,7 +49,7 @@ function ProfileContainer() {
       initial="hidden"
       animate="visible"
     >
-      {data.map((profile) => (
+      {data?.map((profile) => (
         <motion.div key={profile.childSeq} className="item" variants={item}>
           <Profile key={profile.childSeq} profile={profile} />
         </motion.div>
