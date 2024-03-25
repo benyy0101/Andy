@@ -7,7 +7,7 @@ import { useLogin } from "../../../hooks/useLogin";
 
 function KakaoLogin() {
   const router = useRouter();
-  const { profile, setName } = storeProfile((state) => state);
+  const { setName } = storeProfile((state) => state);
   let code = "";
   if (typeof window !== "undefined") {
     // 인가코드

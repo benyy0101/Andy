@@ -1,5 +1,4 @@
 import { Gender } from "./enums";
-import { BabyProfile } from "./profile.interface";
 
 export interface BabyProfile {
   childSeq: string;
