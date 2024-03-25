@@ -35,6 +35,7 @@ export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: str
         }
 
         if (file && file.size > MAX_FILE_SIZE) {
+            // eslint-disable-next-line no-alert
             alert('파일 크기는 5MB 이하여야 합니다.');
             return;
         }
@@ -54,10 +55,11 @@ export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: str
                 formData.append('profileImageFile', file)
 
                 mutate(formData, {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     onSuccess: (data: any) => {
                         onImageUpload(data);
                         // eslint-disable-next-line no-console
-                        console.error(data)
+                        console.log(data)
                     },
                 });
 

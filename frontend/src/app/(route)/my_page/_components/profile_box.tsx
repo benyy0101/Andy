@@ -1,36 +1,92 @@
 'use client'
 
 import { useState } from "react"
-import { ProfileWrapper, ProfileImage, Form, Input, InputBirth, Label, Name, Nickname, Birth, Gender, Btn, Boy, Girl, EditBtn, ProfileContent, ProfileEdit, ImageTest, CurrentInfo } from "../styles/Page.styled"
+// import Image from "next/image";
+import storeProfile from "@/app/_store/storeProfile"
+// import styled from "styled-components";
+import { ProfileWrapper, ProfileImage, Form, Input, InputBirth, Label, Name, Nickname, Birth, Gender, EditBtn, ProfileContent, ProfileEdit, ImageTest, CurrentInfo } from "../styles/Page.styled"
+// import { useGetProfile } from "../../../hooks/useProfile"
 
 const TestData = {
-    "name": '김태수',
-    "nickname": '태수',
-    "birthday": '2020-03-05',
-    "gender": '남자',
-}
+  child_name: "김태수",
+  nickname: "태수",
+  birthday: "2020-03-05",
+  gender: "여자",
+};
 
+// const StyledButtonGroup = styled.div`
+//   display: flex;
+//   justify-content: end;
+//   gap: 10px;
+//   width: 100%;
+// `;
+
+// const StyledButton = styled.button<{ isselected: boolean }>`
+//   padding: 10px 20px;
+//   background-color: ${({ isselected }) => (isselected ? "gray" : "#e9e9e9")};
+//   color: white;
+//   border: none;
+//   border-radius: 10px;
+//   cursor: pointer;
+//   font-size: small;
+//   width: 40%
+// `;
 
 export default function ProfileBox() {
     const [isEditing, setIsEditing] = useState(false);
-    const [name, setName] = useState(TestData.name);
+    const [name, setName] = useState(TestData.child_name);
     const [nickname, setNickname] = useState(TestData.nickname);
     const [birthDate, setBirthDate] = useState(TestData.birthday);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [gender, setGender] = useState(TestData.gender);
+    // const [selectedGender, setSelectedGender] = useState(TestData.gender); // 새로운 상태 추가
+    const { profile } = storeProfile();
+    // const [updateInfo, setUpdatedInfo] = useState(null);
 
     const handleEditClick = () => {
         setIsEditing(true);
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-shadow
+    // const handleGenderChange = (selectedGender: string) => {
+    //     setSelectedGender(selectedGender);
+    // };
+
     const handleSaveClick = () => {
         setIsEditing(false);
+        // setGender(selectedGender);
         // 수정 코드
+
+        // const childGender = selectedGender === "여자" ? "F" : "M";
+
+        // const UpdateProfile = {
+        //     "child_seq": profile.childSeq,
+        //     "child_name": name,
+        //     "child_nickname": nickname,
+        //     "child_birthday": birthDate,
+        //     "child_gender": childGender,
+        //     "child_picture": string,
+        // }
+
+        // const { data } = useUpdateProfile(UpdateProfile);
+        // setUpdatedInfo(data);
     };
+
+    // eslint-disable-next-line no-console
+    console.log(profile)
 
     return (
         <ProfileWrapper>
             <ProfileContent>
                 <ProfileImage>
-                    <ImageTest />
+                    <ImageTest>
+                        {/* {isEditing ? (
+                                <Input value={name} onChange={(e) => setName(e.target.value)} />
+                            ) : (
+                            // <Image src={childpicture} alt="프로필사진"/>
+                            <div>프로필</div>
+                        )} */}
+                    </ImageTest>
                 </ProfileImage>
                 <Form>
                     <Name>
@@ -38,7 +94,10 @@ export default function ProfileBox() {
                         {isEditing ? (
                             <Input value={name} onChange={(e) => setName(e.target.value)} />
                         ) : (
-                            <CurrentInfo>{TestData.name}</CurrentInfo>
+                            <CurrentInfo>{TestData.child_name}</CurrentInfo>
+                            // <CurrentInfo>
+                            //     {updatedInfo ? updatedInfo.child_name : TestData.child_name}
+                            // </CurrentInfo>
                         )}
                     </Name>
                     <Nickname>
@@ -60,13 +119,18 @@ export default function ProfileBox() {
                     <Gender>
                         <Label>성별</Label>
                         {isEditing ? (
-                            <Btn>
-                                <Boy>남자</Boy>
-                                <Girl>여자</Girl>
-                            </Btn>
-                        ) : (
+                            // <StyledButtonGroup>
+                            //     {/* <StyledButton isselected={selectedGender === "남자"} onClick={() => handleGenderChange("남자")}> */}
+                            //         남자
+                            //     {/* </StyledButton> */}
+                            //     {/* <StyledButton isselected={selectedGender === "여자"} onClick={() => handleGenderChange("여자")}> */}
+                            //         여자
+                            //     {/* </StyledButton> */}
+                            // </StyledButtonGroup>
+                            <div>수정중</div>
+                            ) : (
                             <CurrentInfo>{TestData.gender}</CurrentInfo>
-                        )}
+                            )}
                     </Gender>
                 </Form>
             </ProfileContent>

@@ -1,17 +1,9 @@
 "use client";
 
-import React, { useEffect } from "react";
-import Profile from "./profile";
+import React from "react";
 import { motion } from "framer-motion";
+import Profile from "./profile";
 import { useProfileList } from "../../../hooks/useProfile"
-
-const mockData = [
-  {
-    child_seq: "1",
-    child_name: "박수민",
-    child_picture: "",
-  },
-];
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -36,6 +28,7 @@ const item = {
 function ProfileContainer() {
   const { data } = useProfileList();
 
+  // eslint-disable-next-line no-console
   console.log(data)
 
   return (
@@ -45,9 +38,9 @@ function ProfileContainer() {
       initial="hidden"
       animate="visible"
     >
-      {mockData.map((profile) => (
-        <motion.div key={profile.child_seq} className="item" variants={item}>
-          <Profile key={profile.child_seq} profile={profile} />
+      {data.map((profile) => (
+        <motion.div key={profile.childSeq} className="item" variants={item}>
+          <Profile key={profile.childSeq} profile={profile} />
         </motion.div>
       ))}
     </motion.div>

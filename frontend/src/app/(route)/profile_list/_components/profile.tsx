@@ -1,15 +1,16 @@
 "use client";
-import { ProfileWrapper, ProfileImg, ProfileName } from "../styles/Page.styled";
+
 import Image from "next/image";
 import { motion } from "framer-motion";
-import storeProfile from "../../../_store/storeProfile";
 import { useRouter } from "next/navigation";
+import storeProfile from "../../../_store/storeProfile";
+import { ProfileWrapper, ProfileImg, ProfileName } from "../styles/Page.styled";
 
 interface IProfile {
   profile: {
-    child_seq: string;
-    child_name: string;
-    child_picture: string;
+    childSeq: string;
+    childName: string;
+    childPicture: string;
   };
 }
 
@@ -17,12 +18,14 @@ export default function Profile(props: IProfile) {
   const { profile } = props;
   const router = useRouter();
   const setProfileInfo = storeProfile(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (state: { setProfileInfo: any }) => state.setProfileInfo,
   );
   const handleProfileClick = () => {
     setProfileInfo(profile);
     router.push("/main_quiz");
   };
+
   return (
     <ProfileWrapper>
       <ProfileImg onClick={handleProfileClick}>
@@ -35,15 +38,15 @@ export default function Profile(props: IProfile) {
           }}
         >
           <Image
-            src="https://picsum.photos/200"
-            alt={profile.child_name}
+            src={profile.childPicture}
+            alt={profile.childName}
             height={500}
             width={500}
             className="rounded-[100%] shadow-lg"
           />
         </motion.div>
       </ProfileImg>
-      <ProfileName>{profile.child_name}</ProfileName>
+      <ProfileName>{profile.childName}</ProfileName>
     </ProfileWrapper>
   );
 }

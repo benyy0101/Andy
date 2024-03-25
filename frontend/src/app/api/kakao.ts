@@ -5,6 +5,6 @@ import { kakaoAxios } from "./http-commons";
 export const kakaoLogin = async (
   kakaoAuth: KakaoAuth,
 ): Promise<LoginResponse> => {
-  const response = await kakaoAxios.post("/auth/login?status=prod", kakaoAuth);
+  const response = await kakaoAxios.post("/auth/login?status=dev", kakaoAuth);
   return response.data;
 };

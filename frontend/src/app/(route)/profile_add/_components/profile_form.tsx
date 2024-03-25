@@ -57,11 +57,14 @@ export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
             "child_picture": childpicture,
         }
 
+        // eslint-disable-next-line no-console
         console.log(name, nickname, birthday, gender, childpicture)
 
         try {
             mutate(ProfileData, {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 onSuccess: (data: any) => {
+                    // eslint-disable-next-line no-console
                     console.log(data)
                     router.push("/profile_list")
                     // console.error(data)
