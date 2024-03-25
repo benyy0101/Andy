@@ -19,7 +19,7 @@ class ImageRequest(BaseModel):
     picture: bytes
     question_name: str
 
-@app.post("/object")
+@app.post("/Detection")
 async def get_image(picture: bytes = File(...), question_name: str = Form(...)):
     try:
 
