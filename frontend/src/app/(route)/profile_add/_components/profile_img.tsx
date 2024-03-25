@@ -89,6 +89,7 @@ export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: str
                     style={{ borderRadius: "100%", backgroundColor: "#FFFFFF" }}
                     alt = "profileimage"
                     fill
+                    objectFit="cover"
                 />
                 <label htmlFor="file">
                     {isHovered && (

@@ -15,24 +15,6 @@ const TestData = {
   gender: "남자",
 };
 
-// const StyledButtonGroup = styled.div`
-//   display: flex;
-//   justify-content: end;
-//   gap: 10px;
-//   width: 100%;
-// `;
-
-// const StyledButton = styled.button<{ isselected: boolean }>`
-//   padding: 10px 20px;
-//   background-color: ${({ isselected }) => (isselected ? "gray" : "#e9e9e9")};
-//   color: white;
-//   border: none;
-//   border-radius: 10px;
-//   cursor: pointer;
-//   font-size: small;
-//   width: 40%
-// `;
-
 export default function ProfileBox() {
     const [isEditing, setIsEditing] = useState(false);
     const [name, setName] = useState(TestData.child_name);

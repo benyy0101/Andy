@@ -51,6 +51,7 @@ export default function Profile(props: IProfile) {
             alt={profile.childName}
             height="500"
             width="500"
+            objectFit="cover"
             className="rounded-[100%] shadow-lg"
           />
         </motion.div>
