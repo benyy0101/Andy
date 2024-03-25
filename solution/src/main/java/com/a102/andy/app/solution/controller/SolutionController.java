@@ -23,7 +23,7 @@ public class SolutionController {
     }
 
     @GetMapping("/{question_category}")
-    public ResponseEntity<List<ProblemResponseDto>> readExamByCategoryAll(@RequestParam(name = "question_category") int category){
+    public ResponseEntity<List<ProblemResponseDto>> readExamByCategoryAll(@PathVariable("question_category") int category){
         return ResponseEntity.ok(solutionService.readExamByCategoryAll(category));
     }
     @PostMapping
@@ -42,8 +42,8 @@ public class SolutionController {
     }
     @GetMapping("/review/{child_seq}/{date}")
     public ResponseEntity<List<ProblemALLResponseDto>> readProblemsALL
-            (@RequestParam(name = "child_seq") int Child_seq,
-             @RequestParam(name = "date") String date){
+            (@PathVariable(name = "child_seq") int Child_seq,
+             @PathVariable(name = "date") String date){
         return ResponseEntity.ok(solutionService.readProblemsALL(Child_seq,date));
     }
 
