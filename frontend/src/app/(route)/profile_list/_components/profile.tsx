@@ -9,9 +9,9 @@ import { ProfileWrapper, ProfileImg, ProfileName } from "../styles/Page.styled";
 
 interface IProfile {
   profile: {
-    childSeq: string;
-    childName: string;
-    childPicture: string;
+    child_seq: string;
+    child_name: string;
+    child_picture: string;
   };
 }
 
@@ -22,7 +22,7 @@ export default function Profile(props: IProfile) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (state: { setProfileInfo: any }) => state.setProfileInfo,
   );
-  
+
   // const  = useRemoveProfile();
 
   const handleProfileClick = () => {
@@ -31,7 +31,7 @@ export default function Profile(props: IProfile) {
   };
 
   // const ProfileDelete = () => {
-      
+
   // }
 
   return (
@@ -47,15 +47,15 @@ export default function Profile(props: IProfile) {
         >
           <Image
             priority
-            src={profile.childPicture}
-            alt={profile.childName}
+            src={profile.child_picture}
+            alt={profile.child_name}
             height="500"
             width="500"
             className="rounded-[100%] shadow-lg"
           />
         </motion.div>
       </ProfileImg>
-      <ProfileName>{profile.childName}</ProfileName>
+      <ProfileName>{profile.child_name}</ProfileName>
       {/* <DeleteBtn onClick={ProfileDelete}>삭제 테스트</DeleteBtn> */}
       {/* <DeleteBtn>삭제 버튼</DeleteBtn> */}
     </ProfileWrapper>
