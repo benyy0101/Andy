@@ -1,9 +1,9 @@
 import { Gender } from "./enums";
 
 export interface BabyProfile {
-  child_seq: string;
-  child_name: string;
-  child_picture: string;
+  childSeq: string;
+  childName: string;
+  childPicture: string;
 }
 
 export interface CreateBabyProfileRequest {
@@ -25,7 +25,7 @@ export interface RemoveBabyProfileResponse {
 }
 
 export interface ProfileState extends BabyProfile {
-  kakao_name: string;
+  kakaoName: string;
 }
 
 export interface ProfileActions {
