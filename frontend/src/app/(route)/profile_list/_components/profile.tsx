@@ -5,12 +5,13 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import storeProfile from "../../../_store/storeProfile";
 import { ProfileWrapper, ProfileImg, ProfileName } from "../styles/Page.styled";
+// import { useRemoveProfile } from "../../../hooks/useProfile"
 
 interface IProfile {
   profile: {
-    child_seq: string;
-    child_name: string;
-    child_picture: string;
+    childSeq: string;
+    childName: string;
+    childPicture: string;
   };
 }
 
@@ -21,10 +22,18 @@ export default function Profile(props: IProfile) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (state: { setProfileInfo: any }) => state.setProfileInfo,
   );
+  
+  // const  = useRemoveProfile();
+
   const handleProfileClick = () => {
     setProfileInfo(profile);
     router.push("/main_quiz");
   };
+
+  // const ProfileDelete = () => {
+      
+  // }
+
   return (
     <ProfileWrapper>
       <ProfileImg onClick={handleProfileClick}>
@@ -37,15 +46,18 @@ export default function Profile(props: IProfile) {
           }}
         >
           <Image
-            src="https://picsum.photos/200"
-            alt={profile.child_name}
-            height={500}
-            width={500}
+            priority
+            src={profile.childPicture}
+            alt={profile.childName}
+            height="500"
+            width="500"
             className="rounded-[100%] shadow-lg"
           />
         </motion.div>
       </ProfileImg>
-      <ProfileName>{profile.child_name}</ProfileName>
+      <ProfileName>{profile.childName}</ProfileName>
+      {/* <DeleteBtn onClick={ProfileDelete}>삭제 테스트</DeleteBtn> */}
+      {/* <DeleteBtn>삭제 버튼</DeleteBtn> */}
     </ProfileWrapper>
   );
 }

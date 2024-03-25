@@ -57,6 +57,12 @@ export default function CalenderBox({
   // const { data, error } = useMypageByMonth(requestData)
 
   // 받아온 배열
+  // const exams = data.exams
+  // const SolveDay = exams.map((day) => {
+  //   const viewDay = day.toString().padStart(2, "0");
+  //   return `${viewYear}-${viewMonth}-${viewDay}`;
+  // });
+
   const exams = [4, 6, 9, 15, 20, 25, 30, 31];
   const SolveDay = exams.map((day) => {
     const viewDay = day.toString().padStart(2, "0");

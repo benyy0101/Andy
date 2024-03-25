@@ -4,13 +4,16 @@ import { CameraIcon } from '@heroicons/react/24/solid';
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { ProfileImage, ProfileChange } from "../styles/Page.styled";
+import { useUploadProfileImage } from "../../../hooks/useProfile"
 
-export default function ProfileImg() {
+export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: string) => void }) {
     const [isHovered, setIsHovered] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [selectedFile, setSelectedFile] = useState<File>();
     const [imagePreview, setImagePreview] = useState<string>("");
     const imgRef = useRef<HTMLInputElement>(null);
+    const { mutate } = useUploadProfileImage();
+    const emptyImageUrl = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -20,12 +23,24 @@ export default function ProfileImg() {
         setIsHovered(false);
     }
 
+    const MAX_FILE_SIZE = 5 * 1024 * 1024;
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const EditImage = (e: any) => {
         e.preventDefault();
         const file = e.target.files[0];
-        setSelectedFile(file);
 
+        if (!file) {
+            return;
+        }
+
+        if (file && file.size > MAX_FILE_SIZE) {
+            // eslint-disable-next-line no-alert
+            alert('파일 크기는 5MB 이하여야 합니다.');
+            return;
+        }
+
+        setSelectedFile(file);
 
         // 미리보기
         const reader = new FileReader();
@@ -39,16 +54,17 @@ export default function ProfileImg() {
                 const formData = new FormData();
                 formData.append('profileImageFile', file)
 
-                try {
-                    // const res = await s3업로드(formData)
-                } catch(error) {
-                    // eslint-disable-next-line no-console
-                    console.log(error)
-                }
+                mutate(formData, {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    onSuccess: (data: any) => {
+                        onImageUpload(data);
+                        // eslint-disable-next-line no-console
+                        console.log(data)
+                    },
+                });
 
             } catch {
-                // eslint-disable-next-line no-alert
-                alert("프로필 이미지 변경에 실패하였습니다.")
+                // alert("프로필 이미지 변경에 실패하였습니다.")
             }
         } else {
             // eslint-disable-next-line no-alert
@@ -68,8 +84,8 @@ export default function ProfileImg() {
                     onChange={EditImage}
                     ref={imgRef}
                 />
-                <Image 
-                    src={imagePreview || ``}
+                <Image
+                    src={imagePreview || emptyImageUrl}
                     style={{ borderRadius: "100%", backgroundColor: "#FFFFFF" }}
                     alt = "profileimage"
                     fill
