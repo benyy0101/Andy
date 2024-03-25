@@ -2,6 +2,7 @@ package com.a102.andy.app.profile.controller;
 
 import com.a102.andy.app.profile.controller.dto.ProfileCreateRequestDto;
 import com.a102.andy.app.profile.controller.dto.ProfileResponseDto;
+import com.a102.andy.app.profile.controller.dto.ProfileSingleResponseDto;
 import com.a102.andy.app.profile.controller.dto.ProfileUpdateRequestDto;
 import com.a102.andy.app.profile.service.ProfileService;
 import com.a102.andy.image.service.S3UploadService;
@@ -43,7 +44,7 @@ public class ProfileController {
     }
 
     @GetMapping("/{profileSeq}")
-    public ResponseEntity<ProfileResponseDto> getProfile(@PathVariable Integer profileSeq) {
+    public ResponseEntity<ProfileSingleResponseDto> getProfile(@PathVariable Integer profileSeq) {
         return ResponseEntity.ok(profileService.getProfile(profileSeq));
     }
 

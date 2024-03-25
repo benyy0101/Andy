@@ -2,6 +2,7 @@ package com.a102.andy.app.profile.service;
 
 import com.a102.andy.app.profile.controller.dto.ProfileCreateRequestDto;
 import com.a102.andy.app.profile.controller.dto.ProfileResponseDto;
+import com.a102.andy.app.profile.controller.dto.ProfileSingleResponseDto;
 import com.a102.andy.app.profile.controller.dto.ProfileUpdateRequestDto;
 import com.a102.andy.app.profile.entity.Profile;
 import com.a102.andy.app.profile.repository.ProfileRepository;
@@ -54,8 +55,8 @@ public class ProfileService {
         return new ProfileResponseDto(profile);
     }
 
-    public ProfileResponseDto getProfile(Integer profileSeq) {
-        return new ProfileResponseDto(profileRepository.findById(profileSeq).orElseThrow(() -> new RestApiException(NO_MEMBER)));
+    public ProfileSingleResponseDto getProfile(Integer profileSeq) {
+        return new ProfileSingleResponseDto(profileRepository.findById(profileSeq).orElseThrow(() -> new RestApiException(NO_MEMBER)));
     }
 
     public List<ProfileResponseDto> getProfileList() {
