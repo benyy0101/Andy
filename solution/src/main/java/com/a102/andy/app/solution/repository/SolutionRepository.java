@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -38,9 +39,9 @@ public class SolutionRepository {
     }
 
     public List<ProblemALLResponseDto> findProblemsALL(int childSeq, String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        LocalDateTime startOfMonth = LocalDateTime.parse(date, formatter).withDayOfMonth(1).withHour(0).withMinute(0);
-        LocalDateTime endOfMonth = startOfMonth.plusMonths(1).minusSeconds(1); // 다음 달의 시작 직전 시점
+        YearMonth formatter = YearMonth.parse(date, DateTimeFormatter.ofPattern("yyyy-MM"));
+        LocalDateTime startOfMonth = formatter.atDay(1).atStartOfDay();
+        LocalDateTime endOfMonth = formatter.plusMonths(1).atDay(1).atStartOfDay().minusSeconds(1);
 
         return jpaQueryFactory.select(Projections.constructor(ProblemALLResponseDto.class,
                         qQuestionHistory.examMode,
@@ -52,7 +53,8 @@ public class SolutionRepository {
                 .from(qQuestionHistory)
                 .join(qQuestion).on(qQuestionHistory.questionSeq.eq(qQuestion.questionSeq))
                 .where(qQuestionHistory.childSeq.eq(childSeq)
-                        .and(qQuestionHistory.createdAt.between(startOfMonth, endOfMonth)))
+                        .and(qQuestionHistory.createdAt.between(startOfMonth, endOfMonth))
+                        .and(qQuestionHistory.questionHistoryIsOk.eq(false)))
                 .fetch();
     }
 

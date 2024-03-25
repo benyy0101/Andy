@@ -90,7 +90,6 @@ public class SolutionService {
 
     public List<ProblemALLResponseDto> readProblemsALL(int Child_seq, String date) {
         return solutionRepository.findProblemsALL(Child_seq, date);
-
     }
 
     public ResultUpdateResponseDto updateProblem(ResultUpdateRequestDto resultUpdateRequestDto) {
