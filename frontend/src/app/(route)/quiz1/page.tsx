@@ -1,47 +1,17 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Timer from "@/app/_components/timer";
 import CorrectModal from "@/app/_components/modal_correct";
 import WrongModal from "@/app/_components/modal_wrong";
 import ProgressBar from "@/app/_components/ProgressBar";
-import { useGameResultMutation } from "@/app/hooks/useGameA";
+import { useGameResultMutation, useGamebyCategory } from "@/app/hooks/useGameA";
 import storeProfile from "@/app/_store/storeProfile";
 import { useSearchParams } from "next/navigation";
 import Word1 from "./_components/word1";
 import Camera from "./_components/camera";
 
-import { Wrapper, Wrapper2, Title, Explain } from "./styles/page.styled";
-
-const mockQuizData = {
-  data: [
-    {
-      question_seq: 1,
-      question_name: "사과",
-      question_picture: "사과 이미지",
-    },
-    {
-      question_seq: 3,
-      question_name: "배",
-      question_picture: "배 이미지",
-    },
-    {
-      question_seq: 523,
-      question_name: "포도",
-      question_picture: "포도 이미지",
-    },
-    {
-      question_seq: 33,
-      question_name: "참외",
-      question_picture: "참외 이미지",
-    },
-    {
-      question_seq: 87,
-      question_name: "키위",
-      question_picture: "키위 이미지",
-    },
-  ],
-};
+import { Wrapper, Title, Explain } from "./styles/page.styled";
 
 interface IQuizData {
   question_seq: number;
@@ -49,10 +19,11 @@ interface IQuizData {
 }
 
 function Quiz1Page() {
-  const { data } = mockQuizData;
+  // const { data } = mockQuizData;
+  const { data } = useGamebyCategory(1);
   const { profile } = storeProfile();
   const [isCorrectModalOpen, setIsCorrectModalOpen] = useState(false);
-  const numProblems: number = data.length;
+  const numProblems: number = data?.problems.length || 0;
   const [status, setStatus] = useState<IQuizData[]>([]);
   const [currentSeq, setCurrentSeq] = useState(0);
   const [isTrue, setIsTrue] = useState<boolean>();
@@ -92,11 +63,11 @@ function Quiz1Page() {
   };
 
   useEffect(() => {
-    if (isTrue !== undefined) {
+    if (isTrue !== undefined && data?.problems) {
       setStatus([
         ...status,
         {
-          question_seq: data[currentSeq].question_seq,
+          question_seq: data.problems[currentSeq].question_seq!,
           question_history_is_ok: isTrue,
         },
       ]);
@@ -128,32 +99,34 @@ function Quiz1Page() {
   }, [currentSeq]);
 
   return (
-    <Wrapper>
-      <ProgressBar max={numProblems} value={status.length} />
-      <Title>라운드 {currentSeq + 1}</Title>
-      <Timer reset={reset} />
-      <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
-      <div className="flex justify-center gap-20">
-        <Word1 />
-        <Camera
-          setIsTrue={handleIsTrue}
-          input={data[currentSeq].question_name}
+    <Suspense fallback={<div>Loading...</div>}>
+      <Wrapper>
+        <ProgressBar max={numProblems} value={status.length} />
+        <Title>라운드 {currentSeq + 1}</Title>
+        <Timer reset={reset} />
+        <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
+        <div className="flex justify-center gap-20">
+          <Word1 />
+          <Camera
+            setIsTrue={handleIsTrue}
+            input={data?.problems[currentSeq].question_name || ""}
+          />
+        </div>
+        {/* 조건에 따라서 정답 맞추면 정답 모달/ 틀리면 오답 모달 */}
+        <button onClick={handleCorrectAnswer} type="button">
+          Show Correct Modal
+        </button>
+        <CorrectModal
+          isOpen={isCorrectModalOpen}
+          onClose={handleCloseCorrectModal}
         />
-      </div>
-      {/* 조건에 따라서 정답 맞추면 정답 모달/ 틀리면 오답 모달 */}
-      <button onClick={handleCorrectAnswer} type="button">
-        Show Correct Modal
-      </button>
-      <CorrectModal
-        isOpen={isCorrectModalOpen}
-        onClose={handleCloseCorrectModal}
-      />
 
-      <button onClick={handleWrongAnswer} type="button">
-        Show Wrong Modal
-      </button>
-      <WrongModal isOpen={isWrongModalOpen} onClose={handleCloseWrongModal} />
-    </Wrapper>
+        <button onClick={handleWrongAnswer} type="button">
+          Show Wrong Modal
+        </button>
+        <WrongModal isOpen={isWrongModalOpen} onClose={handleCloseWrongModal} />
+      </Wrapper>
+    </Suspense>
   );
 }
 

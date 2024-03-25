@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useMutation, useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   CreateBabyProfileRequest,
   CreateBabyProfileResponse,
@@ -50,7 +50,7 @@ export const useGetProfile = (child_seq: string) => {
 
 // PROFILE-005
 export const useProfileList = () => {
-  const query = useSuspenseQuery<ProfileListResponse>({
+  const query = useQuery<ProfileListResponse>({
     queryKey: ["profileList"],
     queryFn: getProfileList,
   });

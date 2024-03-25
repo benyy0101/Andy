@@ -10,11 +10,11 @@ import {
   GameResultResponse,
   GameResultRequest,
 } from "../_models/gameA.interface";
-import { gameAxios, localAxios } from "./http-commons";
+import { gameAxios, localAxios, quizAxios } from "./http-commons";
 
 // GAME-001
 export const getCategories = async (): Promise<CategoriesResponse> => {
-  const response = await localAxios.get("/game/category");
+  const response = await quizAxios.get("/game/category");
   return response.data;
 };
 
@@ -22,7 +22,7 @@ export const getCategories = async (): Promise<CategoriesResponse> => {
 export const getGamebyCategory = async (
   request: GamebyCategoryRequest,
 ): Promise<GamebyCategoryResponse> => {
-  const response = await localAxios.get(
+  const response = await quizAxios.get(
     `/game/${request.question_category_seq}`,
   );
   return response.data;

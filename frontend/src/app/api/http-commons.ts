@@ -4,6 +4,7 @@ const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || "";
 const loginUrl = process.env.NEXT_PUBLIC_LOGIN_URL || "";
 const imageBaseUrl = process.env.NEXT_PUBLIC_IMG_URL || "";
 const localDev = process.env.LOCAL_DEV || false;
+const quizUrl = process.env.NEXT_PUBLIC_QUIZ_URL || "";
 
 const saveToken = (response: AxiosResponse) => {
   if (response.data.jwtToken !== null) {
@@ -38,6 +39,14 @@ export const gameAxios = axios.create({
   withCredentials: true,
   headers: {
     "Content-Type": "multipart/form-data",
+  },
+});
+
+export const quizAxios = axios.create({
+  baseURL: quizUrl,
+  withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
   },
 });
 
@@ -82,6 +91,11 @@ imageAxios.interceptors.request.use((config) => {
 });
 
 gameAxios.interceptors.request.use((config) => {
+  loadToken(config);
+  return config;
+});
+
+quizAxios.interceptors.request.use((config) => {
   loadToken(config);
   return config;
 });
