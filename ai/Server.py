@@ -2,6 +2,7 @@ from fastapi import FastAPI, File, Form, HTTPException
 from pydantic import BaseModel
 from ObjectiDetection import ObjectDetection
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
@@ -25,7 +26,7 @@ async def get_image(picture: bytes = File(...), question_name: str = Form(...)):
         # 객체 감지 함수 호출하여 결과 반환
         result = ObjectDetection(picture, question_name)
 
-        return result
+        return JSONResponse(content=result)
 
     except Exception as e:
         # 예외 처리
