@@ -31,8 +31,8 @@ public class SolutionRepository {
     public List<ProblemResponseDto> findExamByCategoryAll(int category) {
         return jpaQueryFactory.select(Projections.constructor(ProblemResponseDto.class,
                         qQuestion.questionSeq,
-                        qQuestion.questionName,
-                        qQuestion.questionPicture)).from(qQuestion)
+                        qQuestion.questionPicture,
+                        qQuestion.questionName)).from(qQuestion)
                 .where(qQuestion.questionCategotySeq.eq(category))
                 .fetch();
     }
@@ -45,10 +45,10 @@ public class SolutionRepository {
         return jpaQueryFactory.select(Projections.constructor(ProblemALLResponseDto.class,
                         qQuestionHistory.examMode,
                         qQuestionHistory.questionHistorySeq,
-                        qQuestionHistory.createdAt,
                         qQuestion.questionSeq,
+                        qQuestion.questionPicture,
                         qQuestion.questionName,
-                        qQuestion.questionPicture))
+                        qQuestionHistory.createdAt))
                 .from(qQuestionHistory)
                 .join(qQuestion).on(qQuestionHistory.questionSeq.eq(qQuestion.questionSeq))
                 .where(qQuestionHistory.childSeq.eq(childSeq)
