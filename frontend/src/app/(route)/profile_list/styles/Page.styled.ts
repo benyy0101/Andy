@@ -4,6 +4,7 @@ export const Wrapper = tw.div`
 flex
 flex-col
 justify-center
+items-center
 `;
 
 export const Profiles = tw.div`
@@ -11,6 +12,7 @@ flex
 justify-center
 mt-30
 h-[100vh]
+m-[0]
 `;
 // flex-wrap
 
@@ -28,8 +30,7 @@ export const ProfileImg = tw.button`
 w-[200px]
 h-[200px]
 rounded-[100%]
-bg-[#9BCDA0]
-opacity-[40%]
+bg-[rgba(155,205,160,0.5)]
 cursor-pointer
 shadow-md
 hover:p-12
@@ -70,3 +71,7 @@ items-center
 // flex
 // justify-center
 // `
+
+export const DeleteBtn = tw.button`
+border
+`

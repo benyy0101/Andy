@@ -317,25 +317,7 @@ flex
 text-black
 w-[70%]
 text-sm
-`
-
-export const Boy = tw.button`
-bg-gray-100
-rounded-[5px]
-w-[50%]
-mr-2
-px-3
-py-2
-hover:bg-gray-300
-`
-
-export const Girl = tw.button`
-bg-gray-100
-rounded-[5px]
-w-[50%]
-px-3
-py-2
-hover:bg-gray-300
+justify-between
 `
 
 export const ProfileImage = tw.div`
@@ -366,6 +348,22 @@ text-black
 outline-0
 flex
 flex-start
+`
+
+export const BtnLabel = tw.label`
+bg-[#FFE67C]
+rounded-[5px]
+w-[48%]
+mb-3
+px-3
+py-2.5
+hover:bg-[#EEA241]
+hover:text-white
+focus:bg-[#EEA241]
+focus:text-white
+cursor-pointer
+font-bold
+text-white
 `
 
 // 점수

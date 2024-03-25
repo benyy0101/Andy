@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Logo from "../../_components/logo/Logo";
 import CalendarBox from "./_components/calendar";
 import ProfileBox from "./_components/profile_box";
@@ -15,14 +15,12 @@ import {
 } from "./styles/Page.styled";
 
 export default function MyPage() {
-  const [dateSelect] = useState<string>("");
+  const [dateSelect, setDateSelect] = useState<string>("");
 
-  const fetchDate = (date: string) => {
-    // useEffect(() => {
-    //   setDateSelect(date);
-    // });
-    // eslint-disable-next-line no-console
-    console.log(date);
+  const FetchDate = (date: string) => {
+    useEffect(() => {
+      setDateSelect(date);
+    });
   };
 
   return (
@@ -30,7 +28,7 @@ export default function MyPage() {
       <Logo />
       <Content>
         <Calendar>
-          <CalendarBox clickdate={fetchDate} />
+          <CalendarBox clickdate={FetchDate} />
         </Calendar>
         <Info>
           <Profile>

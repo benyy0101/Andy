@@ -12,6 +12,7 @@ const nextConfig = withPWA({
     styledComponents: true, // 추가
   },
   images: {
+    domains: ['s3.ap-northeast-2.amazonaws.com'],
     remotePatterns: [
       {
         protocol: 'https',
