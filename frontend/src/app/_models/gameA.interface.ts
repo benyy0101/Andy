@@ -1,5 +1,3 @@
-import { Mode } from "./enums";
-
 // GAME-001
 export interface CategoriesResponse {
   categories: Category[];
@@ -41,8 +39,9 @@ export interface ProblemResultResponse {
 
 // GAME-004
 export interface GameResultRequest {
+  child_seq: string;
   question_category_seq: number;
-  mode: Mode;
+  mode: string;
   questions: SmallProblem[];
 }
 

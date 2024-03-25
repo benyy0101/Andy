@@ -3,7 +3,11 @@ const withPWA = require('@ducanh2912/next-pwa').default({
   dest: "public",
 });
 const nextConfig = withPWA({
-  reactStrictMode: false,
+  experimental: {
+    // 어디서 bailout이 발생하는지 찾기
+    missingSuspenseWithCSRBailout: false,
+  },
+  reactStrictMode: true,
   compiler: {               // 추가
     styledComponents: true, // 추가
   },

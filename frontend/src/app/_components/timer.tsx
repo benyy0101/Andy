@@ -1,38 +1,49 @@
-'use client'
+"use client";
 
 import React, { useEffect, useState } from "react";
 
-function Timer () {
-    const [timer, setTimer] = useState<number>(30); // 타이머 시간 30초로 설정
+interface TimerProps {
+  reset: boolean;
+}
 
-    useEffect(() => {
-        let interval: number | undefined;
+function Timer({ reset }: TimerProps) {
+  const [timer, setTimer] = useState<number>(30); // 타이머 시간 30초로 설정
 
-        if (timer >= 0) {
-            interval = window.setTimeout(() => {
-                setTimer(time => time -1);
-            }, 1000);
-        }
+  useEffect(() => {
+    let interval: number | undefined;
 
-        return () => {
-            if (interval) clearInterval(interval);
-        }
-    }, [timer]);
-
-    const calculateTime = () => {
-        // let minutes: string | number = Math.floor(timer / 60);
-        let seconds: string | number = Math.floor(timer % 60);
-
-        // minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? `0${seconds}` : seconds;
- 
-        return timer >= 0 ? `${seconds}` : "시간이 다 되었습니다!";
+    if (timer >= 0) {
+      interval = window.setTimeout(() => {
+        setTimer((time) => time - 1);
+      }, 1000);
     }
-    
-    
-    return(
-        <span id="MyTimer" className="mt-20 font-bold mb-10">{calculateTime()}</span>
-    );
-};
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [timer]);
+
+  useEffect(() => {
+    if (reset) {
+      setTimer(30); // Reset the timer when reset prop changes
+    }
+  }, [reset]);
+
+  const calculateTime = () => {
+    // let minutes: string | number = Math.floor(timer / 60);
+    let seconds: string | number = Math.floor(timer % 60);
+
+    // minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? `0${seconds}` : seconds;
+
+    return timer >= 0 ? `${seconds}` : "시간이 다 되었습니다!";
+  };
+
+  return (
+    <span id="MyTimer" className="">
+      {calculateTime()}
+    </span>
+  );
+}
 
 export default Timer;

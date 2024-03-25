@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useProfileList } from "@/app/hooks/useProfile";
 import Profile from "./profile";
-import { useProfileList } from "../../../hooks/useProfile"
+
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
