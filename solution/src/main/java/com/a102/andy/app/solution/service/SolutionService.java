@@ -35,7 +35,7 @@ public class SolutionService {
         return solutionRepository.findCategoryAll();
     }
 
-    public List<ProblemResponseDto> readExamByCategoryAll(){return solutionRepository.findExamByCategoryAll();}
+    public List<ProblemResponseDto> readExamByCategoryAll(int category){return solutionRepository.findExamByCategoryAll(category);}
 
     public ResultResponseDto readProblemAnswer(ResultRequestDto resultRequestDto) {
         // RestTemplate 생성

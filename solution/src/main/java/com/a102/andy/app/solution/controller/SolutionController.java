@@ -22,9 +22,9 @@ public class SolutionController {
        return ResponseEntity.ok(solutionService.readCategoryAll());
     }
 
-    @GetMapping("/{}")
-    private ResponseEntity<List<ProblemResponseDto>> readExamByCategoryAll(){
-        return ResponseEntity.ok(solutionService.readExamByCategoryAll());
+    @GetMapping("/{question_category}")
+    private ResponseEntity<List<ProblemResponseDto>> readExamByCategoryAll(@RequestParam(name = "question_category") int category){
+        return ResponseEntity.ok(solutionService.readExamByCategoryAll(category));
     }
     @PostMapping
     private ResponseEntity<ResultResponseDto> readProblemAnswer(@RequestBody ResultRequestDto resultRequestDto){
@@ -40,7 +40,6 @@ public class SolutionController {
             throw new RuntimeException(e);
         }
     }
-
     @GetMapping("/review/{child_seq}/{date}")
     private ResponseEntity<List<ProblemALLResponseDto>> readProblemsALL
             (@RequestParam(name = "child_seq") int Child_seq,
