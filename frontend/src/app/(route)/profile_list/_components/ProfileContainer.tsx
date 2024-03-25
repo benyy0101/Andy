@@ -1,26 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useProfileList } from "@/app/hooks/useProfile";
 import Profile from "./profile";
-
-const mockData = [
-  {
-    child_seq: "1",
-    child_name: "박수민",
-    child_picture: "",
-  },
-  {
-    child_seq: "2",
-    child_name: "김아린",
-    child_picture: "",
-  },
-  {
-    child_seq: "3",
-    child_name: "이동훈",
-    child_picture: "",
-  },
-];
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -43,8 +26,16 @@ const item = {
 };
 
 function ProfileContainer() {
-  // const { data } = useProfileList();
+  const { data } = useProfileList();
+  const [fetchData, setFetchData] = useState(true);
 
+  // Fetch data only if it's not already present and the flag allows fetching
+  useEffect(() => {
+    if (fetchData && !data) {
+      // Fetch data here
+      setFetchData(false); // Prevent further fetching
+    }
+  }, [fetchData, data]);
   return (
     <motion.div
       className="container flex justify-center items-center w-full h-full"
@@ -52,11 +43,12 @@ function ProfileContainer() {
       initial="hidden"
       animate="visible"
     >
-      {mockData.map((profile) => (
-        <motion.div key={profile.child_seq} className="item" variants={item}>
-          <Profile key={profile.child_seq} profile={profile} />
-        </motion.div>
-      ))}
+      {data?.profiles &&
+        data?.profiles.map((profile) => (
+          <motion.div key={profile.child_seq} className="item" variants={item}>
+            <Profile key={profile.child_seq} profile={profile} />
+          </motion.div>
+        ))}
     </motion.div>
   );
 }
