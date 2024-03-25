@@ -35,6 +35,5 @@ export interface ProfileActions {
 }
 
 export interface ProfileListResponse {
-  map(arg0: (profile: any) => import("react").JSX.Element): import("react").ReactNode | import("framer-motion").MotionValue<number> | import("framer-motion").MotionValue<string>;
   profiles: BabyProfile[];
 }

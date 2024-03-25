@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
 import React from "react";
 import { motion } from "framer-motion";
 import { useProfileList } from "@/app/hooks/useProfile";
 import Profile from "./profile";
-
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -32,7 +33,7 @@ function ProfileContainer() {
   // const [fetchData, setFetchData] = useState(true);
 
   // eslint-disable-next-line no-console
-  console.log(data)
+  console.log(data);
 
   // Fetch data only if it's not already present and the flag allows fetching
   // useEffect(() => {
@@ -49,11 +50,12 @@ function ProfileContainer() {
       initial="hidden"
       animate="visible"
     >
-      {data?.map((profile) => (
-        <motion.div key={profile.childSeq} className="item" variants={item}>
-          <Profile key={profile.childSeq} profile={profile} />
-        </motion.div>
-      ))}
+      {data &&
+        data.map((profile: any) => (
+          <motion.div key={profile.childSeq} className="item" variants={item}>
+            <Profile key={profile.childSeq} profile={profile} />
+          </motion.div>
+        ))}
     </motion.div>
   );
 }
