@@ -6,7 +6,7 @@ import {
   Category,
   GameResultRequest,
   GameResultResponse,
-  GamebyCategoryResponse,
+  Problem,
   ProblemResultResponse,
   ReexamineRequest,
   ReexamineResponse,
@@ -34,9 +34,17 @@ export const useCategories = () => {
 
 // GAME-002
 export const useGamebyCategory = (question_category_seq: number) => {
-  const query = useQuery<GamebyCategoryResponse>({
+  const query = useQuery<any>({
     queryKey: ["game", { type: "A" }],
     queryFn: () => getGamebyCategory({ question_category_seq }),
+    select: (data) => {
+      const newData: Problem[] = [];
+      data.problems.map((problem: any) => {
+        newData.push(problem.problem);
+        return problem;
+      });
+      return newData;
+    },
   });
 
   return query;

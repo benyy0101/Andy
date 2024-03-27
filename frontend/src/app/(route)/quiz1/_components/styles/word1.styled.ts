@@ -8,4 +8,6 @@ export const Wordbox = tw.div`
     font-bold
     bg-white
     rounded-md
+    min-w-[400px]
+    min-h-[300px]
 `;

@@ -6,12 +6,14 @@ flex-col
 items-center
 justify-start
 w-full
-space-y-4
+h-svw
+space-y-8
 `;
 
 export const Title = tw.h1`
 text-3xl
 font-extrabold
+flex-grow-[1]
 `;
 
 export const Explain = tw.h3`
