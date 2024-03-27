@@ -3,10 +3,6 @@ const withPWA = require('@ducanh2912/next-pwa').default({
   dest: "public",
 });
 const nextConfig = withPWA({
-  experimental: {
-    // 어디서 bailout이 발생하는지 찾기
-    missingSuspenseWithCSRBailout: false,
-  },
   reactStrictMode: false,
   compiler: {               // 추가
     styledComponents: true, // 추가
@@ -55,6 +51,9 @@ const nextConfig = withPWA({
 })
   
 module.exports = {
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
   images: {
     domains: ['us.123rf.com', 'vrthumb.imagetoday.co.kr', 'img.segye.com', 't3.ftcdn.net', 'img.hankyung.com'], // 이미지 호스트 이름 추가
   },

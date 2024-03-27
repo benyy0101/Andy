@@ -18,10 +18,7 @@ function Camera(props: ICamera) {
   const videoRef = useRef<any>(null);
   const [isVideoOn, setIsVideoOn] = useState(false);
   const [imgSrc, setImgSrc] = useState("");
-  const variants = {
-    open: { opacity: 1, x: 0 },
-    closed: { opacity: 0, x: "-100%" },
-  };
+
   const { mutate } = useSendResultMutation();
   const toggleVideo = () => {
     setIsVideoOn((prev) => !prev);
