@@ -16,12 +16,15 @@ function WrongModal(props: WrongModalProps) {
   const [isExploding, setIsExploding] = useState(false);
 
   useEffect(() => {
+    let timer: string | number | NodeJS.Timeout | undefined;
     if (isOpen) {
-      setIsExploding(true);
-    } else {
-      setIsExploding(false);
+      // 모달이 열릴 때 3초 후에 자동으로 닫히도록 설정
+      timer = setTimeout(() => {
+        onClose();
+      }, 3000);
     }
-  }, [isOpen]);
+    return () => clearTimeout(timer);
+  }, [isOpen, onClose]);
 
   return (
     <>
@@ -36,7 +39,6 @@ function WrongModal(props: WrongModalProps) {
             <br />
             {/* 멘트 */}
             <button
-              onClick={onClose}
               className="font-bold text-xl"
               type="button"
             >
