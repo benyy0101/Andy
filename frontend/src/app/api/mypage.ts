@@ -7,8 +7,6 @@ import {
 import storeProfile from "../_store/storeProfile";
 import { localAxios } from "./http-commons";
 
-const { profile } = storeProfile();
-
 export const getMyInfoByMonth = async (
   request: MyInfoByMonthRequest | null,
 ) => {
@@ -16,7 +14,9 @@ export const getMyInfoByMonth = async (
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
 
-  if (profile.childSeq === "") {
+  const { profile } = storeProfile();
+
+  if (profile.child_seq === "") {
     throw new Error("child_seq is empty");
   }
   if (!request)
@@ -28,7 +28,7 @@ export const getMyInfoByMonth = async (
 
   if (year && month) {
     const reponse = await localAxios.post(
-      `/mypage/${profile.childSeq}/month`,
+      `/mypage/${profile.child_seq}/month`,
       request,
     );
     return reponse.data;
@@ -38,8 +38,9 @@ export const getMyInfoByMonth = async (
 // MYPAGE-002
 
 export const getMyInfoByDate = async (request: MyInfoByDateRequest) => {
+  const { profile } = storeProfile();
   const response = await localAxios.post(
-    `/mypage/${profile.childSeq}/day`,
+    `/mypage/${profile.child_seq}/day`,
     request,
   );
   return response.data;

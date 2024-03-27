@@ -446,4 +446,6 @@ flex
 justify-center
 align-center
 relative
+w-[100%]
+aspect-square
 `

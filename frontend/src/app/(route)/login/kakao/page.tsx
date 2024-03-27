@@ -19,7 +19,7 @@ function KakaoLogin() {
 
   useEffect(() => {
     if (data) {
-      setName(data.nickname);
+      setName(data.kakao_nickname);
       router.push("/profile_list");
     }
   }, [data, router]);

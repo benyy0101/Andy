@@ -13,14 +13,14 @@ const nextConfig = withPWA({
   },
   images: {
     domains: ['s3.ap-northeast-2.amazonaws.com'],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'picsum.photos',
-        port: '',
-        pathname: '/200',
-      },
-    ],
+    // remotePatterns: [
+    //   {
+    //     protocol: 'https',
+    //     hostname: 'picsum.photos',
+    //     port: '',
+    //     pathname: '/200',
+    //   },
+    // ],
   },
   async redirects() {
     return [

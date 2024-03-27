@@ -13,7 +13,7 @@ export interface KakaoLoginResponse {
 
 export interface LoginResponse {
   jwtToken: string;
-  nickname: string;
+  kakao_nickname: string;
   memberId: string;
 }
 

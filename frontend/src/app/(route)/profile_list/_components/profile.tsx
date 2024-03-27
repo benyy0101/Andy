@@ -4,8 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import storeProfile from "../../../_store/storeProfile";
-import { ProfileWrapper, ProfileImg, ProfileName } from "../styles/Page.styled";
-// import { useRemoveProfile } from "../../../hooks/useProfile"
+import { ProfileWrapper, ProfileImg, ProfileName, DeleteBtn, ImageTest } from "../styles/Page.styled";
+import { useRemoveProfile } from "../../../hooks/useProfile"
 
 interface IProfile {
   profile: {
@@ -22,17 +22,23 @@ export default function Profile(props: IProfile) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (state: { setProfileInfo: any }) => state.setProfileInfo,
   );
-  
-  // const  = useRemoveProfile();
+
+  const { mutate } = useRemoveProfile();
 
   const handleProfileClick = () => {
     setProfileInfo(profile);
     router.push("/main_quiz");
   };
 
-  // const ProfileDelete = () => {
-      
-  // }
+  const ProfileDelete = () => {
+    mutate(profile.child_seq, {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      onSuccess: () => {
+          // eslint-disable-next-line no-console
+          window.location.reload();
+      },
+  });
+  }
 
   return (
     <ProfileWrapper>
@@ -45,19 +51,21 @@ export default function Profile(props: IProfile) {
             borderRadius: "100%",
           }}
         >
+        <ImageTest>
           <Image
             priority
             src={profile.child_picture}
-            alt={profile.child_seq}
+            alt={profile.child_name}
             height="500"
             width="500"
-            // objectFit="cover"
+            objectFit="cover"
             className="rounded-[100%] shadow-lg"
           />
+        </ImageTest>
         </motion.div>
       </ProfileImg>
       <ProfileName>{profile.child_name}</ProfileName>
-      {/* <DeleteBtn onClick={ProfileDelete}>삭제 테스트</DeleteBtn> */}
+      <DeleteBtn onClick={ProfileDelete}>프로필 삭제</DeleteBtn>
       {/* <DeleteBtn>프로필 삭제</DeleteBtn> */}
     </ProfileWrapper>
   );

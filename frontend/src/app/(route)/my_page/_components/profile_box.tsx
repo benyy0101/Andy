@@ -1,132 +1,153 @@
 'use client'
 
-import { useState } from "react"
+import React, { useState, useRef } from "react"
 import Image from "next/image";
-// import { CameraIcon } from '@heroicons/react/24/solid';
+import { CameraIcon } from '@heroicons/react/24/solid';
 import storeProfile from "@/app/_store/storeProfile"
-// import styled from "styled-components";
-import { ProfileWrapper, ProfileImage, Form, Input, InputBirth, Label, Name, Nickname, Birth, Gender, EditBtn, ProfileContent, ProfileEdit, ImageTest, CurrentInfo, Btn, BtnLabel} from "../styles/Page.styled"
+import { ProfileWrapper, ProfileImage, ProfileImage1, ProfileChange, Form, Input, InputBirth, Label, Name, Nickname, Birth, Gender, EditBtn, ProfileContent, ProfileEdit, ImageTest, CurrentInfo, Btn, BtnLabel} from "../styles/Page.styled"
 // import { useUpdateProfile } from "../../../hooks/useProfile"
-import { useGetProfile } from "../../../hooks/useProfile"
-
-const TestData = {
-//   child_seq: ""
-  child_name: "김태수",
-  nickname: "태수",
-  birthday: "2020-03-05",
-  gender: "남자",
-};
+import { useGetProfile, useUploadProfileImage, useUpdateProfile } from "../../../hooks/useProfile"
 
 export default function ProfileBox() {
-    const [isEditing, setIsEditing] = useState(false);
     const { profile } = storeProfile();
-    const [name, setName] = useState(profile.childName);
-    const [nickname, setNickname] = useState(TestData.nickname);
-    const [birthDate, setBirthDate] = useState(TestData.birthday);
-    const [gender, setGender] = useState(TestData.gender);
-    // const [isHovered, setIsHovered] = useState(false);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    // const [selectedGender, setSelectedGender] = useState(TestData.gender); // 새로운 상태 추가
-    // const [updateInfo, setUpdatedInfo] = useState(null);
+    const childnum = String(profile.child_seq)
+    const { data, isLoading } = useGetProfile(childnum);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    // const [selectedFile, setSelectedFile] = useState<File>();
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    // const [imagePreview, setImagePreview] = useState<string>("");
-    // const { mutate } = useUploadProfileImage();
-    // const imgRef = useRef<HTMLInputElement>(null);
-
-    const childnum = String(profile.childSeq);
-    const { data } = useGetProfile(childnum);
-    // eslint-disable-next-line no-console, no-console
-    console.log(data)
-    // eslint-disable-next-line no-console, no-console
-    // console.log(data.child_name)
-    // eslint-disable-next-line no-console, no-console
+    // eslint-disable-next-line no-console
     // console.log(profile)
+
+    const [isEditing, setIsEditing] = useState(false);
+    const [name, setName] = useState('');
+    const [nickname, setNickname] = useState('');
+    const [birthDate, setBirthDate] = useState('');
+    const [gender, setGender] = useState('');
+    const [isHovered, setIsHovered] = useState(false);
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [selectedFile, setSelectedFile] = useState<File>();
+    const [imagePreview, setImagePreview] = useState<string>("");
+    const [previousImage, setPreviousImage] = useState<string>("");
+    const [changeFile, setChangeFile] = useState<string>('');
+    const { mutate: uploadMutate } = useUploadProfileImage();
+    const { mutate: updateMutate } = useUpdateProfile();
+    const imgRef = useRef<HTMLInputElement>(null);
+    const emptyImageUrl = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+
+    const formatDateArray = (birthdayArray: number[]) => {
+        const year = birthdayArray[0];
+        const month = `0${birthdayArray[1]}`.slice(-2);
+        const day = `0${birthdayArray[2]}`.slice(-2);
+        return `${year}-${month}-${day}`;
+    };
+
+    // eslint-disable-next-line no-console
+    // console.log(data)
+    
+    const childBirth = isLoading ? '로딩중' : formatDateArray(data?.child_birthday || []);
 
     const handleEditClick = () => {
         setIsEditing(true);
+        setName(data?.child_name);
+        setNickname(data?.child_nickname);
+        setBirthDate(childBirth);
+        setGender(data?.child_gender);
+        setPreviousImage(data?.child_picture || emptyImageUrl)
     };
 
     const handleGenderChange = (selectedGender: string) => {
         setGender(selectedGender);
     };
 
-    // const handleMouseEnter = () => {
-    //     setIsHovered(true);
-    // }
+    const getGenderLabel = (gender1: string) => gender1 === 'M' ? '남자' : '여자';
 
-    // const handleMouseLeave = () => {
-    //     setIsHovered(false);
-    // }
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    }
 
-    // eslint-disable-next-line no-console
-    // console.log(name, nickname, birthDate, gender)
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    }
 
-
-    // const MAX_FILE_SIZE = 5 * 1024 * 1024;
+    const MAX_FILE_SIZE = 5 * 1024 * 1024;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    // const EditImage = (e: any) => {
-    //     e.preventDefault();
-    //     const file = e.target.files[0];
+    const EditImage = (e: any) => {
+        e.preventDefault();
+        const file = e.target.files[0];
 
-    //     if (!file) {
-    //         return;
-    //     }
+        if (!file) {
+            return;
+        }
 
-    //     if (file && file.size > MAX_FILE_SIZE) {
-    //         // eslint-disable-next-line no-alert
-    //         alert('파일 크기는 5MB 이하여야 합니다.');
-    //         return;
-    //     }
+        if (file && file.size > MAX_FILE_SIZE) {
+            // eslint-disable-next-line no-alert
+            alert('파일 크기는 5MB 이하여야 합니다.');
+            return;
+        }
 
-    //     setSelectedFile(file);
+        setSelectedFile(file);
 
-    //     // 미리보기
-    //     const reader = new FileReader();
-    //     reader.readAsDataURL(file);
-    //     reader.onloadend = () => {
-    //         setImagePreview(reader.result as string);
-    //     };
+        // 미리보기
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setImagePreview(reader.result as string);
+        };
 
-    //     if (file !== undefined) {
-    //         try{
-    //             const formData = new FormData();
-    //             formData.append('profileImageFile', file)
+        if (file !== undefined) {
+            try{
+                const formData = new FormData();
+                formData.append('profileImageFile', file)
 
-    //             mutate(formData, {
-    //                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    //                 onSuccess: (imagedata: any) => {
-    //                     // eslint-disable-next-line no-console
-    //                     console.log(imagedata)
-    //                 },
-    //             });
+                uploadMutate(formData, {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    onSuccess: (imagedata: any) => {
+                        setChangeFile(imagedata)
+                    },
+                });
 
-    //         } catch {
-    //             // alert("프로필 이미지 변경에 실패하였습니다.")
-    //         }
-    //     } else {
-    //         // eslint-disable-next-line no-alert
-    //         alert("파일을 찾을 수 없습니다.")
-    //     }
-    // }
+            } catch {
+                // alert("프로필 이미지 변경에 실패하였습니다.")
+            }
+        } else {
+            // eslint-disable-next-line no-alert
+            alert("파일을 찾을 수 없습니다.")
+        }
+    }
 
     const handleSaveClick = () => {
         setIsEditing(false);
-        // 수정 코드
 
-        // const UpdateProfile = {
-        //     // "child_seq": profile.childSeq,
-        //     "child_name": name,
-        //     "child_nickname": nickname,
-        //     "child_birthday": birthDate,
-        //     "child_gender": gender,
-        //     // "child_picture": string,
-        // }
+        const updatedChildPicture = changeFile !== "" ? changeFile : previousImage;
 
-        // const { data } = useUpdateProfile(UpdateProfile);
-        // setUpdatedInfo(data);
+        const UpdateProfile = {
+            "child_seq": profile.child_seq,
+            "child_name": name,
+            "child_nickname": nickname,
+            "child_birthday": birthDate,
+            "child_gender": gender,
+            "child_picture": updatedChildPicture,
+        }
+
+        try {
+            updateMutate(UpdateProfile, {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                onSuccess: (updatedata: any) => {
+                    // eslint-disable-next-line no-console
+                    console.log(updatedata)
+
+                    // console.error(data)
+                    setName(UpdateProfile.child_name)
+                    setNickname(UpdateProfile.child_nickname);
+                    setBirthDate(UpdateProfile.child_birthday);
+                    setGender(UpdateProfile.child_gender);
+                    setChangeFile(UpdateProfile.child_picture);
+
+                    window.location.reload();
+                },
+            });
+        } catch {
+            // 에러
+        }
     };
 
     return (
@@ -135,31 +156,31 @@ export default function ProfileBox() {
                 <ProfileImage>
                     <ImageTest>
                         {isEditing ? (
-                                // <ProfileImage1 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                                // <input 
-                                //     id="file"
-                                //     name="file"
-                                //     type="file"
-                                //     style={{ display: "none" }} 
-                                //     accept="image/*"
-                                //     onChange={EditImage}
-                                //     ref={imgRef}
-                                // />
-                                // <Image src={profile.childPicture} alt="프로필사진" width="150" height="150" className="rounded-[100%] shadow-lg"/>
-                                // <label htmlFor="file">
-                                //     {isHovered && (
-                                //         <div>
-                                //             <ProfileChange>
-                                //                 <CameraIcon fill="white" className="w-7 h-7"/>
-                                //             </ProfileChange>
-                                //         </div>
-                                //     )}
-                                // </label>
-                                // </ProfileImage1>
-                                <Image src={profile.childPicture} alt="프로필사진" width="150" height="150" className="rounded-[100%] shadow-lg"/>
+                                <ProfileImage1 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                                    <input 
+                                        id="file"
+                                        name="file"
+                                        type="file"
+                                        style={{ display: "none" }} 
+                                        accept="image/*"
+                                        onChange={EditImage}
+                                        ref={imgRef}
+                                    />
+                                    <Image src={imagePreview || profile?.child_picture || emptyImageUrl} alt="프로필사진" priority width="150" height="150" className="rounded-[100%] shadow-lg"/>
+                                    <label htmlFor="file">
+                                        {isHovered && (
+                                            <div>
+                                                <ProfileChange>
+                                                    <CameraIcon fill="white" className="w-7 h-7"/>
+                                                </ProfileChange>
+                                            </div>
+                                        )}
+                                    </label>
+                                </ProfileImage1>
                             ) : (
-                            <Image src={profile.childPicture} alt="프로필사진" width="150" height="150" className="rounded-[100%] shadow-lg"/>
-                            // <div>프로필</div>
+                            <ProfileImage1>
+                                <Image src={data?.child_picture || emptyImageUrl} alt="프로필사진" width="150" height="150" className="rounded-[100%] shadow-lg"/>
+                            </ProfileImage1>
                         )}
                     </ImageTest>
                 </ProfileImage>
@@ -169,10 +190,7 @@ export default function ProfileBox() {
                         {isEditing ? (
                             <Input value={name} onChange={(e) => setName(e.target.value)} />
                         ) : (
-                            <CurrentInfo>{profile.childName}</CurrentInfo>
-                            // <CurrentInfo>
-                            //     {updatedInfo ? updatedInfo.child_name : TestData.child_name}
-                            // </CurrentInfo>
+                            <CurrentInfo>{data?.child_name || '로딩중'}</CurrentInfo>
                         )}
                     </Name>
                     <Nickname>
@@ -180,7 +198,7 @@ export default function ProfileBox() {
                         {isEditing ? (
                             <Input value={nickname} onChange={(e) => setNickname(e.target.value)} />
                         ) : (
-                            <CurrentInfo>{TestData.nickname}</CurrentInfo>
+                            <CurrentInfo>{data?.child_nickname || '로딩중'}</CurrentInfo>
                         )}
                     </Nickname>
                     <Birth>
@@ -188,7 +206,7 @@ export default function ProfileBox() {
                         {isEditing ? (
                             <InputBirth type="date" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} />
                         ) : (
-                            <CurrentInfo>{TestData.birthday}</CurrentInfo>
+                            <CurrentInfo>{childBirth}</CurrentInfo>
                         )}
                     </Birth>
                     <Gender>
@@ -196,7 +214,7 @@ export default function ProfileBox() {
                         {isEditing ? (
                             <Btn>
                                 <BtnLabel 
-                                    className={`${TestData.gender === "M" ? "bg-[#EEA241] text-white" : ""} 
+                                    className={`${gender === "M" ? "bg-[#EEA241] text-white" : ""} 
                                     ${gender === "M" ? "bg-[#EEA241] text-white" : ""}`} 
                                     onClick={() => handleGenderChange("M")}
                                 >
@@ -211,7 +229,7 @@ export default function ProfileBox() {
                                     남자
                                 </BtnLabel>
                                 <BtnLabel
-                                    className={`${TestData.gender === "F" ? "bg-[#EEA241] text-white" : ""} 
+                                    className={`${gender === "F" ? "bg-[#EEA241] text-white" : ""} 
                                     ${gender === "F" ? "bg-[#EEA241] text-white" : ""}`} 
                                     onClick={() => handleGenderChange("F")}
                                 >
@@ -227,7 +245,7 @@ export default function ProfileBox() {
                                 </BtnLabel>
                             </Btn>
                             ) : (
-                            <CurrentInfo>{TestData.gender}</CurrentInfo>
+                            <CurrentInfo>{getGenderLabel(data?.child_gender)}</CurrentInfo>
                             )}
                     </Gender>
                 </Form>
