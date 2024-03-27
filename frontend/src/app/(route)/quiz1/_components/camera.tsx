@@ -78,17 +78,6 @@ function Camera(props: ICamera) {
 
   return (
     <Wrapper2>
-      <motion.div>
-        <motion.img
-          src={imgSrc}
-          alt="사진"
-          initial="closed"
-          animate="open"
-          variants={variants}
-          transition={{ duration: 0.5 }}
-          className="w-64 h-64"
-        />
-      </motion.div>
       {isVideoOn ? (
         <div className="flex justify-end items-end space-x-4">
           <motion.div>

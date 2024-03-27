@@ -138,20 +138,6 @@ function Quiz1() {
   useEffect(() => {
     if (data) {
       setNumProblems(data.length);
-      // const req = {
-      //   child_seq: profile.child_seq,
-      //   question_category_seq: Number(category),
-      //   mode: "A",
-      //   questions: data.map((problem: any) => ({
-      //     question_seq: problem.question_seq!,
-      //     question_history_is_ok: false,
-      //   })),
-      // };
-      // mutate(req, {
-      //   onSuccess: (newData) => {
-      //     router.push("/ending");
-      //   },
-      // });
     }
   }, [data]);
 
@@ -175,7 +161,6 @@ function Quiz1() {
             />
           )}
         </div>
-
         {/* 조건에 따라서 정답 맞추면 정답 모달/ 틀리면 오답 모달 */}
         <CorrectModal
           isOpen={isCorrectModalOpen}
