@@ -28,10 +28,10 @@ function Categories() {
               <Link
                 href={
                   mode
-                    ? `/${mode}?category=${category.questionCategorySeq}`
+                    ? `/${mode}?category=${category.question_category_seq}`
                     : ""
                 }
-                key={category.questionCategorySeq}
+                key={category.question_category_seq}
               >
                 <ImageContainer>
                   {/* <Image
@@ -39,7 +39,7 @@ function Categories() {
               alt="fruit"
               className=" w-48 h-32 object-cover shadow-md rounded-lg"
             /> */}
-                  <Text>{category.questionCategoryName}</Text>
+                  <Text>{category.question_category_name}</Text>
                 </ImageContainer>
               </Link>
             ))}

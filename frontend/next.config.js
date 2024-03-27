@@ -18,7 +18,6 @@ const nextConfig = withPWA({
         protocol: 'https',
         hostname: 'picsum.photos',
         port: '',
-        pathname: '/200',
       },
     ],
   },
