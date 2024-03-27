@@ -1,5 +1,3 @@
-import { BabyProfile } from "./profile.interface";
-
 export interface KakaoAuth {
   code: string;
 }
@@ -14,9 +12,9 @@ export interface KakaoLoginResponse {
 }
 
 export interface LoginResponse {
-  kakao_name: string;
-  access_token: string;
-  profiles: BabyProfile[];
+  jwtToken: string;
+  kakao_nickname: string;
+  memberId: string;
 }
 
 export interface KakaoLogoutRequest {

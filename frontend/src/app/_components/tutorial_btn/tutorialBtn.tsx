@@ -1,18 +1,18 @@
 // import Image from "next/image";
 // import question_mark from "@/app/assets/img/question_mark.png"
 
+"use client";
+
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Btn } from "./styles/TutorialBtn.styled";
 
 function TutorialBtn() {
-  
   const router = useRouter();
 
   const routetoTutorial = () => {
-      router.push('/tutorial')
+    router.push("/tutorial");
   };
-
 
   return (
     <Btn onClick={routetoTutorial}>?</Btn>
@@ -20,6 +20,4 @@ function TutorialBtn() {
   );
 }
 
-export default TutorialBtn
-
-
+export default TutorialBtn;

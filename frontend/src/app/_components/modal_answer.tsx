@@ -21,6 +21,7 @@ function AnswerModal(props: AnswerModalProps) {
     }
   }, [isOpen]);
 
+
   return (
     <>
       <div />

@@ -17,6 +17,7 @@ interface CorrectModalProps {
 
 function CorrectModal(props: CorrectModalProps) {
   const { isOpen, onClose } = props;
+
   const onInit = ({ conductor }: { conductor: TConductorInstance }) => {
     conductor.shoot();
   };

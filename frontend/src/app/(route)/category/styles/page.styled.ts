@@ -1,17 +1,16 @@
 import tw from "tailwind-styled-components";
 
 export const Wrapper = tw.div`
-h-screen
 flex
 flex-col
 items-center
 justify-start
+space-y-4
 `;
 
 export const Title = tw.h1`
 text-4xl
 font-bold
-mb-10
 `;
 
 export const Explain = tw.h3`
@@ -19,13 +18,9 @@ text-xl
 `;
 
 export const Category = tw.div`
-mt-10
-w-96
-flex
-justify-center
-mx-auto
-gap-8
-items-center
+grid 
+grid-cols-2
+gap-4
 `;
 
 export const ImageContainer = tw.div`

@@ -1,27 +1,21 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { useSendResult } from "@/app/hooks/useGameA";
-import { Wrapper2 } from "./styles/Camera.styled";
 
-function Camera() {
+import { useEffect, useRef, useState } from "react";
+import { useSendResultMutation } from "@/app/hooks/useGameA";
+import { motion } from "framer-motion";
+import { Wrapper2, Video } from "./styles/Camera.styled";
+
+interface ICamera {
+  setIsTrue: (stat: boolean) => void;
+  input: string;
+}
+function Camera(props: ICamera) {
+  const { setIsTrue, input } = props;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const videoRef = useRef<any>(null);
   const [imgSrc, setImgSrc] = useState("");
 
-  const { data } = useSendResult(
-    "user",
-    {
-      picture: imgSrc,
-      question_name: "camera",
-    },
-    !!imgSrc,
-  );
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-  }, [data]);
-
+  const { mutate } = useSendResultMutation();
   useEffect(() => {
     const constraints = { audio: false, video: true };
     const getMediaStream = async () => {
@@ -39,7 +33,7 @@ function Camera() {
     getMediaStream();
   }, []);
 
-  const takePhoto = () => {
+  const takePhoto = async () => {
     const canvas = document.createElement("canvas");
     const video = videoRef.current;
     if (video) {
@@ -48,18 +42,35 @@ function Camera() {
       canvas
         .getContext("2d")!
         .drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      const canvasBlob: Blob = await new Promise((resolve) => {
+        canvas.toBlob((blob) => {
+          if (blob) {
+            resolve(blob);
+          }
+        }, "image/png");
+      });
       setImgSrc(canvas.toDataURL("image/png"));
-      // eslint-disable-next-line no-console
-      console.error(canvas.toDataURL("image/png"));
+      const formData = new FormData();
+      formData.append("picture", canvasBlob, "image.png");
+      formData.append("question_name", input);
+      mutate(formData, {
+        onSuccess: (data) => {
+          // eslint-disable-next-line no-console
+          console.log(data);
+          setIsTrue(data.question_history_is_ok);
+        },
+      });
     }
   };
 
+  useEffect(() => {}, [imgSrc]);
+
   return (
     <Wrapper2>
-      <video ref={videoRef} autoPlay height={300} width={300} />
-      {imgSrc && (
-        <Image src={imgSrc} id="target" alt="INKN" height={300} width={300} />
-      )}
+      <motion.div>
+        <Video ref={videoRef} autoPlay height={300} width={300} />
+      </motion.div>
       <button name="take_photo" type="button" onClick={takePhoto}>
         사진찍기
       </button>

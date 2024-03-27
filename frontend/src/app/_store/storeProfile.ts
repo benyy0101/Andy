@@ -6,13 +6,6 @@ import {
   BabyProfile,
 } from "../_models/profile.interface";
 
-const defaultProfile: ProfileState = {
-  kakao_name: "",
-  child_seq: "",
-  child_name: "",
-  child_picture: "",
-};
-
 const testProfile: ProfileState = {
   kakao_name: "test",
   child_seq: "1",
@@ -23,10 +16,11 @@ const testProfile: ProfileState = {
 interface ProfileStore {
   profile: ProfileState;
 }
+
 const storeProfile = create(
   persist<ProfileStore & ProfileActions>(
     (set) => ({
-      profile: process.env.LOCAL_DEV === "true" ? testProfile : defaultProfile,
+      profile: testProfile,
       setName: (kakaoname: string) =>
         set((prev) => ({
           profile: {

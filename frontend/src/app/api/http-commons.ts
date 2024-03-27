@@ -1,20 +1,25 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
-const serverUrl = process.env.SERVER_URL || "";
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || "";
 const loginUrl = process.env.NEXT_PUBLIC_LOGIN_URL || "";
-const imageBaseUrl = process.env.IMAGE_BASE_URL || "";
+const imageBaseUrl = process.env.NEXT_PUBLIC_IMG_URL || "";
 const localDev = process.env.LOCAL_DEV || false;
+const quizUrl = process.env.NEXT_PUBLIC_QUIZ_URL || "";
 
 const saveToken = (response: AxiosResponse) => {
   if (response.data.jwtToken !== null) {
     // eslint-disable-next-line no-console
-    console.log(response.data.jwtToken.accessToken);
+    // console.log(response.data.jwtToken.accessToken);
     localStorage.setItem("jwtToken", response.data.jwtToken.accessToken);
   }
 };
 
 const loadToken = (config: AxiosRequestConfig) => {
-  const token = localStorage.getItem("jwtToken");
+  let token = null;
+  if (typeof window !== "undefined") {
+    token = localStorage.getItem("jwtToken");
+  }
+
   if (token && config.headers) {
     return Object.assign(config.headers, { Authorization: `Bearer ${token}` });
   }
@@ -23,6 +28,22 @@ const loadToken = (config: AxiosRequestConfig) => {
 
 export const localAxios = axios.create({
   baseURL: serverUrl,
+  withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+export const gameAxios = axios.create({
+  baseURL: "http://j10a102.p.ssafy.io:8000",
+  withCredentials: true,
+  headers: {
+    "Content-Type": "multipart/form-data",
+  },
+});
+
+export const quizAxios = axios.create({
+  baseURL: quizUrl,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
@@ -60,6 +81,21 @@ kakaoAxios.interceptors.response.use(
 );
 
 localAxios.interceptors.request.use((config) => {
+  loadToken(config);
+  return config;
+});
+
+imageAxios.interceptors.request.use((config) => {
+  loadToken(config);
+  return config;
+});
+
+gameAxios.interceptors.request.use((config) => {
+  loadToken(config);
+  return config;
+});
+
+quizAxios.interceptors.request.use((config) => {
   loadToken(config);
   return config;
 });
