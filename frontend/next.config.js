@@ -7,7 +7,7 @@ const nextConfig = withPWA({
     // 어디서 bailout이 발생하는지 찾기
     missingSuspenseWithCSRBailout: false,
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
   compiler: {               // 추가
     styledComponents: true, // 추가
   },
@@ -18,7 +18,6 @@ const nextConfig = withPWA({
         protocol: 'https',
         hostname: 'picsum.photos',
         port: '',
-        pathname: '/200',
       },
     ],
   },

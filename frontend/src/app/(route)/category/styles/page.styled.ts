@@ -5,7 +5,7 @@ flex
 flex-col
 items-center
 justify-start
-space-y-4
+space-y-8
 `;
 
 export const Title = tw.h1`
