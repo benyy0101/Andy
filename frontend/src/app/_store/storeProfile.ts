@@ -11,7 +11,7 @@ const testProfile: ProfileState = {
   child_seq: "1",
   child_name: "테스트",
   // child_picture: "https://picsum.photos/400",
-  child_picture: '',
+  child_picture: "",
 };
 
 interface ProfileStore {

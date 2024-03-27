@@ -11,8 +11,8 @@ const nextConfig = withPWA({
   compiler: {               // 추가
     styledComponents: true, // 추가
   },
-  images: {
-    domains: ['s3.ap-northeast-2.amazonaws.com'],
+  // images: {
+    // domains: ['s3.ap-northeast-2.amazonaws.com'],
     // remotePatterns: [
     //   {
     //     protocol: 'https',
@@ -21,7 +21,7 @@ const nextConfig = withPWA({
     //     pathname: '/200',
     //   },
     // ],
-  },
+  // },
   async redirects() {
     return [
       {
@@ -57,6 +57,6 @@ const nextConfig = withPWA({
   
 module.exports = {
   images: {
-    domains: ['us.123rf.com', 'vrthumb.imagetoday.co.kr', 'img.segye.com', 't3.ftcdn.net', 'img.hankyung.com'], // 이미지 호스트 이름 추가
+    domains: ['us.123rf.com', 'vrthumb.imagetoday.co.kr', 'img.segye.com', 't3.ftcdn.net', 'img.hankyung.com', 's3.ap-northeast-2.amazonaws.com'], // 이미지 호스트 이름 추가
   },
 }
