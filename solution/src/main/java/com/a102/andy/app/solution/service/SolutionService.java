@@ -78,7 +78,7 @@ public class SolutionService {
 
         // HTTP 요청 및 응답 처리
         ResponseEntity<ResultResponseDto> responseEntity = restTemplate.exchange(
-                "http://j10a102.p.ssafy.io:8000/Detection",
+                "https://j10a102.p.ssafy.io/Detection",
                 HttpMethod.POST,
                 requestEntity,
                 ResultResponseDto.class
