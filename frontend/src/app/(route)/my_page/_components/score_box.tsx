@@ -1,6 +1,8 @@
 "use client";
 
 import dayjs from "dayjs";
+import storeProfile from "@/app/_store/storeProfile"
+import { useMypageByDate } from "../../../hooks/useMypage"
 import {
   ScoreWrapper,
   SelectDate,
@@ -12,20 +14,24 @@ import {
 
 export default function ScoreBox({ dateSelect }: { dateSelect: string }) {
   const rdate = dateSelect;
-  // const selectyear = parseInt(rdate.substring(0, 4), 10);
+  const selectyear = parseInt(rdate.substring(0, 4), 10);
   const selectmonth = parseInt(rdate.substring(4, 6), 10);
   const selectday = parseInt(rdate.substring(6, 8), 10);
+  const { profile } = storeProfile();
 
   // 일별 기록 불러오기
   // 자식번호, 년, 월, 일
-  //   const requestData = {
-  //     // "child_seq": ?,
-  //     year: selectyear,
-  //     month: selectmonth,
-  //     day: selectday,
-  //   };
+    const requestData = {
+      "child_seq": profile.child_seq,
+      "year": selectyear,
+      "month": selectmonth,
+      "day": selectday,
+    };
 
-  // const { data, error } = useMypageByDate(requestData)
+  const { data } = useMypageByDate(requestData)
+  
+  // eslint-disable-next-line no-console
+  console.log(data)
 
   // data.exam_score?
   // const testRes = ["4/5", "3/5", "4/5", "2/5"];

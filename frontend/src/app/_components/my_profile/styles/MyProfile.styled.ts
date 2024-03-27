@@ -27,21 +27,22 @@ export const ProfileInfo = tw.div`
 flex
 flex-col
 justify-between
-h-[200px]
+h-[170px]
 w-[200px]
+bg-[#fff]
 rounded-[5px]
-bg-[rgba(255,230,124,0.3)]
 absolute
-top-[20px]
-right-[20px]
+top-[100px]
+right-[40px]
 z-[20]
 px-5
 pt-8
 pb-4
 `;
 
+// bg-[rgba(255,230,124,0.3)]
+
 export const Name = tw.div`
-ml-[10%]
 font-bold
 `;
 
@@ -49,16 +50,18 @@ export const Btn = tw.div`
 mt-5
 flex
 flex-col
-h-[60%]
+h-[70%]
 justify-between
+font-bold
+text-white
 `;
 
 export const Mypage = tw.button`
 rounded-[5px]
 w-full
-h-[40px]
+h-[35px]
 py-1
-bg-[rgba(255,230,124,0.5)]
+bg-[#EEA241]
 text-[13px]
 hover:bg-[rgba(255,230,124,0.9)]
 transition-all
@@ -67,9 +70,9 @@ transition-all
 export const ProfileChange = tw.button`
 rounded-[5px]
 w-full
-h-[40px]
+h-[35px]
 py-1
-bg-[rgba(255,230,124,0.5)]
+bg-[#EEA241]
 text-[13px]
 hover:bg-[rgba(255,230,124,0.9)]
 transition-all

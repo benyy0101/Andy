@@ -5,6 +5,7 @@ import Logo from "../../_components/logo/Logo";
 import CalendarBox from "./_components/calendar";
 import ProfileBox from "./_components/profile_box";
 import ScoreBox from "./_components/score_box";
+
 import {
   Wrapper,
   Content,
