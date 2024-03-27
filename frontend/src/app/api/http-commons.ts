@@ -35,7 +35,7 @@ export const localAxios = axios.create({
 });
 
 export const gameAxios = axios.create({
-  baseURL: "http://j10a102.p.ssafy.io:8000",
+  baseURL: quizUrl,
   withCredentials: true,
   headers: {
     "Content-Type": "multipart/form-data",

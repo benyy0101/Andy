@@ -58,8 +58,6 @@ export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: str
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     onSuccess: (data: any) => {
                         onImageUpload(data);
-                        // eslint-disable-next-line no-console
-                        console.log(data)
                     },
                 });
 
@@ -89,6 +87,7 @@ export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: str
                     style={{ borderRadius: "100%", backgroundColor: "#FFFFFF" }}
                     alt = "profileimage"
                     fill
+                    objectFit="cover"
                 />
                 <label htmlFor="file">
                     {isHovered && (

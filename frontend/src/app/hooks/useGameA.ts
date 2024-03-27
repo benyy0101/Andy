@@ -3,10 +3,10 @@
 
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
-  CategoriesResponse,
+  Category,
   GameResultRequest,
   GameResultResponse,
-  GamebyCategoryResponse,
+  Problem,
   ProblemResultResponse,
   ReexamineRequest,
   ReexamineResponse,
@@ -24,7 +24,7 @@ import {
 
 // GAME-001
 export const useCategories = () => {
-  const query = useQuery<CategoriesResponse>({
+  const query = useQuery<Category[]>({
     queryKey: ["categories"],
     queryFn: getCategories,
   });
@@ -34,9 +34,17 @@ export const useCategories = () => {
 
 // GAME-002
 export const useGamebyCategory = (question_category_seq: number) => {
-  const query = useQuery<GamebyCategoryResponse>({
+  const query = useQuery<any>({
     queryKey: ["game", { type: "A" }],
     queryFn: () => getGamebyCategory({ question_category_seq }),
+    select: (data) => {
+      const newData: Problem[] = [];
+      data.problems.map((problem: any) => {
+        newData.push(problem.problem);
+        return problem;
+      });
+      return newData;
+    },
   });
 
   return query;

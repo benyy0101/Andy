@@ -36,7 +36,19 @@ shadow-md
 hover:p-12
 transition-all
 text-[30px]
+flex
+justify-center
+items-center
+overflow-hidden
 `;
+
+export const ImageTest = tw.div`
+w-[100%]
+h-[100%]
+flex
+justify-center
+aspect-square
+`
 
 export const ProfileName = tw.button`
 font-bold
@@ -73,5 +85,11 @@ items-center
 // `
 
 export const DeleteBtn = tw.button`
-border
+p-2
+m-2
+rounded-[10px]
+bg-[#EEA241]
+text-white
+text-sm
+hover:bg-[#f08a07]
 `

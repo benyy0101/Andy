@@ -40,7 +40,7 @@ function Timer({ reset }: TimerProps) {
   };
 
   return (
-    <span id="MyTimer" className="">
+    <span id="MyTimer" className="flex w-5/6 font-bold text-xl justify-end ">
       {calculateTime()}
     </span>
   );

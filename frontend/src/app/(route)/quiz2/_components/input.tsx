@@ -1,20 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Wrapper, Input } from "./styles/input.styled";
 
-interface InputComponentProps {
-  onSubmit: (answer: string) => void;
-  onInputChange: (value: string) => void;
+interface InputProps {
+  onAnswerSubmit: (value: string) => void;
+  // eslint-disable-next-line react/no-unused-prop-types
+  onChange: (newData: string) => void;
+  // eslint-disable-next-line react/no-unused-prop-types
+  onSubmit: (isCorrect: boolean) => void;
+  // eslint-disable-next-line react/no-unused-prop-types
+  correctAnswer: string;
+  // eslint-disable-next-line react/no-unused-prop-types
+  inputValue: string;
 }
 
-function InputComponent(props: InputComponentProps) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { onSubmit, onInputChange } = props;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function InputComponent({ onAnswerSubmit, onChange, onSubmit, correctAnswer, inputValue }: InputProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [isValid, setIsValid] = useState(false);
+  const [userInputValue, setUserInputValue] = useState("");
+  // const [inputValue, setInputValue] = useState("");
 
-  const [inputValue, setInputValue] = useState("");
+  useEffect(() => {
+    onChange(userInputValue);
+  }, [userInputValue, onChange]);
+
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -25,11 +36,15 @@ function InputComponent(props: InputComponentProps) {
     setIsValid(e.target.value !== "");
   };
 
-  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const newValue = e.target.value;
-  //   setInputValue(newValue);
-  //   onInputChange(newValue);
-  // };
+  const handleSubmit = () => {
+    onAnswerSubmit(userInputValue); //  사용자 입력갑을 채점하는 데 사용
+    const isCorrectAnswer = userInputValue === correctAnswer; // 정답과 입력값 비교
+    onSubmit(isCorrectAnswer);
+    setUserInputValue("");
+  }
+
+
+  // 입력받는 값의 상태 state를 정의해주고 그 값을 page에 넘겨서 null로 변경
 
   return (
     <Wrapper>
@@ -40,6 +55,8 @@ function InputComponent(props: InputComponentProps) {
             required
             onFocus={handleFocus}
             onBlur={handleBlur}
+            onChange={(e) => setUserInputValue(e.target.value)}
+            value={userInputValue}
             className={`w-72 
                     border-b 
                     border-lightorange 
@@ -50,7 +67,7 @@ function InputComponent(props: InputComponentProps) {
                     text-orange focus:outline-none 
                     placeholder-lightorange
                     ${isFocused || isValid ? "border-orange" : "border-lightorange"}`}
-            onChange={(e) => setInputValue(e.target.value)}
+            // onChange={(e) => setInputValue(e.target.value)}
           />
 
           <div
@@ -95,8 +112,7 @@ function InputComponent(props: InputComponentProps) {
                     px-3
                     rounded"
             type="button"
-            value={inputValue}
-            onClick={() => onSubmit(inputValue)}
+            onClick={handleSubmit}
           >
             채점하기
           </button>

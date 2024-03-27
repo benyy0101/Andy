@@ -1,5 +1,4 @@
 import {
-  CategoriesResponse,
   ProblemResultResponse,
   ReexamineResponse,
   WrongProblemsResponse,
@@ -9,11 +8,12 @@ import {
   WrongProblemsReqeust,
   GameResultResponse,
   GameResultRequest,
+  Category,
 } from "../_models/gameA.interface";
 import { gameAxios, localAxios, quizAxios } from "./http-commons";
 
 // GAME-001
-export const getCategories = async (): Promise<CategoriesResponse> => {
+export const getCategories = async (): Promise<Category[]> => {
   const response = await quizAxios.get("/game/category");
   return response.data;
 };
@@ -32,7 +32,7 @@ export const getGamebyCategory = async (
 export const sendProblemResult = async (
   request: FormData,
 ): Promise<ProblemResultResponse> => {
-  const response = await gameAxios.post("/object", request);
+  const response = await gameAxios.post("/game", request);
   return response.data;
 };
 
@@ -40,7 +40,7 @@ export const sendProblemResult = async (
 export const getGameResult = async (
   request: GameResultRequest,
 ): Promise<GameResultResponse> => {
-  const response = await localAxios.post("/game/result", request);
+  const response = await quizAxios.post("/game/result", request);
   return response.data;
 };
 

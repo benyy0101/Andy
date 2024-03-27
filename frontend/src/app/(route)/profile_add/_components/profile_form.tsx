@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
+// import { useRouter } from "next/navigation"
 import {
     Form,
     Label,
@@ -19,7 +19,7 @@ import { useCreateProfile } from "../../../hooks/useProfile"
 // import testimage from "../../../asset/_img/smile_stamp.png"
 
 export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
-    const router = useRouter();
+    // const router = useRouter();
     const { mutate } = useCreateProfile();
 
     const [name, setName] = useState("");
@@ -68,8 +68,8 @@ export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
                 onSuccess: (data: any) => {
                     // eslint-disable-next-line no-console
                     console.log(data)
-                    router.push("/profile_list")
-                    // console.error(data)
+                    // router.push('/profile_list');
+                    window.location.href = '/profile_list';
                 },
             });
         } catch {

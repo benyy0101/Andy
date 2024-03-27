@@ -1,6 +1,6 @@
 import Logo from "../../_components/logo/Logo";
 import QuizButton from "./_components/QuizButton";
-// import { My_profile } from "../../_components/my_profile/MyProfile"
+import { MyProfile } from "../../_components/my_profile/MyProfile"
 import { Wrapper, Btn } from "./styles/Page.styled";
 
 const btnData = [
@@ -25,7 +25,7 @@ export default function MainQuiz() {
   return (
     <Wrapper>
       <Logo />
-      {/* <My_profile /> */}
+      <MyProfile />
       <Btn>
         {btnData.map((btn) => (
           <QuizButton
