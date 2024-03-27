@@ -13,9 +13,12 @@ export const AnswerBackground = tw.div`
   `;
 
 export const AnswerContent = tw.div`
+  text-orange
+  p-8
+  rounded-lg
+  text-center
   font-extrabold
   text-6xl
-  text-center
   `;
 
 export const NextButton = tw.button`
@@ -25,9 +28,9 @@ export const NextButton = tw.button`
   bg-orange
   text-white
   rounded
-  hover:bg-yellow 
+  hover:bg-yellow
   hover:text-orange
   fixed
   right-5
   bottom-5
-`;
+  `;

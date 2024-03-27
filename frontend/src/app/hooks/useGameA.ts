@@ -35,7 +35,7 @@ export const useCategories = () => {
 // GAME-002
 export const useGamebyCategory = (question_category_seq: number) => {
   const query = useQuery<GamebyCategoryResponse>({
-    queryKey: ["game", { type: "A" }],
+    queryKey: ["game", { type: "B" }],
     queryFn: () => getGamebyCategory({ question_category_seq }),
   });
 
@@ -91,3 +91,4 @@ export const useReexamine = (user: string, data: ReexamineRequest) => {
   });
   return query;
 };
+
