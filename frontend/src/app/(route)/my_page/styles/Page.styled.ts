@@ -330,8 +330,10 @@ items-center
 export const ImageTest = tw.div`
 w-[100%]
 rounded-[100%]
-bg-[#FFE67C]
 aspect-square
+flex
+justify-center
+items-center
 `
 
 export const CurrentInfo = tw.div`
@@ -420,4 +422,30 @@ export const TestNum = tw.div`
 `
 
 export const TestRes = tw.div`
+`
+
+export const ProfileChange = tw.div`
+bg-[rgba(0,0,0,0.5)]
+rounded-[100%]
+w-[100%]
+h-[100%]
+shadow-md
+flex
+justify-center
+items-center
+absolute
+top-0
+left-0
+cursor-pointer
+`
+
+export const ProfileImage1 = tw.div`
+rounded-[100%]
+shadow-md
+flex
+justify-center
+align-center
+relative
+w-[100%]
+aspect-square
 `
