@@ -1,17 +1,19 @@
 import tw from "tailwind-styled-components";
 
 export const Wrapper = tw.div`
-h-screen
 flex
 flex-col
 items-center
 justify-start
 w-full
+h-svw
+space-y-8
 `;
 
 export const Title = tw.h1`
 text-3xl
 font-extrabold
+flex-grow-[1]
 `;
 
 export const Explain = tw.h3`

@@ -16,7 +16,6 @@ export const Wrapper = tw.div`
 
 export const Wrapper2 = tw.div`
 flex
-flex-col
 `;
 
 export const Video = tw.video`
