@@ -9,7 +9,7 @@ import WrongModal from "@/app/_components/modal_wrong";
 import AnswerModal from "@/app/_components/modal_answer";
 import QuitModal from "@/app/_components/modal_quit";
 import { Quit } from "@/app/_components/quit_btn/quit";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import storeProfile from "@/app/_store/storeProfile";
 import { useGameResultMutation } from "@/app/hooks/useGameA";
 import InputComponent from "./_components/input";
@@ -21,27 +21,27 @@ const mockQuizData = {
     {
       question_seq: 1,
       question_name: "사과",
-      question_picture: "사과 이미지",
+      question_picture: "https://us.123rf.com/450wm/mblach/mblach1402/mblach140200030/25799171-%EC%82%AC%EA%B3%BC.jpg",
     },
     {
       question_seq: 2,
       question_name: "배",
-      question_picture: "배 이미지",
+      question_picture: "https://vrthumb.imagetoday.co.kr/2018/05/04/tip250t013093.jpg",
     },
     {
       question_seq: 3,
       question_name: "포도",
-      question_picture: "포도 이미지",
+      question_picture: "https://img.segye.com/content/image/2017/08/30/20170830515039.jpg",
     },
     {
       question_seq: 4,
       question_name: "참외",
-      question_picture: "참외 이미지",
+      question_picture: "https://t3.ftcdn.net/jpg/03/65/96/04/360_F_365960424_nTxaVl37phLHW9p6nyNegvVeEImXAJIn.jpg",
     },
     {
       question_seq: 5,
       question_name: "키위",
-      question_picture: "키위 이미지",
+      question_picture: "https://img.hankyung.com/photo/202106/AA.26532434.1.jpg",
     },
   ],
 };
@@ -67,13 +67,30 @@ function Quiz2Page() {
   const [isQuitModalOpen, setIsQuitModalOpen] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const { mutate } = useGameResultMutation();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [inputValue, setInputValue] = useState("");
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const [score, setScore] = useState<number>(0); // 맞힌 문제 개수 체크
+  const router = useRouter()
+
+  useEffect(() => {
+    setInputValue("");
+  }, [currentSeq]);
+  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-shadow
   const handleInputSubmit = (inputValue: any) => {
     // eslint-disable-next-line no-console
-    console.log('상위 컴포넌트에서 처리된 입력값', inputValue);
+    console.log('사용자가 친 입력값', inputValue);
+    setInputValue('');
   };
   
-  
+  // const routeToEndingPage = () => {
+  //   router.push('/ending')
+  // };
+
+  const routeToEndingPage = () => {
+    router.push(`/ending?score=${score}`);
+  };
+
   // 다음 라운드 넘어갈 때 타이머 리셋
   const handleResetTimer = () => {
     setReset(true);
@@ -83,14 +100,25 @@ function Quiz2Page() {
   };
   
   // 채점 후 맞는지 틀리는지에 따라 다르게
+  // const handleIsTrue = (stat: boolean) => {
+  //   setIsTrue(stat);
+  // };
+
   const handleIsTrue = (stat: boolean) => {
+    if (stat) {
+      setScore((prevScore) => prevScore + 1);
+    }
     setIsTrue(stat);
-  };
+  }
   
   // 모달 모음집
   const handleCloseAnswerModal = () => {
     setIsAnswerModalOpen(false);
     handleResetTimer();
+
+    if (currentSeq === numProblems - 1) {
+      routeToEndingPage();
+    }
   };
   
   const handleCloseCorrectModal = () => {
@@ -106,6 +134,21 @@ function Quiz2Page() {
   const handleOpenQuitModal = () => setIsQuitModalOpen(true);
   const handleCloseQuitModal = () => setIsQuitModalOpen(false);
 
+ 
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    // console.log("data 배열의 길이:", data.length);
+    // eslint-disable-next-line no-console
+    console.log("currentSeq의 값:", currentSeq);
+    // eslint-disable-next-line no-console
+    console.log('개수', score)
+    // eslint-disable-next-line no-console
+    console.log('이름', profile.child_name)
+  }, [data, currentSeq]);
+
+
+  // eslint-disable-next-line no-console
+  // console.log(profile.child_name);
 
   useEffect(() => {
     if (isTrue !== undefined) {
@@ -116,17 +159,29 @@ function Quiz2Page() {
           question_history_is_ok: isTrue,
         },
       ]);
-      setCurrentSeq(currentSeq + 1);
       if (isTrue) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         setIsCorrectModalOpen(true);
+        // eslint-disable-next-line no-console
+        console.log(data[currentSeq].question_name);
       } else {
         setIsWrongModalOpen(true);
       }
-      // eslint-disable-next-line no-console
-      console.log(profile);
+      // // eslint-disable-next-line no-console
+      // console.log(profile);
     }
     setIsTrue(undefined);
   }, [isTrue]);
+
+  const handleNextQuestion = () => {
+    if (currentSeq < numProblems - 1) {
+      setCurrentSeq(currentSeq + 1);
+      setIsAnswerModalOpen(false);
+      setInputValue("");
+    } else {
+      routeToEndingPage(); // 퀴즈가 끝나면 결과 페이지로 라우팅
+    }
+  };
   
   
   useEffect(() => {
@@ -145,46 +200,15 @@ function Quiz2Page() {
           // eslint-disable-next-line no-console
           console.log(newData);
         },
+
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSeq]);
-  
 
-
-
-
-
-  const router = useRouter()
-  // 다음 문제로 넘어가기 함수
-  // const goToNextRound = () => {
-    //   if (currentRoundIndex < totalQuiz) {
-      //     // 라운드 인덱스 업데이트 (뮨재1 -> 문제2)
-      //     setCurrentRoundIndex(currentRoundIndex + 1);
-      //     // 다음 문제 정답 설정
-      
-      //     // 모달 상태 초기화
-      //     setIsCorrectModalOpen(false);
-      //     setIsWrongModalOpen(false);
-  //     setIsAnswerModalOpen(false);
-  //   } else {
-  //     // 엔딩 페이지로 이동하긔
-  //     router.push('/ending');
-  //   }
-  // }
-
-
-  // // 임시 DB용으로 하나 넣어놓음
-  // const correctAnswer = "사과";
- 
-  // const handleDataChange = (newData: SetStateAction<string>) => {
-  //   setData(newData);
-  //   // 입력된 데이터가 정답과 일치하는지 확인
-  //   if(newData === correctAnswer) {
-  //     setIsCorrectModalOpen(true);
-  //   } else {
-  //     setIsWrongModalOpen(true);
-  //   }
-  // };
+  const handleDataChange = (newData: string) => {
+    setInputValue(newData);
+  };
 
 
   return (
@@ -192,22 +216,32 @@ function Quiz2Page() {
       <PaddingWrapper>
       {/* <ProgressBar max={numProblems} value={status.length} /> */}
         
-        <Title>문제 1</Title>
+        <Title>라운드 {currentSeq + 1}</Title>
 
         <Explain>이것은 무엇일까요?</Explain>
 
-        <ImageTimeContainer>
-          <PhotoContainer>
-            <Photo question_picture="" />
-          </PhotoContainer>
-          
-          <TimerContainer>
-            <Timer />
-          </TimerContainer>
-        </ImageTimeContainer>
+        {/* 현재 라운드의 데이터가 있고  */}
+        {currentSeq >= 0 && currentSeq < numProblems && data[currentSeq] && (
+          <ImageTimeContainer>
+            <PhotoContainer>
+              <Photo question_picture={data[currentSeq].question_picture} />
+            </PhotoContainer>
+            
+            <TimerContainer>
+              <Timer reset={reset} />
+            </TimerContainer>
+          </ImageTimeContainer>
+        )}
 
-        <InputComponent
-           />
+        {currentSeq >= 0 && currentSeq < numProblems && data[currentSeq] && (
+          <InputComponent
+            onAnswerSubmit={handleInputSubmit}
+            onChange={handleDataChange}
+            onSubmit={handleIsTrue}
+            correctAnswer={data[currentSeq].question_name}
+            inputValue={inputValue}
+          />
+        )}
         {/* 게임 도중 나가기  */}
         <Quitbtn onClick={handleOpenQuitModal}>
           <Quit />
@@ -218,8 +252,14 @@ function Quiz2Page() {
       <CorrectModal isOpen={isCorrectModalOpen} onClose={handleCloseCorrectModal} />
       <WrongModal isOpen={isWrongModalOpen} onClose={handleCloseWrongModal} />
       {/* eslint-disable-next-line react/jsx-no-bind */}
-      <AnswerModal isOpen={isAnswerModadlOpen} onClose={handleCloseAnswerModal} answer="" onNext={function (): void {
-      } } />
+      
+        <AnswerModal
+          isOpen={isAnswerModadlOpen} 
+          onClose={handleCloseAnswerModal} 
+          answer={data[currentSeq].question_name}
+          onNext={handleNextQuestion}
+        />
+      
       <QuitModal isOpen={isQuitModalOpen} onClose={handleCloseQuitModal} />
     </Wrapper>
   );

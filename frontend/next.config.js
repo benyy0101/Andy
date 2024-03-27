@@ -32,4 +32,8 @@ const nextConfig = withPWA({
   },
 })
   
-module.exports = nextConfig;
+module.exports = {
+  images: {
+    domains: ['us.123rf.com', 'vrthumb.imagetoday.co.kr', 'img.segye.com', 't3.ftcdn.net', 'img.hankyung.com'], // 이미지 호스트 이름 추가
+  },
+}

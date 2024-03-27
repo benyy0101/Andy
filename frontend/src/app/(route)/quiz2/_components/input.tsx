@@ -1,13 +1,28 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Wrapper, Input } from "./styles/input.styled";
 
+interface InputProps {
+  onAnswerSubmit: (value: string) => void;
+  // eslint-disable-next-line react/no-unused-prop-types
+  onChange: (newData: string) => void;
+  // eslint-disable-next-line react/no-unused-prop-types
+  onSubmit: (isCorrect: boolean) => void;
+  // eslint-disable-next-line react/no-unused-prop-types
+  correctAnswer: string;
+  // eslint-disable-next-line react/no-unused-prop-types
+  inputValue: string;
+}
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function InputComponent({ onAnswerSubmit }: any) {
+function InputComponent({ onAnswerSubmit, onChange, onSubmit, correctAnswer, inputValue }: InputProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [isValid, setIsValid] = useState(false);
+  const [userInputValue, setUserInputValue] = useState("");
+
+  useEffect(() => {
+    onChange(inputValue);
+  }, [inputValue, onChange]);
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -16,9 +31,17 @@ function InputComponent({ onAnswerSubmit }: any) {
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     setIsFocused(false);
     setIsValid(e.target.value !== "");
-    // 상위 컴포넌트의 함수를 호출해서 입력값을 전달해줌
-    onAnswerSubmit(e.target.value);
   };
+
+  const handleSubmit = () => {
+    onAnswerSubmit(userInputValue); //  사용자 입력갑을 채점하는 데 사용
+    const isCorrectAnswer = userInputValue === correctAnswer; // 정답과 입력값 비교
+    onSubmit(isCorrectAnswer);
+    setUserInputValue("");
+  }
+
+
+  // 입력받는 값의 상태 state를 정의해주고 그 값을 page에 넘겨서 null로 변경
 
   return (
     <Wrapper>
@@ -29,6 +52,8 @@ function InputComponent({ onAnswerSubmit }: any) {
             required
             onFocus={handleFocus}
             onBlur={handleBlur}
+            onChange={(e) => setUserInputValue(e.target.value)}
+            value={userInputValue}
             className={`w-72 
                     border-b 
                     border-lightorange 
@@ -83,6 +108,7 @@ function InputComponent({ onAnswerSubmit }: any) {
                     px-3
                     rounded"
             type="button"
+            onClick={handleSubmit}
           >
             채점하기
           </button>
