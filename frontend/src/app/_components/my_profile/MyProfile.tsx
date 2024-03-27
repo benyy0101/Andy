@@ -1,9 +1,10 @@
 "use client";
 
-import Img from "next/image";
+import Image from "next/image";
 import { useState } from "react";
+// import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Main_Character from "../../asset/_img/character.png";
+import storeProfile from "@/app/_store/storeProfile"
 import {
   Btn,
   Mypage,
@@ -17,18 +18,32 @@ import {
 export function MyProfile() {
   const [showInfo, setShowInfo] = useState(false);
   const router = useRouter();
+  const { profile } = storeProfile();
+  const emptyImageUrl = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 
-  const Info = () => {
-    setShowInfo(true);
+  // const Info = () => {
+  //   setShowInfo(true);
+  // };
+
+  // const hideInfo = () => {
+  //   setShowInfo(false);
+  // };
+
+  const toggleInfo = () => {
+    setShowInfo(!showInfo);
   };
 
-  const hideInfo = () => {
-    setShowInfo(false);
-  };
+  // const hideInfo = () => {
+  //   setShowInfo(false);
+  // };
 
-  // const routetoMyPage = () => {
-  //     router.push('마이페이지 url')
-  // }
+  const childName = profile?.child_name
+  const childPic = profile?.child_picture
+
+  const routetoMyPage = () => {
+      // router.push('/my_page');
+      window.location.href = '/my_page';
+  }
 
   const routetoProfileList = () => {
     router.push("/profile_list");
@@ -36,18 +51,22 @@ export function MyProfile() {
 
   return (
     <Wrapper>
-      <Profile onMouseEnter={Info} onMouseLeave={hideInfo}>
-        <Img
-          src={Main_Character.src}
-          style={{ width: "25px", height: "auto", opacity: "80%" }}
-          alt="main_character"
+      {/* <Profile onClick={Info} onMouseLeave={hideInfo}> */}
+      <Profile onClick={toggleInfo}>
+        <Image
+          src={childPic || emptyImageUrl}
+          width = "60"
+          height = "60"
+          objectFit="cover"
+          style={{ borderRadius: "100%" }}
+          alt="프로필사진"
         />
       </Profile>
       {showInfo && (
-        <ProfileInfo onMouseEnter={Info} onMouseLeave={hideInfo}>
-          <Name>김태수</Name>
+        <ProfileInfo>
+          <Name>{childName}</Name>
           <Btn>
-            <Mypage>마이페이지</Mypage>
+            <Mypage onClick={routetoMyPage}>마이페이지</Mypage>
             <ProfileChange onClick={routetoProfileList}>
               프로필 전환{" "}
             </ProfileChange>
