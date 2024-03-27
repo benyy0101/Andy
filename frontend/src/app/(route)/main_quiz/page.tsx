@@ -1,6 +1,6 @@
+import Navigation from "@/app/_components/navigation/Navigation";
 import Logo from "../../_components/logo/Logo";
 import QuizButton from "./_components/QuizButton";
-import { MyProfile } from "../../_components/my_profile/MyProfile"
 import { Wrapper, Btn } from "./styles/Page.styled";
 
 const btnData = [
@@ -23,19 +23,20 @@ const btnData = [
 
 export default function MainQuiz() {
   return (
-    <Wrapper>
-      <Logo />
-      <MyProfile />
-      <Btn>
-        {btnData.map((btn) => (
-          <QuizButton
-            key={btn.quizName}
-            quizName={btn.quizName}
-            quizImg={btn.quizImg}
-            quizRoute={btn.quizRoute}
-          />
-        ))}
-      </Btn>
-    </Wrapper>
+    <div className="flex flex-col space-y-4">
+      <Navigation />
+      <Wrapper>
+        <Btn>
+          {btnData.map((btn) => (
+            <QuizButton
+              key={btn.quizName}
+              quizName={btn.quizName}
+              quizImg={btn.quizImg}
+              quizRoute={btn.quizRoute}
+            />
+          ))}
+        </Btn>
+      </Wrapper>
+    </div>
   );
 }

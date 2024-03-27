@@ -16,7 +16,6 @@ bg-[rgba(255,230,124,0.5)]
 cursor-pointer
 h-[60px]
 w-[60px]
-absolute
 top-[30px]
 right-[40px]
 text-[9px]
@@ -27,17 +26,15 @@ export const ProfileInfo = tw.div`
 flex
 flex-col
 justify-between
-h-[170px]
-w-[200px]
 bg-[#fff]
 rounded-[5px]
 absolute
 top-[100px]
 right-[40px]
 z-[20]
-px-5
-pt-8
-pb-4
+space-y-4
+p-4
+px-8
 `;
 
 // bg-[rgba(255,230,124,0.3)]
