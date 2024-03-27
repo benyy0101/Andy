@@ -43,6 +43,7 @@ public class ProfileService {
         return profileRepository.save(profile);
     }
 
+    @Transactional
     public void deleteProfile(Integer profileSeq) {
         Profile profile = profileRepository.findById(profileSeq).orElseThrow(() -> new RestApiException(NO_MEMBER));
         profile.delete();
@@ -63,7 +64,6 @@ public class ProfileService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication != null) {
             String userId = authentication.getName();
-            log.info(userId);
             List<Profile> profiles = profileRepository.findByMemberId(userId);
 
             return profiles.stream()

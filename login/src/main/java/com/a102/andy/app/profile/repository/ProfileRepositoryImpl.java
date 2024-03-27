@@ -18,7 +18,8 @@ public class ProfileRepositoryImpl implements CustomProfileRepository{
         QProfile profile = QProfile.profile;
         return queryFactory
                 .selectFrom(profile)
-                .where(profile.memberId.eq(memberId))
+                .where(profile.memberId.eq(memberId)
+                        .and(profile.isDeleted.eq(false)))
                 .fetch();
     }
 }

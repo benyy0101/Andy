@@ -31,9 +31,9 @@ public class ProfileController {
         return ResponseEntity.ok(res);
     }
 
-    @DeleteMapping("")
-    public ResponseEntity<Void> deleteProfile(@RequestBody Map<String, Integer> req) {
-        profileService.deleteProfile(req.get("child_seq"));
+    @DeleteMapping("/{child_seq}")
+    public ResponseEntity<Void> deleteProfile(@PathVariable("child_seq") Integer childSeq) {
+        profileService.deleteProfile(childSeq);
         return ResponseEntity.ok().build();
     }
 
