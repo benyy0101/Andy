@@ -1,21 +1,31 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/media-has-caption */
 
 import { useEffect, useRef, useState } from "react";
 import { useSendResultMutation } from "@/app/hooks/useGameA";
 import { motion } from "framer-motion";
+import { CameraIcon } from "@heroicons/react/24/solid";
 import { Wrapper2, Video } from "./styles/Camera.styled";
 
 interface ICamera {
   setIsTrue: (stat: boolean) => void;
   input: string;
 }
+
 function Camera(props: ICamera) {
   const { setIsTrue, input } = props;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const videoRef = useRef<any>(null);
+  const [isVideoOn, setIsVideoOn] = useState(false);
   const [imgSrc, setImgSrc] = useState("");
-
+  const variants = {
+    open: { opacity: 1, x: 0 },
+    closed: { opacity: 0, x: "-100%" },
+  };
   const { mutate } = useSendResultMutation();
+  const toggleVideo = () => {
+    setIsVideoOn((prev) => !prev);
+  };
   useEffect(() => {
     const constraints = { audio: false, video: true };
     const getMediaStream = async () => {
@@ -31,7 +41,7 @@ function Camera(props: ICamera) {
       }
     };
     getMediaStream();
-  }, []);
+  }, [isVideoOn]);
 
   const takePhoto = async () => {
     const canvas = document.createElement("canvas");
@@ -68,12 +78,37 @@ function Camera(props: ICamera) {
 
   return (
     <Wrapper2>
-      <motion.div>
-        <Video ref={videoRef} autoPlay height={300} width={300} />
-      </motion.div>
-      <button name="take_photo" type="button" onClick={takePhoto}>
-        사진찍기
-      </button>
+      {isVideoOn ? (
+        <div className="flex justify-end items-end space-x-4">
+          <motion.div>
+            <Video ref={videoRef} autoPlay height={400} width={400} />
+          </motion.div>
+          <div className="flex flex-col justify-end items-end space-y-4">
+            <button name="take_photo" type="button" onClick={takePhoto}>
+              <CameraIcon className="w-12 h-12" />
+            </button>
+            <button
+              name="video-toggle"
+              type="button"
+              onClick={toggleVideo}
+              className="p-2 bg-orange text-white h-12 rounded-lg"
+            >
+              비디오 끄기
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="flex justify-end items-end">
+          <button
+            name="video-toggle"
+            type="button"
+            onClick={toggleVideo}
+            className="flex justify-center items-center p-2 bg-orange text-white h-12 rounded-lg"
+          >
+            비디오 켜기
+          </button>
+        </div>
+      )}
     </Wrapper2>
   );
 }
