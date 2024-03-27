@@ -37,6 +37,7 @@ items-center
 `;
 
 export const Talkballon = tw.div`
+
 relative 
 text-center
 item-center
@@ -45,6 +46,7 @@ rounded-lg
 p-4 
 max-w-xl
 text-black
+shadow-md
 `;
 
 export const TalkballonSide = tw.div`

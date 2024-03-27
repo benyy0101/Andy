@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { TConductorInstance } from "react-canvas-confetti/dist/types";
 import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 import Image from "next/image";
@@ -22,6 +22,19 @@ function CorrectModal(props: CorrectModalProps) {
     conductor.shoot();
   };
 
+  useEffect(() => {
+    let timer: string | number | NodeJS.Timeout | undefined;
+    if (isOpen) {
+      // 모달이 열릴 때 3초 후에 자동으로 닫히도록 설정
+      timer = setTimeout(() => {
+        onClose();
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [isOpen, onClose]);
+
+  
+
   return (
     <>
       <div />
@@ -35,7 +48,6 @@ function CorrectModal(props: CorrectModalProps) {
             <br />
             {/* 멘트 */}
             <button
-              onClick={onClose}
               className="font-bold text-xl"
               type="button"
             >

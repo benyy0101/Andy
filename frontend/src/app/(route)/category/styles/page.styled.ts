@@ -27,6 +27,13 @@ export const ImageContainer = tw.div`
   flex
   flex-col
   items-center
+  transition 
+  ease-in-out 
+  delay-20
+  hover:-translate-y-1
+  hover:scale-110
+  hover:font-bold
+  duration-300
 `;
 
 export const Text = tw.span`
