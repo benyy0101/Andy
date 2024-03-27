@@ -38,7 +38,7 @@ export function MyProfile() {
   // };
 
   const childName = profile?.child_name
-  const childPic = profile?.child_picture
+  // const childPic = profile?.child_picture
 
   const routetoMyPage = () => {
       // router.push('/my_page');
@@ -54,7 +54,8 @@ export function MyProfile() {
       {/* <Profile onClick={Info} onMouseLeave={hideInfo}> */}
       <Profile onClick={toggleInfo}>
         <Image
-          src={childPic || emptyImageUrl}
+          // src={childPic || emptyImageUrl}
+          src={emptyImageUrl}
           width = "60"
           height = "60"
           objectFit="cover"
