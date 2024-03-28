@@ -28,8 +28,6 @@ function Camera(props: ICamera) {
       audio: false,
       video: {
         facingMode: "environment", // Use rear camera if available
-        width: { min: 1024, ideal: 1280, max: 1920 },
-        height: { min: 576, ideal: 720, max: 1080 },
       },
     };
     const getMediaStream = async () => {
@@ -77,8 +75,6 @@ function Camera(props: ICamera) {
       });
     }
   };
-
-  useEffect(() => {}, [imgSrc]);
 
   return (
     <Wrapper2>
