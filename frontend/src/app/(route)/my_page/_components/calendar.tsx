@@ -6,8 +6,8 @@ import React, { useState } from "react";
 import dayjs from "dayjs";
 import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
-import storeProfile from "@/app/_store/storeProfile"
-import { useMypageByMonth } from "../../../hooks/useMypage"
+import storeProfile from "@/app/_store/storeProfile";
+import { useMypageByMonth } from "../../../hooks/useMypage";
 
 import {
   CalendarWrapper,
@@ -52,7 +52,7 @@ export default function CalenderBox({
 
   // 월별 기록 받아오기
   // 자식번호, 년, 월
-  const childNum = profile.child_seq
+  const childNum = profile.child_seq;
   const viewYear = viewDate.format("YYYY");
   const viewMonth = viewDate.format("MM");
 
@@ -60,15 +60,15 @@ export default function CalenderBox({
   const requestMonth = parseInt(viewMonth, 10);
 
   const requestData = {
-    "child_seq": childNum,
-    "year": requestYear,
-    "month": requestMonth,
+    child_seq: Number(childNum),
+    year: requestYear,
+    month: requestMonth,
   };
 
-  const { data, error } = useMypageByMonth(requestData)
+  const { data, error } = useMypageByMonth(requestData);
 
   // eslint-disable-next-line no-console
-  console.log(data)
+  console.log(data);
 
   // 받아온 배열
   // const exams = data.exams

@@ -7,14 +7,16 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      mobile: "360px",
+    },
     extend: {
       colors: {
-        'green' : '#295F2E',
-        'orange' : '#ed8b0e',
-        'yellow' : '#FFE67C',
-        'lightorange' : '#EFC287',
-        'red' : '#ff3b5b',
-
+        green: "#295F2E",
+        orange: "#ed8b0e",
+        yellow: "#FFE67C",
+        lightorange: "#EFC287",
+        red: "#ff3b5b",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -22,24 +24,21 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       animation: {
-        'namespace-buzz': 'namespace-buzz 0.15s linear infinite',
-        spinner: 'spinner 1.5s linear infinite',
-      
+        "namespace-buzz": "namespace-buzz 0.15s linear infinite",
+        spinner: "spinner 1.5s linear infinite",
       },
       keyframes: {
-        'namespace-buzz': {
-          '50%': { transform: 'translateX(3px) rotate(2deg)' },
-          '100%': { transform: 'translateX(-3px) rotate(-2deg)' },
+        "namespace-buzz": {
+          "50%": { transform: "translateX(3px) rotate(2deg)" },
+          "100%": { transform: "translateX(-3px) rotate(-2deg)" },
         },
         spinner: {
-          '0%': { transform: 'rotate(0deg)' },
-          '100%': { transform: 'rotate(360deg)' },
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
         },
       },
     },
   },
-  plugins: [
-    
-  ],
+  plugins: [],
 };
 export default config;

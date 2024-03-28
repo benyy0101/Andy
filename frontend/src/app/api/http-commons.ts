@@ -5,7 +5,7 @@ const loginUrl = process.env.NEXT_PUBLIC_LOGIN_URL || "";
 const imageBaseUrl = process.env.NEXT_PUBLIC_IMG_URL || "";
 const localDev = process.env.LOCAL_DEV || false;
 const quizUrl = process.env.NEXT_PUBLIC_QUIZ_URL || "";
-
+const mypageUrl = process.env.NEXT_PUBLIC_MYPAGE_URL || "";
 const saveToken = (response: AxiosResponse) => {
   if (response.data.jwtToken !== null) {
     // eslint-disable-next-line no-console
@@ -28,6 +28,13 @@ const loadToken = (config: AxiosRequestConfig) => {
 
 export const localAxios = axios.create({
   baseURL: serverUrl,
+  withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+export const mypageAxios = axios.create({
+  baseURL: mypageUrl,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
@@ -96,6 +103,10 @@ gameAxios.interceptors.request.use((config) => {
 });
 
 quizAxios.interceptors.request.use((config) => {
+  loadToken(config);
+  return config;
+});
+mypageAxios.interceptors.request.use((config) => {
   loadToken(config);
   return config;
 });
