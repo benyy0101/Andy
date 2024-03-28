@@ -7,17 +7,7 @@ const nextConfig = withPWA({
   compiler: {               // 추가
     styledComponents: true, // 추가
   },
-  // images: {
-    // domains: ['s3.ap-northeast-2.amazonaws.com'],
-    // remotePatterns: [
-    //   {
-    //     protocol: 'https',
-    //     hostname: 'picsum.photos',
-    //     port: '',
-    //     pathname: '/200',
-    //   },
-    // ],
-  // },
+  
   async redirects() {
     return [
       {
@@ -27,28 +17,6 @@ const nextConfig = withPWA({
       },
     ]
   },
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          {
-            key: "Access-Control-Allow-Origin",
-            value: "http://localhost:3000",
-          },
-          {
-            key: "Access-Control-Allow-Headers",
-            value:
-              "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-          },
-          {
-            key: "Access-Control-Allow-Methods",
-            value: "GET, POST, PATCH, DELETE, OPTIONS",
-          },
-        ],
-      },
-    ];
-  },
 })
   
 module.exports = {
@@ -56,6 +24,18 @@ module.exports = {
     missingSuspenseWithCSRBailout: false,
   },
   images: {
-    domains: ['us.123rf.com', 'vrthumb.imagetoday.co.kr', 'img.segye.com', 't3.ftcdn.net', 'img.hankyung.com', 's3.ap-northeast-2.amazonaws.com'], // 이미지 호스트 이름 추가
+    domains: [''],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 's3.ap-northeast-2.amazonaws.com',
+        pathname:'/andyimagebucket/profiles/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'andyimagebucket.s3.ap-northeast-2.amazonaws.com',
+        pathname:'**'
+      },
+    ],
   },
 }
