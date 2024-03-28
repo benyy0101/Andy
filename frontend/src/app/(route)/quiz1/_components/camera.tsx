@@ -17,6 +17,7 @@ function Camera(props: ICamera) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVideoOn, setIsVideoOn] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [imgSrc, setImgSrc] = useState("");
 
   const { mutate } = useSendResultMutation();
