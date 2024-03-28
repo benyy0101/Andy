@@ -8,7 +8,7 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      sm: "360px",
+      mobile: "360px",
     },
     extend: {
       colors: {

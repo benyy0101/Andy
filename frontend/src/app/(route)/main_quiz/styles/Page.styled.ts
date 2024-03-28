@@ -5,8 +5,9 @@ export const Wrapper = tw.div`
 `;
 
 export const Btn = tw.div`
+w-svw
 flex
-lg:flex-row
+sm:flex-row
 flex-col
 align-center
 justify-center
@@ -22,8 +23,10 @@ items-center
 `;
 
 export const Quiz1Img = tw.button`
-w-60
-h-60
+w-40
+h-40
+sm:w-60
+sm:h-60
 rounded-[100%]
 bg-[#fff]
 shadow-[3.0px_3.0px_4.0px_rgba(0,0,0,0.1)]

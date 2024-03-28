@@ -1,5 +1,4 @@
 import Navigation from "@/app/_components/navigation/Navigation";
-import Logo from "../../_components/logo/Logo";
 import QuizButton from "./_components/QuizButton";
 import { Wrapper, Btn } from "./styles/Page.styled";
 
@@ -23,7 +22,7 @@ const btnData = [
 
 export default function MainQuiz() {
   return (
-    <div className="flex flex-col space-y-4">
+    <div className="flex flex-col space-y-4 w-screen">
       <Navigation />
       <Wrapper>
         <Btn>

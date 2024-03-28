@@ -11,7 +11,6 @@ function Navigation() {
 }
 
 const Wrapper = tw.div`
-w-full
 h-fit
 `;
 

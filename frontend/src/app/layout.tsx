@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ReactQueryProviders from "./utils/reactQueryProvider";
-import Devtool from "./_components/devtool";
 
 const inter = Inter({ subsets: ["latin"] });
 const APP_NAME = "Andy";
@@ -32,10 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ReactQueryProviders>
-          {children}
-          <Devtool />
-        </ReactQueryProviders>
+        <ReactQueryProviders>{children}</ReactQueryProviders>
       </body>
     </html>
   );

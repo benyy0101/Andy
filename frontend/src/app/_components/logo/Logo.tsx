@@ -15,7 +15,9 @@ function Logo() {
   return (
     <Wrapper>
       <Title onClick={routetoHome}>
-        <Image width={350} height={350} src={logo} alt="andy" />
+        <div className="w-40 h-12">
+          <Image src={logo} alt="andy" />
+        </div>
       </Title>
     </Wrapper>
   );
