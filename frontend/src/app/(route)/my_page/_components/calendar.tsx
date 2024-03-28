@@ -86,7 +86,9 @@ export default function CalenderBox({
       const week = [];
       for (let j = 0; j < 7; j++) {
         if ((i === 0 && j < firstDayOfMonth) || dayCounter > daysInMonth) {
-          week.push(<Box key={`${i}_${j}`} />);
+          week.push(<Box key={`${i}_${j}`}>
+            <div style={{ width: "55px", height: "55px" }} />
+          </Box>);
         } else {
           const current = dayjs(viewDate).date(dayCounter);
           const isSelected =
