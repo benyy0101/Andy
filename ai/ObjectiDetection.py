@@ -13,8 +13,8 @@ def ObjectDetection(image_Source, answer):
     # 학습된 객체 탐지 모델을 불러온다.
     cv_net = cv2.dnn.readNetFromTensorflow(
         # 학습된 모델이 있는 곳은 여기.
-        './pretrained/ssd_inception_v2_coco_2017_11_17/frozen_inference_graph.pb',
-        './pretrained/ssd_config_01.pbtxt')
+        './pretrained/Andy_basedOn_YOLO/frozen_inference_graph.pb',
+        './pretrained/Andy_config.pbtxt')
 
     print("Check OK")
 
@@ -92,7 +92,7 @@ def ObjectDetection(image_Source, answer):
         class_id = int(detection[1])
 
         # detected된 object들의 score가 0.5 이상만 추출
-        if score > 0.4:
+        if score > 0.3:
             # detected된 object들은 image 크기가 (300, 300)으로 scale된 기준으로 예측되었으므로 다시 원본 이미지 비율로 계산
             left = detection[3] * cols
             top = detection[4] * rows
