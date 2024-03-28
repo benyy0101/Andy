@@ -6,9 +6,8 @@ import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
-import storeProfile from "@/app/_store/storeProfile"
-import axios from "axios"
-import { useMypageByMonth } from "../../../hooks/useMypage"
+import storeProfile from "@/app/_store/storeProfile";
+import { useMypageByMonth } from "../../../hooks/useMypage";
 
 import {
   CalendarWrapper,

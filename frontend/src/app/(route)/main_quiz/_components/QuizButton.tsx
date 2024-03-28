@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Quiz1Wrapper, Quiz1Img } from "../styles/Page.styled";
+import {Quiz1Img } from "../styles/Page.styled";
 
 interface IQuizButton {
   quizName: string;
@@ -25,8 +25,6 @@ export default function QuizButton(props: IQuizButton) {
   };
 
   return (
-    <Quiz1Wrapper>
-      <Quiz1Img onClick={routetoQuiz}>{quizName}</Quiz1Img>
-    </Quiz1Wrapper>
+    <Quiz1Img onClick={routetoQuiz}>{quizName}</Quiz1Img>
   );
 }
