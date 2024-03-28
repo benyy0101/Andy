@@ -14,6 +14,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -25,7 +27,7 @@ import java.util.Enumeration;
 @RequiredArgsConstructor
 @Slf4j
 public class JwtExceptionFilter extends OncePerRequestFilter {
-
+    private final JwtTokenProvider jwtTokenProvider;
     private final ObjectMapper objectMapper;
 
     @Override
@@ -55,26 +57,28 @@ public class JwtExceptionFilter extends OncePerRequestFilter {
 
                 HttpEntity<String> entity = new HttpEntity<>(headers);
                 headers.setContentType(MediaType.APPLICATION_JSON);
-                ResponseEntity<String> response = restTemplate.exchange(reissueUrl, HttpMethod.GET, entity, String.class);
-                System.out.println(response.getBody());
-                System.out.println(response.getStatusCode());
-                System.out.println(response.getHeaders());
-                if(response.getStatusCode().is2xxSuccessful()) {
-                    // 재발급 받은 토큰으로 요청 헤더 설정
-                    String newAccessToken = response.getBody(); // 실제 반환 포맷에 맞게 토큰 추출 방식을 조정해야 합니다.
-                    // HttpServletRequestWrapper를 상속받은 커스텀 래퍼 클래스 사용
-                    HttpServletRequestWrapper wrappedRequest = new HttpServletRequestWrapper(req) {
-                        @Override
-                        public String getHeader(String name) {
-                            if ("Authorization".equals(name)) {
-                                return "Bearer " + newAccessToken;
+                    ResponseEntity<String> response = restTemplate.exchange(reissueUrl, HttpMethod.GET, entity, String.class);
+                    System.out.println(response.getBody());
+                    System.out.println(response.getStatusCode());
+                    System.out.println(response.getHeaders());
+                    if(response.getStatusCode().is2xxSuccessful()) {
+                        // 재발급 받은 토큰으로 요청 헤더 설정
+                        String newAccessToken = response.getBody(); // 실제 반환 포맷에 맞게 토큰 추출 방식을 조정해야 합니다.
+                        // HttpServletRequestWrapper를 상속받은 커스텀 래퍼 클래스 사용
+                        HttpServletRequestWrapper wrappedRequest = new HttpServletRequestWrapper(req) {
+                            @Override
+                            public String getHeader(String name) {
+                                if ("Authorization".equals(name)) {
+                                    return "Bearer " + newAccessToken;
+                                }
+                                return super.getHeader(name);
                             }
-                            return super.getHeader(name);
-                        }
-                    };
-                    wrappedRequest.setAttribute("newAccessToken", newAccessToken);
-                    // 재발급 받은 토큰으로 요청 계속 진행
-                    chain.doFilter(wrappedRequest, res);
+                        };
+                        wrappedRequest.setAttribute("newAccessToken", newAccessToken);
+                        Authentication authentication = jwtTokenProvider.getAuthentication(newAccessToken);
+                        SecurityContextHolder.getContext().setAuthentication(authentication);
+                        // 재발급 받은 토큰으로 요청 계속 진행
+                        chain.doFilter(wrappedRequest, res);
 
                 } else {
                     // 토큰 재발급 실패 처리
