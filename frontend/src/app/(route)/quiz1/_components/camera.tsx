@@ -15,7 +15,7 @@ interface ICamera {
 function Camera(props: ICamera) {
   const { setIsTrue, input } = props;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const videoRef = useRef<any>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [isVideoOn, setIsVideoOn] = useState(false);
   const [imgSrc, setImgSrc] = useState("");
 
@@ -24,7 +24,14 @@ function Camera(props: ICamera) {
     setIsVideoOn((prev) => !prev);
   };
   useEffect(() => {
-    const constraints = { audio: false, video: true };
+    const constraints = {
+      audio: false,
+      video: {
+        facingMode: "environment", // Use rear camera if available
+        width: { min: 1024, ideal: 1280, max: 1920 },
+        height: { min: 576, ideal: 720, max: 1080 },
+      },
+    };
     const getMediaStream = async () => {
       try {
         const mediaStream =
