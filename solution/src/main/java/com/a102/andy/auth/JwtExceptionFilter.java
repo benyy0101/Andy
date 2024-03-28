@@ -62,8 +62,6 @@ public class JwtExceptionFilter extends OncePerRequestFilter {
                 if(response.getStatusCode().is2xxSuccessful()) {
                     // 재발급 받은 토큰으로 요청 헤더 설정
                     String newAccessToken = response.getBody(); // 실제 반환 포맷에 맞게 토큰 추출 방식을 조정해야 합니다.
-                    req.setAttribute("newAccessToken", newAccessToken);
-
                     // HttpServletRequestWrapper를 상속받은 커스텀 래퍼 클래스 사용
                     HttpServletRequestWrapper wrappedRequest = new HttpServletRequestWrapper(req) {
                         @Override
@@ -74,6 +72,7 @@ public class JwtExceptionFilter extends OncePerRequestFilter {
                             return super.getHeader(name);
                         }
                     };
+                    wrappedRequest.setAttribute("newAccessToken", newAccessToken);
                     // 재발급 받은 토큰으로 요청 계속 진행
                     chain.doFilter(wrappedRequest, res);
 
