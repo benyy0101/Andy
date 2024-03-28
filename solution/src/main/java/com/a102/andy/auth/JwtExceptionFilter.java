@@ -12,10 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -56,7 +53,7 @@ public class JwtExceptionFilter extends OncePerRequestFilter {
                 // 예: headers.set("Authorization", "Bearer " + refreshToken);
 
                 HttpEntity<String> entity = new HttpEntity<>(headers);
-
+                headers.setContentType(MediaType.APPLICATION_JSON);
                 ResponseEntity<String> response = restTemplate.exchange(reissueUrl, HttpMethod.POST, entity, String.class);
                 if(response.getStatusCode().is2xxSuccessful()) {
                     // 재발급 받은 토큰으로 요청 헤더 설정
