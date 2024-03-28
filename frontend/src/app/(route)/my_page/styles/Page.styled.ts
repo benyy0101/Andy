@@ -187,8 +187,8 @@ flex
 justify-center
 items-center
 cursor-pointer
-w-[100%]
-h-[60px]
+w-full
+h-14
 `
 
 // Calendar Body
@@ -219,7 +219,6 @@ flex
 flex-col
 justify-center
 items-center
-w-[100%]
 `
 
 
