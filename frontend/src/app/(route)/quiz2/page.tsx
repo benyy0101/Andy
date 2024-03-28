@@ -16,6 +16,7 @@ import { useGameResultMutation, useGamebyCategory } from "@/app/hooks/useGameA";
 import InputComponent from "./_components/input";
 import Photo from "./_components/photo";
 import {
+
   Wrapper,
   PaddingWrapper,
   Title,
@@ -170,6 +171,15 @@ function Quiz2Page() {
     setInputValue(newData);
   };
 
+  const ttsShoot = () => {
+    const message = new SpeechSynthesisUtterance();
+    message.pitch = 1.5;
+    message.rate = 0.8;
+    // message.text = data[currentSeq].question_name;
+    message.text = "안녕하세요";
+    message.volume = 1;
+    window.speechSynthesis.speak(message);
+  }
   return (
     <Wrapper>
       <PaddingWrapper>
@@ -185,7 +195,6 @@ function Quiz2Page() {
             <PhotoContainer>
               <Photo question_picture={data[currentSeq].question_picture} />
             </PhotoContainer>
-
             <TimerContainer>
               <Timer reset={reset} />
             </TimerContainer>
@@ -211,6 +220,7 @@ function Quiz2Page() {
         isOpen={isCorrectModalOpen}
         onClose={handleCloseCorrectModal}
       />
+      <button onClick={ttsShoot} type="button" >TTS 발사</button>
       <WrongModal isOpen={isWrongModalOpen} onClose={handleCloseWrongModal} />
       {/* eslint-disable-next-line react/jsx-no-bind */}
 
