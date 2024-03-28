@@ -4,6 +4,7 @@ import Image from "next/image";
 import kakao_logo from "../../../asset/_img/kakao_logo.png";
 import { Label, LoginBtn, Symbol } from "./styles/KakaoLogin.styled";
 
+
 export function KakaoLogin() {
   const KAKAO_REST_API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const KAKAO_REDIRECT_URL = process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URL;
