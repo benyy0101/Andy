@@ -40,8 +40,8 @@ justify-between
 
 export const Profile = tw.div`
 bg-[#ffffff]
-h-[44%]
-p-[30px]
+h-[40%]
+p-[20px]
 rounded-[15px]
 flex
 items-center
@@ -52,7 +52,7 @@ shadow-md
 export const Score = tw.div`
 bg-[#EEA241]
 text-black
-h-[53%]
+h-[57%]
 rounded-[15px]
 p-8
 pr-7
@@ -64,17 +64,20 @@ flex
 w-[100%]
 mt-2
 items-center
+text-sm
 `
 
 export const EditBtn = tw.button`
 ml-auto
-rounded-[10px]
+rounded-[5px]
 pt-1
 pb-1
-pr-2
-pl-2
+pr-3
+pl-3
 bg-[#EEA241]
 text-[#fff]
+text-[13px]
+font-bold
 `
 
 export const ProfileContent = tw.div`
@@ -173,7 +176,7 @@ justify-center
 items-center
 cursor-pointer
 w-[100%]
-h-[65px]
+h-[55px]
 `
 
 export const RowWeek = tw.div`
@@ -185,7 +188,7 @@ justify-center
 items-center
 cursor-pointer
 w-[100%]
-h-[65px]
+h-[60px]
 `
 
 // Calendar Body
@@ -205,8 +208,8 @@ justify-center
 
 export const Text = tw.span`
 static
-w-[65px]
-h-[65px]
+w-[55px]
+h-[55px]
 text-[#292929]
 `
 
@@ -224,6 +227,7 @@ w-[100%]
 export const ProfileWrapper = tw.div`
 flex
 flex-col
+justify-center
 items-center
 w-[100%]
 `
@@ -231,17 +235,19 @@ w-[100%]
 export const Form = tw.form`
 flex
 flex-col
-pl-4
+justify-center
 w-[70%]
+text-sm
 `
 
 export const Label = tw.div`
 flex
 items-center
-mr-4
-w-[30%]
+w-[40%]
+h-[30px]
 font-bold
 text-[#EEA241]
+text-[13px]
 `
 
 export const Input = tw.input`
@@ -251,10 +257,11 @@ rounded-[7px]
 border
 border-blue-gray-200
 bg-[#FFFFFF]
-px-3
+h-[30px]
+px-2
 py-2
 font-sans
-text-sm
+text-[13px]
 font-normal 
 text-black
 outline-0
@@ -275,10 +282,11 @@ rounded-[7px]
 border
 border-blue-gray-200
 bg-[#FFFFFF]
-px-3
+h-[30px]
+px-2
 py-2
 font-sans 
-text-sm
+text-[13px]
 font-normal
 text-black
 outline-0
@@ -316,15 +324,17 @@ export const Btn = tw.div`
 flex
 text-black
 w-[70%]
-text-sm
+text-[13px]
 justify-between
+h-[35px]
 `
 
 export const ProfileImage = tw.div`
-w-[30%]
+w-[28%]
 flex
 justify-center
 items-center
+mr-2
 `
 
 export const ImageTest = tw.div`
@@ -339,26 +349,25 @@ items-center
 export const CurrentInfo = tw.div`
 w-[70%]
 rounded-[7px]
-border-[white]
+border
+border-blue-gray-200
 bg-[#FFFFFF]
-px-3
-py-2
-text-sm
+px-2
+text-[13px]
 font-sans
 font-normal 
 text-black
 outline-0
 flex
 flex-start
+items-center
 `
 
 export const BtnLabel = tw.label`
 bg-[#FFE67C]
 rounded-[5px]
 w-[48%]
-mb-3
-px-3
-py-2.5
+h-[30px]
 hover:bg-[#EEA241]
 hover:text-white
 focus:bg-[#EEA241]
@@ -366,6 +375,10 @@ focus:text-white
 cursor-pointer
 font-bold
 text-white
+flex
+items-center
+justify-center
+text-[13px]
 `
 
 // 점수
@@ -379,7 +392,7 @@ h-full
 export const SelectDate = tw.div`
 font-bold
 mr-[auto]
-text-[18px]
+text-[15px]
 mb-[20px]
 ml-[3px]
 text-[#FFFFFF]
@@ -413,9 +426,10 @@ w-[98%]
 justify-between
 items-center
 h-[68px]
-pl-10
-pr-10
+pl-8
+pr-8
 mb-2
+text-[13px]
 `
 
 export const TestNum = tw.div`
@@ -448,4 +462,25 @@ align-center
 relative
 w-[100%]
 aspect-square
+`
+
+export const NoTest = tw.div`
+text-white
+font-bold
+h-[90%]
+flex
+justify-center
+items-center
+`
+
+export const Num = tw.div`
+font-bold
+text-[#EEA241]
+`
+
+export const Mode = tw.div`
+`
+
+export const Temp = tw.div`
+flex
 `
