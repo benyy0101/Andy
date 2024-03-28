@@ -57,9 +57,6 @@ public class JwtExceptionFilter extends OncePerRequestFilter {
                 HttpEntity<String> entity = new HttpEntity<>(headers);
                 headers.setContentType(MediaType.APPLICATION_JSON);
                     ResponseEntity<String> response = restTemplate.exchange(reissueUrl, HttpMethod.GET, entity, String.class);
-                    System.out.println(response.getBody());
-                    System.out.println(response.getStatusCode());
-                    System.out.println(response.getHeaders());
                     if(response.getStatusCode().is2xxSuccessful()) {
                         // 재발급 받은 토큰으로 요청 헤더 설정
                         String newAccessToken = response.getBody(); // 실제 반환 포맷에 맞게 토큰 추출 방식을 조정해야 합니다.
