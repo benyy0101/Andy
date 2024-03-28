@@ -6,6 +6,8 @@ import React, { useState } from "react";
 import dayjs from "dayjs";
 import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import storeProfile from "@/app/_store/storeProfile";
+import { useMypageByMonth } from "../../../hooks/useMypage";
 
 import {
   CalendarWrapper,
@@ -34,6 +36,15 @@ export default function CalenderBox({
   const [viewDate, setViewDate] = useState(dayjs());
   const [selectDate, setSelectDate] = useState(dayjs());
 
+  const { profile } = storeProfile();
+
+  // const childnum = String(profile.child_seq)
+  // const { data } = useGetProfile(childnum);
+
+  // const childinfo = data;
+  // eslint-disable-next-line no-console
+  // console.log(childinfo)
+
   // 점수 목록으로 날짜 넘기기
   const dateselect = selectDate.format("YYYYMMDD");
   clickdate(dateselect);
@@ -41,7 +52,7 @@ export default function CalenderBox({
 
   // 월별 기록 받아오기
   // 자식번호, 년, 월
-  // const child_num = ?
+  const childNum = profile.child_seq;
   const viewYear = viewDate.format("YYYY");
   const viewMonth = viewDate.format("MM");
 
@@ -49,12 +60,15 @@ export default function CalenderBox({
   const requestMonth = parseInt(viewMonth, 10);
 
   const requestData = {
-    // "child_seq": child_num,
+    child_seq: Number(childNum),
     year: requestYear,
     month: requestMonth,
   };
 
-  // const { data, error } = useMypageByMonth(requestData)
+  const { data, error } = useMypageByMonth(requestData);
+
+  // eslint-disable-next-line no-console
+  console.log(data);
 
   // 받아온 배열
   // const exams = data.exams

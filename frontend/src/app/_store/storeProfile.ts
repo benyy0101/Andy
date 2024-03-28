@@ -10,7 +10,8 @@ const testProfile: ProfileState = {
   kakao_name: "test",
   child_seq: "1",
   child_name: "테스트",
-  child_picture: "https://picsum.photos/400",
+  // child_picture: "https://picsum.photos/400",
+  child_picture: "",
 };
 
 interface ProfileStore {
