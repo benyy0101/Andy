@@ -150,17 +150,15 @@ function Quiz1() {
         </div>
         <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
         <Timer reset={reset} />
-        <div className="flex justify-between gap-20 flex-grow-[1] min-w-5/6">
-          {data && currentSeq < numProblems && (
-            <Word1 word={data[currentSeq].question_name || ""} />
-          )}
-          {data && currentSeq < numProblems && (
-            <Camera
-              setIsTrue={handleIsTrue}
-              input={data[currentSeq].question_name || ""}
-            />
-          )}
-        </div>
+        {data && currentSeq < numProblems && (
+          <Word1 word={data[currentSeq].question_name || ""} />
+        )}
+        {data && currentSeq < numProblems && (
+          <Camera
+            setIsTrue={handleIsTrue}
+            input={data[currentSeq].question_name || ""}
+          />
+        )}
         {/* 조건에 따라서 정답 맞추면 정답 모달/ 틀리면 오답 모달 */}
         <CorrectModal
           isOpen={isCorrectModalOpen}
