@@ -102,6 +102,8 @@ export default function ProfileBox() {
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     onSuccess: (imagedata: any) => {
                         setChangeFile(imagedata)
+                        // eslint-disable-next-line no-console
+                        console.log(imagedata)
                     },
                 });
 
@@ -153,6 +155,7 @@ export default function ProfileBox() {
     return (
         <ProfileWrapper>
             <ProfileContent>
+                {/* <Temp> */}
                 <ProfileImage>
                     <ImageTest>
                         {isEditing ? (
@@ -166,7 +169,7 @@ export default function ProfileBox() {
                                         onChange={EditImage}
                                         ref={imgRef}
                                     />
-                                    <Image src={imagePreview || profile?.child_picture || emptyImageUrl} alt="프로필사진" priority width="150" height="150" className="rounded-[100%] shadow-lg"/>
+                                    <Image src={imagePreview || data?.child_picture || emptyImageUrl} alt="프로필사진" priority width="150" height="150" className="rounded-[100%] shadow-lg"/>
                                     <label htmlFor="file">
                                         {isHovered && (
                                             <div>
@@ -184,6 +187,7 @@ export default function ProfileBox() {
                         )}
                     </ImageTest>
                 </ProfileImage>
+                {/* </Temp> */}
                 <Form>
                     <Name>
                         <Label>이름</Label>

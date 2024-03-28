@@ -21,6 +21,7 @@ export interface MyInfoByMonthResponse {
 
 // MYPAGE-002
 export interface MyInfoByDateRequest {
+  child_seq: number;
   year: number;
   month: number;
   day: number;

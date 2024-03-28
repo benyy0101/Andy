@@ -2,7 +2,7 @@
 
 /* eslint-disable no-plusplus */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
@@ -37,63 +37,35 @@ export default function CalenderBox({
   const [selectDate, setSelectDate] = useState(dayjs());
 
   const { profile } = storeProfile();
-
-  // const childnum = String(profile.child_seq)
-  // const { data } = useGetProfile(childnum);
-
-  // const childinfo = data;
-  // eslint-disable-next-line no-console
-  // console.log(childinfo)
+  const childNum = profile.child_seq
+  const viewYear = viewDate.format("YYYY");
+  const viewMonth = viewDate.format("MM");
 
   // 점수 목록으로 날짜 넘기기
   const dateselect = selectDate.format("YYYYMMDD");
   clickdate(dateselect);
   // console.log(selectDate.format('YYYYMMDD'))
 
-  // 월별 기록 받아오기
-  // 자식번호, 년, 월
-  const childNum = profile.child_seq;
-  const viewYear = viewDate.format("YYYY");
-  const viewMonth = viewDate.format("MM");
-
-  const requestYear = parseInt(viewYear, 10);
-  const requestMonth = parseInt(viewMonth, 10);
-
-  const requestData = {
-    child_seq: Number(childNum),
-    year: requestYear,
-    month: requestMonth,
-  };
+  const [requestData, setRequestData] = useState({
+    "child_seq": Number(childNum),
+    "year": Number(viewYear),
+    "month": Number(viewMonth),
+  });
 
   const { data, error } = useMypageByMonth(requestData);
 
   // eslint-disable-next-line no-console
-  console.log(data);
+  // console.log(requestData)
+
+  // eslint-disable-next-line no-console
+  // console.log(data)
 
   // 받아온 배열
-  // const exams = data.exams
-  // const SolveDay = exams.map((day) => {
-  //   const viewDay = day.toString().padStart(2, "0");
-  //   return `${viewYear}-${viewMonth}-${viewDay}`;
-  // });
-
-  const exams = [4, 6, 9, 15, 20, 25, 30, 31];
-  const SolveDay = exams.map((day) => {
+  const exams = data?.exams
+  const SolveDay = exams ? exams.map((day) => {
     const viewDay = day.toString().padStart(2, "0");
     return `${viewYear}-${viewMonth}-${viewDay}`;
-  });
-
-  // 년, 월 불러오기
-  // useEffect(() => {
-  //     const fetchMonth = async () => {
-  //         try {
-  //             const { data, error } = useMypageByMonth(requestData);
-  //         } catch (error) {
-  //         }
-  //     };
-
-  //     fetchMonth();
-  // }, [requestData]);
+  }) : [];
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getDayImage = (current: any) => {
@@ -113,7 +85,9 @@ export default function CalenderBox({
       const week = [];
       for (let j = 0; j < 7; j++) {
         if ((i === 0 && j < firstDayOfMonth) || dayCounter > daysInMonth) {
-          week.push(<Box key={`${i}_${j}`} />);
+          week.push(<Box key={`${i}_${j}`}>
+            <div style={{ width: "55px", height: "55px" }} />
+          </Box>);
         } else {
           const current = dayjs(viewDate).date(dayCounter);
           const isSelected =
@@ -132,8 +106,8 @@ export default function CalenderBox({
                 className={`text ${isSelected} ${isToday}`}
                 style={{
                   position: "static",
-                  width: "65px",
-                  height: "65px",
+                  width: "55px",
+                  height: "55px",
                   color: "#292929",
                   display: "flex",
                   justifyContent: "center",
@@ -150,7 +124,7 @@ export default function CalenderBox({
                       <Image
                         src={image}
                         alt={`Day ${current.format("D")}`}
-                        style={{ width: "40px", height: "40px" }}
+                        style={{ width: "35px", height: "35px" }}
                       />
                     </DayImg>
                   )}
@@ -168,13 +142,31 @@ export default function CalenderBox({
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const changegeMonth = (date: any, changeString: string) => {
+    let updatedDate;
     switch (changeString) {
       case "add":
-        return setViewDate(viewDate.add(1, "month"));
+        updatedDate = viewDate.add(1, "month");
+        break;
       case "subtract":
-        return setViewDate(viewDate.subtract(1, "month"));
+        updatedDate = viewDate.subtract(1, "month");
+        break;
       default:
-        return date;
+        updatedDate = date;
+    }
+
+    const updatedYear = updatedDate.format("YYYY");
+    const updatedMonth = updatedDate.format("MM");
+
+    // eslint-disable-next-line no-console
+    console.log("changemonth")
+
+    setViewDate(updatedDate);
+    if (updatedYear !== viewYear || updatedMonth !== viewMonth) {
+      setRequestData({
+        "child_seq": Number(childNum),
+        "year": Number(updatedYear),
+        "month": Number(updatedMonth),
+      });
     }
   };
 
