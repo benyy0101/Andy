@@ -10,6 +10,7 @@ interface Exam {
 
 // MYPAGE-001
 export interface MyInfoByMonthRequest {
+  child_seq: number;
   year: number;
   month: number;
 }
@@ -27,5 +28,5 @@ export interface MyInfoByDateRequest {
 
 export interface MyInfoByDateResponse {
   page: Pageable;
-  exams: Exam[];
+  exam: Exam[];
 }

@@ -21,10 +21,10 @@ export const getMyInfoByMonth = async (
   }
   if (!request)
     // eslint-disable-next-line no-param-reassign
-    request = {
-      year,
-      month,
-    };
+    // request = {
+    //   year,
+    //   month,
+    // };
 
   if (year && month) {
     const reponse = await localAxios.post(
