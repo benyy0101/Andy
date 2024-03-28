@@ -24,7 +24,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
         // auth 경우는 토큰 검사 X
         logger.info(httpServletRequest.getRequestURI());
 //        System.out.println(httpServletRequest.getRequestURI());
-        if (!httpServletRequest.getRequestURI().equals("/auth/login ")) {
+        if (!httpServletRequest.getRequestURI().equals("/auth/login")) {
             // 2. validateToken으로 토큰 유효성 검사
             System.out.println(httpServletRequest.getRequestURI());
             if (token != null && jwtTokenProvider.validateToken(token)) {
