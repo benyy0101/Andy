@@ -4,11 +4,11 @@ export const Wrapper = tw.div`
 w-svw
 flex
 flex-col
-mobile:flex-row
+web:flex-row
 items-center
 justify-center
 gap-10
-
+flex-grow-[1]
 `;
 
 // 퀴즈1
@@ -16,10 +16,10 @@ export const Quiz1Wrapper = tw.div`
 `;
 
 export const Quiz1Img = tw.button`
-w-20
-h-20
-mobile:w-40
-mobile:h-40
+w-40
+h-40
+web:w-60
+web:h-60
 rounded-[100%]
 bg-[#fff]
 shadow-[3.0px_3.0px_4.0px_rgba(0,0,0,0.1)]

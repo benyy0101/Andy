@@ -22,7 +22,7 @@ const btnData = [
 
 export default function MainQuiz() {
   return (
-    <div className="flex flex-col space-y-4 w-screen h-svw">
+    <div className="flex flex-col h-screen w-screen web:space-y-20">
       <Navigation />
       <Wrapper>
         {btnData.map((btn) => (
