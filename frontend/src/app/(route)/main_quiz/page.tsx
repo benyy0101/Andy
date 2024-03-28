@@ -1,6 +1,6 @@
 import Navigation from "@/app/_components/navigation/Navigation";
 import QuizButton from "./_components/QuizButton";
-import { Wrapper, Btn } from "./styles/Page.styled";
+import { Wrapper } from "./styles/Page.styled";
 
 const btnData = [
   {
@@ -22,11 +22,10 @@ const btnData = [
 
 export default function MainQuiz() {
   return (
-    <div className="flex flex-col space-y-4 w-screen">
+    <div className="flex flex-col space-y-4 w-screen h-svw">
       <Navigation />
       <Wrapper>
-        <Btn>
-          {btnData.map((btn) => (
+        {btnData.map((btn) => (
             <QuizButton
               key={btn.quizName}
               quizName={btn.quizName}
@@ -34,7 +33,6 @@ export default function MainQuiz() {
               quizRoute={btn.quizRoute}
             />
           ))}
-        </Btn>
       </Wrapper>
     </div>
   );

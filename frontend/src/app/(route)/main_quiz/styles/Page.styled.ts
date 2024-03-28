@@ -1,32 +1,25 @@
 import tw from "tailwind-styled-components";
 
 export const Wrapper = tw.div`
-
-`;
-
-export const Btn = tw.div`
 w-svw
 flex
-sm:flex-row
 flex-col
-align-center
+mobile:flex-row
+items-center
 justify-center
-gap-20
+gap-10
+
 `;
 
 // 퀴즈1
 export const Quiz1Wrapper = tw.div`
-flex
-flex-col
-justify-center
-items-center
 `;
 
 export const Quiz1Img = tw.button`
-w-40
-h-40
-sm:w-60
-sm:h-60
+w-20
+h-20
+mobile:w-40
+mobile:h-40
 rounded-[100%]
 bg-[#fff]
 shadow-[3.0px_3.0px_4.0px_rgba(0,0,0,0.1)]

@@ -1,6 +1,6 @@
 import React from "react";
-import tw from "tailwind-styled-components";
 import Logo from "../logo/Logo";
+import {Wrapper } from "./styles/navigation.styled";
 
 function Navigation() {
   return (
@@ -10,8 +10,6 @@ function Navigation() {
   );
 }
 
-const Wrapper = tw.div`
-h-fit
-`;
+
 
 export default Navigation;
