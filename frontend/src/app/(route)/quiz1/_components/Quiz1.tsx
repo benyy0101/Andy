@@ -13,36 +13,6 @@ import Camera from "./camera";
 
 import { Wrapper, Title, Explain } from "../styles/page.styled";
 
-// const mockQuizData = {
-//   data: [
-//     {
-//       question_seq: 1,
-//       question_name: "사과",
-//       question_picture: "사과 이미지",
-//     },
-//     {
-//       question_seq: 3,
-//       question_name: "배",
-//       question_picture: "배 이미지",
-//     },
-//     {
-//       question_seq: 523,
-//       question_name: "포도",
-//       question_picture: "포도 이미지",
-//     },
-//     {
-//       question_seq: 33,
-//       question_name: "참외",
-//       question_picture: "참외 이미지",
-//     },
-//     {
-//       question_seq: 87,
-//       question_name: "키위",
-//       question_picture: "키위 이미지",
-//     },
-//   ],
-// };
-
 interface IQuizData {
   question_seq: number;
   question_history_is_ok: boolean;
@@ -50,7 +20,7 @@ interface IQuizData {
 
 function Quiz1() {
   // const { data } = mockQuizData;
-  const { data } = useGamebyCategory(1);
+
   const { profile } = storeProfile();
   const [isCorrectModalOpen, setIsCorrectModalOpen] = useState(false);
   const [numProblems, setNumProblems] = useState(0);
@@ -60,7 +30,8 @@ function Quiz1() {
   const [score, setScore] = useState(0);
   const { mutate } = useGameResultMutation();
   const [reset, setReset] = useState(false);
-  const category = useSearchParams().get("category");
+  const category = Number(useSearchParams().get("category"));
+  const { data } = useGamebyCategory(category);
   const router = useRouter();
 
   const handleResetTimer = () => {
@@ -150,17 +121,15 @@ function Quiz1() {
         </div>
         <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
         <Timer reset={reset} />
-        <div className="flex justify-between gap-20 flex-grow-[1] min-w-5/6">
-          {data && currentSeq < numProblems && (
-            <Word1 word={data[currentSeq].question_name || ""} />
-          )}
-          {data && currentSeq < numProblems && (
-            <Camera
-              setIsTrue={handleIsTrue}
-              input={data[currentSeq].question_name || ""}
-            />
-          )}
-        </div>
+        {data && currentSeq < numProblems && (
+          <Word1 word={data[currentSeq].question_name || ""} />
+        )}
+        {data && currentSeq < numProblems && (
+          <Camera
+            setIsTrue={handleIsTrue}
+            input={data[currentSeq].question_name || ""}
+          />
+        )}
         {/* 조건에 따라서 정답 맞추면 정답 모달/ 틀리면 오답 모달 */}
         <CorrectModal
           isOpen={isCorrectModalOpen}
