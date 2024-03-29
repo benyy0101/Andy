@@ -1,6 +1,7 @@
 package com.a102.andy.aspect;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -28,7 +29,7 @@ public class AccessTokenAspect {
             if (isAccessTokenUpdated && proceed instanceof ResponseEntity) {
                 // 업데이트된 액세스 토큰을 헤더에 추가하고 새로운 ResponseEntity를 반환합니다.
                 ResponseEntity<?> originalResponse = (ResponseEntity<?>) proceed;
-                return ResponseEntity.status(originalResponse.getStatusCode())
+                return ResponseEntity.status(HttpServletResponse.SC_RESET_CONTENT)
                         .headers(originalResponse.getHeaders())
                         .header("AccessToken-Updated", request.getAttribute("newAccessToken").toString())
                         .body(originalResponse.getBody());
