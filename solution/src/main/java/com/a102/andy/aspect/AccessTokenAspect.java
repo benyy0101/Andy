@@ -31,6 +31,7 @@ public class AccessTokenAspect {
                 ResponseEntity<?> originalResponse = (ResponseEntity<?>) proceed;
                 return ResponseEntity.status(HttpServletResponse.SC_RESET_CONTENT)
                         .headers(originalResponse.getHeaders())
+                        .header("X-Access-Token-Updated", "true")
                         .header("AccessToken-Updated", request.getAttribute("newAccessToken").toString())
                         .body(originalResponse.getBody());
             }
