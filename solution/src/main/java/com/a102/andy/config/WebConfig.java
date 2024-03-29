@@ -1,8 +1,5 @@
 package com.a102.andy.config;
 
-import com.a102.andy.auth.ReferrerCheckInterceptor;
-import com.a102.andy.interceptor.AccessTokenInterceptor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
 
@@ -28,12 +25,5 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedHeaders("Authorization", "content-type")
                 .allowedMethods("GET", "POST", "DELETE", "PATCH", "OPTIONS")
                 .allowCredentials(true);
-    }
-    @Autowired
-    private AccessTokenInterceptor accessTokenInterceptor;
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(accessTokenInterceptor).addPathPatterns("/**");
     }
 }
