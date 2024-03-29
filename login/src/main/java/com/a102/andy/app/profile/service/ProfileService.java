@@ -2,11 +2,13 @@ package com.a102.andy.app.profile.service;
 
 import com.a102.andy.app.profile.controller.dto.ProfileCreateRequestDto;
 import com.a102.andy.app.profile.controller.dto.ProfileResponseDto;
+import com.a102.andy.app.profile.controller.dto.ProfileSingleResponseDto;
 import com.a102.andy.app.profile.controller.dto.ProfileUpdateRequestDto;
 import com.a102.andy.app.profile.entity.Profile;
 import com.a102.andy.app.profile.repository.ProfileRepository;
 import com.a102.andy.auth.JwtTokenProvider;
 import com.a102.andy.error.exception.RestApiException;
+import com.a102.andy.util.MemberUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -36,11 +38,12 @@ public class ProfileService {
                 .profileGender(req.getProfileGender())
                 .profileBirthday(req.getProfileBirthday())
                 .profilePicture(req.getProfilePicture())
-                .memberId(req.getKakaoId())
+                .memberId(MemberUtil.getMemberId())
                 .build();
         return profileRepository.save(profile);
     }
 
+    @Transactional
     public void deleteProfile(Integer profileSeq) {
         Profile profile = profileRepository.findById(profileSeq).orElseThrow(() -> new RestApiException(NO_MEMBER));
         profile.delete();
@@ -53,15 +56,14 @@ public class ProfileService {
         return new ProfileResponseDto(profile);
     }
 
-    public ProfileResponseDto getProfile(Integer profileSeq) {
-        return new ProfileResponseDto(profileRepository.findById(profileSeq).orElseThrow(() -> new RestApiException(NO_MEMBER)));
+    public ProfileSingleResponseDto getProfile(Integer profileSeq) {
+        return new ProfileSingleResponseDto(profileRepository.findById(profileSeq).orElseThrow(() -> new RestApiException(NO_MEMBER)));
     }
 
     public List<ProfileResponseDto> getProfileList() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication != null) {
             String userId = authentication.getName();
-            log.info(userId);
             List<Profile> profiles = profileRepository.findByMemberId(userId);
 
             return profiles.stream()

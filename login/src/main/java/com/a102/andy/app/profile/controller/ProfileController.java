@@ -2,6 +2,7 @@ package com.a102.andy.app.profile.controller;
 
 import com.a102.andy.app.profile.controller.dto.ProfileCreateRequestDto;
 import com.a102.andy.app.profile.controller.dto.ProfileResponseDto;
+import com.a102.andy.app.profile.controller.dto.ProfileSingleResponseDto;
 import com.a102.andy.app.profile.controller.dto.ProfileUpdateRequestDto;
 import com.a102.andy.app.profile.service.ProfileService;
 import com.a102.andy.image.service.S3UploadService;
@@ -26,14 +27,13 @@ public class ProfileController {
 
     @PostMapping("")
     public ResponseEntity<ProfileResponseDto> createProfile(@RequestBody ProfileCreateRequestDto req) {
-        System.out.println(req.getProfileNickname());
         ProfileResponseDto res = new ProfileResponseDto(profileService.createProfile(req));
         return ResponseEntity.ok(res);
     }
 
-    @DeleteMapping("")
-    public ResponseEntity<Void> deleteProfile(@RequestBody Map<String, Integer> req) {
-        profileService.deleteProfile(req.get("child_seq"));
+    @DeleteMapping("/{child_seq}")
+    public ResponseEntity<Void> deleteProfile(@PathVariable("child_seq") Integer childSeq) {
+        profileService.deleteProfile(childSeq);
         return ResponseEntity.ok().build();
     }
 
@@ -44,7 +44,7 @@ public class ProfileController {
     }
 
     @GetMapping("/{profileSeq}")
-    public ResponseEntity<ProfileResponseDto> getProfile(@PathVariable Integer profileSeq) {
+    public ResponseEntity<ProfileSingleResponseDto> getProfile(@PathVariable Integer profileSeq) {
         return ResponseEntity.ok(profileService.getProfile(profileSeq));
     }
 

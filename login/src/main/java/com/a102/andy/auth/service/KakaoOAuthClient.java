@@ -3,6 +3,7 @@ package com.a102.andy.auth.service;
 import com.a102.andy.auth.controller.dto.KakaoOAuthMemberInfoResponse;
 import com.a102.andy.auth.controller.dto.OAuthAccessTokenResponse;
 import com.a102.andy.common.enums.RedirectUri;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -14,6 +15,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 @Component
+@Slf4j
 public class KakaoOAuthClient implements OAuthClient {
 
     private static final String ACCESS_TOKEN_URL = "https://kauth.kakao.com/oauth/token";
@@ -26,7 +28,7 @@ public class KakaoOAuthClient implements OAuthClient {
     }
 
     @Override
-    public OAuthAccessTokenResponse getAccessToken(String code) {
+    public OAuthAccessTokenResponse getAccessToken(String status, String code) {
         // 헤더 설정
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -35,7 +37,10 @@ public class KakaoOAuthClient implements OAuthClient {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code");
         params.add("client_id", clientId);
-        params.add("redirect_uri", RedirectUri.KAKAO_OAUTH.getUri());
+
+        String uri = "prod".equals(status) ? RedirectUri.KAKAO_PROD_OAUTH.getUri() : RedirectUri.KAKAO_DEV_OAUTH.getUri();
+
+        params.add("redirect_uri", uri);
         params.add("code", code);
 
         // HttpEntity 설정
