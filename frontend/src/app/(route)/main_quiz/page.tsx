@@ -1,15 +1,16 @@
 import Navigation from "@/app/_components/navigation/Navigation";
+import BackgroundSVG from "@/app/_components/background/Background";
 import QuizButton from "./_components/QuizButton";
 import { Wrapper } from "./styles/Page.styled";
 
 const btnData = [
   {
-    quizName: "퀴즈 1",
+    quizName: "찰칵 퀴즈",
     quizImg: "",
-    quizRoute: "quiz1",
+    quizRoute: "",
   },
   {
-    quizName: "퀴즈 2",
+    quizName: "딸깍 퀴즈",
     quizImg: "",
     quizRoute: "quiz2",
   },
@@ -22,7 +23,8 @@ const btnData = [
 
 export default function MainQuiz() {
   return (
-    <div className="flex flex-col space-y-4 w-screen h-svw">
+    <div className="flex flex-col h-svw">
+      <BackgroundSVG />
       <Navigation />
       <Wrapper>
         {btnData.map((btn) => (

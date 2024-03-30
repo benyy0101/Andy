@@ -9,6 +9,8 @@ import { motion } from "framer-motion";
 import {
   Mypage,
   Name,
+  Namespan,
+  Child,
   Profile,
   ProfileChange,
   ProfileInfo,
@@ -70,7 +72,7 @@ export function MyProfile() {
       <motion.div animate={showInfo ? "open" : "closed"} variants={variants}>
         <ProfileInfo>
           <Name>
-            <span className="text-2xl">{childName}</span> <span>어린이</span>
+            <Namespan>{childName}</Namespan> <Child>어린이</Child>
           </Name>
           <Mypage onClick={routetoMyPage} className="text-white">
             마이페이지

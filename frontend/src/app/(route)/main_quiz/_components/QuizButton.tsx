@@ -1,7 +1,9 @@
 "use client";
 
+import React from "react";
 import { useRouter } from "next/navigation";
-import {Quiz1Img } from "../styles/Page.styled";
+import { QuizCircleContainer } from "../styles/Page.styled";
+
 
 interface IQuizButton {
   quizName: string;
@@ -25,6 +27,6 @@ export default function QuizButton(props: IQuizButton) {
   };
 
   return (
-    <Quiz1Img onClick={routetoQuiz}>{quizName}</Quiz1Img>
+    <QuizCircleContainer onClick={routetoQuiz}>{quizName}</QuizCircleContainer>
   );
 }

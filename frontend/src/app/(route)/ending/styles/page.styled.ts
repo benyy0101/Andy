@@ -1,12 +1,15 @@
 import tw from "tailwind-styled-components";
 
+export const PageWrapper = tw.div`
+h-dvh
+w-dvw
+`;
 export const Wrapper = tw.div`
-    h-screen
-    flex
-    flex-col
-    items-center
-    justify-start
-    `;
+flex
+flex-col
+items-center
+justify-start
+`;
 
 export const Wrapper2 = tw.div`
 w-full
@@ -28,12 +31,15 @@ text-xl
 export const End = tw.div`
 flex 
 gap-10 
-w-auto 
-h-auto 
 m-10 
-pt-20 
+pt-10 
 justify-center 
 items-center
+`;
+
+export const AndyIcon = tw.div`
+w-[200px]
+h-auto
 `;
 
 export const Talkballon = tw.div`

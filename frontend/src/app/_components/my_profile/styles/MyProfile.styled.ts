@@ -1,46 +1,66 @@
 import tw from "tailwind-styled-components";
 
 export const Wrapper = tw.div`
+web:p-0
+web:mr-0
+
+p-2
+mr-1
 flex
 `;
 
 export const Profile = tw.button`
+web:h-[55px]
+web:w-[55px]
+
+h-[45px]
+w-[45px]
+
 flex
 justify-center
 items-center
 align-center
-rounded-[100%]
-border-2
-border-white
-bg-[rgba(255,230,124,0.5)]
+rounded-[20px]
 cursor-pointer
-h-[60px]
-w-[60px]
-top-[30px]
-right-[40px]
-text-[9px]
-z-[100]
+border-4
+border-orange
+bg-[rgba(255,230,124,0.5)]
 `;
+
+// top-[30px]
+// right-[40px]
+// z-[100]
 
 export const ProfileInfo = tw.div`
 flex
 flex-col
 justify-between
-bg-[#fff]
+bg-[rgba(255,255,255,0.6)]
 rounded-[5px]
 absolute
-top-[100px]
-right-[40px]
-z-[20]
-space-y-4
-p-4
-px-8
+top-[60px]
+right-[20px]
+
+web:top-[82px]
+web:right-[25px]
+web:z-[20]
+web:space-y-4
+web:p-4
+web:px-8
 `;
 
 // bg-[rgba(255,230,124,0.3)]
 
 export const Name = tw.div`
 font-bold
+`;
+
+export const Namespan = tw.span`
+text-2xl
+`;
+
+export const Child = tw.span`
+
 `;
 
 export const Btn = tw.div`
@@ -54,13 +74,18 @@ text-white
 `;
 
 export const Mypage = tw.button`
+web:
+
 rounded-[5px]
+
 w-full
 h-[35px]
 py-1
 bg-[#EEA241]
 text-[13px]
+
 hover:bg-[rgba(255,230,124,0.9)]
+hover:text-[#ED8B0E]
 transition-all
 `;
 
@@ -72,5 +97,6 @@ py-1
 bg-[#EEA241]
 text-[13px]
 hover:bg-[rgba(255,230,124,0.9)]
+hover:text-[#ED8B0E]
 transition-all
 `;
