@@ -2,17 +2,18 @@ package com.a102.andy.app.solution.repository;
 
 import com.a102.andy.app.solution.controller.dto.*;
 import com.a102.andy.app.solution.entity.*;
+import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @RequiredArgsConstructor
 @Repository
@@ -28,14 +29,34 @@ public class SolutionRepository {
                    .fetch();
     }
 
-
     public List<ProblemDto> findExamByCategoryAll(int category) {
-        return jpaQueryFactory.select(Projections.constructor(ProblemDto.class,
-                        qQuestion.questionSeq,
-                        qQuestion.questionPicture,
-                        qQuestion.questionName)).from(qQuestion)
+        // 모든 조합 조회
+        List<Tuple> combinations = jpaQueryFactory
+                .select(qQuestion.questionCategorySeq, qQuestion.questionName)
+                .from(qQuestion)
                 .where(qQuestion.questionCategorySeq.eq(category))
+                .groupBy(qQuestion.questionCategorySeq, qQuestion.questionName)
                 .fetch();
+
+        List<ProblemDto> randomQuestions = new ArrayList<>();
+
+        // 각 조합에 대해 한 개의 레코드 선택
+        combinations.forEach(combination -> {
+            String name = combination.get(qQuestion.questionName);
+
+            List<String> pictures = jpaQueryFactory
+                    .select(qQuestion.questionPicture)
+                    .from(qQuestion)
+                    .where(qQuestion.questionCategorySeq.eq(category)
+                            .and(qQuestion.questionName.eq(name)))
+                    .fetch();
+
+            int randomIndex = new Random().nextInt(pictures.size());
+            String selectedPicture = pictures.get(randomIndex);
+            randomQuestions.add(new ProblemDto(category, selectedPicture, name));
+        });
+
+        return randomQuestions;
     }
 
     public List<ProblemALLResponseDto> findProblemsALL(int childSeq, String date) {

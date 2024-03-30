@@ -3,7 +3,6 @@ package com.a102.andy.app.solution.service;
 import com.a102.andy.app.solution.controller.dto.*;
 import com.a102.andy.app.solution.entity.Exam;
 import com.a102.andy.app.solution.entity.QuestionHistory;
-import com.a102.andy.app.solution.repository.CategoryRepository;
 import com.a102.andy.app.solution.repository.ExamRepository;
 import com.a102.andy.app.solution.repository.QuestionHistoryRepository;
 import com.a102.andy.app.solution.repository.SolutionRepository;
@@ -26,7 +25,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 @Service
@@ -35,17 +33,15 @@ public class SolutionService {
     private final SolutionRepository solutionRepository;
     private final ExamRepository examRepository;
     private final QuestionHistoryRepository questionHistoryRepository;
-    private final CategoryRepository categoryRepository;
     public List<CategoriesResponseDto> readCategoryAll(){
         return solutionRepository.findCategoryAll();
     }
 
     public ProblemsDto readExamByCategoryAll(int category){
         List<ProblemDto> problemResponseDtos = solutionRepository.findExamByCategoryAll(category);
-        ProblemsDto problemsDto = ProblemsDto.builder()
+        return ProblemsDto.builder()
                 .problem(problemResponseDtos)
                 .build();
-        return problemsDto;
     }
 
     public ResultResponseDto readProblemAnswer(MultipartFile multipartFile, String answer) {
@@ -130,7 +126,7 @@ public class SolutionService {
     @Transactional
     public ResultUpdateResponseDto updateProblem(ResultUpdateRequestDto resultUpdateRequestDto) {
         QuestionHistory questionHistory = questionHistoryRepository.
-                findById(resultUpdateRequestDto.getQuestionHistorySeq()).orElseThrow(() -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND));;
+                findById(resultUpdateRequestDto.getQuestionHistorySeq()).orElseThrow(() -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND));
 
         questionHistory.update(resultUpdateRequestDto);
 
