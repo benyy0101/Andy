@@ -121,15 +121,17 @@ function Quiz1() {
         </div>
         <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
         <Timer reset={reset} />
-        {data && currentSeq < numProblems && (
-          <Word1 word={data[currentSeq].question_name || ""} />
-        )}
-        {data && currentSeq < numProblems && (
-          <Camera
-            setIsTrue={handleIsTrue}
-            input={data[currentSeq].question_name || ""}
-          />
-        )}
+        <div className="w-screen web:w-fit flex flex-col justify-between items-center space-y-5 web:flex-row web:space-y-0 web:space-x-6">
+          {data && currentSeq < numProblems && (
+            <Word1 word={data[currentSeq].question_name || ""} />
+          )}
+          {data && currentSeq < numProblems && (
+            <Camera
+              setIsTrue={handleIsTrue}
+              input={data[currentSeq].question_name || ""}
+            />
+          )}
+        </div>
         {/* 조건에 따라서 정답 맞추면 정답 모달/ 틀리면 오답 모달 */}
         <CorrectModal
           isOpen={isCorrectModalOpen}

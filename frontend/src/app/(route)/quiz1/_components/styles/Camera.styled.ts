@@ -16,8 +16,13 @@ export const Wrapper = tw.div`
 
 export const Wrapper2 = tw.div`
 flex
+w-3/4
+web:w-full
 `;
 
 export const Video = tw.video`
-rounded-full
+w-full
+web:w-[400px]
+web:h-[300px]
+rounded-lg
 `;
