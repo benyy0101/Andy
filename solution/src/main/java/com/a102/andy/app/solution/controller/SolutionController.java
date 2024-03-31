@@ -43,7 +43,7 @@ public class SolutionController {
 
     //틀린문제 전체 조회
     @GetMapping("/review/{child_seq}/{date}")
-    public ResponseEntity<List<ProblemALLResponseDto>> readProblemsALL
+    public ResponseEntity<ProblemALLResponseDto> readProblemsALL
             (@PathVariable(name = "child_seq") int Child_seq,
              @PathVariable(name = "date") String date){
         return ResponseEntity.ok(solutionService.readProblemsALL(Child_seq,date));

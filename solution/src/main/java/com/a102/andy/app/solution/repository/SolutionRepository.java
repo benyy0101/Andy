@@ -22,11 +22,12 @@ public class SolutionRepository {
     private final QCategory qCategory = QCategory.category;
     private final QQuestion qQuestion = QQuestion.question;
     private final QQuestionHistory qQuestionHistory = QQuestionHistory.questionHistory;
-    public List<CategoriesResponseDto> findCategoryAll(){
-           return jpaQueryFactory.select(Projections.constructor(CategoriesResponseDto.class,
-                 qCategory.questionCategorySeq,
-                 qCategory.questionCategoryName)).from(qCategory).limit(5)
-                   .fetch();
+
+    public List<CategoriesResponseDto> findCategoryAll() {
+        return jpaQueryFactory.select(Projections.constructor(CategoriesResponseDto.class,
+                        qCategory.questionCategorySeq,
+                        qCategory.questionCategoryName)).from(qCategory).limit(5)
+                .fetch();
     }
 
     public List<ProblemDto> findExamByCategoryAll(int category) {
@@ -59,12 +60,12 @@ public class SolutionRepository {
         return randomQuestions;
     }
 
-    public List<ProblemALLResponseDto> findProblemsALL(int childSeq, String date) {
+    public ProblemALLResponseDto findProblemsALL(int childSeq, String date) {
         YearMonth formatter = YearMonth.parse(date, DateTimeFormatter.ofPattern("yyyy-MM"));
         LocalDateTime startOfMonth = formatter.atDay(1).atStartOfDay();
         LocalDateTime endOfMonth = formatter.plusMonths(1).atDay(1).atStartOfDay().minusSeconds(1);
 
-        return jpaQueryFactory.select(Projections.constructor(ProblemALLResponseDto.class,
+        List<ProblemALLResponseDto.Problem> problems = jpaQueryFactory.select(Projections.constructor(ProblemALLResponseDto.Problem.class,
                         qQuestionHistory.examMode,
                         qQuestionHistory.questionHistorySeq,
                         qQuestion.questionSeq,
@@ -77,7 +78,8 @@ public class SolutionRepository {
                         .and(qQuestionHistory.createdAt.between(startOfMonth, endOfMonth))
                         .and(qQuestionHistory.questionHistoryIsOk.eq(false)))
                 .fetch();
+
+        // 문제 리스트를 포함하는 ProblemALLResponseDto 객체를 생성하여 반환합니다.
+        return new ProblemALLResponseDto(problems);
     }
-
-
 }
