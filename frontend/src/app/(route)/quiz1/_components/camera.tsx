@@ -4,11 +4,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useSendResultMutation } from "@/app/hooks/useGameA";
 import { motion } from "framer-motion";
-import { CameraIcon } from "@heroicons/react/24/solid";
-import { Wrapper2, Video } from "./styles/Camera.styled";
 import Image from "next/image";
 import andy from "@/app/asset/_img/Andylogo.png";
 import cameraIcon from "@/app/asset/_img/camera-icon.png";
+import { Wrapper2, Video } from "./styles/Camera.styled";
+
 interface ICamera {
   setIsTrue: (stat: boolean) => void;
   input: string;
@@ -105,12 +105,7 @@ function Camera(props: ICamera) {
               className="rounded-md h-12"
             >
               <div className="transition-all hover:scale-110">
-                <Image
-                  src={cameraIcon}
-                  height={50}
-                  width={50}
-                  alt="camera"
-                ></Image>
+                <Image src={cameraIcon} height={50} width={50} alt="camera" />
               </div>
             </button>
           </div>
@@ -118,7 +113,7 @@ function Camera(props: ICamera) {
       ) : (
         <div className="flex flex-col justify-start items-start h-full">
           <div className="flex justify-center items-center flex-grow-[1]">
-            <Image width={400} height={300} src={andy} alt="andy"></Image>
+            <Image width={400} height={300} src={andy} alt="andy" />
           </div>
           <button
             name="video-toggle"

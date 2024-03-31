@@ -1,14 +1,13 @@
 import tw from "tailwind-styled-components";
 
 export const Wrapper = tw.div`
-p-10
 flex
 flex-col
 items-center
 justify-start
 space-y-4
 web:space-y-8
-w-svw
+font-TTLaundryGothicB
 `;
 
 export const Title = tw.h1`
@@ -31,6 +30,8 @@ web:gap-10
 `;
 
 export const ImageContainer = tw.div`
+  border
+  border-lightorange
   rounded-lg
   bg-white
   flex

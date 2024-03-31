@@ -31,6 +31,11 @@ const images = {
 function Categories() {
   const { data } = useCategories();
   const mode = useSearchParams().get("mode");
+  const soundUrl = "/public/asset/audio/click.mp3";
+  const playAudio = () => {
+    const audio = new Audio(soundUrl); // Provide the path to your audio file
+    audio.play();
+  };
   return (
     <Suspense fallback={<div>로딩중입니다...</div>}>
       <Wrapper>
@@ -39,7 +44,7 @@ function Categories() {
         <Category>
           {data &&
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            data.map((category: any) => (
+            data.map((category) => (
               <Link
                 href={
                   mode
@@ -48,7 +53,7 @@ function Categories() {
                 }
                 key={category.question_category_seq}
               >
-                <ImageContainer>
+                <ImageContainer onClick={playAudio}>
                   <Image
                     src={images[category.question_category_name]}
                     alt="fruit"

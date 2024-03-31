@@ -18,6 +18,7 @@ export const Wrapper2 = tw.div`
 flex
 w-3/4
 web:w-full
+web:h-[364px]
 `;
 
 export const Video = tw.video`

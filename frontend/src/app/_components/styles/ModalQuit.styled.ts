@@ -66,5 +66,4 @@ hover:-translate-y-1
 hover:scale-110 
 hover:bg-white hover:text-lightorange hover:font-extrabold
 duration-300
-`
-
+`;

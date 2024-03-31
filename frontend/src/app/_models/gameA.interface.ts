@@ -4,7 +4,8 @@ export interface CategoriesResponse {
 }
 
 export interface Category {
-  question_category_seq: number;
+  [index: string]: string; // 이렇게 한 줄만 써주면 된다
+  question_category_seq: string;
   question_category_name: string;
 }
 
@@ -57,6 +58,7 @@ export interface GameResultResponse {
 // GAME-005
 export interface WrongProblemsReqeust {
   child_seq: number;
+  month: string;
 }
 
 export interface WrongProblemsResponse {
@@ -75,4 +77,3 @@ export interface ReexamineResponse {
 }
 
 export interface Pageable {}
-
