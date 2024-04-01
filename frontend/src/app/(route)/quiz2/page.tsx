@@ -16,6 +16,7 @@ import { useGameResultMutation, useGamebyCategory } from "@/app/hooks/useGameA";
 import ProgressBar from "@/app/_components/ProgressBar";
 import { animate } from "framer-motion";
 import BackgroundSVG from "@/app/_components/background/Background";
+import Navigation from "@/app/_components/navigation/Navigation";
 import InputComponent from "./_components/input";
 import Photo from "./_components/photo";
 import {
@@ -189,6 +190,7 @@ function Quiz2Page() {
   return (
     <Wrapper>
       <BackgroundSVG />
+      <Navigation />
       {!isReady ? (
         <div className="h-svh w-svw flex flex-col justify-center items-center space-y-10">
           <div className="text-4xl">준비되었나요?</div>
