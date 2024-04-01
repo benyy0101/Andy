@@ -48,7 +48,9 @@ export const getGameResult = async (
 export const getWrongProblems = async (
   request: WrongProblemsReqeust,
 ): Promise<WrongProblemsResponse> => {
-  const response = await localAxios.get(`/game/review/${request.child_seq}`);
+  const response = await quizAxios.get(
+    `/game/review/${request.child_seq}/${request.month}`,
+  );
   return response.data;
 };
 
