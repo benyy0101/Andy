@@ -36,6 +36,7 @@ export default function QuizButton(props: IQuizButton) {
         </IframeContainer>
       </QuizCircleContainer>
 
+
       <QuizTitle>
         {quizName}
       </QuizTitle>
