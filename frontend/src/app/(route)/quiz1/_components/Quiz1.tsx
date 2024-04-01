@@ -8,10 +8,14 @@ import ProgressBar from "@/app/_components/ProgressBar";
 import { useGameResultMutation, useGamebyCategory } from "@/app/hooks/useGameA";
 import storeProfile from "@/app/_store/storeProfile";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Quit } from "@/app/_components/quit_btn/quit";
+import QuitModal from "@/app/_components/modal_quit";
+import BackgroundSVG from "@/app/_components/background/Background";
 import Word1 from "./word1";
 import Camera from "./camera";
 
 import { Wrapper, Title, Explain } from "../styles/page.styled";
+import { Quitbtn } from "../../quiz2/styles/pages.styled";
 
 interface IQuizData {
   question_seq: number;
@@ -30,6 +34,10 @@ function Quiz1() {
   const [score, setScore] = useState(0);
   const { mutate } = useGameResultMutation();
   const [reset, setReset] = useState(false);
+  const [isReady, setIsReady] = useState<boolean>(false);
+  const [count, setCount] = useState<number>(5);
+  const [isCounting, setIsCounting] = useState(false);
+  const [isQuitModalOpen, setIsQuitModalOpen] = useState(false);
   const category = Number(useSearchParams().get("category"));
   const { data } = useGamebyCategory(category);
   const router = useRouter();
@@ -63,6 +71,12 @@ function Quiz1() {
   const handleCloseWrongModal = () => {
     setIsWrongModalOpen(false);
     handleResetTimer();
+  };
+
+  const handleOpenQuitModal = () => setIsQuitModalOpen(true);
+  const handleCloseQuitModal = () => setIsQuitModalOpen(false);
+  const handleOnQuitModal = () => {
+    router.push("/category?mode=quiz2");
   };
 
   useEffect(() => {
@@ -112,31 +126,75 @@ function Quiz1() {
     }
   }, [data]);
 
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    setIsCounting(true);
+    if (!isReady && count > 0) {
+      // Ensure count is greater than 0 before decrementing
+      const timer = setTimeout(() => {
+        setCount(count - 1);
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+    if (count === 0) setIsReady(true);
+  }, [isReady, count]); // Include count in the dependency array
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Wrapper>
-        <ProgressBar max={numProblems} value={status.length} />
-        <div className="flex justify-center items-end w-full px-10">
-          {currentSeq < numProblems && <Title>라운드 {currentSeq + 1}</Title>}
+      {!isReady ? (
+        <div className="h-svh w-svw flex flex-col justify-center items-center space-y-10">
+          <div className="text-4xl">준비되었나요?</div>
+          <div
+            className={`text-8xl font-black ${isCounting && "animate-bounce"}`}
+          >
+            {count}
+          </div>
         </div>
-        <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
-        <Timer reset={reset} />
-        {data && currentSeq < numProblems && (
-          <Word1 word={data[currentSeq].question_name || ""} />
-        )}
-        {data && currentSeq < numProblems && (
-          <Camera
-            setIsTrue={handleIsTrue}
-            input={data[currentSeq].question_name || ""}
+      ) : (
+        <Wrapper>
+          <BackgroundSVG />
+          <ProgressBar max={numProblems} value={status.length} />
+          <div className="flex justify-between items-end w-11/12">
+            {/* 게임 도중 나가기  */}
+            <Quitbtn onClick={handleOpenQuitModal}>
+              <Quit />
+            </Quitbtn>
+            {currentSeq < numProblems && <Title>라운드 {currentSeq + 1}</Title>}
+            <div className="w-1/6" />
+          </div>
+          {/* <div className="flex justify-center items-end w-full px-10">
+            {currentSeq < numProblems && <Title>라운드 {currentSeq + 1}</Title>}
+          </div> */}
+          <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
+          <Timer reset={reset} />
+          <div className="w-screen web:w-fit flex flex-col justify-between items-center space-y-5 web:flex-row web:space-y-0 web:space-x-6">
+            {data && currentSeq < numProblems && (
+              <Word1 word={data[currentSeq].question_name || ""} />
+            )}
+            {data && currentSeq < numProblems && (
+              <Camera
+                setIsTrue={handleIsTrue}
+                input={data[currentSeq].question_name || ""}
+              />
+            )}
+          </div>
+          {/* 조건에 따라서 정답 맞추면 정답 모달/ 틀리면 오답 모달 */}
+          <CorrectModal
+            isOpen={isCorrectModalOpen}
+            onClose={handleCloseCorrectModal}
           />
-        )}
-        {/* 조건에 따라서 정답 맞추면 정답 모달/ 틀리면 오답 모달 */}
-        <CorrectModal
-          isOpen={isCorrectModalOpen}
-          onClose={handleCloseCorrectModal}
-        />
-        <WrongModal isOpen={isWrongModalOpen} onClose={handleCloseWrongModal} />
-      </Wrapper>
+          <WrongModal
+            isOpen={isWrongModalOpen}
+            onClose={handleCloseWrongModal}
+          />
+          <QuitModal
+            isOpen={isQuitModalOpen}
+            onClose={handleCloseQuitModal}
+            onQuit={handleOnQuitModal}
+          />
+        </Wrapper>
+      )}
     </Suspense>
   );
 }

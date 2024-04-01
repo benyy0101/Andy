@@ -5,7 +5,7 @@ flex
 flex-col
 items-center
 justify-start
-w-full
+w-screen
 h-svw
 space-y-8
 `;

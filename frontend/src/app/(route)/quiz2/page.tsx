@@ -3,7 +3,7 @@
 
 "use client";
 
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Timer from "@/app/_components/timer";
 import CorrectModal from "@/app/_components/modal_correct";
 import WrongModal from "@/app/_components/modal_wrong";
@@ -13,17 +13,17 @@ import { Quit } from "@/app/_components/quit_btn/quit";
 import { useSearchParams, useRouter } from "next/navigation";
 import storeProfile from "@/app/_store/storeProfile";
 import { useGameResultMutation, useGamebyCategory } from "@/app/hooks/useGameA";
+import ProgressBar from "@/app/_components/ProgressBar";
+import { animate } from "framer-motion";
+import BackgroundSVG from "@/app/_components/background/Background";
 import InputComponent from "./_components/input";
 import Photo from "./_components/photo";
 import {
-
   Wrapper,
-  PaddingWrapper,
   Title,
   Explain,
   Quitbtn,
   TimerContainer,
-  PhotoContainer,
   ImageTimeContainer,
   Bar,
 } from "./styles/pages.styled";
@@ -48,14 +48,30 @@ function Quiz2Page() {
   const [inputValue, setInputValue] = useState("");
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const [score, setScore] = useState<number>(0); // 맞힌 문제 개수 체크
+  const [isReady, setIsReady] = useState<boolean>(false);
+  const [count, setCount] = useState<number>(5);
+  const [isCounting, setIsCounting] = useState(false);
   const router = useRouter();
   const { data } = useGamebyCategory(category);
   const [numProblems, setNumProblems] = useState(0);
   const { profile } = storeProfile();
-
   useEffect(() => {
     setInputValue("");
   }, [currentSeq]);
+
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    setIsCounting(true);
+    if (!isReady && count > 0) {
+      // Ensure count is greater than 0 before decrementing
+      const timer = setTimeout(() => {
+        setCount(count - 1);
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+    if (count === 0) setIsReady(true);
+  }, [isReady, count]); // Include count in the dependency array
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-shadow
   const handleInputSubmit = (inputValue: any) => {
@@ -63,7 +79,6 @@ function Quiz2Page() {
     console.log("사용자가 친 입력값", inputValue);
     setInputValue("");
   };
-
 
   // 다음 라운드 넘어갈 때 타이머 리셋
   const handleResetTimer = () => {
@@ -80,7 +95,7 @@ function Quiz2Page() {
 
   const handleIsTrue = (stat: boolean) => {
     if (stat) {
-      setScore((prevScore:any) => prevScore + 1);
+      setScore((prevScore: any) => prevScore + 1);
     }
     setIsTrue(stat);
   };
@@ -107,6 +122,9 @@ function Quiz2Page() {
 
   const handleOpenQuitModal = () => setIsQuitModalOpen(true);
   const handleCloseQuitModal = () => setIsQuitModalOpen(false);
+  const handleOnQuitModal = () => {
+    router.push("/category?mode=quiz2");
+  };
 
   // eslint-disable-next-line no-console
   // console.log(profile.child_name);
@@ -143,10 +161,7 @@ function Quiz2Page() {
   };
 
   useEffect(() => {
-    if (numProblems > 0 &&
-      currentSeq === numProblems
-      && !isAnswerModadlOpen
-    ) {
+    if (numProblems > 0 && currentSeq === numProblems && !isAnswerModadlOpen) {
       const req = {
         child_seq: profile.child_seq,
         question_category_seq: Number(category),
@@ -171,60 +186,61 @@ function Quiz2Page() {
     setInputValue(newData);
   };
 
-  const ttsShoot = () => {
-    const message = new SpeechSynthesisUtterance();
-    message.pitch = 1.5;
-    message.rate = 0.8;
-    // message.text = data[currentSeq].question_name;
-    message.text = "안녕하세요";
-    message.volume = 1;
-    window.speechSynthesis.speak(message);
-  }
   return (
     <Wrapper>
-      <PaddingWrapper>
-        {/* <ProgressBar max={numProblems} value={status.length} /> */}
-
-        <Title>라운드 {currentSeq + 1}</Title>
-
-        <Explain>이것은 무엇일까요?</Explain>
-
-        {/* 현재 라운드의 데이터가 있고  */}
-        {currentSeq >= 0 && currentSeq < numProblems && data[currentSeq] && (
-          <ImageTimeContainer>
-            <PhotoContainer>
-              <Photo question_picture={data[currentSeq].question_picture} />
-            </PhotoContainer>
-            <TimerContainer>
+      <BackgroundSVG />
+      {!isReady ? (
+        <div className="h-svh w-svw flex flex-col justify-center items-center space-y-10">
+          <div className="text-4xl">준비되었나요?</div>
+          <div
+            className={`text-8xl font-black ${isCounting && "animate-bounce"}`}
+          >
+            {count}
+          </div>
+        </div>
+      ) : (
+        <>
+          <ProgressBar max={numProblems} value={status.length} />
+          <div className="flex justify-between items-end w-11/12">
+            {/* 게임 도중 나가기  */}
+            <Quitbtn onClick={handleOpenQuitModal}>
+              <Quit />
+            </Quitbtn>
+            {currentSeq < numProblems && <Title>라운드 {currentSeq + 1}</Title>}
+            <div className="w-1/6" />
+          </div>
+          {currentSeq < numProblems && (
+            <>
+              <Explain>이것은 무엇일까요? 정답을 적어주세요!</Explain>
               <Timer reset={reset} />
-            </TimerContainer>
-          </ImageTimeContainer>
-        )}
+            </>
+          )}
+          {/* 현재 라운드의 데이터가 있고  */}
+          {currentSeq >= 0 && currentSeq < numProblems && data[currentSeq] && (
+            <Photo question_picture={data[currentSeq].question_picture} />
+          )}
 
-        {currentSeq >= 0 && currentSeq < numProblems && data[currentSeq] && (
-          <InputComponent
-            onAnswerSubmit={handleInputSubmit}
-            onChange={handleDataChange}
-            onSubmit={handleIsTrue}
-            correctAnswer={data[currentSeq].question_name}
-            inputValue={inputValue}
-          />
-        )}
-        {/* 게임 도중 나가기  */}
-        <Quitbtn onClick={handleOpenQuitModal}>
-          <Quit />
-        </Quitbtn>
-      </PaddingWrapper>
+          {currentSeq >= 0 && currentSeq < numProblems && data[currentSeq] && (
+            <InputComponent
+              onAnswerSubmit={handleInputSubmit}
+              onChange={handleDataChange}
+              onSubmit={handleIsTrue}
+              correctAnswer={data[currentSeq].question_name}
+              inputValue={inputValue}
+            />
+          )}
+        </>
+      )}
+
       {/* eslint-disable-next-line react/button-has-type */}
       <CorrectModal
         isOpen={isCorrectModalOpen}
         onClose={handleCloseCorrectModal}
       />
-      <button onClick={ttsShoot} type="button" >TTS 발사</button>
       <WrongModal isOpen={isWrongModalOpen} onClose={handleCloseWrongModal} />
       {/* eslint-disable-next-line react/jsx-no-bind */}
 
-      {data && currentSeq < numProblems &&  (
+      {data && currentSeq < numProblems && (
         <AnswerModal
           isOpen={isAnswerModadlOpen}
           onClose={handleCloseAnswerModal}
@@ -233,7 +249,11 @@ function Quiz2Page() {
         />
       )}
 
-      <QuitModal isOpen={isQuitModalOpen} onClose={handleCloseQuitModal} />
+      <QuitModal
+        isOpen={isQuitModalOpen}
+        onClose={handleCloseQuitModal}
+        onQuit={handleOnQuitModal}
+      />
     </Wrapper>
   );
 }

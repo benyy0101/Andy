@@ -11,6 +11,9 @@ const config: Config = {
       web: "475px",
     },
     extend: {
+      fontFamily: {
+        main: ["TTLaundryGothicB"],
+      },
       colors: {
         green: "#295F2E",
         orange: "#ed8b0e",

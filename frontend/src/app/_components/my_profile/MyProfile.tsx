@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import Link from "next/link";
 import { useRouter } from "next/navigation";
 import storeProfile from "@/app/_store/storeProfile";
