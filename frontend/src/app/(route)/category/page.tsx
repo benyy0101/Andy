@@ -14,9 +14,15 @@ async function CategoryPage() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
+      <div className="flex flex-col w-svw">
       <Navigation />
-      <BackgroundSVG />
       <Categories />
+      </div>
+
+
+      
+      <BackgroundSVG />
+      
     </HydrationBoundary>
   );
 }
