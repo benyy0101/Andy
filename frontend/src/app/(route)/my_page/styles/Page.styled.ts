@@ -6,7 +6,7 @@ flex
 flex-col
 justify-center
 items-center
-h-[90vh]
+h-[85vh]
 m-[0 auto]
 `
 
@@ -34,11 +34,8 @@ w-[100%]
 web:w-[67%]
 mb-3
 web:mb-0
-pl-2.5
-pr-2.5
-pt-5
-pb-5
-web:p-0
+p-0
+pb-4
 relative
 `
 
@@ -137,7 +134,11 @@ flex
 export const CalendarWrapper = tw.div`
 flex
 flex-col
-w-[80%]
+w-[100%]
+web:p-10
+p-2
+pl-7
+pr-7
 `
 
 export const StyledHeader = tw.div`
@@ -211,8 +212,9 @@ mr-[10px]
 web:ml-[20px]
 web:mr-[20px]
 text-[#EEA241]
-web:mb-5
-web:mt-4
+web:mb-1
+mt-12
+web:mt-0
 `
 
 export const PreviousIcon = tw.button`
@@ -224,8 +226,9 @@ ml-[3px]
 mr-[3px]
 web:ml-[8px]
 web:mr-[8px]
-web:mb-5
-web:mt-4
+web:mb-1
+mt-12
+web:mt-0
 `
 
 export const NextIcon = tw.button`
@@ -237,8 +240,9 @@ ml-[3px]
 mr-[3px]
 web:ml-[8px]
 web:mr-[8px]
-web:mb-5
-web:mt-4
+web:mb-1
+mt-12
+web:mt-0
 `
 
 export const Row1 = tw.div`
@@ -556,7 +560,9 @@ text-[14px]
 `
 
 export const Mode = tw.div`
-text-[13px]
+text-[11px]
+text-left
+text-[#878787]
 `
 
 export const Temp = tw.div`
@@ -564,21 +570,18 @@ flex
 `
 
 export const SolveCount = tw.div`
-absolute
-top-[20px]
-right-[20px]
-p-1
+p-2
 pl-2
 pr-2
 web:p-2
-web:pl-3
-web:pr-3
-text-white
-bg-[#EEA241]
+mt-3
 rounded-[5px]
 flex
-flex-col
-justify-center
-items-center
-web:flex-row
+text-[#EEA241]
+absolute
+top-0
+left-2
+web:static
 `
+
+// bg-[#EEA241]

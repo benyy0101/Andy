@@ -45,9 +45,6 @@ export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
 
     const childpicture = imageUrl;
 
-    // eslint-disable-next-line no-console
-    console.log(name, nickname, birthday, gender, childpicture)
-
     const formSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 

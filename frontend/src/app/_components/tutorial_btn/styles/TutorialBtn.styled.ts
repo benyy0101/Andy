@@ -10,7 +10,7 @@ h-[50px]
 rounded-[100%]
 shadow-md
 transition-all
-absolute
+fixed
 right-[40px]
 bottom-[40px]
 hover:bg-[#CACACA]

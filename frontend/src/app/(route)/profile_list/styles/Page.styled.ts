@@ -9,7 +9,7 @@ items-center
 export const Profiles = tw.div`
 flex
 justify-center
-h-[90vh]
+h-[85vh]
 m-[0]
 `;
 
@@ -192,4 +192,13 @@ flex
 justify-center
 items-center
 cursor-pointer
+`
+
+export const LogoWrapper = tw.div`
+web:h-fit
+web:p-5
+web:w-dvw
+p-2
+flex
+justify-center
 `

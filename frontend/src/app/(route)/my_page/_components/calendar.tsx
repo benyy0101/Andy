@@ -160,9 +160,6 @@ export default function CalenderBox({
     const updatedYear = updatedDate.format("YYYY");
     const updatedMonth = updatedDate.format("MM");
 
-    // eslint-disable-next-line no-console
-    console.log("changemonth")
-
     setViewDate(updatedDate);
     if (updatedYear !== viewYear || updatedMonth !== viewMonth) {
       setRequestData({
@@ -175,11 +172,15 @@ export default function CalenderBox({
 
   return (
     <CalendarWrapper>
-      <StyledHeader>
       <SolveCount>
-        <Image src={Stamp} alt="스탬프" width="20" height="20" />
-        <div style={{marginLeft: "5px"}}>{`${exams?.length} / ${daysInMonth}`}</div>
+        <Image src={Stamp} alt="스탬프" width="25" height="25" />
+        {exams ? (
+          <div style={{marginLeft: "7px"}}>{`${exams.length}일 / ${daysInMonth}일`}</div>
+        ) : (
+          <div style={{marginLeft: "7px"}}>로딩중</div>
+        )}
       </SolveCount>
+      <StyledHeader>
         <PreviousIcon onClick={() => changegeMonth(viewDate, "subtract")}>
           <ChevronLeftIcon style={{ color: "#EEA241" }} />
         </PreviousIcon>

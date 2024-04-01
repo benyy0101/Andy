@@ -3,19 +3,48 @@
 
 "use client";
 
-import React from "react";
-import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+// import { useRouter } from "next/navigation";
+import TutorialModal from "@/app/(route)/main_quiz/_components/TutorialModal";
 import { Btn } from "./styles/TutorialBtn.styled";
 
-function TutorialBtn() {
-  const router = useRouter();
+const modal = {
+  hidden: { opacity: 0, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1
+  }
+}
 
-  const routetoTutorial = () => {
-    router.push("/tutorial");
-  };
+function TutorialBtn() {
+  // const router = useRouter();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [showModal, setShowModal] = useState(false);
+
+  const handleTutorial = () => {
+    setShowModal(true);
+  }
+
+  // const routetoTutorial = () => {
+  //   router.push("/tutorial");
+  // };
 
   return (
-    <Btn onClick={routetoTutorial}>?</Btn>
+    <>
+    <Btn onClick={handleTutorial}>?</Btn>
+    {showModal &&
+        <motion.div
+        className="flex"
+        variants={modal}
+        initial="hidden"
+        animate="visible"
+        style={{ position: "absolute", width: "100%", height: "100%" }}
+      >
+        <TutorialModal showModal={showModal} setShowModal={setShowModal}/>
+      </motion.div>
+    }
+    </>
     // <Image src={question_mark} alt="튜토리얼 버튼"/>
   );
 }

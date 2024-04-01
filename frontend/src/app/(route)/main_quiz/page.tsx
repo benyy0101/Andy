@@ -1,3 +1,4 @@
+import TutorialBtn from "@/app/_components/tutorial_btn/tutorialBtn";
 import Navigation from "@/app/_components/navigation/Navigation";
 import BackgroundSVG from "@/app/_components/background/Background";
 import QuizButton from "./_components/QuizButton";
@@ -36,6 +37,7 @@ export default function MainQuiz() {
             />
           ))}
         </Wrapper>
+        <TutorialBtn />
       </div>
   );
 }

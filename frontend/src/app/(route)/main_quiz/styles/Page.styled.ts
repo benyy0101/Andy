@@ -86,3 +86,57 @@ mt-2
 hover:text-[green]
 transition-all
 `;
+
+export const TutorialModalBg = tw.div`
+absolute
+w-full
+h-full
+flex
+items-center
+justify-center
+`
+
+// bg-[rgba(0,0,0,0.5)]
+
+export const TutorialModalWrapper = tw.div`
+rounded-[10px]
+bg-[#fff]
+h-[70%]
+web:h-[80%]
+w-[80%]
+web:w-[70%]
+shadow-md
+p-5
+`
+
+export const ModalHeader = tw.div`
+flex
+font-bold
+relative
+h-[8%]
+web:h-[10%]
+justify-center
+`
+
+export const Title = tw.div`
+text-[20px]
+web:text-[30px]
+`
+
+export const Btn = tw.div`
+absolute
+top-0
+web:top-[3px]
+right-0
+web:right-[3px]
+text-[20px]
+cursor-pointer
+`
+
+export const ModalContent = tw.div`
+flex
+flex-col
+overflow-auto
+h-[95%]
+w-full
+`

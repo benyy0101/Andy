@@ -1,9 +1,10 @@
-import TutorialBtn from "@/app/_components/tutorial_btn/tutorialBtn";
+// import TutorialBtn from "@/app/_components/tutorial_btn/tutorialBtn";
+import Logo from "@/app/_components/logo/Logo";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { getProfileList } from "@/app/api/profile";
 import getQueryClient from "@/app/utils/queryClient";
 import BackgroundSVG from "@/app/_components/background/Background";
-import { Wrapper, Profiles } from "./styles/Page.styled";
+import { Wrapper, Profiles, LogoWrapper } from "./styles/Page.styled";
 import ProfileContainer from "./_components/ProfileContainer";
 
 export default async function ProfileList() {
@@ -17,12 +18,15 @@ export default async function ProfileList() {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <BackgroundSVG />
+      <LogoWrapper>
+        <Logo />
+      </LogoWrapper>
       <Wrapper>
         <Profiles>
           <ProfileContainer />
         </Profiles>
         {/* {showModal && <ProfileModal />} */}
-        <TutorialBtn />
+        {/* <TutorialBtn /> */}
       </Wrapper>
     </HydrationBoundary>
   );
