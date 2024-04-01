@@ -43,9 +43,6 @@ const modal = {
 function ProfileContainer() {
   const { data } = useProfileList();
 
-  // eslint-disable-next-line no-console
-  console.log(data)
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isMobileScreen, setIsMobileScreen] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);

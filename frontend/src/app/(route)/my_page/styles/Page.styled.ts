@@ -6,14 +6,15 @@ flex
 flex-col
 justify-center
 items-center
-h-[100vh]
+h-[90vh]
 m-[0 auto]
 `
 
 export const Content = tw.div`
 flex
-h-[75%]
+h-[88%]
 w-[80%]
+web:w-[75%]
 web:justify-center
 flex-col
 web:flex-row
@@ -30,7 +31,7 @@ web:justify-center
 items-center
 shadow-md
 w-[100%]
-web:w-[65%]
+web:w-[67%]
 mb-3
 web:mb-0
 pl-2.5
@@ -44,7 +45,7 @@ relative
 export const Info = tw.div`
 text-black
 w-[100%]
-web:w-[35%]
+web:w-[33%]
 web:pl-6
 web:flex
 web:flex-col
@@ -63,8 +64,10 @@ flex-col-reverse
 
 export const Profile = tw.div`
 bg-[#ffffff]
-web:h-[40%]
-p-[25px]
+web:h-[38%]
+p-[20px]
+pl-[30px]
+pr-[30px]
 pb-[15px]
 rounded-[15px]
 flex
@@ -95,7 +98,7 @@ export const Score = tw.div`
 bg-[#EEA241]
 text-black
 h-[300px]
-web:h-[57%]
+web:h-[58%]
 rounded-[15px]
 p-8
 pr-7
@@ -107,7 +110,7 @@ web:mb-0
 export const ProfileEdit = tw.div`
 flex
 w-[100%]
-mt-2
+mt-1.5
 items-center
 text-sm
 `
@@ -208,6 +211,8 @@ mr-[10px]
 web:ml-[20px]
 web:mr-[20px]
 text-[#EEA241]
+web:mb-5
+web:mt-4
 `
 
 export const PreviousIcon = tw.button`
@@ -219,6 +224,8 @@ ml-[3px]
 mr-[3px]
 web:ml-[8px]
 web:mr-[8px]
+web:mb-5
+web:mt-4
 `
 
 export const NextIcon = tw.button`
@@ -230,6 +237,8 @@ ml-[3px]
 mr-[3px]
 web:ml-[8px]
 web:mr-[8px]
+web:mb-5
+web:mt-4
 `
 
 export const Row1 = tw.div`
@@ -567,4 +576,9 @@ web:pr-3
 text-white
 bg-[#EEA241]
 rounded-[5px]
+flex
+flex-col
+justify-center
+items-center
+web:flex-row
 `

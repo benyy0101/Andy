@@ -30,25 +30,27 @@ export default function MyPage() {
   };
 
   return (
-    <Wrapper>
+    <>
       <Logo />
-      <Content>
-        <ProfileMobile>
-            <ProfileBox />
-        </ProfileMobile>
-        <Calendar>
-          <CalendarBox clickdate={FetchDate} />
-        </Calendar>
-        <Info>
-          <Profile>
-            <ProfileBox />
-          </Profile>
-          <Score>
-            <ScoreBox dateSelect={dateSelect} />
-          </Score>
-          {/* </ScoreWrapper1> */}
-        </Info>
-      </Content>
-    </Wrapper>
+      <Wrapper>
+        <Content>
+          <ProfileMobile>
+              <ProfileBox />
+          </ProfileMobile>
+          <Calendar>
+            <CalendarBox clickdate={FetchDate} />
+          </Calendar>
+          <Info>
+            <Profile>
+              <ProfileBox />
+            </Profile>
+            <Score>
+              <ScoreBox dateSelect={dateSelect} />
+            </Score>
+            {/* </ScoreWrapper1> */}
+          </Info>
+        </Content>
+      </Wrapper>
+    </>
   );
 }

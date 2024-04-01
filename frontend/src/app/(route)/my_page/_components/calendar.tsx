@@ -176,7 +176,10 @@ export default function CalenderBox({
   return (
     <CalendarWrapper>
       <StyledHeader>
-      <SolveCount>{`${exams?.length} / ${daysInMonth}`}</SolveCount>
+      <SolveCount>
+        <Image src={Stamp} alt="스탬프" width="20" height="20" />
+        <div style={{marginLeft: "5px"}}>{`${exams?.length} / ${daysInMonth}`}</div>
+      </SolveCount>
         <PreviousIcon onClick={() => changegeMonth(viewDate, "subtract")}>
           <ChevronLeftIcon style={{ color: "#EEA241" }} />
         </PreviousIcon>
