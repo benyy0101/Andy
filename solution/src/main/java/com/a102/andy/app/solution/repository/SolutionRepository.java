@@ -54,7 +54,13 @@ public class SolutionRepository {
 
             int randomIndex = new Random().nextInt(pictures.size());
             String selectedPicture = pictures.get(randomIndex);
-            randomQuestions.add(new ProblemDto(category, selectedPicture, name));
+            Integer seq = jpaQueryFactory.select(qQuestion.questionSeq)
+                    .from(qQuestion)
+                            .where(qQuestion.questionPicture.eq(selectedPicture)
+                                    .and(qQuestion.questionCategorySeq.eq(category)))
+                                    .fetchOne();
+
+            randomQuestions.add(new ProblemDto(seq, selectedPicture, name));
         });
 
         return randomQuestions;
