@@ -2,13 +2,15 @@ import tw from "tailwind-styled-components";
 
 export const Input = tw.div`
 relative 
-w-72 
-ml-12 
-mt-24
+flex-grow-[1]
 `;
 
 export const Wrapper = tw.div`
 flex
-items-center
-justify-center
-`
+items-start
+justify-start
+pt-4
+web:w-1/2
+w-3/4
+
+`;

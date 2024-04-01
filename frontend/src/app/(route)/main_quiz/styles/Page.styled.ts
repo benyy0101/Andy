@@ -4,11 +4,13 @@ export const Wrapper = tw.div`
 w-svw
 flex
 flex-col
-mobile:flex-row
+web:flex-row
 items-center
 justify-center
-gap-10
-
+space-y-20
+web:space-y-0
+web:space-x-20
+flex-grow-[1]
 `;
 
 // 퀴즈1
@@ -16,17 +18,22 @@ export const Quiz1Wrapper = tw.div`
 `;
 
 export const Quiz1Img = tw.button`
-w-20
-h-20
-mobile:w-40
-mobile:h-40
+w-40
+h-40
+web:w-60
+web:h-60
+
+flex
+justify-center
+items-center
+
 rounded-[100%]
-bg-[#fff]
+bg-[#ffe]
 shadow-[3.0px_3.0px_4.0px_rgba(0,0,0,0.1)]
 cursor-pointer
-font-bold
-text-[25px]
+
 hover:bg-[rgba(155,205,160,1)]
+
 transition-all
 `;
 // bg-[rgba(155,205,160,0.7)]

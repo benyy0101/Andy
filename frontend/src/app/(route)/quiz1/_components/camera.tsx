@@ -4,7 +4,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useSendResultMutation } from "@/app/hooks/useGameA";
 import { motion } from "framer-motion";
-import { CameraIcon } from "@heroicons/react/24/solid";
+import Image from "next/image";
+import andy from "@/app/asset/_img/Andylogo.png";
+import cameraIcon from "@/app/asset/_img/camera-icon.png";
 import { Wrapper2, Video } from "./styles/Camera.styled";
 
 interface ICamera {
@@ -24,6 +26,7 @@ function Camera(props: ICamera) {
   const toggleVideo = () => {
     setIsVideoOn((prev) => !prev);
   };
+
   useEffect(() => {
     const constraints = {
       audio: false,
@@ -43,7 +46,9 @@ function Camera(props: ICamera) {
         console.error("Error accessing media devices:", error);
       }
     };
-    getMediaStream();
+    if (isVideoOn) {
+      getMediaStream();
+    }
   }, [isVideoOn]);
 
   const takePhoto = async () => {
@@ -80,14 +85,11 @@ function Camera(props: ICamera) {
   return (
     <Wrapper2>
       {isVideoOn ? (
-        <div className="flex justify-end items-end space-x-4">
+        <div className="flex flex-col justify-start items-start space-y-4">
           <motion.div>
-            <Video ref={videoRef} autoPlay height={400} width={400} />
+            <Video ref={videoRef} autoPlay />
           </motion.div>
-          <div className="flex flex-col justify-end items-end space-y-4">
-            <button name="take_photo" type="button" onClick={takePhoto}>
-              <CameraIcon className="w-12 h-12" />
-            </button>
+          <div className="flex items-end space-x-4">
             <button
               name="video-toggle"
               type="button"
@@ -96,10 +98,23 @@ function Camera(props: ICamera) {
             >
               비디오 끄기
             </button>
+            <button
+              name="take_photo"
+              type="button"
+              onClick={takePhoto}
+              className="rounded-md h-12"
+            >
+              <div className="transition-all hover:scale-110">
+                <Image src={cameraIcon} height={50} width={50} alt="camera" />
+              </div>
+            </button>
           </div>
         </div>
       ) : (
-        <div className="flex justify-end items-end">
+        <div className="flex flex-col justify-start items-start h-full">
+          <div className="flex justify-center items-center flex-grow-[1]">
+            <Image width={400} height={300} src={andy} alt="andy" />
+          </div>
           <button
             name="video-toggle"
             type="button"
