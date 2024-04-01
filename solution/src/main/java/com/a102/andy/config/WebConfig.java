@@ -1,6 +1,5 @@
 package com.a102.andy.config;
 
-import com.a102.andy.auth.ReferrerCheckInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
 
@@ -27,5 +26,4 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "DELETE", "PATCH", "OPTIONS")
                 .allowCredentials(true);
     }
-
 }
