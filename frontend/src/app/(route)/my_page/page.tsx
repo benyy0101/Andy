@@ -13,6 +13,11 @@ import {
   Info,
   Profile,
   Score,
+  // ProfileMobile,
+  ProfileMobile
+  // MobileProfile
+  // ScoreWrapper1,
+  // ProfileWrapper1
 } from "./styles/Page.styled";
 
 export default function MyPage() {
@@ -21,13 +26,16 @@ export default function MyPage() {
   const FetchDate = (date: string) => {
     useEffect(() => {
       setDateSelect(date);
-    });
+    }, [date]);
   };
 
   return (
     <Wrapper>
       <Logo />
       <Content>
+        <ProfileMobile>
+            <ProfileBox />
+        </ProfileMobile>
         <Calendar>
           <CalendarBox clickdate={FetchDate} />
         </Calendar>
@@ -38,6 +46,7 @@ export default function MyPage() {
           <Score>
             <ScoreBox dateSelect={dateSelect} />
           </Score>
+          {/* </ScoreWrapper1> */}
         </Info>
       </Content>
     </Wrapper>
