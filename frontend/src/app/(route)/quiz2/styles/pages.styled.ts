@@ -5,7 +5,7 @@ flex
 flex-col
 items-center
 justify-start
-space-y-8
+gap-8
 `;
 
 export const Bar = tw.div`
