@@ -27,14 +27,9 @@ export default function QuizButton(props: IQuizButton) {
     }
   };
 
-  const handleContainerClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    event.stopPropagation(); // 이벤트 전파 방지
-    routetoQuiz();
-  };
-
   return (
     <WholeWrapper>
-      <QuizCircleContainer onClick={handleContainerClick}>
+      <QuizCircleContainer onClick={routetoQuiz}>
         <IframeContainer>
         {/* eslint-disable-next-line jsx-a11y/iframe-has-title */}
         <iframe src={quizImg} />
