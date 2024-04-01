@@ -15,3 +15,11 @@ body:not([class*="container"]) {
   color: #ed8b0e;
   font-family: 'Cafe24Ssurround', sans-serif;
 }
+
+@font-face {
+  font-family: "TTLaundryGothicB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}

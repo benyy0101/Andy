@@ -1,38 +1,41 @@
 import tw from "tailwind-styled-components";
 
 export const Wrapper = tw.div`
-flex
-justify-center
-items-center
 `
 
 export const ProfileWrapper = tw.div`
 flex
 justify-center
 items-center
-h-[100vh]
-`
+h-[87vh]
+flex-col
+web:flex-row
 
-// flex-wrap
+`
 
 // 프로필 입력폼
 export const Form = tw.form`
 flex
 flex-col
-px-5
-ml-10
+web:p-7
+w-[300px]
+web:w-[450px]
 `
 
 export const Label = tw.div`
 mt-2
-mr-10
+mr-5
 font-bold
+w-[30%]
+web:w-[20%]
+flex
+flex-start
 `
 
 export const Input = tw.input`
 ml-auto
 h-full
-w-[250px]
+w-[80%]
 rounded-[7px]
 bg-[#FFFFFF]
 px-3
@@ -56,7 +59,7 @@ export const InputBirth = tw.input`
 w-[250px]
 ml-auto
 h-full
-w-[250px]
+w-[80%]
 rounded-[7px]
 bg-[#FFFFFF]
 px-3
@@ -97,9 +100,9 @@ justify-between
 `
 
 export const Btn = tw.div`
-mb-3
 flex
-w-[250px]
+mb-3
+w-[80%]
 text-black
 justify-between
 `
@@ -107,7 +110,7 @@ justify-between
 export const BtnLabel = tw.label`
 bg-[#FFFFFF]
 rounded-[5px]
-w-[120px]
+w-[48%]
 mb-3
 px-3
 py-2.5
@@ -140,6 +143,8 @@ flex
 justify-center
 align-center
 relative
+mb-10
+web:mb-0
 `
 
 export const ProfileChange = tw.div`
@@ -154,5 +159,12 @@ items-center
 absolute
 top-0
 left-0
+cursor-pointer
+`
+
+export const ProfileListBtn = tw.div`
+flex
+flex-start
+ml-5
 cursor-pointer
 `

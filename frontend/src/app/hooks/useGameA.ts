@@ -83,9 +83,9 @@ export const useGameResultMutation = () => {
 };
 
 // GAME-005: Needs to be pagninated
-export const useWrongProblems = (user: string, data: WrongProblemsReqeust) => {
+export const useWrongProblems = (data: WrongProblemsReqeust) => {
   const query = useQuery<WrongProblemsResponse>({
-    queryKey: ["wrongProblems", { user, data }],
+    queryKey: ["wrongProblems", data],
     queryFn: () => getWrongProblems(data),
   });
   return query;

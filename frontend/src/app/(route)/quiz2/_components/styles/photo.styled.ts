@@ -9,7 +9,8 @@ font-bold
 mt-20
 bg-white
 rounded-md
-w-100
-h-80
+web:w-1/2
+web:h-80
+w-3/4
 p-20
-`
+`;

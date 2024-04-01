@@ -1,12 +1,13 @@
 import tw from "tailwind-styled-components";
 
 export const CorrectBackground = tw.div`
-fixed 
+absolute
 top-0 
 left-0 
-w-full 
-h-full 
-flex items-center 
+w-screen
+h-screen
+flex 
+items-center 
 justify-center 
 bg-black
 bg-opacity-60

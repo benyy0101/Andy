@@ -35,7 +35,7 @@ export default function MainQuiz() {
               quizRoute={btn.quizRoute}
             />
           ))}
-      </Wrapper>
-    </div>
+        </Wrapper>
+      </div>
   );
 }

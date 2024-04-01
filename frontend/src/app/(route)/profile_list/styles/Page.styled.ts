@@ -2,7 +2,6 @@ import tw from "tailwind-styled-components";
 
 export const Wrapper = tw.div`
 flex
-flex-col
 justify-center
 items-center
 `;
@@ -10,11 +9,9 @@ items-center
 export const Profiles = tw.div`
 flex
 justify-center
-mt-30
-h-[100vh]
+h-[90vh]
 m-[0]
 `;
-// flex-wrap
 
 // 프로필 추가
 export const AddProfileWrapper = tw.div`
@@ -92,4 +89,107 @@ bg-[#EEA241]
 text-white
 text-sm
 hover:bg-[#f08a07]
+`
+
+export const ScrollButton = tw.div`
+flex
+items-center
+justify-center
+cursor-pointer
+`
+
+export const ProfilesContainer = tw.div`
+flex
+items-center
+`
+
+// 프로필 개수 제한 모달
+export const ProfileModalBg = tw.div`
+z-[10]
+flex
+items-center
+justify-center
+absolute
+h-[90%]
+w-full
+`
+// bg-[rgba(0,0,0,0.3)]
+
+export const ProfileModalWrapper = tw.div`
+bg-[#fff]
+text-black
+rounded-[10px]
+font-semibold
+z-[100]
+w-[90%]
+web:w-[350px]
+h-[40%]
+flex
+flex-col
+justify-between
+items-center
+p-5
+shadow-md
+`
+
+export const Icon = tw.div`
+h-[30%]
+pt-6
+flex
+justify-center
+items-center
+`
+
+export const Alert = tw.div`
+flex
+items-center
+justify-center
+text-[17px]
+web:text-[15px]
+`
+
+export const Btn = tw.div`
+bg-[#EEA241]
+text-white
+rounded-[10px]
+w-[100%]
+h-[50px]
+web:h-[40px]
+flex
+justify-center
+items-center
+cursor-pointer
+`
+
+// 취소 모달창
+export const BtnWrapper = tw.div`
+flex
+justify-between
+w-[100%]
+`
+
+export const ClickBtn = tw.div`
+bg-[#EEA241]
+text-white
+rounded-[10px]
+w-[48%]
+h-[50px]
+web:h-[40px]
+flex
+justify-center
+items-center
+cursor-pointer
+`
+
+export const BackBtn = tw.div`
+bg-[#c9c9c9]
+text-white
+rounded-[10px]
+w-[48%]
+h-[50px]
+web:h-[40px]
+flex
+justify-center
+items-center
+cursor-pointer
 `

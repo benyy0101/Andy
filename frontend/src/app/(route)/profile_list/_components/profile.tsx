@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import storeProfile from "../../../_store/storeProfile";
 import { ProfileWrapper, ProfileImg, ProfileName, DeleteBtn, ImageTest } from "../styles/Page.styled";
-import { useRemoveProfile } from "../../../hooks/useProfile"
+// import { useRemoveProfile } from "../../../hooks/useProfile"
+import emptyImage from "../../../asset/_img/profile_img.png"
 
 interface IProfile {
   profile: {
@@ -15,29 +16,34 @@ interface IProfile {
   };
 }
 
-export default function Profile(props: IProfile) {
-  const { profile } = props;
+interface DeleteModalprops {
+  showDeleteModal: boolean;
+  setShowDeleteModal: (show: boolean) => void;
+  setSelectChild: (child_seq: number) => void;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function Profile(props: IProfile & DeleteModalprops) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { profile, showDeleteModal, setShowDeleteModal, setSelectChild } = props;
   const router = useRouter();
   const setProfileInfo = storeProfile(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (state: { setProfileInfo: any }) => state.setProfileInfo,
   );
 
-  const { mutate } = useRemoveProfile();
+  // const { mutate } = useRemoveProfile();
 
   const handleProfileClick = () => {
     setProfileInfo(profile);
     router.push("/main_quiz");
   };
 
+  const childNum = Number(profile.child_seq)
+
   const ProfileDelete = () => {
-    mutate(profile.child_seq, {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      onSuccess: () => {
-          // eslint-disable-next-line no-console
-          window.location.reload();
-      },
-  });
+    setSelectChild(childNum);
+    setShowDeleteModal(true);
   }
 
   return (
@@ -54,7 +60,7 @@ export default function Profile(props: IProfile) {
         <ImageTest>
           <Image
             priority
-            src={profile.child_picture}
+            src={profile.child_picture || emptyImage}
             alt={profile.child_name}
             height="500"
             width="500"

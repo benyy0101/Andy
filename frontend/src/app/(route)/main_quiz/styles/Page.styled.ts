@@ -39,7 +39,7 @@ export const QuizCircleContainer = tw.button`
 w-20
 h-20
 rounded-[100%]
-bg-[#fff]
+bg-[#ffe]
 shadow-[3.0px_3.0px_4.0px_rgba(0,0,0,0.1)]
 cursor-pointer
 font-bold

@@ -18,6 +18,8 @@ export default function QuizButton(props: IQuizButton) {
   console.log(quizImg);
   const router = useRouter();
   const routetoQuiz = () => {
+    const audio = new Audio("/audio/click.mp3");
+    audio.play();
     if (quizRoute === "incorrect_list") {
       const route = "/incorrect_list";
       router.push(route);
