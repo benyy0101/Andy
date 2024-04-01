@@ -23,6 +23,7 @@ import {
   RowWeek,
   Row1,
   Day,
+  SolveCount,
 } from "../styles/Page.styled";
 import Stamp from "../../../asset/_img/smile_stamp.png";
 
@@ -74,8 +75,10 @@ export default function CalenderBox({
     return { image: Stamp, opacity };
   };
 
+  const daysInMonth = viewDate.daysInMonth();
+
   const createCalendar = () => {
-    const daysInMonth = viewDate.daysInMonth();
+    // const daysInMonth = viewDate.daysInMonth();
     const firstDayOfMonth = viewDate.startOf("month").day();
     const calender = [];
 
@@ -124,7 +127,7 @@ export default function CalenderBox({
                       <Image
                         src={image}
                         alt={`Day ${current.format("D")}`}
-                        style={{ width: "35px", height: "35px" }}
+                        // style={{ width: "35px", height: "35px" }}
                       />
                     </DayImg>
                   )}
@@ -173,6 +176,7 @@ export default function CalenderBox({
   return (
     <CalendarWrapper>
       <StyledHeader>
+      <SolveCount>{`${exams?.length} / ${daysInMonth}`}</SolveCount>
         <PreviousIcon onClick={() => changegeMonth(viewDate, "subtract")}>
           <ChevronLeftIcon style={{ color: "#EEA241" }} />
         </PreviousIcon>

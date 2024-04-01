@@ -3,8 +3,6 @@ import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { getProfileList } from "@/app/api/profile";
 import getQueryClient from "@/app/utils/queryClient";
 import BackgroundSVG from "@/app/_components/background/Background";
-import Logo from "../../_components/logo/Logo";
-import ProfileAdd from "./_components/profile_add";
 import { Wrapper, Profiles } from "./styles/Page.styled";
 import ProfileContainer from "./_components/ProfileContainer";
 
@@ -20,11 +18,10 @@ export default async function ProfileList() {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <BackgroundSVG />
       <Wrapper>
-        <Logo />
         <Profiles>
           <ProfileContainer />
-          <ProfileAdd />
         </Profiles>
+        {/* {showModal && <ProfileModal />} */}
         <TutorialBtn />
       </Wrapper>
     </HydrationBoundary>

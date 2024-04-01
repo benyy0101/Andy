@@ -3,11 +3,22 @@
 import { useRouter } from "next/navigation"
 import { AddProfileWrapper, ProfileImg, ProfileName } from "../styles/Page.styled"
 
-export default function AddProfile() {
+interface ProfileAddProps {
+    showModal: boolean;
+    setShowModal: (show: boolean) => void;
+    LengthData: number;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function AddProfile({ showModal, setShowModal, LengthData }:ProfileAddProps) {
     const router = useRouter();
 
     const routetoProfileAdd = () => {
-        router.push('/profile_add')
+        if (LengthData === 5) {
+            setShowModal(true);
+        } else {
+            router.push('/profile_add')
+        }
     }
 
     return (
@@ -15,7 +26,7 @@ export default function AddProfile() {
             <ProfileImg onClick={routetoProfileAdd}>
                 {/* <img src={plus_icon}></img> */} +
             </ProfileImg>
-            <ProfileName>프로필 추가</ProfileName>
+            <ProfileName style={{ marginBottom: "55px"}}>프로필 추가</ProfileName>
         </AddProfileWrapper>
     )
 };

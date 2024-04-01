@@ -5,6 +5,7 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import { ProfileImage, ProfileChange } from "../styles/Page.styled";
 import { useUploadProfileImage } from "../../../hooks/useProfile"
+import emptyImage from "../../../asset/_img/profile_img.png"
 
 export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: string) => void }) {
     const [isHovered, setIsHovered] = useState(false);
@@ -13,7 +14,7 @@ export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: str
     const [imagePreview, setImagePreview] = useState<string>("");
     const imgRef = useRef<HTMLInputElement>(null);
     const { mutate } = useUploadProfileImage();
-    const emptyImageUrl = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+    // const emptyImageUrl = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -83,7 +84,7 @@ export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: str
                     ref={imgRef}
                 />
                 <Image
-                    src={imagePreview || emptyImageUrl}
+                    src={imagePreview || emptyImage}
                     style={{ borderRadius: "100%", backgroundColor: "#FFFFFF" }}
                     alt = "profileimage"
                     fill
