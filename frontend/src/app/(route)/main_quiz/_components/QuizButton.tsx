@@ -1,7 +1,9 @@
 "use client";
 
+import React from "react";
 import { useRouter } from "next/navigation";
-import {Quiz1Img } from "../styles/Page.styled";
+import { QuizCircleContainer, IframeContainer, QuizTitle, WholeWrapper } from "../styles/Page.styled";
+
 
 interface IQuizButton {
   quizName: string;
@@ -11,6 +13,7 @@ interface IQuizButton {
 
 export default function QuizButton(props: IQuizButton) {
   const { quizName, quizImg, quizRoute } = props;
+
   // eslint-disable-next-line no-console
   console.log(quizImg);
   const router = useRouter();
@@ -25,6 +28,18 @@ export default function QuizButton(props: IQuizButton) {
   };
 
   return (
-    <Quiz1Img onClick={routetoQuiz}>{quizName}</Quiz1Img>
+    <WholeWrapper>
+      <QuizCircleContainer onClick={routetoQuiz}>
+        <IframeContainer>
+        {/* eslint-disable-next-line jsx-a11y/iframe-has-title */}
+        <iframe src={quizImg} />
+        </IframeContainer>
+      </QuizCircleContainer>
+
+
+      <QuizTitle>
+        {quizName}
+      </QuizTitle>
+    </WholeWrapper>
   );
 }

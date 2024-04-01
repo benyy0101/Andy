@@ -3,7 +3,9 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import storeProfile from "@/app/_store/storeProfile";
+import LoginLoading from "@/app/_components/loginloading/LoginLoading";
 import { useLogin } from "../../../hooks/useLogin";
+// import Loading from "../../ending/_components/loading";
 
 function KakaoLogin() {
   const router = useRouter();
@@ -24,7 +26,7 @@ function KakaoLogin() {
     }
   }, [data, router]);
 
-  return <div>히히 카카오 로그인 성공!</div>;
+  return <div className="mt-10 pt-10"><LoginLoading /></div>;
 }
 
 export default KakaoLogin;

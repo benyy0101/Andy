@@ -9,15 +9,21 @@ function Logo() {
   const router = useRouter();
 
   const routetoHome = () => {
-    router.push("/main");
+      router.push('/main_quiz');
   };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const isServer = typeof window === "undefined";
+  
 
   return (
     <Wrapper>
       <Title onClick={routetoHome}>
-        <div className="w-40 h-12">
-          <Image src={logo} alt="andy" />
-        </div>
+        <Image 
+          src={logo} 
+          alt="andy"
+          height={100}
+          width={100}/>
       </Title>
     </Wrapper>
   );

@@ -5,7 +5,7 @@ import ReactQueryProviders from "./utils/reactQueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 const APP_NAME = "Andy";
-const APP_DEFAULT_TITLE = "My Awesome PWA App";
+const APP_DEFAULT_TITLE = "어른이 아니고 앤디";
 const APP_TITLE_TEMPLATE = "%s - PWA App";
 const APP_DESCRIPTION = "Best PWA app in the world!";
 
