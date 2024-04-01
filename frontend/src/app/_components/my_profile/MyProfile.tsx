@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 // import Link from "next/link";
 import { useRouter } from "next/navigation";
 import storeProfile from "@/app/_store/storeProfile";
@@ -9,15 +9,19 @@ import { motion } from "framer-motion";
 import {
   Mypage,
   Name,
+  Namespan,
+  Child,
   Profile,
   ProfileChange,
   ProfileInfo,
   Wrapper,
+  SquareContainer,
 } from "./styles/MyProfile.styled";
 
 export function MyProfile() {
   const [showInfo, setShowInfo] = useState(false);
   const router = useRouter();
+  const [name, setName] = useState<string>();
   const { profile } = storeProfile();
   const emptyImageUrl =
     "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
@@ -42,7 +46,12 @@ export function MyProfile() {
   // const hideInfo = () => {
   //   setShowInfo(false);
   // };
-  const childName = profile?.child_name;
+  // const childName = profile?.child_name;
+
+  useEffect(() => {
+    setName(profile.child_name);
+  }, [])
+
   // const childPic = profile?.child_picture
 
   const routetoMyPage = () => {
@@ -55,6 +64,7 @@ export function MyProfile() {
   };
 
   return (
+    <Suspense>
     <Wrapper>
       {/* <Profile onClick={Info} onMouseLeave={hideInfo}> */}
       <Profile onClick={toggleInfo}>
@@ -70,16 +80,19 @@ export function MyProfile() {
       <motion.div animate={showInfo ? "open" : "closed"} variants={variants}>
         <ProfileInfo>
           <Name>
-            <span className="text-2xl">{childName}</span> <span>어린이</span>
+            <Namespan>{name}</Namespan> <Child>어린이</Child>
           </Name>
-          <Mypage onClick={routetoMyPage} className="text-white">
-            마이페이지
-          </Mypage>
-          <ProfileChange onClick={routetoProfileList} className="text-white">
-            프로필 전환{" "}
-          </ProfileChange>
+          <SquareContainer>
+            <Mypage onClick={routetoMyPage} className="text-white">
+              마이페이지
+            </Mypage>
+            <ProfileChange onClick={routetoProfileList} className="text-white">
+              프로필 전환
+            </ProfileChange>
+          </SquareContainer>
         </ProfileInfo>
       </motion.div>
     </Wrapper>
+    </Suspense>
   );
 }

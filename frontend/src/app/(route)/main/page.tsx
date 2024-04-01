@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import BackgroundSVG from "@/app/_components/background/Background"; 
 // import { motion } from "framer-motion";
+// import Footer from "@/app/_components/footer/Footer";
 import Main_Character from "../../asset/_img/character.png";
 import { KakaoLogin } from "./_components/KakaoLogin";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -40,7 +41,10 @@ export default function Main() {
           </KakaoContainer>
 
         </RightContainer>
+      
+      
       </Wrapper>
+        {/* <Footer /> */}
     </>
   
   );

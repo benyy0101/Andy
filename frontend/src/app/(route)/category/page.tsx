@@ -1,6 +1,8 @@
 import { getCategories } from "@/app/api/game";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import getQueryClient from "@/app/utils/queryClient";
+import Navigation from "@/app/_components/navigation/Navigation";
+import BackgroundSVG from "@/app/_components/background/Background";
 import Categories from "./_components/Categories";
 
 async function CategoryPage() {
@@ -12,6 +14,8 @@ async function CategoryPage() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
+      <Navigation />
+      <BackgroundSVG />
       <Categories />
     </HydrationBoundary>
   );

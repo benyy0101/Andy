@@ -5,7 +5,9 @@ flex
 flex-col
 items-center
 justify-start
-space-y-8
+space-y-4
+web:space-y-8
+font-TTLaundryGothicB
 `;
 
 export const Title = tw.h1`
@@ -18,25 +20,39 @@ text-xl
 `;
 
 export const Category = tw.div`
-grid 
-grid-cols-2
-gap-4
+flex
+flex-col
+space-y-4
+web:space-y-0
+web:grid 
+web:grid-cols-2
+web:gap-10
 `;
 
 export const ImageContainer = tw.div`
+  border
+  border-lightorange
+  rounded-lg
+  bg-white
   flex
   flex-col
   items-center
-  transition 
+  transition-all 
   ease-in-out 
   delay-20
   hover:-translate-y-1
   hover:scale-110
-  hover:font-bold
+  hover:font-semibold
   duration-300
+  web:max-w-2/10
+  w-9/10
+  h-fit
+  space-y-2
+  items-end
 `;
 
 export const Text = tw.span`
-  mt-2
+  p-4
   text-center
+  text-xl
 `;

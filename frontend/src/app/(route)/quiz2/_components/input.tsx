@@ -16,7 +16,12 @@ interface InputProps {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function InputComponent({ onAnswerSubmit, onChange, onSubmit, correctAnswer, inputValue }: InputProps) {
+function InputComponent({
+  onAnswerSubmit,
+  onChange,
+  onSubmit,
+  correctAnswer,
+}: InputProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [userInputValue, setUserInputValue] = useState("");
@@ -25,7 +30,6 @@ function InputComponent({ onAnswerSubmit, onChange, onSubmit, correctAnswer, inp
   useEffect(() => {
     onChange(userInputValue);
   }, [userInputValue, onChange]);
-
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -41,14 +45,15 @@ function InputComponent({ onAnswerSubmit, onChange, onSubmit, correctAnswer, inp
     const isCorrectAnswer = userInputValue === correctAnswer; // 정답과 입력값 비교
     onSubmit(isCorrectAnswer);
     setUserInputValue("");
-  }
-
+    setIsFocused(false);
+    setIsValid(false);
+  };
 
   // 입력받는 값의 상태 state를 정의해주고 그 값을 page에 넘겨서 null로 변경
 
   return (
     <Wrapper>
-      <div className="flex items-center space-x-4">
+      <div className="flex web:flex-row flex-col web:items-end web:justify-end items-center justify-center web:space-x-4 space-y-4 w-full max-w-[1000px]">
         <Input>
           <input
             type="text"
@@ -57,15 +62,16 @@ function InputComponent({ onAnswerSubmit, onChange, onSubmit, correctAnswer, inp
             onBlur={handleBlur}
             onChange={(e) => setUserInputValue(e.target.value)}
             value={userInputValue}
-            className={`w-72 
-                    border-b 
+            className={`
+                    w-full
+                    border-b
                     border-lightorange 
                     pb-2 
-                    pl-2 
                     bg-transparent 
                     text-base 
                     text-orange focus:outline-none 
                     placeholder-lightorange
+                    text-xl
                     ${isFocused || isValid ? "border-orange" : "border-lightorange"}`}
             // onChange={(e) => setInputValue(e.target.value)}
           />
@@ -73,12 +79,11 @@ function InputComponent({ onAnswerSubmit, onChange, onSubmit, correctAnswer, inp
           <div
             className={`absolute 
                     text-lightorange
-                    left-2 
-                    text-lg 
+                    
                     bottom-2 
                     transition-all 
                     duration-200 
-                    ${isFocused || isValid ? "top-[-30px] text-orange text-base bottom-10 font-bold" : ""}`}
+                    ${isFocused || isValid ? "-translate-y-8 translate-x-1 text-orange bottom-10 text-2xl" : "text-lg"}`}
           >
             정답
           </div>
@@ -96,11 +101,11 @@ function InputComponent({ onAnswerSubmit, onChange, onSubmit, correctAnswer, inp
                 ${isFocused || isValid ? "w-full" : "w-0"}`}
           />
         </Input>
-        <div>
+        <div className="w-3/4 web:w-1/4 web:max-w-[300px]">
           <button
             className="
-                    mt-12
-                    flex-shrink-0 
+                    transition-all
+                    duration-200
                     bg-lightorange 
                     hover:bg-orange 
                     border-lightorange 
@@ -108,9 +113,12 @@ function InputComponent({ onAnswerSubmit, onChange, onSubmit, correctAnswer, inp
                     text-base
                     border-4 
                     text-white 
-                    py-4
-                    px-3
-                    rounded"
+                    px-4
+                    py-2
+                    web:max-w-[300px]
+                    rounded-md
+                    w-full
+                    "
             type="button"
             onClick={handleSubmit}
           >

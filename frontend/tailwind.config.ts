@@ -8,9 +8,13 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      web: "475px",
+      mobile: "360px",
+      web:"475px",
     },
     extend: {
+      fontFamily:{
+        arial:['arial', 'sans-serif'],
+      },
       colors: {
         green: "#295F2E",
         orange: "#ed8b0e",

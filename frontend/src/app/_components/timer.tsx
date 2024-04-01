@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 
 interface TimerProps {
   reset: boolean;
+  handleWrong: () => void;
 }
 
-function Timer({ reset }: TimerProps) {
+function Timer(props: TimerProps) {
+  const { reset, handleWrong } = props;
   const [timer, setTimer] = useState<number>(30); // 타이머 시간 30초로 설정
 
   useEffect(() => {
@@ -16,8 +18,9 @@ function Timer({ reset }: TimerProps) {
       interval = window.setTimeout(() => {
         setTimer((time) => time - 1);
       }, 1000);
+    } else {
+      handleWrong();
     }
-
     return () => {
       if (interval) clearInterval(interval);
     };

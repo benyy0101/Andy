@@ -33,8 +33,6 @@ function CorrectModal(props: CorrectModalProps) {
     return () => clearTimeout(timer);
   }, [isOpen, onClose]);
 
-  
-
   return (
     <>
       <div />
@@ -47,10 +45,7 @@ function CorrectModal(props: CorrectModalProps) {
             </div>
             <br />
             {/* 멘트 */}
-            <button
-              className="font-bold text-xl"
-              type="button"
-            >
+            <button className="font-bold text-xl" type="button">
               정답입니다 !
             </button>
           </CorrectContent>

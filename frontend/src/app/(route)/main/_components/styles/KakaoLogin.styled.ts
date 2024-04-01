@@ -1,11 +1,11 @@
 import tw from "tailwind-styled-components";
 
 export const LoginBtn = tw.button`
-md:w-[290px]
-md:h-[80px]
-md:left-[50%]
-md:bottom-[15%]
-md:border-[5px]
+web:w-[290px]
+web:h-[80px]
+web:left-[50%]
+web:bottom-[15%]
+web:border-[5px]
 
 w-[195px]
 h-[50px]
@@ -26,7 +26,7 @@ active:scale-100
 
 export const Symbol = tw.div`
 color-[#000000]
-md:w-[18%]
+web:w-[18%]
 w-[12%]
 `;
 
@@ -35,6 +35,6 @@ text-black
 opacity-[85%]
 w-[65%]
 font-bold
-md:text-[22px]
+web:text-[22px]
 text-[16px]
 `;
