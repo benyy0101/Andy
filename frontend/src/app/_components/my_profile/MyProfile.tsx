@@ -19,7 +19,6 @@ export function MyProfile() {
   const [showInfo, setShowInfo] = useState(false);
   const router = useRouter();
   const { profile } = storeProfile();
-  const [name, setName] = useState<string>();
   const emptyImageUrl =
     "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
 
@@ -27,10 +26,6 @@ export function MyProfile() {
     open: { opacity: 1, x: 0 },
     closed: { opacity: 0, x: 0 },
   };
-
-  useEffect(() => {
-    setName(profile.child_name);
-  }, []);
 
   // const Info = () => {
   //   setShowInfo(true);
