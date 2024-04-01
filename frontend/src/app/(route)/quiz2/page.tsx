@@ -3,7 +3,7 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Timer from "@/app/_components/timer";
 import CorrectModal from "@/app/_components/modal_correct";
 import WrongModal from "@/app/_components/modal_wrong";
@@ -188,20 +188,24 @@ function Quiz2Page() {
   };
 
   return (
-    <Wrapper>
+    <Suspense>
       <BackgroundSVG />
-      <Navigation />
       {!isReady ? (
-        <div className="h-svh w-svw flex flex-col justify-center items-center space-y-10">
+        <div className="h-svh w-svw flex flex-col ">
+          <Navigation />
+          <div className="flex-grow-[1] flex flex-col justify-center items-center space-y-10">
           <div className="text-4xl">준비되었나요?</div>
           <div
             className={`text-8xl font-black ${isCounting && "animate-bounce"}`}
           >
             {count}
           </div>
+          </div>
         </div>
       ) : (
-        <div className="w-3/4 flex">
+        <Wrapper>
+          <Navigation />
+        <div className="w-svw flex-grow-[1] flex flex-col items-center gap-4">
           <ProgressBar max={numProblems} value={status.length} />
           <div className="flex justify-between items-end w-11/12">
             {/* 게임 도중 나가기  */}
@@ -221,6 +225,7 @@ function Quiz2Page() {
             </>
           )}
           {/* 현재 라운드의 데이터가 있고  */}
+          <div className="flex flex-col w-3/4 max-w-[420px] flex-grow-[1] max-h-60 gap-4">
           {currentSeq >= 0 && currentSeq < numProblems && data[currentSeq] && (
             <Photo question_picture={data[currentSeq].question_picture} />
           )}
@@ -234,7 +239,9 @@ function Quiz2Page() {
               inputValue={inputValue}
             />
           )}
+          </div>
         </div>
+        </Wrapper>
       )}
 
       {/* eslint-disable-next-line react/button-has-type */}
@@ -259,7 +266,8 @@ function Quiz2Page() {
         onClose={handleCloseQuitModal}
         onQuit={handleOnQuitModal}
       />
-    </Wrapper>
+    
+    </Suspense>
   );
 }
 

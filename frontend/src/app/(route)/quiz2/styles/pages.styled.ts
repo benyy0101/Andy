@@ -7,7 +7,6 @@ items-center
 justify-start
 h-svh 
 w-svw 
-gap-8
 web:screen
 `;
 
