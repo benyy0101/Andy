@@ -25,6 +25,7 @@ export interface Problem {
   exam_mode: string | null;
   question_history_seq: number | null;
   question_history_is_ok: boolean | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   created_at: any | null;
 }
 
