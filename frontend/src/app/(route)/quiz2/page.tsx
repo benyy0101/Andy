@@ -212,7 +212,10 @@ function Quiz2Page() {
           {currentSeq < numProblems && (
             <>
               <Explain>이것은 무엇일까요? 정답을 적어주세요!</Explain>
-              <Timer reset={reset} />
+              <Timer
+                reset={reset}
+                handleWrong={() => setIsWrongModalOpen(true)}
+              />
             </>
           )}
           {/* 현재 라운드의 데이터가 있고  */}
