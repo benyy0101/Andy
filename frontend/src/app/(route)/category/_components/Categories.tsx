@@ -20,7 +20,8 @@ import {
   Text,
 } from "../styles/page.styled";
 
-const images = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const images: any = {
   가구: funiture,
   SSAFY: ssafy,
   동물원: zoo,
@@ -31,7 +32,7 @@ const images = {
 function Categories() {
   const { data } = useCategories();
   const mode = useSearchParams().get("mode");
-  const soundUrl = "/public/asset/audio/click.mp3";
+  const soundUrl = "/asset/audio/click.mp3";
   const playAudio = () => {
     const audio = new Audio(soundUrl); // Provide the path to your audio file
     audio.play();

@@ -142,6 +142,7 @@ function Quiz1() {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
+      <BackgroundSVG />
       {!isReady ? (
         <div className="h-svh w-svw flex flex-col justify-center items-center space-y-10">
           <div className="text-4xl">준비되었나요?</div>
@@ -153,7 +154,6 @@ function Quiz1() {
         </div>
       ) : (
         <Wrapper>
-          <BackgroundSVG />
           <ProgressBar max={numProblems} value={status.length} />
           <div className="flex justify-between items-end w-11/12">
             {/* 게임 도중 나가기  */}
@@ -167,7 +167,7 @@ function Quiz1() {
             {currentSeq < numProblems && <Title>라운드 {currentSeq + 1}</Title>}
           </div> */}
           <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
-          <Timer reset={reset} />
+          <Timer reset={reset} handleWrong={handleWrongAnswer} />
           <div className="w-screen web:w-fit flex flex-col justify-between items-center space-y-5 web:flex-row web:space-y-0 web:space-x-6">
             {data && currentSeq < numProblems && (
               <Word1 word={data[currentSeq].question_name || ""} />
