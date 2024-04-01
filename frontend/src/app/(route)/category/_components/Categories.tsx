@@ -26,7 +26,7 @@ function Categories() {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             data.map((category: any) => (
               <Link
-              z  href={
+                  href={
                   mode
                     ? `/${mode}?category=${category.question_category_seq}`
                     : ""

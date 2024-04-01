@@ -1,8 +1,12 @@
 import tw from 'tailwind-styled-components';
 
 export const Wrapper = tw.div`
-flex
-m-1
-p-2
-cursor-pointer
+
+`;
+
+
+export const Copyright = tw.p`
+font-thin
+text-xs
+font-arial
 `;

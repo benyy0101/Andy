@@ -23,8 +23,7 @@ function Logo() {
           src={logo} 
           alt="andy"
           height={100}
-          width={100}
-          loading={isServer ? "eager" : "lazy"} />
+          width={100}/>
       </Title>
     </Wrapper>
   );

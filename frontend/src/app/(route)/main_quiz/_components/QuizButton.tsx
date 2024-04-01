@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { QuizCircleContainer } from "../styles/Page.styled";
+import { QuizCircleContainer, IframeContainer, QuizTitle, WholeWrapper } from "../styles/Page.styled";
 
 
 interface IQuizButton {
@@ -13,6 +13,7 @@ interface IQuizButton {
 
 export default function QuizButton(props: IQuizButton) {
   const { quizName, quizImg, quizRoute } = props;
+
   // eslint-disable-next-line no-console
   console.log(quizImg);
   const router = useRouter();
@@ -26,7 +27,23 @@ export default function QuizButton(props: IQuizButton) {
     }
   };
 
+  const handleContainerClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.stopPropagation(); // 이벤트 전파 방지
+    routetoQuiz();
+  };
+
   return (
-    <QuizCircleContainer onClick={routetoQuiz}>{quizName}</QuizCircleContainer>
+    <WholeWrapper>
+      <QuizCircleContainer onClick={handleContainerClick}>
+        <IframeContainer>
+        {/* eslint-disable-next-line jsx-a11y/iframe-has-title */}
+        <iframe src={quizImg} />
+        </IframeContainer>
+      </QuizCircleContainer>
+
+      <QuizTitle>
+        {quizName}
+      </QuizTitle>
+    </WholeWrapper>
   );
 }

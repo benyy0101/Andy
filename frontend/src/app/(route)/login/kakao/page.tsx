@@ -26,7 +26,7 @@ function KakaoLogin() {
     }
   }, [data, router]);
 
-  return <div><LoginLoading /></div>;
+  return <div className="mt-10 pt-10"><LoginLoading /></div>;
 }
 
 export default KakaoLogin;

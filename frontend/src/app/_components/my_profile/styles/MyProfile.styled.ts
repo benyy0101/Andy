@@ -38,8 +38,11 @@ justify-between
 bg-[rgba(255,255,255,0.6)]
 rounded-[5px]
 absolute
-top-[60px]
+top-[65px]
 right-[20px]
+h-35
+pb-3
+
 
 web:top-[82px]
 web:right-[25px]
@@ -53,14 +56,17 @@ web:px-8
 
 export const Name = tw.div`
 font-bold
+web:p-0
+p-2
 `;
 
 export const Namespan = tw.span`
-text-2xl
+web:text-2xl
+text-xl
 `;
 
 export const Child = tw.span`
-
+text-sm
 `;
 
 export const Btn = tw.div`
@@ -73,29 +79,51 @@ font-bold
 text-white
 `;
 
-export const Mypage = tw.button`
-web:
+export const SquareContainer = tw.div`
+flex
+flex-col
+web:gap-3
+web:pl-0
+gap-2
+pl-5
+justify-center
+`;
 
+export const Mypage = tw.button`
+web:h-[35px]
+web:text-[13px]
+web:w-full
+web:pt-2
+
+text-[12px]
+w-20
+flex
+justify-center
 rounded-[5px]
 
-w-full
-h-[35px]
 py-1
-bg-[#EEA241]
-text-[13px]
 
+bg-[#EEA241]
 hover:bg-[rgba(255,230,124,0.9)]
 hover:text-[#ED8B0E]
 transition-all
 `;
 
 export const ProfileChange = tw.button`
+web:h-[35px]
+web:text-[13px]
+web:w-full
+web:pt-2
+
+w-20
+text-[12px]
+flex
+justify-center
+
 rounded-[5px]
-w-full
-h-[35px]
 py-1
 bg-[#EEA241]
-text-[13px]
+
 hover:bg-[rgba(255,230,124,0.9)]
 hover:text-[#ED8B0E]
 transition-all
