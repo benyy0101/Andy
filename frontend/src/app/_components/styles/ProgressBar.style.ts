@@ -2,7 +2,7 @@ import tw from "tailwind-styled-components";
 
 export const Progress = tw.progress`
     w-11/12
-    h-12
+    h-20
     rounded-full
     [&::-webkit-progress-bar]:rounded-full 
     [&::-webkit-progress-value]:rounded-full   
@@ -11,5 +11,4 @@ export const Progress = tw.progress`
     [&::-moz-progress-bar]:bg-violet-400
     [&::-webkit-progress-value]:transition-all 
     [&::-webkit-progress-value]:duration-500
-    -z-50
 `;

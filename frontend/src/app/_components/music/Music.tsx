@@ -1,14 +1,29 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Wrapper } from './styles/music.styled';
 
 export function Music() {
+
   const [isSoundOn, setIsSoundOn] = useState<boolean>(true);
-  
+
+  useEffect(() => {
+    const audio = new Audio("/asset/audio/background.mp3");
+
+    if (isSoundOn) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+
+    return () => {
+      audio.pause();
+    };
+  }, [isSoundOn]);
   const toggleSound = () => {
     setIsSoundOn(prevState => !prevState);
   };
+
     
     return (
       <Wrapper onClick={toggleSound}>

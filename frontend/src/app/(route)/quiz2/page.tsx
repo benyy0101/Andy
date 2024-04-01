@@ -201,7 +201,7 @@ function Quiz2Page() {
           </div>
         </div>
       ) : (
-        <>
+        <div className="w-3/4 flex">
           <ProgressBar max={numProblems} value={status.length} />
           <div className="flex justify-between items-end w-11/12">
             {/* 게임 도중 나가기  */}
@@ -234,7 +234,7 @@ function Quiz2Page() {
               inputValue={inputValue}
             />
           )}
-        </>
+        </div>
       )}
 
       {/* eslint-disable-next-line react/button-has-type */}
