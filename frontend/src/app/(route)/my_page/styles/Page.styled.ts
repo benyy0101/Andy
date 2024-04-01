@@ -14,49 +14,94 @@ export const Content = tw.div`
 flex
 h-[75%]
 w-[80%]
-justify-center
+web:justify-center
+flex-col
+web:flex-row
+m-[0 auto]
 `
 
 export const Calendar = tw.div`
 bg-[#ffffff]
 text-black
 rounded-[15px]
-w-[65%]
 flex
 flex-col
-justify-center
+web:justify-center
 items-center
 shadow-md
+w-[100%]
+web:w-[65%]
+mb-3
+web:mb-0
+pl-2.5
+pr-2.5
+pt-5
+pb-5
+web:p-0
+relative
 `
 
 export const Info = tw.div`
 text-black
-w-[35%]
-pl-6
+w-[100%]
+web:w-[35%]
+web:pl-6
+web:flex
+web:flex-col
+web:justify-between
 flex
-flex-col
-justify-between
+flex-col-reverse
 `
+
+// export const ProfileWrapper1 = tw.div`
+// web:w-1/2
+// `
+
+// export const ScoreWrapper1 = tw.div`
+// web:w-1/2
+// `
 
 export const Profile = tw.div`
 bg-[#ffffff]
-h-[40%]
-p-[20px]
+web:h-[40%]
+p-[25px]
+pb-[15px]
 rounded-[15px]
 flex
 items-center
 justify-between
 shadow-md
+mb-8
+web:mb-0
+hidden
+web:block
+`
+
+export const ProfileMobile = tw.div`
+bg-[#ffffff]
+p-[25px]
+pb-[15px]
+rounded-[15px]
+flex
+items-center
+justify-between
+shadow-md
+mb-3
+block
+web:hidden
 `
 
 export const Score = tw.div`
 bg-[#EEA241]
 text-black
-h-[57%]
+h-[300px]
+web:h-[57%]
 rounded-[15px]
 p-8
 pr-7
 shadow-md
+mb-3
+web:mb-0
 `
 
 export const ProfileEdit = tw.div`
@@ -120,12 +165,18 @@ export const StyledBody1 = styled(StyledBody)`
     background : rgba(255, 230, 124, 0.7);
     font-weight: 700;
     color: #fff;
+    @media (max-width: 475px) {
+      border-radius: 5px; // 화면 너비가 475px 이하인 경우 border-radius 제거
+    }
   }
 
   .today{
     border-radius: 50%;
     font-weight: bold;
-    background : rgba(238, 162, 65, 0.8);
+    background : rgba(238, 162, 65, 0.6);
+    @media (max-width: 475px) {
+      border-radius: 5px; // 화면 너비가 475px 이하인 경우 border-radius 제거
+    }
   }
 
   .isSelected{
@@ -150,24 +201,35 @@ export const StyledBody1 = styled(StyledBody)`
 // Calendar Header
 export const ThisMonth = tw.span`
 font-bold
-text-[35px]
-ml-[20px]
-mr-[20px]
+text-[25px]
+web:text-[35px]
+ml-[10px]
+mr-[10px]
+web:ml-[20px]
+web:mr-[20px]
 text-[#EEA241]
 `
 
 export const PreviousIcon = tw.button`
-w-[24px]
-h-[24px]
-ml-[8px]
-mr-[8px]
+w-[15px]
+h-[15px]
+web:w-[24px]
+web:h-[24px]
+ml-[3px]
+mr-[3px]
+web:ml-[8px]
+web:mr-[8px]
 `
 
 export const NextIcon = tw.button`
-w-[24px]
-h-[24px]
-ml-[8px]
-mr-[8px]
+w-[15px]
+h-[15px]
+web:w-[24px]
+web:h-[24px]
+ml-[3px]
+mr-[3px]
+web:ml-[8px]
+web:mr-[8px]
 `
 
 export const Row1 = tw.div`
@@ -176,7 +238,8 @@ justify-center
 items-center
 cursor-pointer
 w-[100%]
-h-[55px]
+h-[50px]
+web:h-[55px]
 `
 
 export const RowWeek = tw.div`
@@ -204,6 +267,8 @@ justify-center
 export const DayImg = tw.div`
 flex
 justify-center
+web:w-[35px]
+web:h-[35px]
 `
 
 export const Text = tw.span`
@@ -242,7 +307,7 @@ text-sm
 export const Label = tw.div`
 flex
 items-center
-w-[40%]
+w-[35%]
 h-[30px]
 font-bold
 text-[#EEA241]
@@ -261,12 +326,12 @@ px-2
 py-2
 font-sans
 text-[13px]
-font-normal 
+font-normal
 text-black
 outline-0
 transition-all
 focus:border-gray-900 
-focus:outline-0 
+focus:outline-0
 disabled:border-0
 disabled:bg-blue-gray-50
 `
@@ -333,7 +398,8 @@ w-[28%]
 flex
 justify-center
 items-center
-mr-2
+mr-4
+web:mr-5
 `
 
 export const ImageTest = tw.div`
@@ -354,7 +420,7 @@ bg-[#FFFFFF]
 px-2
 text-[13px]
 font-sans
-font-normal 
+font-normal
 text-black
 outline-0
 flex
@@ -475,11 +541,30 @@ items-center
 export const Num = tw.div`
 font-bold
 text-[#EEA241]
+flex
+flex-left
+text-[14px]
 `
 
 export const Mode = tw.div`
+text-[13px]
 `
 
 export const Temp = tw.div`
 flex
+`
+
+export const SolveCount = tw.div`
+absolute
+top-[20px]
+right-[20px]
+p-1
+pl-2
+pr-2
+web:p-2
+web:pl-3
+web:pr-3
+text-white
+bg-[#EEA241]
+rounded-[5px]
 `
