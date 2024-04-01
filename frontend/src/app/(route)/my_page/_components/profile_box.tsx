@@ -7,6 +7,7 @@ import storeProfile from "@/app/_store/storeProfile"
 import { ProfileWrapper, ProfileImage, ProfileImage1, ProfileChange, Form, Input, InputBirth, Label, Name, Nickname, Birth, Gender, EditBtn, ProfileContent, ProfileEdit, ImageTest, CurrentInfo, Btn, BtnLabel} from "../styles/Page.styled"
 // import { useUpdateProfile } from "../../../hooks/useProfile"
 import { useGetProfile, useUploadProfileImage, useUpdateProfile } from "../../../hooks/useProfile"
+import emptyImage from "../../../asset/_img/profile_img.png"
 
 export default function ProfileBox() {
     const { profile } = storeProfile();
@@ -169,7 +170,7 @@ export default function ProfileBox() {
                                         onChange={EditImage}
                                         ref={imgRef}
                                     />
-                                    <Image src={imagePreview || data?.child_picture || emptyImageUrl} alt="프로필사진" priority width="150" height="150" className="rounded-[100%] shadow-lg"/>
+                                    <Image src={imagePreview || data?.child_picture || emptyImage} alt="프로필사진" priority width="150" height="150" className="rounded-[100%] shadow-lg"/>
                                     <label htmlFor="file">
                                         {isHovered && (
                                             <div>
@@ -182,7 +183,7 @@ export default function ProfileBox() {
                                 </ProfileImage1>
                             ) : (
                             <ProfileImage1>
-                                <Image src={data?.child_picture || emptyImageUrl} alt="프로필사진" width="150" height="150" className="rounded-[100%] shadow-lg"/>
+                                <Image src={data?.child_picture || emptyImage} alt="프로필사진" width="150" height="150" className="rounded-[100%] shadow-lg"/>
                             </ProfileImage1>
                         )}
                     </ImageTest>

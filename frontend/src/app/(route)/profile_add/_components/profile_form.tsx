@@ -60,7 +60,7 @@ export default function ProfileForm({ imageUrl }: { imageUrl: string }) {
         }
 
         // eslint-disable-next-line no-console
-        console.log(name, nickname, birthday, gender, childpicture)
+        // console.log(name, nickname, birthday, gender, childpicture)
 
         try {
             mutate(ProfileData, {
