@@ -23,7 +23,7 @@ export function MyProfile() {
     "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
 
   const variants = {
-    open: { opacity: 1, x: 0 },
+    open: { opacity: 1, x: 1 },
     closed: { opacity: 0, x: 0 },
   };
 
