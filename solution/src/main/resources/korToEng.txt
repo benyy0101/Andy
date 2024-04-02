@@ -15,7 +15,7 @@
 벤치, bench
 새, bird
 고양이, cat
-개, dog
+강아지, dog
 말, horse
 양, sheep
 소, cow
