@@ -28,3 +28,17 @@ pr-1.5
 rounded-[10px]
 z-[5]
 `
+
+// export const Ment1 = tw.div`
+// bg-[#fff]
+// h-0
+// w-0
+// border-[10px] 
+// border-solid 
+// border-transparent
+// border-[#fff]
+// fixed
+// z-[3]
+// right-[55px]
+// bottom-[25px]
+// `
