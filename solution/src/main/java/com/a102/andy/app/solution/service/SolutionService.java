@@ -53,11 +53,8 @@ public class SolutionService {
     public ResultResponseDto readProblemAnswer(MultipartFile multipartFile, String answer) {
         RestTemplate restTemplate = new RestTemplate();
 
-        // 요청 매개변수 설정
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+        HttpHeaders headers = new HttpHeaders();
 
         try {
             // ByteArrayResource를 사용하여 MultipartFile을 전송 가능한 형태로 변환
@@ -73,6 +70,8 @@ public class SolutionService {
             e.printStackTrace();
             return null; // 적절한 예외 처리 또는 오류 응답 반환 필요
         }
+        log.info(answer);
+        log.info(koToEngMap.get(answer));
         body.add("question_name", koToEngMap.get(answer));
         HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 

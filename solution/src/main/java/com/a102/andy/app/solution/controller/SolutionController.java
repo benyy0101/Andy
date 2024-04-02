@@ -4,6 +4,7 @@ import com.a102.andy.app.solution.controller.dto.*;
 import com.a102.andy.app.solution.service.SolutionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,8 +29,9 @@ public class SolutionController {
     public ResponseEntity<ProblemsDto> readExamByCategoryAll(@PathVariable("question_category") int category){
         return ResponseEntity.ok(solutionService.readExamByCategoryAll(category));
     }
-    @PostMapping("")
+    @PostMapping(value = "", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
     public ResponseEntity<ResultResponseDto> readProblemAnswer(@RequestPart MultipartFile picture, @RequestParam String question_name){
+        log.info(question_name);
         return ResponseEntity.ok(solutionService.readProblemAnswer(picture, question_name));
     }
 
