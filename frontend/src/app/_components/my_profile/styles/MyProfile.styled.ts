@@ -1,11 +1,7 @@
 import tw from "tailwind-styled-components";
 
 export const Wrapper = tw.div`
-web:p-0
-web:mr-0
-
-p-2
-mr-1
+w-1/12
 flex
 `;
 

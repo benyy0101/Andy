@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Lottie from "lottie-react";
@@ -20,11 +20,25 @@ interface IQuizButton {
 export default function QuizButton(props: IQuizButton) {
   const { quizName, quizImg, quizRoute } = props;
   const router = useRouter();
-  const soundUrl = "/asset/audio/click.mp3";
+  const enterSoundUrl = "/asset/audio/click.mp3";
+  const effectUrl = "/asset/audio/hover.mp3";
+
+  useEffect(() => {
+    // Preload the audio file
+    const audio = new Audio(effectUrl);
+    audio.preload = "auto";
+  }, [effectUrl]);
+
   const playAudio = () => {
-    const audio = new Audio(soundUrl); // Provide the path to your audio file
+    const audio = new Audio(enterSoundUrl); // Provide the path to your audio file
     audio.play();
   };
+
+  const playSound = () => {
+    const audio = new Audio(effectUrl);
+    audio.play();
+  };
+
   const routetoQuiz = () => {
     playAudio();
     if (quizRoute === "incorrect_list") {
@@ -37,9 +51,9 @@ export default function QuizButton(props: IQuizButton) {
   };
 
   return (
-    <WholeWrapper onClick={routetoQuiz}>
+    <WholeWrapper onClick={routetoQuiz} onMouseEnter={playSound}>
       <QuizCircleContainer>
-        <Lottie animationData={quizImg}/>
+        <Lottie animationData={quizImg} />
       </QuizCircleContainer>
       <QuizTitle>{quizName}</QuizTitle>
     </WholeWrapper>

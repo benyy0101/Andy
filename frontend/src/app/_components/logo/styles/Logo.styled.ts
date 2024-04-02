@@ -1,8 +1,10 @@
 import tw from "tailwind-styled-components";
 
 export const Wrapper = tw.div`
+w-11/12
 flex
-p-2
+justify-center
+items-center
 `;
 
 export const Title = tw.div`

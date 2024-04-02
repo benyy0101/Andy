@@ -1,10 +1,9 @@
-'use client'
+"use client";
 
-import React, { useState,useEffect } from 'react';
-import { Wrapper } from './styles/music.styled';
+import React, { useState, useEffect } from "react";
+import { Wrapper } from "./styles/music.styled";
 
 export function Music() {
-
   const [isSoundOn, setIsSoundOn] = useState<boolean>(true);
 
   useEffect(() => {
@@ -21,12 +20,11 @@ export function Music() {
     };
   }, [isSoundOn]);
   const toggleSound = () => {
-    setIsSoundOn(prevState => !prevState);
+    setIsSoundOn((prevState) => !prevState);
   };
 
-    
-    return (
-      <Wrapper onClick={toggleSound}>
+  return (
+    <Wrapper onClick={toggleSound}>
       {isSoundOn ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +56,6 @@ export function Music() {
           />
         </svg>
       )}
-      </Wrapper>
-    );
-  }
-  
+    </Wrapper>
+  );
+}

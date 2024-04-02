@@ -50,7 +50,7 @@ export function MyProfile() {
 
   useEffect(() => {
     setName(profile.child_name);
-  }, [])
+  }, []);
 
   // const childPic = profile?.child_picture
 
@@ -65,34 +65,37 @@ export function MyProfile() {
 
   return (
     <Suspense>
-    <Wrapper>
-      {/* <Profile onClick={Info} onMouseLeave={hideInfo}> */}
-      <Profile onClick={toggleInfo}>
-        <Image
-          src={profile.child_picture || emptyImageUrl}
-          width="60"
-          height="60"
-          objectFit="cover"
-          style={{ borderRadius: "100%" }}
-          alt="프로필사진"
-        />
-      </Profile>
-      <motion.div animate={showInfo ? "open" : "closed"} variants={variants}>
-        <ProfileInfo>
-          <Name>
-            <Namespan>{name}</Namespan> <Child>어린이</Child>
-          </Name>
-          <SquareContainer>
-            <Mypage onClick={routetoMyPage} className="text-white">
-              마이페이지
-            </Mypage>
-            <ProfileChange onClick={routetoProfileList} className="text-white">
-              프로필 전환
-            </ProfileChange>
-          </SquareContainer>
-        </ProfileInfo>
-      </motion.div>
-    </Wrapper>
+      <Wrapper>
+        {/* <Profile onClick={Info} onMouseLeave={hideInfo}> */}
+        <Profile onClick={toggleInfo}>
+          <Image
+            src={profile.child_picture || emptyImageUrl}
+            width="60"
+            height="60"
+            objectFit="cover"
+            style={{ borderRadius: "100%" }}
+            alt="프로필사진"
+          />
+        </Profile>
+        <motion.div animate={showInfo ? "open" : "closed"} variants={variants}>
+          <ProfileInfo>
+            <Name>
+              <Namespan>{name}</Namespan> <Child>어린이</Child>
+            </Name>
+            <SquareContainer>
+              <Mypage onClick={routetoMyPage} className="text-white">
+                마이페이지
+              </Mypage>
+              <ProfileChange
+                onClick={routetoProfileList}
+                className="text-white"
+              >
+                프로필 전환
+              </ProfileChange>
+            </SquareContainer>
+          </ProfileInfo>
+        </motion.div>
+      </Wrapper>
     </Suspense>
   );
 }
