@@ -8,6 +8,7 @@ import com.a102.andy.app.solution.repository.QuestionHistoryRepository;
 import com.a102.andy.app.solution.repository.SolutionRepository;
 import com.a102.andy.error.errorcode.CommonErrorCode;
 import com.a102.andy.error.exception.RestApiException;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
@@ -23,8 +24,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -33,15 +35,19 @@ public class SolutionService {
     private final SolutionRepository solutionRepository;
     private final ExamRepository examRepository;
     private final QuestionHistoryRepository questionHistoryRepository;
-    public List<CategoriesResponseDto> readCategoryAll(){
+    private Map<String, String> koToEngMap = new HashMap<>();
+    @PostConstruct
+    public void init() {
+        loadKoToEngMap("../solution/src/main/resources/korToEng.txt");
+    }
+
+    public List<CategoriesResponseDto> readCategoryAll() {
         return solutionRepository.findCategoryAll();
     }
 
-    public ProblemsDto readExamByCategoryAll(int category){
+    public ProblemsDto readExamByCategoryAll(int category) {
         List<ProblemDto> problemResponseDtos = solutionRepository.findExamByCategoryAll(category);
-        return ProblemsDto.builder()
-                .problem(problemResponseDtos)
-                .build();
+        return ProblemsDto.builder().problem(problemResponseDtos).build();
     }
 
     public ResultResponseDto readProblemAnswer(MultipartFile multipartFile, String answer) {
@@ -67,18 +73,11 @@ public class SolutionService {
             e.printStackTrace();
             return null; // 적절한 예외 처리 또는 오류 응답 반환 필요
         }
-
-        body.add("question_name", answer);
-
+        body.add("question_name", koToEngMap.get(answer));
         HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 
         // HTTP 요청 및 응답 처리
-        ResponseEntity<ResultResponseDto> responseEntity = restTemplate.exchange(
-                "https://j10a102.p.ssafy.io/Detection",
-                HttpMethod.POST,
-                requestEntity,
-                ResultResponseDto.class
-        );
+        ResponseEntity<ResultResponseDto> responseEntity = restTemplate.exchange("https://j10a102.p.ssafy.io/Detection", HttpMethod.POST, requestEntity, ResultResponseDto.class);
 
         // 응답 본문을 가져와서 처리
         return responseEntity.getBody();
@@ -86,37 +85,22 @@ public class SolutionService {
 
 
     public void createExamResult(GameResultRequestDto gameResultRequestDto) {
-        Exam exam = Exam.builder()
-                .childSeq(gameResultRequestDto.getChildSeq())
-                .questionCategorySeq(gameResultRequestDto.getQuestionCategorySeq())
-                .examScore(calExamScore(gameResultRequestDto))
-                .examMode(gameResultRequestDto.getExamMode())
-                .build();
+        Exam exam = Exam.builder().childSeq(gameResultRequestDto.getChildSeq()).questionCategorySeq(gameResultRequestDto.getQuestionCategorySeq()).examScore(calExamScore(gameResultRequestDto)).examMode(gameResultRequestDto.getExamMode()).build();
         exam = examRepository.save(exam);
 
         List<QuestionHistory> questionHistories = new ArrayList<>();
 
 
-        for(AnswerResponseDto answerResponseDto : gameResultRequestDto.getAnswerResponseDtos()){
-            QuestionHistory questionHistory = QuestionHistory.builder()
-                    .examSeq(exam.getExamSeq())
-                    .examMode(gameResultRequestDto.getExamMode())
-                    .questionSeq(answerResponseDto.getAnswerSeq())
-                    .childSeq(gameResultRequestDto.getChildSeq())
-                    .questionHistoryIsOk(answerResponseDto.isAnswerIsOk())
-                    .build();
+        for (AnswerResponseDto answerResponseDto : gameResultRequestDto.getAnswerResponseDtos()) {
+            QuestionHistory questionHistory = QuestionHistory.builder().examSeq(exam.getExamSeq()).examMode(gameResultRequestDto.getExamMode()).questionSeq(answerResponseDto.getAnswerSeq()).childSeq(gameResultRequestDto.getChildSeq()).questionHistoryIsOk(answerResponseDto.isAnswerIsOk()).build();
             questionHistories.add(questionHistory);
         }
-        // questionHistories 리스트에 QuestionHistory 객체들을 추가하는 로직
-
         questionHistoryRepository.saveAll(questionHistories);
 
     }
 
     private int calExamScore(GameResultRequestDto req) {
-        return (int) req.getAnswerResponseDtos().stream()
-                .filter(AnswerResponseDto::isAnswerIsOk)
-                .count();
+        return (int) req.getAnswerResponseDtos().stream().filter(AnswerResponseDto::isAnswerIsOk).count();
     }
 
     public ProblemALLResponseDto readProblemsALL(int Child_seq, String date) {
@@ -125,11 +109,28 @@ public class SolutionService {
 
     @Transactional
     public ResultUpdateResponseDto updateProblem(ResultUpdateRequestDto resultUpdateRequestDto) {
-        QuestionHistory questionHistory = questionHistoryRepository.
-                findById(resultUpdateRequestDto.getQuestionHistorySeq()).orElseThrow(() -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND));
+        QuestionHistory questionHistory = questionHistoryRepository.findById(resultUpdateRequestDto.getQuestionHistorySeq()).orElseThrow(() -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND));
 
         questionHistory.update(resultUpdateRequestDto);
 
         return new ResultUpdateResponseDto(questionHistory.getQuestionHistorySeq());
+    }
+
+    private void loadKoToEngMap(String filePath) {
+        try{
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            for (String line : lines) {
+                String[] parts = line.split(",");
+                if(parts.length == 2) {
+                    koToEngMap.put(parts[0].trim(), parts[1].trim());
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String convertKoToEng(String ko) {
+        return koToEngMap.getOrDefault(ko, "Translation not found");
     }
 }
