@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image  from 'next/image';
-import Rectangle from '@/app/asset/_img/Rectangle.png'
+import Image from "next/image";
+import Rectangle from "@/app/asset/_img/Rectangle.png";
 
 interface TimerProps {
   reset: boolean;
@@ -46,13 +46,12 @@ function Timer(props: TimerProps) {
 
   return (
     <div className="flex justify-end w-5/6 items-center">
-      <Image src={Rectangle} width={50} height={50} alt="fff"/>
+      <Image src={Rectangle} width={50} height={50} alt="fff" />
 
-<span id="MyTimer" className="font-bold text-xl min-w-12">
-      {calculateTime()}
-    </span>
+      <span id="MyTimer" className="font-thin text-4xl min-w-20">
+        {calculateTime()}
+      </span>
     </div>
-    
   );
 }
 
