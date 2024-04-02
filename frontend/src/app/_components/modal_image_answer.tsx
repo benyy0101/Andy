@@ -1,8 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import { AnswerBackground, NextButton, AnswerContent } from "./styles/ModalImageAnswer.styled";
+// import Image from "next/image";
+import {
+  AnswerBackground,
+  NextButton,
+  AnswerContent,
+} from "./styles/ModalImageAnswer.styled";
 
 interface ImageAnswerModalProps {
   isOpen: boolean;
@@ -13,7 +19,6 @@ interface ImageAnswerModalProps {
 
 function AnswerModal(props: ImageAnswerModalProps) {
   const { isOpen, onClose, picture, onNext } = props;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isExploding, setIsExploding] = useState(false);
 
   useEffect(() => {
@@ -21,7 +26,6 @@ function AnswerModal(props: ImageAnswerModalProps) {
       setIsExploding(true);
     }
   }, [isOpen]);
-
 
   return (
     <>
@@ -40,7 +44,14 @@ function AnswerModal(props: ImageAnswerModalProps) {
                 priority
             /> */}
           </AnswerContent>
-          <NextButton onClick={() => { onNext(); onClose(); }}>다음으로</NextButton>
+          <NextButton
+            onClick={() => {
+              onNext();
+              onClose();
+            }}
+          >
+            다음으로
+          </NextButton>
         </AnswerBackground>
       )}
     </>
