@@ -6,7 +6,9 @@ export const AnswerBackground = tw.div`
   left-0 
   w-full 
   h-full 
-  flex items-center 
+  flex 
+  flex-col
+  items-center 
   justify-center 
   bg-black
   bg-opacity-60
@@ -18,7 +20,8 @@ export const AnswerContent = tw.div`
   rounded-lg
   text-center
   font-extrabold
-  text-6xl
+  web:text-6xl
+  text-4xl
   `;
 
 export const NextButton = tw.button`
@@ -30,7 +33,8 @@ export const NextButton = tw.button`
   rounded
   hover:bg-yellow
   hover:text-orange
-  fixed
   right-5
   bottom-5
+  web:text-2xl
+  text-md
   `;
