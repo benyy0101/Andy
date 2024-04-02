@@ -26,7 +26,7 @@ export function Music() {
 
   return (
     <Wrapper onClick={toggleSound}>
-      <audio ref={audioRef} src="/asset/audio/background.mp3" />
+      <audio ref={audioRef} src="/asset/audio/background.mp3" autoPlay />
       {isSoundOn ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"

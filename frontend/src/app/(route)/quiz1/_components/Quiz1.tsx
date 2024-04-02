@@ -146,7 +146,7 @@ function Quiz1() {
         },
       });
     }
-  }, [isCorrectModalOpen, isWrongModalOpen]);
+  }, [isCorrectModalOpen, isWrongModalOpen, isAnswerModadlOpen]);
 
   useEffect(() => {
     if (data) {
@@ -245,11 +245,13 @@ function Quiz1() {
             onClose={handleCloseQuitModal}
             onQuit={handleOnQuitModal}
           />
-          <ImageModal
-            isOpen={isAnswerModadlOpen}
-            onNext={passProblem}
-            picture={data[currentSeq].question_picture}
-          />
+          {currentSeq < numProblems && (
+            <ImageModal
+              isOpen={isAnswerModadlOpen}
+              onNext={passProblem}
+              picture={data[currentSeq].question_picture}
+            />
+          )}
         </Wrapper>
       )}
     </Suspense>

@@ -35,7 +35,7 @@ export const useCategories = () => {
 // GAME-002
 export const useGamebyCategory = (question_category_seq: number) => {
   const query = useQuery<any>({
-    queryKey: ["game", { type: "A" }],
+    queryKey: ["game", { question_category_seq }],
     queryFn: () => getGamebyCategory({ question_category_seq }),
     select: (data) => {
       const newData: Problem[] = [];
