@@ -54,6 +54,8 @@ export function MyProfile() {
   useEffect(() => {
     if (profile) {
       setName(profile.child_name);
+    }
+    if (profile && profile.child_picture !== "") {
       setProfileImage(profile.child_picture);
     }
   }, [profile]);
@@ -85,23 +87,26 @@ export function MyProfile() {
             />
           </ImageWrapper>
         </Profile>
+
         <motion.div animate={showInfo ? "open" : "closed"} variants={variants}>
-          <ProfileInfo>
-            <Name>
-              <Namespan>{name}</Namespan> <Child>어린이</Child>
-            </Name>
-            <SquareContainer>
-              <Mypage onClick={routetoMyPage} className="text-white">
-                마이페이지
-              </Mypage>
-              <ProfileChange
-                onClick={routetoProfileList}
-                className="text-white"
-              >
-                프로필 전환
-              </ProfileChange>
-            </SquareContainer>
-          </ProfileInfo>
+          {showInfo && (
+            <ProfileInfo>
+              <Name>
+                <Namespan>{name}</Namespan> <Child>어린이</Child>
+              </Name>
+              <SquareContainer>
+                <Mypage onClick={routetoMyPage} className="text-white">
+                  마이페이지
+                </Mypage>
+                <ProfileChange
+                  onClick={routetoProfileList}
+                  className="text-white"
+                >
+                  프로필 전환
+                </ProfileChange>
+              </SquareContainer>
+            </ProfileInfo>
+          )}
         </motion.div>
       </Wrapper>
     </Suspense>

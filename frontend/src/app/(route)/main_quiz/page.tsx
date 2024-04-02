@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import TutorialBtn from "@/app/_components/tutorial_btn/tutorialBtn";
 import Navigation from "@/app/_components/navigation/Navigation";
@@ -6,6 +6,7 @@ import BackgroundSVG from "@/app/_components/background/Background";
 import Chalkak from "@/app/asset/lottie/Chalkak_quiz.json";
 import Ddalkak from "@/app/asset/lottie/Ddalkak_quiz.json";
 import Tryagin from "@/app/asset/lottie/Tryagain_quiz.json";
+import Footer from "@/app/_components/footer/Footer";
 import { Wrapper } from "./styles/Page.styled";
 import QuizButton from "./_components/QuizButton";
 
@@ -47,6 +48,7 @@ export default function MainQuiz() {
         ))}
       </Wrapper>
       <TutorialBtn />
+      <Footer />
     </div>
   );
 }

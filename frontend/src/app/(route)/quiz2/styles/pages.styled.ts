@@ -14,10 +14,7 @@ export const Bar = tw.div`
 `;
 
 export const Title = tw.h1`
-w-4/6
 flex-grow-[1]
-items-center
-text-center
 text-3xl
 font-extrabold
 `;

@@ -3,6 +3,7 @@ import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import getQueryClient from "@/app/utils/queryClient";
 import Navigation from "@/app/_components/navigation/Navigation";
 import BackgroundSVG from "@/app/_components/background/Background";
+import Footer from "@/app/_components/footer/Footer";
 import Categories from "./_components/Categories";
 
 async function CategoryPage() {
@@ -19,6 +20,7 @@ async function CategoryPage() {
         <Categories />
       </div>
       <BackgroundSVG />
+      <Footer />
     </HydrationBoundary>
   );
 }
