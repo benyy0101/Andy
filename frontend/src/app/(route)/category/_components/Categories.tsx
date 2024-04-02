@@ -4,13 +4,19 @@ import React, { Suspense } from "react";
 import { useCategories } from "@/app/hooks/useGameA";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import Image from "next/image";
-import funiture from "@/app/asset/_img/category_furniture.jpg";
-import livingRoom from "@/app/asset/_img/living-room.png";
-import kitchen from "@/app/asset/_img/kitchen.png";
-import zoo from "@/app/asset/_img/zoo.png";
-import ssafy from "@/app/asset/_img/ssafy.png";
+// import Image from "next/image";
+// import funiture from "@/app/asset/_img/category_furniture.jpg";
+// import livingRoom from "@/app/asset/_img/living-room.png";
+// import kitchen from "@/app/asset/_img/kitchen.png";
+// import zoo from "@/app/asset/_img/zoo.png";
+import funiture from "@/app/asset/lottie/furniture.json";
+import zoo from "@/app/asset/lottie/zoo.json";
+import livingRoom from "@/app/asset/lottie/livingroom.json";
+import kitchen from "@/app/asset/lottie/kitchen.json";
+import ssafy from "@/app/asset/lottie/ssafy.json";
+// import ssafy from "@/app/asset/_img/ssafy.png";
 
+import Lottie from "lottie-react";
 import {
   Wrapper,
   Title,
@@ -55,12 +61,18 @@ function Categories() {
                 key={category.question_category_seq}
               >
                 <ImageContainer onClick={playAudio}>
-                  <Image
+                  {/* <Image
                     src={images[category.question_category_name]}
                     alt="fruit"
                     width={1000}
                     height={1000}
                     className="w-full h-60 object-cover rounded-t-lg"
+                  /> */}
+                  <Lottie 
+                    animationData={images[category.question_category_name]} 
+                    width={1000}
+                    height={1000}
+                    className="w-full h-60 object-cover rounded-t-lg pt-5 pb-5 bg-lightorange"
                   />
                   <Text>{category.question_category_name}</Text>
                 </ImageContainer>
