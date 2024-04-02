@@ -5,18 +5,13 @@ relative
 flex
 flex-col
 items-center
-justify-between
-w-screen
-h-svw
+h-svh
 `;
 
 export const Title = tw.h1`
-w-4/6
+flex-grow-[1]
 text-3xl
 font-extrabold
-items-center
-text-center
-flex-grow-[1]
 `;
 
 export const Explain = tw.h3`

@@ -6,7 +6,6 @@ flex-col
 items-center
 justify-start
 h-svh 
-w-svw 
 web:screen
 `;
 
@@ -25,7 +24,10 @@ font-bold
 `;
 
 export const Quitbtn = tw.div`
-w-1/6
+web:w-1/12
+w-full
+flex
+justify-start
 `;
 
 export const TimerContainer = tw.div`

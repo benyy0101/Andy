@@ -209,18 +209,18 @@ function Quiz2Page() {
           <Navigation />
           <div className="w-svw flex-grow-[1] flex flex-col items-center gap-4">
             <ProgressBar max={numProblems} value={status.length} />
-            <div className="flex justify-between items-center w-11/12">
+            <div className="flex web:flex-row flex-col justify-between items-center w-11/12">
               {/* 게임 도중 나가기  */}
               <Quitbtn onClick={handleOpenQuitModal}>
                 <Quit />
               </Quitbtn>
               {currentSeq < numProblems && (
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 flex-grow-[1]">
                   <Title>라운드 {currentSeq + 1}</Title>
                   <Explain>이것은 무엇일까요? 정답을 적어주세요!</Explain>
                 </div>
               )}
-              <div className="w-1/6">
+              <div className="web:w-1/12 w-full">
                 {currentSeq < numProblems && (
                   <Timer
                     reset={reset}
@@ -231,7 +231,7 @@ function Quiz2Page() {
             </div>
 
             {/* 현재 라운드의 데이터가 있고  */}
-            <div className="flex flex-col w-3/4 max-w-[420px] flex-grow-[1] gap-4">
+            <div className="flex flex-col w-3/4 max-w-[420px] flex-grow-[1] web:gap-4 gap-6">
               {currentSeq >= 0 &&
                 currentSeq < numProblems &&
                 data[currentSeq] && (

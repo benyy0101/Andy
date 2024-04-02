@@ -41,8 +41,9 @@ function InputComponent({
   };
 
   const handleSubmit = () => {
-    onAnswerSubmit(userInputValue); //  사용자 입력갑을 채점하는 데 사용
-    const isCorrectAnswer = userInputValue === correctAnswer; // 정답과 입력값 비교
+    const processedInputValue = userInputValue.replace(/\s+/g, "");
+    onAnswerSubmit(processedInputValue); //  사용자 입력갑을 채점하는 데 사용
+    const isCorrectAnswer = processedInputValue === correctAnswer; // 정답과 입력값 비교
     onSubmit(isCorrectAnswer);
     setUserInputValue("");
     setIsFocused(false);
@@ -53,7 +54,7 @@ function InputComponent({
 
   return (
     <Wrapper>
-      <div className="flex web:flex-row flex-col web:items-end web:justify-end items-center justify-center web:space-x-4 space-y-4 w-full max-w-[1000px]">
+      <div className="flex web:flex-row flex-col web:items-end web:justify-end items-center justify-center web:space-x-4 space-y-6 w-full max-w-[1000px]">
         <Input>
           <input
             type="text"
@@ -77,7 +78,9 @@ function InputComponent({
           />
 
           <div
-            className={`absolute 
+            className={`
+                    select-none
+                    absolute 
                     text-lightorange
                     bottom-2 
                     transition-all 

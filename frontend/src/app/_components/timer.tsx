@@ -10,12 +10,12 @@ interface TimerProps {
 }
 
 function Timer(props: TimerProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { reset, handleWrong } = props;
-  const [timer, setTimer] = useState<number>(30); // 타이머 시간 30초로 설정
+  const [timer, setTimer] = useState<number>(60); // 타이머 시간 30초로 설정
 
   useEffect(() => {
     let interval: number | undefined;
-
     if (timer >= 0) {
       interval = window.setTimeout(() => {
         setTimer((time) => time - 1);
@@ -30,7 +30,7 @@ function Timer(props: TimerProps) {
 
   useEffect(() => {
     if (reset) {
-      setTimer(30); // Reset the timer when reset prop changes
+      setTimer(60); // Reset the timer when reset prop changes
     }
   }, [reset]);
 
@@ -45,10 +45,13 @@ function Timer(props: TimerProps) {
   };
 
   return (
-    <div className="flex justify-end w-5/6 items-center">
+    <div className="flex justify-end web:w-5/6 web:items-center items-end">
       <Image src={Rectangle} width={50} height={50} alt="fff" />
 
-      <span id="MyTimer" className="font-thin text-4xl min-w-20">
+      <span
+        id="MyTimer"
+        className={`font-thin text-4xl min-w-20 ${timer < 10 && `text-rose-600 animate-ping`}`}
+      >
         {calculateTime()}
       </span>
     </div>

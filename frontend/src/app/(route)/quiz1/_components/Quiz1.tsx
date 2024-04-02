@@ -28,6 +28,8 @@ function Quiz1() {
 
   const { profile } = storeProfile();
   const [isCorrectModalOpen, setIsCorrectModalOpen] = useState(false);
+  const [isWrongModalOpen, setIsWrongModalOpen] = useState(false);
+  const [isQuitModalOpen, setIsQuitModalOpen] = useState(false);
   const [numProblems, setNumProblems] = useState(0);
   const [status, setStatus] = useState<IQuizData[]>([]);
   const [currentSeq, setCurrentSeq] = useState(0);
@@ -38,7 +40,6 @@ function Quiz1() {
   const [isReady, setIsReady] = useState<boolean>(false);
   const [count, setCount] = useState<number>(5);
   const [isCounting, setIsCounting] = useState(false);
-  const [isQuitModalOpen, setIsQuitModalOpen] = useState(false);
   const category = Number(useSearchParams().get("category"));
   const { data } = useGamebyCategory(category);
   const router = useRouter();
@@ -62,8 +63,6 @@ function Quiz1() {
     setIsCorrectModalOpen(false);
     handleResetTimer();
   };
-
-  const [isWrongModalOpen, setIsWrongModalOpen] = useState(false);
 
   const handleWrongAnswer = () => {
     setIsWrongModalOpen(true);
@@ -160,9 +159,9 @@ function Quiz1() {
       ) : (
         <Wrapper>
           <Navigation />
-          <div className="w-svw flex flex-col justify-center items-center space-y-4">
+          <div className="w-11/12 flex flex-col items-center space-y-4 flex-grow-[1]">
             <ProgressBar max={numProblems} value={status.length} />
-            <div className="flex justify-between items-end w-11/12">
+            <div className="flex web:flex-row flex-col justify-between items-center w-11/12">
               {/* 게임 도중 나가기  */}
               <Quitbtn onClick={handleOpenQuitModal}>
                 <Quit />
@@ -173,15 +172,12 @@ function Quiz1() {
                   <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
                 </div>
               )}
-              <div className="w-1/6">
+              <div className="web:w-1/12 w-full">
                 <Timer reset={reset} handleWrong={handleWrongAnswer} />
               </div>
             </div>
-            {/* <div className="flex justify-center items-end w-full px-10">
-            {currentSeq < numProblems && <Title>라운드 {currentSeq + 1}</Title>}
-            </div> */}
 
-            <div className="w-screen web:w-fit flex flex-col justify-between items-center space-y-5 web:flex-row web:space-y-0 web:space-x-6">
+            <div className="web:w-fit flex flex-col justify-between items-center space-y-5 web:flex-row web:space-y-0 web:space-x-6">
               {data && currentSeq < numProblems && (
                 <Word1 word={data[currentSeq].question_name || ""} />
               )}
