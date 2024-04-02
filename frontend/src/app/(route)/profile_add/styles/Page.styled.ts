@@ -7,7 +7,7 @@ export const ProfileWrapper = tw.div`
 flex
 justify-center
 items-center
-h-[87vh]
+h-[80vh]
 flex-col
 web:flex-row
 
@@ -173,4 +173,13 @@ export const ErrorMessage = tw.span`
 text-red
 text-[0.75rem]
 mb-[0.5rem]
+`
+
+export const LogoWrapper = tw.div`
+web:h-fit
+web:p-5
+web:w-dvw
+p-2
+flex
+justify-center
 `
