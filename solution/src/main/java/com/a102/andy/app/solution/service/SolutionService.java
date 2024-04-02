@@ -38,7 +38,7 @@ public class SolutionService {
     private Map<String, String> koToEngMap = new HashMap<>();
     @PostConstruct
     public void init() {
-        loadKoToEngMap("../solution/src/main/resources/korToEng.txt");
+        loadKoToEngMap("./tmp/korToEng.txt");
     }
 
     public List<CategoriesResponseDto> readCategoryAll() {
