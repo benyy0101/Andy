@@ -8,7 +8,7 @@ items-center
 justify-center
 
 web:flex-row
-web:gap-10
+web:gap-20
 web:text-center
 
 flex-col
@@ -23,11 +23,11 @@ flex
 flex-col
 items-center
 cursor-pointer
+
 hover:text-[green]
 transition-all
 
-space-y-4 
-transition-all 
+space-y-8 
 hover:scale-110
 hover:-translate-y-10
 `;
@@ -51,7 +51,6 @@ transition-all
 space-y-4 
 transition-all 
 hover:scale-110
-hover:-translate-y-10
 
 web:w-60
 web:h-60
@@ -69,7 +68,6 @@ export const QuizTitle = tw.div`
 web:w-40
 web:h-10
 web:text-[25px]
-web:mt-10
 web:text
 web:flex
 web:justify-center
@@ -77,7 +75,6 @@ web:justify-center
 
 font-bold
 text-[17px]
-mt-2
 hover:text-[green]
 transition-all
 `;

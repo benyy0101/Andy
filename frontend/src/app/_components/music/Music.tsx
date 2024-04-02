@@ -1,30 +1,32 @@
+/* eslint-disable jsx-a11y/media-has-caption */
+
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Wrapper } from "./styles/music.styled";
 
 export function Music() {
   const [isSoundOn, setIsSoundOn] = useState<boolean>(true);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    const audio = new Audio("/asset/audio/background.mp3");
-
-    if (isSoundOn) {
-      audio.play();
-    } else {
-      audio.pause();
+    const audio = audioRef.current;
+    if (audio) {
+      if (isSoundOn) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
     }
-
-    return () => {
-      audio.pause();
-    };
   }, [isSoundOn]);
+
   const toggleSound = () => {
     setIsSoundOn((prevState) => !prevState);
   };
 
   return (
     <Wrapper onClick={toggleSound}>
+      <audio ref={audioRef} src="/asset/audio/background.mp3" />
       {isSoundOn ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"

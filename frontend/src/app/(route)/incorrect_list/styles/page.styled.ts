@@ -6,7 +6,7 @@ flex
 flex-col
 items-center
 justify-start
-gap-8
+gap-4
 `;
 
 export const Title = tw.h1`
@@ -20,24 +20,35 @@ font-bold
 `;
 
 export const ListCon1 = tw.div`
+flex
+flex-col
+gap-8
+
 `;
 
 export const ListCon2 = tw.div`
-
+flex
+flex-col
+gap-4
 `;
 
 export const ListDate = tw.div`
+pl-4
 text-left
-font-bold
+text-2xl
 `;
 
 export const OnedayLists = tw.div`
 flex
-grid 
-grid-cols-2 
+flex-col
+web:grid 
+web:grid-cols-2
+gap-4
 `;
 
 export const List = tw.div`
+px-8
+py-4
 relative
 cursor-pointer
 font-bold
@@ -56,4 +67,3 @@ hover:scale-110
 hover:bg-orange hover:text-white 
 duration-300
 `;
-
