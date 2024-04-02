@@ -111,6 +111,7 @@ function Camera(props: ICamera) {
                 <Image src={cameraIcon} height={50} width={50} alt="camera" />
               </div>
             </button>
+            {/* 스킵 버튼 추가해야함 */}
           </div>
         </div>
       ) : (
@@ -126,6 +127,7 @@ function Camera(props: ICamera) {
           >
             비디오 켜기
           </button>
+          {/* 스킵 버튼 추가해야함 */}
         </div>
       )}
     </Wrapper2>
