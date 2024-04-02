@@ -28,7 +28,7 @@ public class SolutionController {
     public ResponseEntity<ProblemsDto> readExamByCategoryAll(@PathVariable("question_category") int category){
         return ResponseEntity.ok(solutionService.readExamByCategoryAll(category));
     }
-    @PostMapping(value="", produces = "application/json; charset=UTF-8")
+    @PostMapping("")
     public ResponseEntity<ResultResponseDto> readProblemAnswer(@RequestPart MultipartFile picture, @RequestParam String question_name){
         return ResponseEntity.ok(solutionService.readProblemAnswer(picture, question_name));
     }
