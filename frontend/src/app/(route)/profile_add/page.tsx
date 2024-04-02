@@ -7,7 +7,7 @@ import ProfileImg from "./_components/profile_img"
 import ProfileForm from "./_components/profile_form"
 // import { useProfileList } from "../../hooks/useProfile";
 // import { Tutorial_Btn } from "../../_components/tutorial_btn/tutorial_btn";
-import { Wrapper, ProfileWrapper, ProfileListBtn } from "./styles/Page.styled";
+import { Wrapper, ProfileWrapper, ProfileListBtn, LogoWrapper } from "./styles/Page.styled";
 
 export default function ProfileAdd() {
     const [imageUrl, setImageUrl] = useState<string>("");
@@ -24,7 +24,9 @@ export default function ProfileAdd() {
 
     return (
         <>
-        <Logo />
+        <LogoWrapper>
+            <Logo />
+        </LogoWrapper>
         <Wrapper>
             <ProfileWrapper>
                 <ProfileImg onImageUpload={handleImageUpload}/>

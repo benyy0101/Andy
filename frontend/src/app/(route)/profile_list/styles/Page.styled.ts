@@ -9,7 +9,7 @@ items-center
 export const Profiles = tw.div`
 flex
 justify-center
-h-[90vh]
+h-[80vh]
 m-[0]
 `;
 
@@ -36,14 +36,11 @@ text-[30px]
 flex
 justify-center
 items-center
-overflow-hidden
+relative
 `;
 
 export const ImageTest = tw.div`
-w-[100%]
-h-[100%]
 flex
-justify-center
 aspect-square
 `
 
@@ -121,9 +118,9 @@ text-black
 rounded-[10px]
 font-semibold
 z-[100]
-w-[90%]
+w-[100%]
 web:w-[350px]
-h-[40%]
+h-[50%]
 flex
 flex-col
 justify-between
@@ -192,4 +189,13 @@ flex
 justify-center
 items-center
 cursor-pointer
+`
+
+export const LogoWrapper = tw.div`
+web:h-fit
+web:p-5
+web:w-dvw
+p-2
+flex
+justify-center
 `

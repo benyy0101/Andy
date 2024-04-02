@@ -16,6 +16,7 @@ import {
   ProfileInfo,
   Wrapper,
   SquareContainer,
+  ImageWrapper,
 } from "./styles/MyProfile.styled";
 
 export function MyProfile() {
@@ -68,14 +69,16 @@ export function MyProfile() {
       <Wrapper>
         {/* <Profile onClick={Info} onMouseLeave={hideInfo}> */}
         <Profile onClick={toggleInfo}>
-          <Image
-            src={profile.child_picture || emptyImageUrl}
-            width="60"
-            height="60"
-            objectFit="cover"
-            style={{ borderRadius: "100%" }}
-            alt="프로필사진"
-          />
+          <ImageWrapper>
+            <Image
+              src={profile.child_picture || emptyImageUrl}
+              width="60"
+              height="60"
+              objectFit="cover"
+              style={{ borderRadius: "100%" }}
+              alt="프로필사진"
+            />
+          </ImageWrapper>
         </Profile>
         <motion.div animate={showInfo ? "open" : "closed"} variants={variants}>
           <ProfileInfo>

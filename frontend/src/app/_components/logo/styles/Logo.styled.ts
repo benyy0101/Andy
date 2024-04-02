@@ -9,5 +9,4 @@ items-center
 
 export const Title = tw.div`
 cursor-pointer
-
 `;

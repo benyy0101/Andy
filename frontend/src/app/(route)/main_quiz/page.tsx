@@ -1,3 +1,6 @@
+'use client'
+
+import TutorialBtn from "@/app/_components/tutorial_btn/tutorialBtn";
 import Navigation from "@/app/_components/navigation/Navigation";
 import BackgroundSVG from "@/app/_components/background/Background";
 import Chalkak from "@/app/asset/lottie/Chalkak_quiz.json";
@@ -43,6 +46,7 @@ export default function MainQuiz() {
           />
         ))}
       </Wrapper>
+      <TutorialBtn />
     </div>
   );
 }

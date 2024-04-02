@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import storeProfile from "../../../_store/storeProfile";
 import { ProfileWrapper, ProfileImg, ProfileName, DeleteBtn, ImageTest } from "../styles/Page.styled";
 // import { useRemoveProfile } from "../../../hooks/useProfile"
-import emptyImage from "../../../asset/_img/profile_img.png"
+import emptyImage from "../../../asset/_img/profile.png"
 
 interface IProfile {
   profile: {
@@ -59,11 +59,11 @@ export default function Profile(props: IProfile & DeleteModalprops) {
         >
         <ImageTest>
           <Image
-            priority
             src={profile.child_picture || emptyImage}
             alt={profile.child_name}
-            height="500"
             width="500"
+            height="500"
+            // fill
             objectFit="cover"
             className="rounded-[100%] shadow-lg"
           />

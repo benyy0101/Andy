@@ -43,26 +43,51 @@ const modal = {
 function ProfileContainer() {
   const { data } = useProfileList();
 
-  // eslint-disable-next-line no-console
-  console.log(data)
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isMobileScreen, setIsMobileScreen] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isMobileScreen1, setIsMobileScreen1] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [ITEMS_PER_PAGE, setItemsPerPage] = useState(4); // 기본값 4
 
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setIsMobileScreen(window.innerWidth < 475);
+  //     setIsMobileScreen1(window.innerWidth < 750);
+  //     setItemsPerPage(window.innerWidth < 750 ? 3 : 4);
+  //     setItemsPerPage(window.innerWidth < 475 ? 1 : 4);
+  //   };
+
+  //   handleResize();
+  //   window.addEventListener("resize", handleResize);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
+
   useEffect(() => {
     const handleResize = () => {
-      setIsMobileScreen(window.innerWidth < 475);
-      setItemsPerPage(window.innerWidth < 475 ? 1 : 4);
+      const screenWidth = window.innerWidth;
+      setIsMobileScreen(screenWidth < 475);
+  
+      if (screenWidth < 700) {
+        setItemsPerPage(1);
+      } else if (screenWidth < 900) {
+        setItemsPerPage(2);
+      } else if (screenWidth < 1250) {
+        setItemsPerPage(3);
+      } else {
+        setItemsPerPage(4);
+      }
     };
-
+  
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  
 
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -119,9 +144,9 @@ function ProfileContainer() {
                 </motion.div>
               ))}
             {endIdx === LengthData + 1 && (
-              <motion.div className="item" variants={item}>
+              // <motion.div className="item" variants={item}>
                 <ProfileAdd showModal={showModal} setShowModal={setShowModal} LengthData={LengthData}/>
-              </motion.div>
+              // </motion.div>
             )}
         </motion.div>
       </ProfilesContainer>
@@ -135,7 +160,7 @@ function ProfileContainer() {
           variants={modal}
           initial="hidden"
           animate="visible"
-          style={{ position: "absolute", width: "90%", height: "90%" }}
+          style={{ position: "absolute", width: "78%", height: "78%" }}
         >
           <ProfileModal showModal={showModal} setShowModal={setShowModal}/>
         </motion.div>
@@ -146,7 +171,7 @@ function ProfileContainer() {
           variants={modal}
           initial="hidden"
           animate="visible"
-          style={{ position: "absolute", width: "90%", height: "90%" }}
+          style={{ position: "absolute", width: "78%", height: "78%" }}
         >
           <ProfileDeleteModal 
             // profile={profile}
