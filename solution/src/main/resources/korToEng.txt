@@ -16,6 +16,7 @@
 새, bird
 고양이, cat
 강아지, dog
+개, dog
 말, horse
 양, sheep
 소, cow
@@ -73,6 +74,7 @@
 노트북, laptop
 마우스, mouse
 리모컨, remote
+리모콘, remote
 키보드, keyboard
 휴대전화, cell phone
 전자레인지, microwave
