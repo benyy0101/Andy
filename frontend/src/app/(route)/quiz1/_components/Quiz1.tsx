@@ -11,9 +11,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Quit } from "@/app/_components/quit_btn/quit";
 import QuitModal from "@/app/_components/modal_quit";
 import BackgroundSVG from "@/app/_components/background/Background";
+import Navigation from "@/app/_components/navigation/Navigation";
 import Word1 from "./word1";
 import Camera from "./camera";
-
 import { Wrapper, Title, Explain } from "../styles/page.styled";
 import { Quitbtn } from "../../quiz2/styles/pages.styled";
 
@@ -144,40 +144,48 @@ function Quiz1() {
     <Suspense fallback={<div>Loading...</div>}>
       <BackgroundSVG />
       {!isReady ? (
-        <div className="h-svh w-svw flex flex-col justify-center items-center space-y-10">
-          <div className="text-4xl">준비되었나요?</div>
-          <div
-            className={`text-8xl font-black ${isCounting && "animate-bounce"}`}
-          >
-            {count}
+        <div className="h-svh w-svw flex flex-col justify-center items-center space-y-10 web:h-screen">
+          <Navigation />
+          <div className="flex-grow-[1] flex flex-col justify-center items-center space-y-10">
+            <div className="text-4xl">준비되었나요?</div>
+            <div
+              className={`text-8xl font-black ${isCounting && "animate-bounce"}`}
+            >
+              {count}
+            </div>
           </div>
         </div>
       ) : (
         <Wrapper>
-          <ProgressBar max={numProblems} value={status.length} />
-          <div className="flex justify-between items-end w-11/12">
-            {/* 게임 도중 나가기  */}
-            <Quitbtn onClick={handleOpenQuitModal}>
-              <Quit />
-            </Quitbtn>
-            {currentSeq < numProblems && <Title>라운드 {currentSeq + 1}</Title>}
-            <div className="w-1/6" />
-          </div>
-          {/* <div className="flex justify-center items-end w-full px-10">
+          <Navigation />
+          <div className="w-svw flex flex-col justify-center items-center space-y-4">
+            <ProgressBar max={numProblems} value={status.length} />
+            <div className="flex justify-between items-end w-11/12">
+              {/* 게임 도중 나가기  */}
+              <Quitbtn onClick={handleOpenQuitModal}>
+                <Quit />
+              </Quitbtn>
+              {currentSeq < numProblems && (
+                <Title>라운드 {currentSeq + 1}</Title>
+              )}
+              <div className="w-1/6" />
+            </div>
+            {/* <div className="flex justify-center items-end w-full px-10">
             {currentSeq < numProblems && <Title>라운드 {currentSeq + 1}</Title>}
           </div> */}
-          <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
-          <Timer reset={reset} handleWrong={handleWrongAnswer} />
-          <div className="w-screen web:w-fit flex flex-col justify-between items-center space-y-5 web:flex-row web:space-y-0 web:space-x-6">
-            {data && currentSeq < numProblems && (
-              <Word1 word={data[currentSeq].question_name || ""} />
-            )}
-            {data && currentSeq < numProblems && (
-              <Camera
-                setIsTrue={handleIsTrue}
-                input={data[currentSeq].question_name || ""}
-              />
-            )}
+            <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
+            <Timer reset={reset} handleWrong={handleWrongAnswer} />
+            <div className="w-screen web:w-fit flex flex-col justify-between items-center space-y-5 web:flex-row web:space-y-0 web:space-x-6">
+              {data && currentSeq < numProblems && (
+                <Word1 word={data[currentSeq].question_name || ""} />
+              )}
+              {data && currentSeq < numProblems && (
+                <Camera
+                  setIsTrue={handleIsTrue}
+                  input={data[currentSeq].question_name || ""}
+                />
+              )}
+            </div>
           </div>
           {/* 조건에 따라서 정답 맞추면 정답 모달/ 틀리면 오답 모달 */}
           <CorrectModal

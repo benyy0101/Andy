@@ -25,7 +25,8 @@ export interface Problem {
   exam_mode: string | null;
   question_history_seq: number | null;
   question_history_is_ok: boolean | null;
-  created_at: string | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  created_at: any | null;
 }
 
 // GAME-003
@@ -62,8 +63,7 @@ export interface WrongProblemsReqeust {
 }
 
 export interface WrongProblemsResponse {
-  problems: Problem[];
-  pageable: Pageable;
+  problem: Problem[];
 }
 
 // GAME-006

@@ -11,15 +11,17 @@ rounded-[100%]
 shadow-md
 transition-all
 fixed
-right-[40px]
-bottom-[40px]
+right-[30px]
+web:right-[40px]
+bottom-[50px]
 hover:bg-[#fa9a1e]
 `;
 
 export const Ment = tw.div`
 fixed
-right-[35px]
-bottom-[10px]
+right-[25px]
+web:right-[35px]
+bottom-[20px]
 bg-[#fff]
 pl-1.5
 pr-1.5

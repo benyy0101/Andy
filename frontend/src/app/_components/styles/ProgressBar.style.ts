@@ -11,5 +11,4 @@ export const Progress = tw.progress`
     [&::-moz-progress-bar]:bg-violet-400
     [&::-webkit-progress-value]:transition-all 
     [&::-webkit-progress-value]:duration-500
-    -z-50
 `;

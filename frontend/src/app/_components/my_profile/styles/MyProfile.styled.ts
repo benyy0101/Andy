@@ -1,11 +1,7 @@
 import tw from "tailwind-styled-components";
 
 export const Wrapper = tw.div`
-web:p-0
-web:mr-0
-
-p-2
-mr-1
+w-1/12
 flex
 `;
 
@@ -13,19 +9,31 @@ export const Profile = tw.button`
 web:h-[55px]
 web:w-[55px]
 
-h-[45px]
-w-[45px]
+h-[40px]
+w-[40px]
 
 flex
 justify-center
 items-center
-align-center
-rounded-[20px]
+rounded-[100%]
 cursor-pointer
 border-4
 border-orange
 bg-[rgba(255,230,124,0.5)]
+aspect-square
+mr-5
+web:mr-0
+absolute
+top-3
+right-0
+web:static
 `;
+
+export const ImageWrapper = tw.div`
+flex
+w-full
+aspect-square
+`
 
 // top-[30px]
 // right-[40px]
@@ -38,13 +46,12 @@ justify-between
 bg-[rgba(255,255,255,0.6)]
 rounded-[5px]
 absolute
-top-[50px]
-right-[5px]
+top-[55px]
+right-[0px]
 h-35
 w-[125px]
 pb-3
 z-1
-
 
 web:top-[70px]
 web:right-[10px]

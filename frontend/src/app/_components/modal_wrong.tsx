@@ -26,6 +26,14 @@ function WrongModal(props: WrongModalProps) {
     return () => clearTimeout(timer);
   }, [isOpen, onClose]);
 
+  useEffect(() => {
+    if (isOpen) {
+      const wrongUrl = "/asset/audio/sad_sound.mp3";
+      const audio = new Audio(wrongUrl);
+      audio.play();
+    }
+  }, [isOpen]);
+
   return (
     <>
       <div />
@@ -38,10 +46,7 @@ function WrongModal(props: WrongModalProps) {
             </div>
             <br />
             {/* 멘트 */}
-            <button
-              className="font-bold text-xl"
-              type="button"
-            >
+            <button className="font-bold text-xl" type="button">
               다시 생각해봐요..!
             </button>
           </CorrectContent>

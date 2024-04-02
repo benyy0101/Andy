@@ -8,7 +8,6 @@ items-center
 justify-between
 w-screen
 h-svw
-gap-8
 `;
 
 export const Title = tw.h1`

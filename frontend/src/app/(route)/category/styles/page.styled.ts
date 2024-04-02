@@ -7,7 +7,7 @@ items-center
 justify-start
 space-y-4
 web:space-y-8
-font-TTLaundryGothicB
+flex-grow-[1]
 `;
 
 export const Title = tw.h1`

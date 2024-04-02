@@ -1,8 +1,11 @@
-import tw from 'tailwind-styled-components';
+import tw from "tailwind-styled-components";
 
 export const Wrapper = tw.div`
+absolute
+web:top-10
+web:left-10
+top-5
+left-5
 flex
-m-1
-p-2
 cursor-pointer
 `;

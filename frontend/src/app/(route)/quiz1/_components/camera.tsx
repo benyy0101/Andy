@@ -54,6 +54,9 @@ function Camera(props: ICamera) {
   const takePhoto = async () => {
     const canvas = document.createElement("canvas");
     const video = videoRef.current;
+    const cameraSound = "asset/audio/camera_sound.mp3";
+    const audio = new Audio(cameraSound);
+    audio.play();
     if (video) {
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;

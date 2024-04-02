@@ -160,7 +160,7 @@ function ProfileContainer() {
           variants={modal}
           initial="hidden"
           animate="visible"
-          style={{ position: "absolute", width: "90%", height: "80%" }}
+          style={{ position: "absolute", width: "78%", height: "78%" }}
         >
           <ProfileModal showModal={showModal} setShowModal={setShowModal}/>
         </motion.div>
@@ -171,7 +171,7 @@ function ProfileContainer() {
           variants={modal}
           initial="hidden"
           animate="visible"
-          style={{ position: "absolute", width: "90%", height: "80%" }}
+          style={{ position: "absolute", width: "78%", height: "78%" }}
         >
           <ProfileDeleteModal 
             // profile={profile}
