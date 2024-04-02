@@ -194,53 +194,59 @@ function Quiz2Page() {
         <div className="h-svh w-svw flex flex-col ">
           <Navigation />
           <div className="flex-grow-[1] flex flex-col justify-center items-center space-y-10">
-          <div className="text-4xl">준비되었나요?</div>
-          <div
-            className={`text-8xl font-black ${isCounting && "animate-bounce"}`}
-          >
-            {count}
-          </div>
+            <div className="text-4xl">준비되었나요?</div>
+            <div
+              className={`text-8xl font-black ${isCounting && "animate-bounce"}`}
+            >
+              {count}
+            </div>
           </div>
         </div>
       ) : (
         <Wrapper>
           <Navigation />
-        <div className="w-svw flex-grow-[1] flex flex-col items-center gap-4">
-          <ProgressBar max={numProblems} value={status.length} />
-          <div className="flex justify-between items-end w-11/12">
-            {/* 게임 도중 나가기  */}
-            <Quitbtn onClick={handleOpenQuitModal}>
-              <Quit />
-            </Quitbtn>
-            {currentSeq < numProblems && <Title>라운드 {currentSeq + 1}</Title>}
-            <div className="w-1/6" />
-          </div>
-          {currentSeq < numProblems && (
-            <>
-              <Explain>이것은 무엇일까요? 정답을 적어주세요!</Explain>
-              <Timer
-                reset={reset}
-                handleWrong={() => setIsWrongModalOpen(true)}
-              />
-            </>
-          )}
-          {/* 현재 라운드의 데이터가 있고  */}
-          <div className="flex flex-col w-3/4 max-w-[420px] flex-grow-[1] max-h-60 gap-4">
-          {currentSeq >= 0 && currentSeq < numProblems && data[currentSeq] && (
-            <Photo question_picture={data[currentSeq].question_picture} />
-          )}
+          <div className="w-svw flex-grow-[1] flex flex-col items-center gap-4">
+            <ProgressBar max={numProblems} value={status.length} />
+            <div className="flex justify-between items-end w-11/12">
+              {/* 게임 도중 나가기  */}
+              <Quitbtn onClick={handleOpenQuitModal}>
+                <Quit />
+              </Quitbtn>
+              {currentSeq < numProblems && (
+                <Title>라운드 {currentSeq + 1}</Title>
+              )}
+              <div className="w-1/6" />
+            </div>
+            {currentSeq < numProblems && (
+              <>
+                <Explain>이것은 무엇일까요? 정답을 적어주세요!</Explain>
+                <Timer
+                  reset={reset}
+                  handleWrong={() => setIsWrongModalOpen(true)}
+                />
+              </>
+            )}
+            {/* 현재 라운드의 데이터가 있고  */}
+            <div className="flex flex-col w-3/4 max-w-[420px] flex-grow-[1] gap-4">
+              {currentSeq >= 0 &&
+                currentSeq < numProblems &&
+                data[currentSeq] && (
+                  <Photo question_picture={data[currentSeq].question_picture} />
+                )}
 
-          {currentSeq >= 0 && currentSeq < numProblems && data[currentSeq] && (
-            <InputComponent
-              onAnswerSubmit={handleInputSubmit}
-              onChange={handleDataChange}
-              onSubmit={handleIsTrue}
-              correctAnswer={data[currentSeq].question_name}
-              inputValue={inputValue}
-            />
-          )}
+              {currentSeq >= 0 &&
+                currentSeq < numProblems &&
+                data[currentSeq] && (
+                  <InputComponent
+                    onAnswerSubmit={handleInputSubmit}
+                    onChange={handleDataChange}
+                    onSubmit={handleIsTrue}
+                    correctAnswer={data[currentSeq].question_name}
+                    inputValue={inputValue}
+                  />
+                )}
+            </div>
           </div>
-        </div>
         </Wrapper>
       )}
 
@@ -266,7 +272,6 @@ function Quiz2Page() {
         onClose={handleCloseQuitModal}
         onQuit={handleOnQuitModal}
       />
-    
     </Suspense>
   );
 }

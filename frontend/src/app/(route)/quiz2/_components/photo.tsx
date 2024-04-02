@@ -13,10 +13,12 @@ function Photo({ question_picture }: PhotoProps) {
     <Photobox>
       <Image
         width={300}
-        height={100}
+        height={300}
         src={question_picture}
+        objectFit="cover"
         alt="랜덤 이미지"
         className="object-cover"
+        priority
       />
     </Photobox>
   );

@@ -79,7 +79,6 @@ function InputComponent({
           <div
             className={`absolute 
                     text-lightorange
-                    
                     bottom-2 
                     transition-all 
                     duration-200 
@@ -101,7 +100,7 @@ function InputComponent({
                 ${isFocused || isValid ? "w-full" : "w-0"}`}
           />
         </Input>
-        <div className="w-1/4 web:w-1/4 web:max-w-[300px]">
+        <div className="web:w-1/4 web:max-w-[300px]">
           <button
             className="
                     transition-all

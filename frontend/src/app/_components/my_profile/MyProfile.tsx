@@ -1,11 +1,12 @@
 "use client";
 
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { Suspense, useEffect, useState } from "react";
 // import Link from "next/link";
 import { useRouter } from "next/navigation";
 import storeProfile from "@/app/_store/storeProfile";
 import { motion } from "framer-motion";
+import ProfileImage from "@/app/asset/_img/profile.png";
 import {
   Mypage,
   Name,
@@ -21,11 +22,12 @@ import {
 
 export function MyProfile() {
   const [showInfo, setShowInfo] = useState(false);
+  const [profileImage, setProfileImage] = useState<string | StaticImageData>(
+    ProfileImage,
+  );
   const router = useRouter();
   const [name, setName] = useState<string>();
   const { profile } = storeProfile();
-  const emptyImageUrl =
-    "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
 
   const variants = {
     open: { opacity: 1, x: 1 },
@@ -50,8 +52,11 @@ export function MyProfile() {
   // const childName = profile?.child_name;
 
   useEffect(() => {
-    setName(profile.child_name);
-  }, []);
+    if (profile) {
+      setName(profile.child_name);
+      setProfileImage(profile.child_picture);
+    }
+  }, [profile]);
 
   // const childPic = profile?.child_picture
 
@@ -71,7 +76,7 @@ export function MyProfile() {
         <Profile onClick={toggleInfo}>
           <ImageWrapper>
             <Image
-              src={profile.child_picture || emptyImageUrl}
+              src={profileImage}
               width="60"
               height="60"
               objectFit="cover"
