@@ -4,10 +4,10 @@ import React, { useState, useRef } from "react"
 import Image from "next/image";
 import { CameraIcon } from '@heroicons/react/24/solid';
 import storeProfile from "@/app/_store/storeProfile"
-import { ProfileWrapper, ProfileImage, ProfileImage1, ProfileChange, Form, Input, InputBirth, Label, Name, Nickname, Birth, Gender, EditBtn, ProfileContent, ProfileEdit, ImageTest, CurrentInfo, Btn, BtnLabel} from "../styles/Page.styled"
+import { ProfileWrapper, ProfileImage, ProfileImage1, ProfileChange, Form, Input, InputBirth, Label, Name, Nickname, Birth, Gender, EditBtn, ProfileContent, ProfileEdit, CurrentInfo, Btn, BtnLabel} from "../styles/Page.styled"
 // import { useUpdateProfile } from "../../../hooks/useProfile"
 import { useGetProfile, useUploadProfileImage, useUpdateProfile } from "../../../hooks/useProfile"
-import emptyImage from "../../../asset/_img/profile_img.png"
+import emptyImage from "../../../asset/_img/profile.png"
 
 export default function ProfileBox() {
     const { profile } = storeProfile();
@@ -158,7 +158,7 @@ export default function ProfileBox() {
             <ProfileContent>
                 {/* <Temp> */}
                 <ProfileImage>
-                    <ImageTest>
+                    {/* <ImageTest> */}
                         {isEditing ? (
                                 <ProfileImage1 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                                     <input 
@@ -186,7 +186,7 @@ export default function ProfileBox() {
                                 <Image src={data?.child_picture || emptyImage} alt="프로필사진" width="150" height="150" className="rounded-[100%] shadow-lg"/>
                             </ProfileImage1>
                         )}
-                    </ImageTest>
+                    {/* </ImageTest> */}
                 </ProfileImage>
                 {/* </Temp> */}
                 <Form>

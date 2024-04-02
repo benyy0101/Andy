@@ -5,7 +5,7 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import { ProfileImage, ProfileChange } from "../styles/Page.styled";
 import { useUploadProfileImage } from "../../../hooks/useProfile"
-import emptyImage from "../../../asset/_img/profile_img.png"
+import emptyImage from "../../../asset/_img/profile.png"
 
 export default function ProfileImg({ onImageUpload }: { onImageUpload: (res: string) => void }) {
     const [isHovered, setIsHovered] = useState(false);

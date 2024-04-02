@@ -1,4 +1,5 @@
 import tw from "tailwind-styled-components";
+import styled from "styled-components";
 
 export const Wrapper = tw.div`
 w-dvw
@@ -75,4 +76,82 @@ font-bold
 text-[17px]
 hover:text-[green]
 transition-all
+`;
+
+export const TutorialModalBg = tw.div`
+absolute
+w-full
+h-full
+flex
+items-center
+justify-center
+`
+
+// bg-[rgba(0,0,0,0.5)]
+
+export const TutorialModalWrapper = tw.div`
+rounded-[10px]
+bg-[#fff]
+h-[80%]
+web:h-[85%]
+w-[90%]
+web:w-[75%]
+shadow-md
+p-5
+`
+
+export const ModalHeader = tw.div`
+flex
+font-bold
+relative
+h-[8%]
+web:h-[10%]
+justify-center
+`
+
+export const Title = tw.div`
+text-[20px]
+web:text-[30px]
+`
+
+export const Btn = tw.div`
+absolute
+top-0
+right-0
+text-[20px]
+web:text-[25px]
+cursor-pointer
+`
+
+export const ModalContent = tw.div`
+w-full
+flex
+flex-col
+items-center
+h-[90%]
+web:h-[90%]
+pt-5
+web:pr-2
+pb-10
+web:pb-5
+web:mb-3
+overflow-y-scroll
+overflow-x-hidden
+`
+
+export const ModalScrollbar = styled(ModalContent)`
+&::-webkit-scrollbar {
+    width: 8px;
+}
+
+&::-webkit-scrollbar-thumb {
+    background-color: #EEA241;
+    border-radius: 10px;
+}
+
+&::-webkit-scrollbar-track {
+    background-color: #FFE67C;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+}
 `;

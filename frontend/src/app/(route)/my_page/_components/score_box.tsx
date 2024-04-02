@@ -36,14 +36,7 @@ export default function ScoreBox({ dateSelect }: { dateSelect: string }) {
     // console.log(requestData)
 
   const { data } = useMypageByDate(requestData)
-  
-  // eslint-disable-next-line no-console
-  // console.log(data)
-
-  // data.exam_score?
   const testRes = data?.exam
-  // eslint-disable-next-line no-console
-  // console.log(testRes)
 
   return (
     <ScoreWrapper>
@@ -57,8 +50,8 @@ export default function ScoreBox({ dateSelect }: { dateSelect: string }) {
               // eslint-disable-next-line react/no-array-index-key
               <Score1 key={index}>
                 <TestNum>
-                  <Num>퀴즈 {index+1}</Num>
-                  <Mode>{result.mode === 'A' ? '(단어 ➡️ 사진)' : '(사진 ➡️ 단어)'}</Mode>
+                  <Num>{result.mode === 'A' ? '찰칵 퀴즈 📸' : '딸깍 퀴즈 ⌨️'}</Num>
+                  <Mode>{result.question_category_name}</Mode>
                 </TestNum>
                 <TestRes>{`${Math.ceil(result.exam_score / 20)} / 5`}</TestRes>
               </Score1>

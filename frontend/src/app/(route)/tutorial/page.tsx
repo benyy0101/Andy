@@ -1,21 +1,31 @@
+'use client'
 
 import React from "react";
-import Image from "next/image";
-import logo from "@/app/asset/_img/andy.png";
-import { Wrapper, Wrapper2, Title, Explain } from "./styles/pages.styled";
-
-
+// import Image from "next/image";
+// import logo from "@/app/asset/_img/andy.png";
+import { useRouter } from "next/navigation";
+import Logo from "@/app/_components/logo/Logo";
+import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/solid";
+import { Wrapper, Wrapper2, BackBtn} from "./styles/pages.styled";
+import TutorialContainer from "./_components/TutorialContainer";
 
 function TutorialPage() {
+    const router = useRouter();
 
+    const routetoQuizList = () => {
+        router.push('/main_quiz')
+    }
 
     return(
         <Wrapper>
+            <Logo />
             <Wrapper2>
-                <Title>튜토리얼 페이지</Title>
-                <Explain>앤디 이용 가이드가자</Explain>
-                <Image src={logo} alt="앤디" />
+                <TutorialContainer />
+                {/* <Image src={logo} alt="앤디" /> */}
             </Wrapper2>
+            <BackBtn onClick = {routetoQuizList}>
+                <ArrowLeftStartOnRectangleIcon style={{ width: "30px", height: "30px" }} />
+            </BackBtn>
         </Wrapper>
     );
 }

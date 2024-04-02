@@ -6,14 +6,16 @@ flex
 flex-col
 justify-center
 items-center
-h-[100vh]
+h-[85vh]
 m-[0 auto]
+select-none
 `
 
 export const Content = tw.div`
 flex
-h-[75%]
+h-[88%]
 w-[80%]
+web:w-[75%]
 web:justify-center
 flex-col
 web:flex-row
@@ -30,21 +32,18 @@ web:justify-center
 items-center
 shadow-md
 w-[100%]
-web:w-[65%]
+web:w-[67%]
 mb-3
 web:mb-0
-pl-2.5
-pr-2.5
-pt-5
-pb-5
-web:p-0
+p-0
+pb-4
 relative
 `
 
 export const Info = tw.div`
 text-black
 w-[100%]
-web:w-[35%]
+web:w-[33%]
 web:pl-6
 web:flex
 web:flex-col
@@ -63,15 +62,16 @@ flex-col-reverse
 
 export const Profile = tw.div`
 bg-[#ffffff]
-web:h-[40%]
-p-[25px]
+web:h-[38%]
+p-[20px]
+pl-[30px]
+pr-[30px]
 pb-[15px]
 rounded-[15px]
 flex
 items-center
 justify-between
 shadow-md
-mb-8
 web:mb-0
 hidden
 web:block
@@ -95,7 +95,7 @@ export const Score = tw.div`
 bg-[#EEA241]
 text-black
 h-[300px]
-web:h-[57%]
+web:h-[58%]
 rounded-[15px]
 p-8
 pr-7
@@ -107,7 +107,7 @@ web:mb-0
 export const ProfileEdit = tw.div`
 flex
 w-[100%]
-mt-2
+mt-1.5
 items-center
 text-sm
 `
@@ -128,13 +128,19 @@ font-bold
 export const ProfileContent = tw.div`
 w-[100%]
 flex
+justify-center
+items-center
 `
 
 // 캘린더
 export const CalendarWrapper = tw.div`
 flex
 flex-col
-w-[80%]
+w-[100%]
+web:p-10
+p-2
+pl-7
+pr-7
 `
 
 export const StyledHeader = tw.div`
@@ -208,6 +214,9 @@ mr-[10px]
 web:ml-[20px]
 web:mr-[20px]
 text-[#EEA241]
+web:mb-1
+mt-12
+web:mt-0
 `
 
 export const PreviousIcon = tw.button`
@@ -219,6 +228,9 @@ ml-[3px]
 mr-[3px]
 web:ml-[8px]
 web:mr-[8px]
+web:mb-1
+mt-12
+web:mt-0
 `
 
 export const NextIcon = tw.button`
@@ -230,6 +242,9 @@ ml-[3px]
 mr-[3px]
 web:ml-[8px]
 web:mr-[8px]
+web:mb-1
+mt-12
+web:mt-0
 `
 
 export const Row1 = tw.div`
@@ -396,20 +411,16 @@ h-[35px]
 export const ProfileImage = tw.div`
 w-[28%]
 flex
-justify-center
-items-center
 mr-4
 web:mr-5
+aspect-square
+rounded-[100%]
 `
 
-export const ImageTest = tw.div`
-w-[100%]
-rounded-[100%]
-aspect-square
-flex
-justify-center
-items-center
-`
+// export const ImageTest = tw.div`
+// flex
+// aspect-square
+// `
 
 export const CurrentInfo = tw.div`
 w-[70%]
@@ -523,10 +534,7 @@ rounded-[100%]
 shadow-md
 flex
 justify-center
-align-center
 relative
-w-[100%]
-aspect-square
 `
 
 export const NoTest = tw.div`
@@ -547,7 +555,9 @@ text-[14px]
 `
 
 export const Mode = tw.div`
-text-[13px]
+text-[11px]
+text-left
+text-[#878787]
 `
 
 export const Temp = tw.div`
@@ -555,16 +565,18 @@ flex
 `
 
 export const SolveCount = tw.div`
-absolute
-top-[20px]
-right-[20px]
-p-1
+p-2
 pl-2
 pr-2
 web:p-2
-web:pl-3
-web:pr-3
-text-white
-bg-[#EEA241]
+mt-3
 rounded-[5px]
+flex
+text-[#EEA241]
+absolute
+top-0
+left-2
+web:static
 `
+
+// bg-[#EEA241]
