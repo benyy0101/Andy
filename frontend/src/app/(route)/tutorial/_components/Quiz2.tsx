@@ -2,8 +2,8 @@
 
 import React from "react";
 import Lottie from 'react-lottie-player';
-import Quiz2Icon from "../../../../../public/Quiz2.json"
-import { TutorialWrapper, Name, Des, AnimationImg, Description, DesWrapper } from "../styles/pages.styled";
+import Quiz2Icon from "../../../../../public/Ddalkak_quiz.json"
+import { TutorialWrapper2, Name, Des, AnimationImg, Description, DesWrapper } from "../styles/pages.styled";
 
 // interface TutorialM {
 //     quizName: string;
@@ -19,7 +19,7 @@ export default function Quiz2(props: StyleP){
     // const { quizName, quizDes } = props;
 
     return(
-        <TutorialWrapper style={{opacity}}>
+        <TutorialWrapper2 style={{opacity}}>
             <AnimationImg>
                 <Lottie
                     loop
@@ -32,11 +32,12 @@ export default function Quiz2(props: StyleP){
                 <DesWrapper>
                     <Name>딸깍 퀴즈</Name>
                     <Des>
+                        제한 시간 내에<br />
                         사진에 맞는 단어를 <br />
                         입력해보세요!
                     </Des>
                 </DesWrapper>
             </Description>
-        </TutorialWrapper>
+        </TutorialWrapper2>
     );
 };

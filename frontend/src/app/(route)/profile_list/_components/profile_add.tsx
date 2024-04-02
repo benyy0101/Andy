@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from "next/navigation"
+import { PlusIcon } from "@heroicons/react/24/solid"
 import { AddProfileWrapper, ProfileImg, ProfileName } from "../styles/Page.styled"
 
 interface ProfileAddProps {
@@ -24,7 +25,7 @@ export default function AddProfile({ showModal, setShowModal, LengthData }:Profi
     return (
         <AddProfileWrapper>
             <ProfileImg onClick={routetoProfileAdd}>
-                {/* <img src={plus_icon}></img> */} +
+                <PlusIcon style={{ width: "50px", height: "50px" }}/>
             </ProfileImg>
             <ProfileName style={{ marginBottom: "55px"}}>프로필 추가</ProfileName>
         </AddProfileWrapper>

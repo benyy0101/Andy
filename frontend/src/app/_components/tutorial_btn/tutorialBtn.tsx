@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 // import { useRouter } from "next/navigation";
 import TutorialModal from "@/app/(route)/main_quiz/_components/TutorialModal";
-import { Btn } from "./styles/TutorialBtn.styled";
+import { Btn, Ment } from "./styles/TutorialBtn.styled";
 
 const modal = {
   hidden: { opacity: 0, scale: 0 },
@@ -32,6 +32,8 @@ function TutorialBtn() {
 
   return (
     <>
+    {/* <Ment1 /> */}
+    <Ment>도움말</Ment>
     <Btn onClick={handleTutorial}>?</Btn>
     {showModal &&
         <motion.div
@@ -39,7 +41,7 @@ function TutorialBtn() {
         variants={modal}
         initial="hidden"
         animate="visible"
-        style={{ position: "absolute", width: "100%", height: "100%" }}
+        style={{ position: "absolute", width: "92%", height: "90%" }}
       >
         <TutorialModal showModal={showModal} setShowModal={setShowModal}/>
       </motion.div>

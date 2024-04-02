@@ -8,6 +8,7 @@ justify-center
 items-center
 h-[85vh]
 m-[0 auto]
+select-none
 `
 
 export const Content = tw.div`
@@ -71,7 +72,6 @@ flex
 items-center
 justify-between
 shadow-md
-mb-8
 web:mb-0
 hidden
 web:block
@@ -128,6 +128,8 @@ font-bold
 export const ProfileContent = tw.div`
 w-[100%]
 flex
+justify-center
+items-center
 `
 
 // 캘린더
@@ -409,20 +411,16 @@ h-[35px]
 export const ProfileImage = tw.div`
 w-[28%]
 flex
-justify-center
-items-center
 mr-4
 web:mr-5
+aspect-square
+rounded-[100%]
 `
 
-export const ImageTest = tw.div`
-w-[100%]
-rounded-[100%]
-aspect-square
-flex
-justify-center
-items-center
-`
+// export const ImageTest = tw.div`
+// flex
+// aspect-square
+// `
 
 export const CurrentInfo = tw.div`
 w-[70%]
@@ -536,10 +534,7 @@ rounded-[100%]
 shadow-md
 flex
 justify-center
-align-center
 relative
-w-[100%]
-aspect-square
 `
 
 export const NoTest = tw.div`

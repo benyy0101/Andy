@@ -2,7 +2,7 @@
 
 import React from "react";
 import Lottie from 'react-lottie-player';
-import Quiz1Icon from "../../../../../public/Quiz1.json"
+import Quiz1Icon from "../../../../../public/Chalkak_quiz.json"
 import { TutorialWrapper, Name, Des, AnimationImg, Description, DesWrapper } from "../styles/pages.styled";
 
 // interface TutorialM {
@@ -24,7 +24,8 @@ export default function Quiz1(props: StyleP){
                 <DesWrapper>
                     <Name>찰칵 퀴즈</Name>
                     <Des>
-                        단어에 맞는 물건을 <br />
+                        제한 시간 내에<br />
+                        단어에 맞는 물건을 찾아<br />
                         카메라로 찍어보세요!
                     </Des>
                 </DesWrapper>
@@ -34,7 +35,6 @@ export default function Quiz1(props: StyleP){
                     loop
                     animationData={Quiz1Icon}
                     play
-                    style={{ marginBottom: "70px" }}
                 />
             </AnimationImg>
         </TutorialWrapper>

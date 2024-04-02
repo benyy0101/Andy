@@ -13,5 +13,30 @@ transition-all
 fixed
 right-[40px]
 bottom-[40px]
-hover:bg-[#CACACA]
+hover:bg-[#fa9a1e]
 `;
+
+export const Ment = tw.div`
+fixed
+right-[35px]
+bottom-[10px]
+bg-[#fff]
+pl-1.5
+pr-1.5
+rounded-[10px]
+z-[5]
+`
+
+// export const Ment1 = tw.div`
+// bg-[#fff]
+// h-0
+// w-0
+// border-[10px] 
+// border-solid 
+// border-transparent
+// border-[#fff]
+// fixed
+// z-[3]
+// right-[55px]
+// bottom-[25px]
+// `

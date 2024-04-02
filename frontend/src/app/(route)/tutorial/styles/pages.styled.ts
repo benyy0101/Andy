@@ -1,5 +1,5 @@
 import tw from "tailwind-styled-components";
-import styled from "styled-components";
+// import styled from "styled-components";
 
 export const Wrapper = tw.div`
 h-screen
@@ -35,35 +35,7 @@ cursor-pointer
 `
 
 export const TutorialContainerWrapper = tw.div`
-flex
-flex-col
-items-center
-w-full
-h-full
-pt-5
-web:pr-2
-pb-10
-web:pb-5
-web:mb-3
-overflow-y-auto
 `
-
-export const ModalScrollbar = styled(TutorialContainerWrapper)`
-&::-webkit-scrollbar {
-    width: 8px;
-}
-
-&::-webkit-scrollbar-thumb {
-    background-color: #EEA241;
-    border-radius: 10px;
-}
-
-&::-webkit-scrollbar-track {
-    background-color: #FFE67C;
-    border-radius: 10px;
-    box-shadow: inset 0px 0px 5px white;
-}
-`;
 
 export const TutorialWrapper = tw.div`
 flex
@@ -75,7 +47,8 @@ items-center
 web:w-[80%]
 pt-20
 pb-20
-h-[100%]
+h-[52vh]
+web:h-[60vh]
 `
 
 export const Description = tw.div`
@@ -84,6 +57,7 @@ flex-col
 items-center
 justify-center
 w-full
+h-[50vh]
 web:h-[50%]
 web:w-[50%]
 `
@@ -99,6 +73,7 @@ flex
 justify-center
 items-center
 w-full
+h-[50vh]
 web:w-[40%]
 `
 
@@ -120,4 +95,19 @@ leading-[1.3]
 w-full
 web:mr-auto
 web:text-left
+`
+
+export const TutorialWrapper2 = tw.div`
+flex
+flex-col
+web:flex-row
+justify-center
+web:justify-between
+items-center
+web:w-[80%]
+pt-20
+pb-20
+web:pl-10
+h-[55vh]
+web:h-[60vh]
 `

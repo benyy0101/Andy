@@ -2,24 +2,31 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { QuizCircleContainer, IframeContainer, QuizTitle, WholeWrapper } from "../styles/Page.styled";
-
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Lottie from "lottie-react";
+import {
+  QuizCircleContainer,
+  QuizTitle,
+  WholeWrapper,
+} from "../styles/Page.styled";
 
 interface IQuizButton {
   quizName: string;
-  quizImg: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  quizImg: any;
   quizRoute: string;
 }
 
 export default function QuizButton(props: IQuizButton) {
   const { quizName, quizImg, quizRoute } = props;
-
-  // eslint-disable-next-line no-console
-  console.log(quizImg);
   const router = useRouter();
-  const routetoQuiz = () => {
-    const audio = new Audio("/audio/click.mp3");
+  const soundUrl = "/asset/audio/click.mp3";
+  const playAudio = () => {
+    const audio = new Audio(soundUrl); // Provide the path to your audio file
     audio.play();
+  };
+  const routetoQuiz = () => {
+    playAudio();
     if (quizRoute === "incorrect_list") {
       const route = "/incorrect_list";
       router.push(route);
@@ -30,18 +37,11 @@ export default function QuizButton(props: IQuizButton) {
   };
 
   return (
-    <WholeWrapper>
-      <QuizCircleContainer onClick={routetoQuiz}>
-        <IframeContainer>
-        {/* eslint-disable-next-line jsx-a11y/iframe-has-title */}
-        <iframe src={quizImg} />
-        </IframeContainer>
+    <WholeWrapper onClick={routetoQuiz}>
+      <QuizCircleContainer>
+        <Lottie animationData={quizImg}/>
       </QuizCircleContainer>
-
-
-      <QuizTitle>
-        {quizName}
-      </QuizTitle>
+      <QuizTitle>{quizName}</QuizTitle>
     </WholeWrapper>
   );
 }

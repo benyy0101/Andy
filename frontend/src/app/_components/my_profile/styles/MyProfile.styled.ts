@@ -38,18 +38,21 @@ justify-between
 bg-[rgba(255,255,255,0.6)]
 rounded-[5px]
 absolute
-top-[65px]
-right-[20px]
+top-[50px]
+right-[5px]
 h-35
+w-[125px]
 pb-3
+z-1
 
 
-web:top-[82px]
-web:right-[25px]
+web:top-[70px]
+web:right-[10px]
 web:z-[20]
 web:space-y-4
 web:p-4
 web:px-8
+web:w-[180px]
 `;
 
 // bg-[rgba(255,230,124,0.3)]

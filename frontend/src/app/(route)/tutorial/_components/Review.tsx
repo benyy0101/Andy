@@ -2,7 +2,7 @@
 
 import React from "react";
 import Lottie from 'react-lottie-player';
-import Review1 from "../../../../../public/Review.json"
+import Review1 from "../../../../../public/Tryagain_quiz.json"
 import { TutorialWrapper, Name, Des, AnimationImg, Description, DesWrapper } from "../styles/pages.styled";
 
 // interface TutorialM {
@@ -22,7 +22,7 @@ export default function Review(props: StyleP){
         <TutorialWrapper style={{opacity}}>
             <Description>
                 <DesWrapper>
-                    <Name>문제 다시 풀기</Name>
+                    <Name>다시 풀기</Name>
                     <Des>
                         틀린 문제들을 <br />
                         다시 풀어보세요!

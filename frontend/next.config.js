@@ -58,6 +58,11 @@ module.exports = {
         hostname: 'andyimagebucket.s3.ap-northeast-2.amazonaws.com',
         pathname:'**'
       },
+      {
+        protocol: 'https',
+        hostname: 'lottie.host',
+        pathname:'**'
+      }
     ],
   },
   

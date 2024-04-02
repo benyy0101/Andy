@@ -1,7 +1,7 @@
 'use client'
 
 import React from "react";
-import { TutorialContainerWrapper, ModalScrollbar } from "../styles/pages.styled";
+import { TutorialContainerWrapper } from "../styles/pages.styled";
 // import TutorialDesc from "./TutorialDes";
 import Quiz1 from "./Quiz1";
 import Quiz2 from "./Quiz2";
@@ -56,7 +56,7 @@ export default function TutorialContainer(){
 
     return(
         <TutorialContainerWrapper>
-          <ModalScrollbar>
+          {/* <ModalScrollbar> */}
             {/* {TutorialDes.map((des) => (
                 <TutorialDesc
                     key={des.quizName}
@@ -71,7 +71,7 @@ export default function TutorialContainer(){
             <Quiz1 opacity={1} />
             <Quiz2 opacity={1} />
             <Review opacity={1}/>
-          </ModalScrollbar>
+          {/* </ModalScrollbar> */}
         </TutorialContainerWrapper>
     );
 };

@@ -1,11 +1,11 @@
-'use client'
+"use client"
 
 import React from "react"
-import { TutorialModalBg, Title, Btn, ModalHeader, ModalContent, TutorialModalWrapper } from "../styles/Page.styled"
-// import Quiz1 from "../../tutorial/_components/Quiz1";
-// import Quiz2 from "../../tutorial/_components/Quiz2";
-// import Review from "../../tutorial/_components/Review";
-import TutorialContainer from "../../tutorial/_components/TutorialContainer";
+import { TutorialModalBg, Title, Btn, ModalHeader, TutorialModalWrapper, ModalScrollbar } from "../styles/Page.styled"
+import Quiz1 from "../../tutorial/_components/Quiz1";
+import Quiz2 from "../../tutorial/_components/Quiz2";
+import Review from "../../tutorial/_components/Review";
+// import TutorialContainer from "../../tutorial/_components/TutorialContainer";
 
 interface ShowModalprops {
     showModal: boolean
@@ -27,14 +27,12 @@ export default function TutorialModal(props: ShowModalprops) {
                         <Title>ANDY 이용 가이드</Title>
                         <Btn onClick={closemodal}>X</Btn>
                     </ModalHeader>
-                    <ModalContent>
-                        {/* <ModalScrollbar> */}
-                                {/* <Quiz1 opacity={1} />
-                                <Quiz2 opacity={1}/>
-                                <Review opacity={1}/> */}
-                                <TutorialContainer />
-                        {/* </ModalScrollbar> */}
-                    </ModalContent>
+                    <ModalScrollbar>
+                            <Quiz1 opacity={1} />
+                            <Quiz2 opacity={1}/>
+                            <Review opacity={1}/>
+                            {/* <TutorialContainer /> */}
+                    </ModalScrollbar>
             </TutorialModalWrapper>
         </TutorialModalBg>
     );

@@ -21,6 +21,7 @@ export default async function ProfileList() {
       <LogoWrapper>
         <Logo />
       </LogoWrapper>
+      <div style={{ fontSize: "25px" }}>프로필을 선택해주세요!</div>
       <Wrapper>
         <Profiles>
           <ProfileContainer />

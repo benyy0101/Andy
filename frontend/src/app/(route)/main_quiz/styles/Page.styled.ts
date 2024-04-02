@@ -1,4 +1,5 @@
 import tw from "tailwind-styled-components";
+import styled from "styled-components";
 
 export const Wrapper = tw.div`
 w-dvw
@@ -8,16 +9,13 @@ justify-center
 
 web:flex-row
 web:gap-10
-web:pt-24
-web:mt-0
 web:text-center
 
 flex-col
 gap-14
 flex-wrap: nowrap;
-pt-10
-mt-10
 
+flex-grow-[1]
 `;
 
 export const WholeWrapper = tw.div` 
@@ -36,12 +34,14 @@ hover:-translate-y-10
 
 // 실질적인 퀴즈 circle container
 export const QuizCircleContainer = tw.button`
-w-20
-h-20
+flex
+justify-center
+items-center
+w-32
+h-32
 rounded-[100%]
 bg-[#ffe]
 shadow-[3.0px_3.0px_4.0px_rgba(0,0,0,0.1)]
-cursor-pointer
 font-bold
 text-[17px]
 hover:bg-[rgba(155,205,160,1)]
@@ -53,8 +53,8 @@ transition-all
 hover:scale-110
 hover:-translate-y-10
 
-web:w-80
-web:h-80
+web:w-60
+web:h-60
 
 `;
 
@@ -62,13 +62,8 @@ export const IframeContainer = tw.div`
 flex
 justify-center
 cursor-pointer
-w-[100%]
-h-[100%]
 
-web:w-[100%]
-web:h-[100%]
 `;
-
 
 export const QuizTitle = tw.div`
 web:w-40
@@ -101,10 +96,10 @@ justify-center
 export const TutorialModalWrapper = tw.div`
 rounded-[10px]
 bg-[#fff]
-h-[70%]
-web:h-[80%]
-w-[80%]
-web:w-[70%]
+h-[80%]
+web:h-[85%]
+w-[90%]
+web:w-[75%]
 shadow-md
 p-5
 `
@@ -126,17 +121,41 @@ web:text-[30px]
 export const Btn = tw.div`
 absolute
 top-0
-web:top-[3px]
 right-0
-web:right-[3px]
 text-[20px]
+web:text-[25px]
 cursor-pointer
 `
 
 export const ModalContent = tw.div`
+w-full
 flex
 flex-col
-overflow-auto
-h-[95%]
-w-full
+items-center
+h-[90%]
+web:h-[90%]
+pt-5
+web:pr-2
+pb-10
+web:pb-5
+web:mb-3
+overflow-y-scroll
+overflow-x-hidden
 `
+
+export const ModalScrollbar = styled(ModalContent)`
+&::-webkit-scrollbar {
+    width: 8px;
+}
+
+&::-webkit-scrollbar-thumb {
+    background-color: #EEA241;
+    border-radius: 10px;
+}
+
+&::-webkit-scrollbar-track {
+    background-color: #FFE67C;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+}
+`;

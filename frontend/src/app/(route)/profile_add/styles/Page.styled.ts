@@ -56,7 +56,6 @@ disabled:bg-blue-gray-50
 `
 
 export const InputBirth = tw.input`
-w-[250px]
 ml-auto
 h-full
 w-[80%]
@@ -72,7 +71,7 @@ outline-0
 transition-all
 focus:border-gray-900
 focus:outline-0 
-disabled:border-0 
+disabled:border-0
 disabled:bg-blue-gray-50
 `
 
@@ -101,7 +100,6 @@ justify-between
 
 export const Btn = tw.div`
 flex
-mb-3
 w-[80%]
 text-black
 justify-between
@@ -131,6 +129,7 @@ bg-[#EEA241]
 text-white
 py-2.5
 hover:bg-[#f08a07]
+mt-2
 `
 
 // 프로필 이미지
@@ -141,10 +140,11 @@ h-[200px]
 shadow-md
 flex
 justify-center
-align-center
+items-center
 relative
 mb-10
 web:mb-0
+
 `
 
 export const ProfileChange = tw.div`
@@ -167,4 +167,10 @@ flex
 flex-start
 ml-5
 cursor-pointer
+`
+
+export const ErrorMessage = tw.span`
+text-red
+text-[0.75rem]
+mb-[0.5rem]
 `
