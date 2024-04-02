@@ -15,10 +15,11 @@ interface IQuizButton {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   quizImg: any;
   quizRoute: string;
+  description: string;
 }
 
 export default function QuizButton(props: IQuizButton) {
-  const { quizName, quizImg, quizRoute } = props;
+  const { quizName, quizImg, quizRoute, description } = props;
   const router = useRouter();
   const enterSoundUrl = "/asset/audio/click.mp3";
   const effectUrl = "/asset/audio/hover.mp3";
@@ -52,10 +53,11 @@ export default function QuizButton(props: IQuizButton) {
 
   return (
     <WholeWrapper onClick={routetoQuiz} onMouseEnter={playSound}>
+      <QuizTitle>{quizName}</QuizTitle>
       <QuizCircleContainer>
         <Lottie animationData={quizImg} />
       </QuizCircleContainer>
-      <QuizTitle>{quizName}</QuizTitle>
+      <div>{description}</div>
     </WholeWrapper>
   );
 }

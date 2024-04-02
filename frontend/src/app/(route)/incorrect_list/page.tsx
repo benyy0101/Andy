@@ -46,7 +46,7 @@ function IncorrectListPage() {
     <Wrapper>
       <BackgroundSVG />
       <Navigation />
-      <div className="flex-grow-[1]">
+      <div className="flex-grow-[1] flex flex-col space-y-8">
         <Title>틀린 문제 다시 풀기</Title>
         <Explain>다시 풀 문제를 골라보세요 !</Explain>
 
@@ -60,19 +60,19 @@ function IncorrectListPage() {
         <ListCon1>
           {/* 날짜 하나당 덩어리 */}
           <ListCon2>
-            <ListDate>2024-02-29</ListDate>
+            <ListDate>2024-04-01</ListDate>
             <OnedayLists>
-              <List>퀴즈1 (단어 ➡️ 사진)</List>
-              <List>퀴즈2 (사진 ➡️ 단어)</List>
-              <List>퀴즈2 (사진 ➡️ 단어)</List>
+              <List>찰칵퀴즈 (단어 ➡️ 사진)</List>
+              <List>딸깍퀴즈 (사진 ➡️ 단어)</List>
+              <List>찰칵퀴즈 (사진 ➡️ 단어)</List>
             </OnedayLists>
           </ListCon2>
 
           <ListCon2>
-            <ListDate>2024-03-11</ListDate>
+            <ListDate>2024-04-02</ListDate>
             <OnedayLists>
-              <List>퀴즈1 (단어 ➡️ 사진)</List>
-              <List>퀴즈2 (사진 ➡️ 단어)</List>
+              <List>찰칵퀴즈 (단어 ➡️ 사진)</List>
+              <List>찰칵퀴즈 (사진 ➡️ 단어)</List>
             </OnedayLists>
           </ListCon2>
         </ListCon1>
