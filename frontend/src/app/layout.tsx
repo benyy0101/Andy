@@ -6,7 +6,7 @@ import { Music } from "./_components/music/Music";
 
 const inter = Inter({ subsets: ["latin"] });
 const APP_NAME = "Andy";
-const APP_DEFAULT_TITLE = "어른이 아니고 앤디";
+const APP_DEFAULT_TITLE = "앤디 - 유아용 단어퀴즈 서비스";
 const APP_TITLE_TEMPLATE = "%s - PWA App";
 const APP_DESCRIPTION = "Best PWA app in the world!";
 
@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   title: {
     default: APP_DEFAULT_TITLE,
     template: APP_TITLE_TEMPLATE,
+  },
+  icons: {
+    icon: "/favicon.png",
   },
   description: APP_DESCRIPTION,
   manifest: "/manifest.json",

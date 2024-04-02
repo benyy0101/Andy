@@ -29,7 +29,7 @@ const btnData = [
 
 export default function MainQuiz() {
   return (
-    <div className="flex flex-col h-svh w-full justify-center items-center">
+    <div className="flex flex-col web:h-svh w-full justify-center items-center gap-8">
       <BackgroundSVG />
       <Navigation />
       <Wrapper>

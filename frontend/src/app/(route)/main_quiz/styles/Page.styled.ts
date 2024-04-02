@@ -12,7 +12,6 @@ web:text-center
 
 flex-col
 gap-14
-flex-wrap: nowrap;
 
 flex-grow-[1]
 `;
@@ -28,7 +27,7 @@ transition-all
 
 space-y-8 
 hover:scale-110
-hover:-translate-y-10
+web:hover:-translate-y-10
 `;
 
 // 실질적인 퀴즈 circle container

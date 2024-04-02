@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSendResultMutation } from "@/app/hooks/useGameA";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import andy from "@/app/asset/_img/Andylogo.png";
+import andy from "@/app/asset/_img/camera-preview.png";
 import cameraIcon from "@/app/asset/_img/camera-icon.png";
 import { Wrapper2, Video } from "./styles/Camera.styled";
 
@@ -114,8 +114,8 @@ function Camera(props: ICamera) {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col justify-start items-start h-full">
-          <div className="flex justify-center items-center flex-grow-[1]">
+        <div className="flex flex-col justify-start items-start h-full gap-2">
+          <div className="flex justify-center items-center flex-grow-[1] border border-orange rounded-lg">
             <Image width={400} height={300} src={andy} alt="andy" />
           </div>
           <button
