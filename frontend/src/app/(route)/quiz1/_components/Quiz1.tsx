@@ -13,6 +13,7 @@ import QuitModal from "@/app/_components/modal_quit";
 import BackgroundSVG from "@/app/_components/background/Background";
 import Navigation from "@/app/_components/navigation/Navigation";
 import Footer from "@/app/_components/footer/Footer";
+import ImageModal from "@/app/_components/modal_image_answer";
 import Word1 from "./word1";
 import Camera from "./camera";
 import { Wrapper, Title, Explain } from "../styles/page.styled";
@@ -35,6 +36,8 @@ function Quiz1() {
   const [currentSeq, setCurrentSeq] = useState(0);
   const [isTrue, setIsTrue] = useState<boolean>();
   const [score, setScore] = useState(0);
+  const [isAnswerModadlOpen, setIsAnswerModalOpen] = useState<boolean>(false);
+  const [isTimePlaying, setIsTimePlaying] = useState<boolean>(true);
   const { mutate } = useGameResultMutation();
   const [reset, setReset] = useState(false);
   const [isReady, setIsReady] = useState<boolean>(false);
@@ -70,6 +73,31 @@ function Quiz1() {
 
   const handleCloseWrongModal = () => {
     setIsWrongModalOpen(false);
+    handleResetTimer();
+  };
+
+  const toggleAnswerModal = () => {
+    setIsAnswerModalOpen(!isAnswerModadlOpen);
+  };
+
+  useEffect(() => {
+    if (isAnswerModadlOpen) {
+      setIsTimePlaying(false);
+    } else {
+      setIsTimePlaying(true);
+    }
+  }, [isAnswerModadlOpen]);
+
+  const passProblem = () => {
+    setStatus([
+      ...status,
+      {
+        question_seq: data[currentSeq].question_seq!,
+        question_history_is_ok: false,
+      },
+    ]);
+    setCurrentSeq(currentSeq + 1);
+    setIsAnswerModalOpen(false);
     handleResetTimer();
   };
 
@@ -169,11 +197,24 @@ function Quiz1() {
               {currentSeq < numProblems && (
                 <div className="flex flex-col gap-4">
                   <Title>라운드 {currentSeq + 1}</Title>
-                  <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
+                  <Explain>
+                    단어에 해당하는 물체/대상을 찾아주세요!{" "}
+                    <button
+                      type="button"
+                      onClick={toggleAnswerModal}
+                      className="bg-lightorange rounded-lg p-1 px-2 text-white"
+                    >
+                      넘어가기
+                    </button>
+                  </Explain>
                 </div>
               )}
               <div className="web:w-1/12 w-full">
-                <Timer reset={reset} handleWrong={handleWrongAnswer} />
+                <Timer
+                  reset={reset}
+                  handleWrong={handleWrongAnswer}
+                  isPlaying={isTimePlaying}
+                />
               </div>
             </div>
 
@@ -203,6 +244,11 @@ function Quiz1() {
             isOpen={isQuitModalOpen}
             onClose={handleCloseQuitModal}
             onQuit={handleOnQuitModal}
+          />
+          <ImageModal
+            isOpen={isAnswerModadlOpen}
+            onNext={passProblem}
+            picture={data[currentSeq].question_picture}
           />
         </Wrapper>
       )}

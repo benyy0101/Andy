@@ -3,7 +3,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-// import Image from "next/image";
+import Image from "next/image";
 import {
   AnswerBackground,
   NextButton,
@@ -12,13 +12,12 @@ import {
 
 interface ImageAnswerModalProps {
   isOpen: boolean;
-  onClose: () => void;
   picture: string;
   onNext: () => void;
 }
 
-function AnswerModal(props: ImageAnswerModalProps) {
-  const { isOpen, onClose, picture, onNext } = props;
+function ImageModal(props: ImageAnswerModalProps) {
+  const { isOpen, picture, onNext } = props;
   const [isExploding, setIsExploding] = useState(false);
 
   useEffect(() => {
@@ -34,20 +33,19 @@ function AnswerModal(props: ImageAnswerModalProps) {
         <AnswerBackground>
           <AnswerContent>
             <div>정답 예시</div>
-            {/* <Image
-                width={300}
-                height={300}
-                src={question_picture}
-                objectFit="cover"
-                alt="랜덤 이미지"
-                className="object-cover"
-                priority
-            /> */}
+            <Image
+              width={300}
+              height={300}
+              src={picture}
+              objectFit="cover"
+              alt="랜덤 이미지"
+              className="object-cover rounded-lg"
+              priority
+            />
           </AnswerContent>
           <NextButton
             onClick={() => {
               onNext();
-              onClose();
             }}
           >
             다음으로
@@ -58,4 +56,4 @@ function AnswerModal(props: ImageAnswerModalProps) {
   );
 }
 
-export default AnswerModal;
+export default ImageModal;

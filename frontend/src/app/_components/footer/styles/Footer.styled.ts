@@ -9,6 +9,7 @@ select-none
 `;
 
 export const Copyright = tw.div`
+web:flex
 font-thin
 text-xs
 font-arial

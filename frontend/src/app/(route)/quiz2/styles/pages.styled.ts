@@ -5,8 +5,6 @@ flex
 flex-col
 items-center
 justify-start
-h-svh 
-web:screen
 `;
 
 export const Bar = tw.div`

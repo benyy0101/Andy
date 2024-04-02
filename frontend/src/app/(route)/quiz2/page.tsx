@@ -225,13 +225,14 @@ function Quiz2Page() {
                   <Timer
                     reset={reset}
                     handleWrong={() => setIsWrongModalOpen(true)}
+                    isPlaying
                   />
                 )}
               </div>
             </div>
 
             {/* 현재 라운드의 데이터가 있고  */}
-            <div className="flex flex-col w-3/4 max-w-[420px] flex-grow-[1] web:gap-4 gap-6">
+            <div className="flex flex-col w-3/4 max-w-[420px] flex-grow-[1] web:gap-4 gap-10">
               {currentSeq >= 0 &&
                 currentSeq < numProblems &&
                 data[currentSeq] && (

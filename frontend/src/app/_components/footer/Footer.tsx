@@ -5,8 +5,8 @@ function Footer() {
   return (
     <Wrapper>
       <Copyright>
-        Copyright © 2024, Mondy All Rights Reserved. TEAM Mondy | 이동훈 김아린
-        김태수 박수민 유현종 이윤정
+        <div>Copyright © 2024, Mondy All Rights Reserved.</div>
+        <div>TEAM Mondy | 이동훈 김아린 김태수 박수민 유현종 이윤정</div>
       </Copyright>
     </Wrapper>
   );

@@ -6,21 +6,22 @@ import Rectangle from "@/app/asset/_img/Rectangle.png";
 
 interface TimerProps {
   reset: boolean;
+  isPlaying: boolean;
   handleWrong: () => void;
 }
 
 function Timer(props: TimerProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { reset, handleWrong } = props;
+  const { reset, handleWrong, isPlaying } = props;
   const [timer, setTimer] = useState<number>(60); // 타이머 시간 30초로 설정
 
   useEffect(() => {
     let interval: number | undefined;
-    if (timer >= 0) {
+    if (timer >= 0 && isPlaying) {
       interval = window.setTimeout(() => {
         setTimer((time) => time - 1);
       }, 1000);
-    } else {
+    } else if (timer < 0) {
       handleWrong();
     }
     return () => {
@@ -50,7 +51,7 @@ function Timer(props: TimerProps) {
 
       <span
         id="MyTimer"
-        className={`font-thin text-4xl min-w-20 ${timer < 10 && `text-rose-600 animate-ping`}`}
+        className={`font-thin web:text-4xl text-2xl min-w-14 ${timer < 10 && `text-rose-600 animate-ping`}`}
       >
         {calculateTime()}
       </span>

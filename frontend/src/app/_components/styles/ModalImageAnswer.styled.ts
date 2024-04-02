@@ -15,6 +15,9 @@ export const AnswerBackground = tw.div`
   `;
 
 export const AnswerContent = tw.div`
+  flex
+  flex-col
+  gap-4
   text-orange
   p-8
   rounded-lg

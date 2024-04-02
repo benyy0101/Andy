@@ -5,7 +5,6 @@ relative
 flex
 flex-col
 items-center
-h-svh
 `;
 
 export const Title = tw.h1`
@@ -15,5 +14,12 @@ font-extrabold
 `;
 
 export const Explain = tw.h3`
+flex
+web:flex-row
+flex-col
+justify-center
+items-center
+gap-4
+w-full
 text-xl
 `;
