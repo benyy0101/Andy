@@ -2,9 +2,9 @@ import tw from "tailwind-styled-components";
 
 export const Wrapper = tw.div`
 web:h-fit
-web:p-5
 web:flex
-web:w-dvw
+web:w-full
+web:p-5
 
 w-full
 flex

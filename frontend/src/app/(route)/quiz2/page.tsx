@@ -17,6 +17,7 @@ import ProgressBar from "@/app/_components/ProgressBar";
 import { animate } from "framer-motion";
 import BackgroundSVG from "@/app/_components/background/Background";
 import Navigation from "@/app/_components/navigation/Navigation";
+import Footer from "@/app/_components/footer/Footer";
 import InputComponent from "./_components/input";
 import Photo from "./_components/photo";
 import {
@@ -201,31 +202,34 @@ function Quiz2Page() {
               {count}
             </div>
           </div>
+          <Footer />
         </div>
       ) : (
         <Wrapper>
           <Navigation />
           <div className="w-svw flex-grow-[1] flex flex-col items-center gap-4">
             <ProgressBar max={numProblems} value={status.length} />
-            <div className="flex justify-between items-end w-11/12">
+            <div className="flex justify-between items-center w-11/12">
               {/* 게임 도중 나가기  */}
               <Quitbtn onClick={handleOpenQuitModal}>
                 <Quit />
               </Quitbtn>
               {currentSeq < numProblems && (
-                <Title>라운드 {currentSeq + 1}</Title>
+                <div className="flex flex-col gap-4">
+                  <Title>라운드 {currentSeq + 1}</Title>
+                  <Explain>이것은 무엇일까요? 정답을 적어주세요!</Explain>
+                </div>
               )}
-              <div className="w-1/6" />
+              <div className="w-1/6">
+                {currentSeq < numProblems && (
+                  <Timer
+                    reset={reset}
+                    handleWrong={() => setIsWrongModalOpen(true)}
+                  />
+                )}
+              </div>
             </div>
-            {currentSeq < numProblems && (
-              <>
-                <Explain>이것은 무엇일까요? 정답을 적어주세요!</Explain>
-                <Timer
-                  reset={reset}
-                  handleWrong={() => setIsWrongModalOpen(true)}
-                />
-              </>
-            )}
+
             {/* 현재 라운드의 데이터가 있고  */}
             <div className="flex flex-col w-3/4 max-w-[420px] flex-grow-[1] gap-4">
               {currentSeq >= 0 &&
@@ -247,6 +251,7 @@ function Quiz2Page() {
                 )}
             </div>
           </div>
+          <Footer />
         </Wrapper>
       )}
 

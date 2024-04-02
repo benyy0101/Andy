@@ -12,6 +12,7 @@ import { Quit } from "@/app/_components/quit_btn/quit";
 import QuitModal from "@/app/_components/modal_quit";
 import BackgroundSVG from "@/app/_components/background/Background";
 import Navigation from "@/app/_components/navigation/Navigation";
+import Footer from "@/app/_components/footer/Footer";
 import Word1 from "./word1";
 import Camera from "./camera";
 import { Wrapper, Title, Explain } from "../styles/page.styled";
@@ -76,7 +77,7 @@ function Quiz1() {
   const handleOpenQuitModal = () => setIsQuitModalOpen(true);
   const handleCloseQuitModal = () => setIsQuitModalOpen(false);
   const handleOnQuitModal = () => {
-    router.push("/category?mode=quiz2");
+    router.push("/category?mode=quiz1");
   };
 
   useEffect(() => {
@@ -154,6 +155,7 @@ function Quiz1() {
               {count}
             </div>
           </div>
+          <Footer />
         </div>
       ) : (
         <Wrapper>
@@ -166,15 +168,19 @@ function Quiz1() {
                 <Quit />
               </Quitbtn>
               {currentSeq < numProblems && (
-                <Title>라운드 {currentSeq + 1}</Title>
+                <div className="flex flex-col gap-4">
+                  <Title>라운드 {currentSeq + 1}</Title>
+                  <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
+                </div>
               )}
-              <div className="w-1/6" />
+              <div className="w-1/6">
+                <Timer reset={reset} handleWrong={handleWrongAnswer} />
+              </div>
             </div>
             {/* <div className="flex justify-center items-end w-full px-10">
             {currentSeq < numProblems && <Title>라운드 {currentSeq + 1}</Title>}
-          </div> */}
-            <Explain>단어에 해당하는 물체/대상을 찾아주세요!</Explain>
-            <Timer reset={reset} handleWrong={handleWrongAnswer} />
+            </div> */}
+
             <div className="w-screen web:w-fit flex flex-col justify-between items-center space-y-5 web:flex-row web:space-y-0 web:space-x-6">
               {data && currentSeq < numProblems && (
                 <Word1 word={data[currentSeq].question_name || ""} />
@@ -187,6 +193,7 @@ function Quiz1() {
               )}
             </div>
           </div>
+          <Footer />
           {/* 조건에 따라서 정답 맞추면 정답 모달/ 틀리면 오답 모달 */}
           <CorrectModal
             isOpen={isCorrectModalOpen}

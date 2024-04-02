@@ -33,7 +33,7 @@ export const ImageWrapper = tw.div`
 flex
 w-full
 aspect-square
-`
+`;
 
 // top-[30px]
 // right-[40px]

@@ -41,7 +41,7 @@ function Timer(props: TimerProps) {
     // minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? `0${seconds}` : seconds;
 
-    return timer >= 0 ? `${seconds}` : "시간이 다 되었습니다!";
+    return timer >= 0 ? `${seconds}` : "";
   };
 
   return (
