@@ -5,6 +5,7 @@ flex
 justify-center
 items-end
 select-none
+h-20
 `;
 
 export const Copyright = tw.div`

@@ -5,6 +5,7 @@ relative
 flex
 flex-col
 items-center
+web:h-svh
 `;
 
 export const Title = tw.h1`

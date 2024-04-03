@@ -1,5 +1,5 @@
 import tw from "tailwind-styled-components";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = tw.div`
 flex
@@ -7,7 +7,7 @@ justify-center
 items-center
 m-[0 auto]
 select-none
-`
+`;
 
 export const Content = tw.div`
 flex
@@ -19,7 +19,7 @@ web:justify-center
 flex-col
 web:flex-row
 m-[0 auto]
-`
+`;
 
 export const Calendar = tw.div`
 bg-[#ffffff]
@@ -37,7 +37,7 @@ web:mb-0
 p-0
 pb-4
 relative
-`
+`;
 
 export const Info = tw.div`
 text-black
@@ -50,7 +50,7 @@ web:flex-col
 web:justify-between
 flex
 flex-col-reverse
-`
+`;
 
 // export const ProfileWrapper1 = tw.div`
 // web:w-1/2
@@ -74,7 +74,7 @@ shadow-md
 hidden
 web:block
 mb-5
-`
+`;
 
 export const ProfileMobile = tw.div`
 bg-[#ffffff]
@@ -89,7 +89,7 @@ mt-3
 mb-3
 block
 web:hidden
-`
+`;
 
 export const Score = tw.div`
 bg-[#EEA241]
@@ -103,7 +103,7 @@ web:flex-grow
 web:overflow-y-auto
 mb-7
 web:mb-0
-`
+`;
 
 export const ProfileEdit = tw.div`
 flex
@@ -111,7 +111,7 @@ w-[100%]
 mt-1.5
 items-center
 text-sm
-`
+`;
 
 export const EditBtn = tw.button`
 ml-auto
@@ -124,14 +124,14 @@ bg-[#EEA241]
 text-[#fff]
 text-[13px]
 font-bold
-`
+`;
 
 export const ProfileContent = tw.div`
 w-[100%]
 flex
 justify-center
 items-center
-`
+`;
 
 // 캘린더
 export const CalendarWrapper = tw.div`
@@ -142,34 +142,34 @@ web:p-10
 p-2
 pl-7
 pr-7
-`
+`;
 
 export const StyledHeader = tw.div`
 flex
 justify-center
 items-center
-`
+`;
 
 export const StyledBody = tw.div`
 mb-[15px]
-`
+`;
 
 export const StyledBody1 = styled(StyledBody)`
   text-align: center;
 
   .holiday,
-  .grayed{
+  .grayed {
     color: #484848;
     pointer-events: none;
   }
 
-  .selected{
+  .selected {
     width: 65px;
     height: 65px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
-    background : rgba(255, 230, 124, 0.7);
+    background: rgba(255, 230, 124, 0.7);
     font-weight: 700;
     color: #fff;
     @media (max-width: 475px) {
@@ -177,30 +177,30 @@ export const StyledBody1 = styled(StyledBody)`
     }
   }
 
-  .today{
+  .today {
     border-radius: 50%;
     font-weight: bold;
-    background : rgba(238, 162, 65, 0.6);
+    background: rgba(238, 162, 65, 0.6);
     @media (max-width: 475px) {
       border-radius: 5px; // 화면 너비가 475px 이하인 경우 border-radius 제거
     }
   }
 
-  .isSelected{
+  .isSelected {
     position: relative;
     color: pink;
     font-size: 10px;
     font-weight: 400;
   }
 
-  .isToday{
+  .isToday {
     position: relative;
     color: #292929;
     font-size: 10px;
     font-weight: 400;
   }
 
-  .none{
+  .none {
     display: none;
   }
 `;
@@ -218,7 +218,7 @@ text-[#EEA241]
 web:mb-1
 mt-12
 web:mt-0
-`
+`;
 
 export const PreviousIcon = tw.button`
 w-[15px]
@@ -232,7 +232,7 @@ web:mr-[8px]
 web:mb-1
 mt-12
 web:mt-0
-`
+`;
 
 export const NextIcon = tw.button`
 w-[15px]
@@ -246,7 +246,7 @@ web:mr-[8px]
 web:mb-1
 mt-12
 web:mt-0
-`
+`;
 
 export const Row1 = tw.div`
 flex
@@ -256,7 +256,7 @@ cursor-pointer
 w-[100%]
 h-[50px]
 web:h-[55px]
-`
+`;
 
 export const RowWeek = tw.div`
 border-b
@@ -268,7 +268,7 @@ items-center
 cursor-pointer
 w-full
 h-14
-`
+`;
 
 // Calendar Body
 export const Box = tw.div`
@@ -278,21 +278,21 @@ h-[0]
 m-[6px]
 text-[14px]
 justify-center
-`
+`;
 
 export const DayImg = tw.div`
 flex
 justify-center
 web:w-[35px]
 web:h-[35px]
-`
+`;
 
 export const Text = tw.span`
 static
 w-[55px]
 h-[55px]
 text-[#292929]
-`
+`;
 
 export const Day = tw.span`
 relative
@@ -300,8 +300,7 @@ flex
 flex-col
 justify-center
 items-center
-`
-
+`;
 
 // 프로필
 export const ProfileWrapper = tw.div`
@@ -310,7 +309,7 @@ flex-col
 justify-center
 items-center
 w-[100%]
-`
+`;
 
 export const Form = tw.form`
 flex
@@ -318,7 +317,7 @@ flex-col
 justify-center
 w-[70%]
 text-sm
-`
+`;
 
 export const Label = tw.div`
 flex
@@ -328,7 +327,7 @@ h-[30px]
 font-bold
 text-[#EEA241]
 text-[13px]
-`
+`;
 
 export const Input = tw.input`
 ml-auto
@@ -350,10 +349,10 @@ focus:border-gray-900
 focus:outline-0
 disabled:border-0
 disabled:bg-blue-gray-50
-`
-// placeholder-shown:border 
-// placeholder-shown:border-blue-gray-200 
-// placeholder-shown:border-blue-gray-200 
+`;
+// placeholder-shown:border
+// placeholder-shown:border-blue-gray-200
+// placeholder-shown:border-blue-gray-200
 
 export const InputBirth = tw.input`
 ml-auto
@@ -375,30 +374,30 @@ focus:border-gray-900
 focus:outline-0 
 disabled:border-0 
 disabled:bg-blue-gray-50
-`
+`;
 
 export const Name = tw.div`
 mb-2
 flex
 flex-row
-`
+`;
 
 export const Nickname = tw.div`
 mb-2
 flex
 flex-row
-`
+`;
 
 export const Birth = tw.div`
 mb-2
 flex
 flex-row
-`
+`;
 
 export const Gender = tw.div`
 flex
 justify-between
-`
+`;
 
 export const Btn = tw.div`
 flex
@@ -407,7 +406,7 @@ w-[65%]
 text-[13px]
 justify-between
 h-[35px]
-`
+`;
 
 export const ProfileImage = tw.div`
 w-[28%]
@@ -416,7 +415,7 @@ mr-4
 web:mr-5
 aspect-square
 rounded-[100%]
-`
+`;
 
 // export const ImageTest = tw.div`
 // flex
@@ -438,7 +437,7 @@ outline-0
 flex
 flex-start
 items-center
-`
+`;
 
 export const BtnLabel = tw.label`
 bg-[#FFE67C]
@@ -456,7 +455,7 @@ flex
 items-center
 justify-center
 text-[13px]
-`
+`;
 
 // 점수
 export const ScoreWrapper = tw.div`
@@ -464,7 +463,7 @@ flex
 flex-col
 justify-center
 h-full
-`
+`;
 
 export const ScoreHeader = tw.div`
 text-[15px]
@@ -472,7 +471,7 @@ text-white
 flex
 mb-[20px]
 justify-center
-`
+`;
 
 export const SelectDate = tw.div`
 font-bold
@@ -480,7 +479,7 @@ mr-[auto]
 ml-[3px]
 flex
 items-center
-`
+`;
 
 export const RetryBtn = tw.div`
 px-2
@@ -490,26 +489,27 @@ bg-[#FFE67C]
 flex
 items-center
 cursor-pointer
-`
+text-orange
+`;
 
 export const ScoreList = tw.div`
 overflow-y-auto
 h-[90%]
-`
+`;
 
 export const ScoreListScrollbar = styled(ScoreList)`
-&::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     width: 13px;
-}
-&::-webkit-scrollbar-thumb {
-    background-color: #FFE67C;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ffe67c;
     border-radius: 10px;
-}
-&::-webkit-scrollbar-track {
+  }
+  &::-webkit-scrollbar-track {
     background-color: white;
     border-radius: 10px;
     box-shadow: inset 0px 0px 5px white;
-}
+  }
 `;
 
 export const Score1 = tw.div`
@@ -524,13 +524,13 @@ pl-8
 pr-8
 mb-2
 text-[13px]
-`
+`;
 
 export const TestNum = tw.div`
-`
+`;
 
 export const TestRes = tw.div`
-`
+`;
 
 export const ProfileChange = tw.div`
 bg-[rgba(0,0,0,0.5)]
@@ -545,7 +545,7 @@ absolute
 top-0
 left-0
 cursor-pointer
-`
+`;
 
 export const ProfileImage1 = tw.div`
 rounded-[100%]
@@ -553,7 +553,7 @@ shadow-md
 flex
 justify-center
 relative
-`
+`;
 
 export const NoTest = tw.div`
 text-white
@@ -562,7 +562,7 @@ h-[90%]
 flex
 justify-center
 items-center
-`
+`;
 
 export const Num = tw.div`
 font-bold
@@ -570,17 +570,17 @@ text-[#EEA241]
 flex
 flex-left
 text-[14px]
-`
+`;
 
 export const Mode = tw.div`
 text-[11px]
 text-left
 text-[#878787]
-`
+`;
 
 export const Temp = tw.div`
 flex
-`
+`;
 
 export const SolveCount = tw.div`
 p-2
@@ -595,7 +595,7 @@ absolute
 top-0
 left-2
 web:static
-`
+`;
 
 // bg-[#EEA241]
 
@@ -603,9 +603,9 @@ export const InfoWrapper = tw.div`
 overflow-hidden
 whitespace-nowrap
 overflow-ellipsis
-`
+`;
 
 export const ErrorMessage = tw.span`
 text-red
 text-[10px]
-`
+`;

@@ -5,6 +5,8 @@ import { useWrongProblems } from "@/app/hooks/useGameA";
 import storeProfile from "@/app/_store/storeProfile";
 import Navigation from "@/app/_components/navigation/Navigation";
 import BackgroundSVG from "@/app/_components/background/Background";
+import Footer from "@/app/_components/footer/Footer";
+
 import {
   Wrapper,
   Title,
@@ -77,6 +79,7 @@ function IncorrectListPage() {
           </ListCon2>
         </ListCon1>
       </div>
+      <Footer />
     </Wrapper>
   );
 }
