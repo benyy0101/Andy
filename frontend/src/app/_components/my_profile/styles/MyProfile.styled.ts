@@ -65,6 +65,8 @@ web:w-[180px]
 // bg-[rgba(255,230,124,0.3)]
 
 export const Name = tw.div`
+truncate 
+...
 font-bold
 web:p-0
 p-2

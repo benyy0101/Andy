@@ -286,6 +286,7 @@ export default function ProfileBox() {
           setProfileInfo({
             ...profile,
             child_picture: UpdateProfile.child_picture,
+            child_name: UpdateProfile.child_name,
           });
 
           window.location.reload();
