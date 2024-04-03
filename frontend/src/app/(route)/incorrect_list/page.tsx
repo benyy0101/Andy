@@ -60,7 +60,7 @@ function IncorrectListPage() {
         <ListCon1>
           {/* 날짜 하나당 덩어리 */}
           <ListCon2>
-            <ListDate>2024-04-01</ListDate>
+            <ListDate>2024-04-03</ListDate>
             <OnedayLists>
               <List>찰칵퀴즈 (단어 ➡️ 사진)</List>
               <List>딸깍퀴즈 (사진 ➡️ 단어)</List>
@@ -69,10 +69,10 @@ function IncorrectListPage() {
           </ListCon2>
 
           <ListCon2>
-            <ListDate>2024-04-02</ListDate>
+            <ListDate>2024-04-04</ListDate>
             <OnedayLists>
               <List>찰칵퀴즈 (단어 ➡️ 사진)</List>
-              <List>찰칵퀴즈 (사진 ➡️ 단어)</List>
+              <List>딸깍퀴즈 (사진 ➡️ 단어)</List>
             </OnedayLists>
           </ListCon2>
         </ListCon1>
