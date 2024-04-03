@@ -9,7 +9,7 @@ items-center
 export const Profiles = tw.div`
 flex
 justify-center
-h-[80vh]
+h-[78vh]
 m-[0]
 `;
 

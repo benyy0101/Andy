@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import BackgroundSVG from "@/app/_components/background/Background"; 
 // import { motion } from "framer-motion";
-// import Footer from "@/app/_components/footer/Footer";
+import Footer from "@/app/_components/footer/Footer";
 import Main_Character from "../../asset/_img/character.png";
 import { KakaoLogin } from "./_components/KakaoLogin";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -13,7 +13,7 @@ import { Wrapper, Character, LeftContainer, RightContainer, TitleContainer, Text
 export default function Main() {
   
   return (
-    <>
+    <div style={{ display: "flex", flexDirection : "column"}}>
       <BackgroundSVG /> 
       <Wrapper>
         <LeftContainer>
@@ -44,8 +44,7 @@ export default function Main() {
       
       
       </Wrapper>
-        {/* <Footer /> */}
-    </>
-  
+        <Footer />
+    </div>
   );
 }

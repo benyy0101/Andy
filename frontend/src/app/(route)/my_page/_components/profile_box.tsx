@@ -10,7 +10,7 @@ import { useGetProfile, useUploadProfileImage, useUpdateProfile } from "../../..
 // import emptyImage from "../../../asset/_img/profile.png"
 
 export default function ProfileBox() {
-    const { profile } = storeProfile();
+    const { profile, setProfileInfo } = storeProfile();
     const childnum = String(profile.child_seq)
     const { data, isLoading } = useGetProfile(childnum);
 
@@ -251,6 +251,11 @@ export default function ProfileBox() {
                     setGender(UpdateProfile.child_gender);
                     setChangeFile(UpdateProfile.child_picture);
 
+                    setProfileInfo({
+                        ...profile,
+                        child_picture: UpdateProfile.child_picture,
+                    });
+                    
                     window.location.reload();
                 },
             });

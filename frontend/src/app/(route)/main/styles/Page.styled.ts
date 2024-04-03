@@ -6,12 +6,12 @@ web:pr-0
 web:m-0
 web:gap-15
 web:flex-row
-web:h-dvh
+web:h-[97vh]
 web:w-dvw
 
 flex
 flex-col 
-h-dvh
+h-[95vh]
 w-[360px]
 justify-center
 `;
