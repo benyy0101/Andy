@@ -8,6 +8,7 @@ import ProfileForm from "./_components/profile_form"
 // import { useProfileList } from "../../hooks/useProfile";
 // import { Tutorial_Btn } from "../../_components/tutorial_btn/tutorial_btn";
 import { Wrapper, ProfileWrapper, ProfileListBtn, LogoWrapper } from "./styles/Page.styled";
+import BackgroundSVG from "../../_components/background/Background";
 
 export default function ProfileAdd() {
     const [imageUrl, setImageUrl] = useState<string>("");
@@ -28,14 +29,15 @@ export default function ProfileAdd() {
             <Logo />
         </LogoWrapper>
         <Wrapper>
+            <BackgroundSVG />
             <ProfileWrapper>
                 <ProfileImg onImageUpload={handleImageUpload}/>
                 <ProfileForm imageUrl={imageUrl} />
             </ProfileWrapper>
             {/* <Tutorial_Btn /> */}
         </Wrapper>
-        <ProfileListBtn onClick = {routetoProfileList}>
-            <ArrowLeftStartOnRectangleIcon style={{ width: "30px", height: "30px" }}/>
+        <ProfileListBtn>
+            <ArrowLeftStartOnRectangleIcon style={{ width: "30px", height: "30px", cursor: "pointer"}} onClick = {routetoProfileList}/>
         </ProfileListBtn>
         </>
     )

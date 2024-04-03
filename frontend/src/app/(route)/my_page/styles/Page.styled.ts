@@ -3,18 +3,17 @@ import styled from 'styled-components';
 
 export const Wrapper = tw.div`
 flex
-flex-col
 justify-center
 items-center
-h-[85vh]
 m-[0 auto]
 select-none
 `
 
 export const Content = tw.div`
 flex
-h-[88%]
+h-[80%]
 w-[80%]
+web:h-[75vh]
 web:w-[75%]
 web:justify-center
 flex-col
@@ -43,6 +42,7 @@ relative
 export const Info = tw.div`
 text-black
 w-[100%]
+web:h-full
 web:w-[33%]
 web:pl-6
 web:flex
@@ -62,7 +62,6 @@ flex-col-reverse
 
 export const Profile = tw.div`
 bg-[#ffffff]
-web:h-[38%]
 p-[20px]
 pl-[30px]
 pr-[30px]
@@ -72,9 +71,9 @@ flex
 items-center
 justify-between
 shadow-md
-web:mb-0
 hidden
 web:block
+mb-5
 `
 
 export const ProfileMobile = tw.div`
@@ -86,6 +85,7 @@ flex
 items-center
 justify-between
 shadow-md
+mt-3
 mb-3
 block
 web:hidden
@@ -94,14 +94,13 @@ web:hidden
 export const Score = tw.div`
 bg-[#EEA241]
 text-black
-h-[300px]
-web:h-[58%]
 rounded-[15px]
 p-8
 pr-7
 shadow-md
-mb-3
-web:mb-0
+h-[350px]
+web:flex-grow
+web:overflow-y-auto
 `
 
 export const ProfileEdit = tw.div`
@@ -331,7 +330,7 @@ text-[13px]
 
 export const Input = tw.input`
 ml-auto
-w-[70%]
+w-[65%]
 rounded-[7px]
 border
 border-blue-gray-200
@@ -356,7 +355,7 @@ disabled:bg-blue-gray-50
 
 export const InputBirth = tw.input`
 ml-auto
-w-[70%]
+w-[65%]
 rounded-[7px]
 border
 border-blue-gray-200
@@ -402,7 +401,7 @@ justify-between
 export const Btn = tw.div`
 flex
 text-black
-w-[70%]
+w-[65%]
 text-[13px]
 justify-between
 h-[35px]
@@ -423,7 +422,7 @@ rounded-[100%]
 // `
 
 export const CurrentInfo = tw.div`
-w-[70%]
+w-[65%]
 rounded-[7px]
 border
 border-blue-gray-200
@@ -465,18 +464,35 @@ justify-center
 h-full
 `
 
+export const ScoreHeader = tw.div`
+text-[15px]
+text-white
+flex
+mb-[20px]
+justify-center
+`
+
 export const SelectDate = tw.div`
 font-bold
 mr-[auto]
-text-[15px]
-mb-[20px]
 ml-[3px]
-text-[#FFFFFF]
+flex
+items-center
+`
+
+export const RetryBtn = tw.div`
+px-2
+py-1
+rounded-[5px]
+bg-[#FFE67C]
+flex
+items-center
+cursor-pointer
 `
 
 export const ScoreList = tw.div`
 overflow-y-auto
-h-[100%]
+h-[90%]
 `
 
 export const ScoreListScrollbar = styled(ScoreList)`
@@ -580,3 +596,14 @@ web:static
 `
 
 // bg-[#EEA241]
+
+export const InfoWrapper = tw.div`
+overflow-hidden
+whitespace-nowrap
+overflow-ellipsis
+`
+
+export const ErrorMessage = tw.span`
+text-red
+text-[10px]
+`

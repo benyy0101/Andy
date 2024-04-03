@@ -166,7 +166,6 @@ export const ProfileListBtn = tw.div`
 flex
 flex-start
 ml-5
-cursor-pointer
 `
 
 export const ErrorMessage = tw.span`

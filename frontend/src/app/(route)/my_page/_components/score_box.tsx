@@ -1,6 +1,7 @@
 "use client";
 
 import dayjs from "dayjs";
+import { useRouter } from "next/navigation"
 import storeProfile from "@/app/_store/storeProfile"
 import { useMypageByDate } from "../../../hooks/useMypage"
 import {
@@ -13,6 +14,8 @@ import {
   NoTest,
   Num,
   Mode,
+  RetryBtn,
+  ScoreHeader
 } from "../styles/Page.styled";
 
 export default function ScoreBox({ dateSelect }: { dateSelect: string }) {
@@ -22,6 +25,7 @@ export default function ScoreBox({ dateSelect }: { dateSelect: string }) {
   const selectday = parseInt(rdate.substring(6, 8), 10);
   const { profile } = storeProfile();
   const childNum = profile.child_seq
+  const router = useRouter();
 
   // 일별 기록 불러오기
   // 자식번호, 년, 월, 일
@@ -38,12 +42,19 @@ export default function ScoreBox({ dateSelect }: { dateSelect: string }) {
   const { data } = useMypageByDate(requestData)
   const testRes = data?.exam
 
+  const routetoRetry = () => {
+    router.push('/incorrect_list')
+  }
+
   return (
     <ScoreWrapper>
-      <SelectDate>
-        {selectmonth || dayjs().format("M")}월{" "}
-        {selectday || dayjs().format("DD")}일
-      </SelectDate>
+      <ScoreHeader>
+        <SelectDate>
+          {selectmonth || dayjs().format("M")}월{" "}
+          {selectday || dayjs().format("DD")}일
+        </SelectDate>
+        {testRes && testRes.length > 0 && <RetryBtn onClick={routetoRetry}>문제 다시 풀기</RetryBtn>}
+      </ScoreHeader>
       <ScoreListScrollbar>
         {testRes && testRes.length > 0 ? (
             testRes.map((result, index) => (
@@ -53,7 +64,7 @@ export default function ScoreBox({ dateSelect }: { dateSelect: string }) {
                   <Num>{result.mode === 'A' ? '찰칵 퀴즈 📸' : '딸깍 퀴즈 ⌨️'}</Num>
                   <Mode>{result.question_category_name}</Mode>
                 </TestNum>
-                <TestRes>{`${Math.ceil(result.exam_score / 20)} / 5`}</TestRes>
+                <TestRes>{`${result.exam_score} / 5`}</TestRes>
               </Score1>
             ))
           ) : (
