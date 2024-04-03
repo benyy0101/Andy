@@ -2,16 +2,16 @@ version: '3.8'
 services:
   solution:
     build:
-      context: ./Solution # Solution 폴더를 빌드 컨텍스트로 지정
-      dockerfile: Dockerfile # Dockerfile 이름
+      context: ./Solution
+      dockerfile: Dockerfile
     networks:
       - deploy
     container_name: Solution
 
   andy:
     build:
-      context: ./Andy # Andy 폴더를 빌드 컨텍스트로 지정
-      dockerfile: Dockerfile # Dockerfile 이름
+      context: ./Andy
+      dockerfile: Dockerfile
     working_dir: /app
     command: npm start
     volumes:
@@ -24,8 +24,8 @@ services:
 
   andylogin:
     build:
-      context: ./AndyLogin # AndyLogin 폴더를 빌드 컨텍스트로 지정
-      dockerfile: Dockerfile # Dockerfile 이름
+      context: ./AndyLogin
+      dockerfile: Dockerfile
     networks:
       - deploy
     container_name: AndyLogin
@@ -34,18 +34,18 @@ services:
 
   mypage:
     build:
-      context: ./MyPage # MyPage 폴더를 빌드 컨텍스트로 지정
-      dockerfile: Dockerfile # Dockerfile 이름
+      context: ./MyPage
+      dockerfile: Dockerfile
     networks:
       - deploy
     container_name: MyPage
     ports:
-      - "8081:8080" # 포트가 겹치지 않도록 주의
+      - "8081:8080"
 
   detection:
     build:
-      context: ./Detection # Detection 폴더를 빌드 컨텍스트로 지정
-      dockerfile: Dockerfile # Dockerfile 이름
+      context: ./Detection
+      dockerfile: Dockerfile
     networks:
       - deploy
     container_name: Detection
@@ -98,8 +98,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /home/ubuntu/lastjenkins:/var/jenkins_home
     ports:
-      - "8080:8080" # Jenkins 기본 포트, 필요에 따라 변경할 수 있음
-      - "50000:50000" # Jenkins 슬레이브 에이전트 포트
+      - "8080:8080"
+      - "50000:50000"
     networks:
       - deploy
 
