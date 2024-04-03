@@ -1,0 +1,93 @@
+version: '3.8'
+services:
+  solution:
+    build:
+      context: ./Solution # Solution 폴더를 빌드 컨텍스트로 지정
+      dockerfile: Dockerfile # Dockerfile 이름
+    networks:
+      - deploy
+    container_name: Solution
+
+  andy:
+    build:
+      context: ./Andy # Andy 폴더를 빌드 컨텍스트로 지정
+      dockerfile: Dockerfile # Dockerfile 이름
+    working_dir: /app
+    command: npm start
+    volumes:
+      - .:/app
+    networks:
+      - deploy
+    container_name: Andy
+    ports:
+      - "3000:3000"
+
+  andylogin:
+    build:
+      context: ./AndyLogin # AndyLogin 폴더를 빌드 컨텍스트로 지정
+      dockerfile: Dockerfile # Dockerfile 이름
+    networks:
+      - deploy
+    container_name: AndyLogin
+    ports:
+      - "8080:8080"
+
+  mypage:
+    build:
+      context: ./MyPage # MyPage 폴더를 빌드 컨텍스트로 지정
+      dockerfile: Dockerfile # Dockerfile 이름
+    networks:
+      - deploy
+    container_name: MyPage
+    ports:
+      - "8081:8080" # 포트가 겹치지 않도록 주의
+
+  detection:
+    build:
+      context: ./Detection # Detection 폴더를 빌드 컨텍스트로 지정
+      dockerfile: Dockerfile # Dockerfile 이름
+    networks:
+      - deploy
+    container_name: Detection
+    ports:
+      - "80:80"
+
+  proxynginx:
+    image: nginx
+    volumes:
+      - /home/ubuntu/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt/archive/j10a102.p.ssafy.io:/etc/nginx/ssl/
+    networks:
+      - deploy
+    container_name: proxynginx
+    ports:
+      - "80:80"
+      - "443:443"
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ssafy102!
+    volumes:
+      - /home/ubuntu/mysql:/etc/mysql/conf.d
+    networks:
+      - deploy
+    container_name: mysql
+    ports:
+      - "3306:3306"
+
+  redis:
+    image: redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - /home/ubuntu/redis:/data
+      - /home/ubuntu/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - deploy
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+networks:
+  deploy:
+    driver: bridge
