@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Navigation from "@/app/_components/navigation/Navigation";
 // import Logo from "../../_components/logo/Logo";
+import Footer from "@/app/_components/footer/Footer";
 import CalendarBox from "./_components/calendar";
 import ProfileBox from "./_components/profile_box";
 import ScoreBox from "./_components/score_box";
@@ -52,6 +53,7 @@ export default function MyPage() {
           </Info>
         </Content>
       </Wrapper>
+      <Footer />
     </>
   );
 }
