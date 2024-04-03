@@ -13,7 +13,7 @@ export const Content = tw.div`
 flex
 h-[80%]
 w-[80%]
-web:h-[75vh]
+web:h-[78vh]
 web:w-[75%]
 web:justify-center
 flex-col
@@ -101,6 +101,8 @@ shadow-md
 h-[350px]
 web:flex-grow
 web:overflow-y-auto
+mb-7
+web:mb-0
 `
 
 export const ProfileEdit = tw.div`

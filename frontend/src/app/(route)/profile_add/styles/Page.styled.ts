@@ -7,7 +7,7 @@ export const ProfileWrapper = tw.div`
 flex
 justify-center
 items-center
-h-[80vh]
+h-[78vh]
 flex-col
 web:flex-row
 

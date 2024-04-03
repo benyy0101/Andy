@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/solid";
+import Footer from "@/app/_components/footer/Footer";
 import Logo from "../../_components/logo/Logo"
 import ProfileImg from "./_components/profile_img"
 import ProfileForm from "./_components/profile_form"
@@ -39,6 +40,7 @@ export default function ProfileAdd() {
         <ProfileListBtn>
             <ArrowLeftStartOnRectangleIcon style={{ width: "30px", height: "30px", cursor: "pointer"}} onClick = {routetoProfileList}/>
         </ProfileListBtn>
+        <Footer />
         </>
     )
 };
