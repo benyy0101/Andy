@@ -88,6 +88,21 @@ services:
     ports:
       - "6379:6379"
 
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: Jenkins
+    user: root
+    environment:
+      - JENKINS_OPTS=--prefix=/Jenkins
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/ubuntu/lastjenkins:/var/jenkins_home
+    ports:
+      - "8080:8080" # Jenkins 기본 포트, 필요에 따라 변경할 수 있음
+      - "50000:50000" # Jenkins 슬레이브 에이전트 포트
+    networks:
+      - deploy
+
 networks:
   deploy:
     driver: bridge
