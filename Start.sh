@@ -6,6 +6,7 @@ set -e
 # Solution 서비스 빌드
 echo "Building Solution service..."
 cd solution
+chmod +x gradlew
 ./gradlew clean build -x test
 cd ..
 
@@ -13,6 +14,7 @@ cd ..
 echo "Building MyPage service..."
 cd mypage
 # MyPage 서비스가 Java 기반일 경우 예시입니다. 필요에 따라 변경하세요.
+chmod +x gradlew
 ./gradlew clean build -x test
 cd ..
 
@@ -20,6 +22,7 @@ cd ..
 echo "Building MyPage service..."
 cd login
 # MyPage 서비스가 Java 기반일 경우 예시입니다. 필요에 따라 변경하세요.
+chmod +x gradlew
 ./gradlew clean build -x test
 cd ..
 
