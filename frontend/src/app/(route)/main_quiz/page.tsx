@@ -46,8 +46,8 @@ export default function MainQuiz() {
             description={btn.description}
           />
         ))}
-      </Wrapper>
       <TutorialBtn />
+      </Wrapper>
       <Footer />
     </div>
   );

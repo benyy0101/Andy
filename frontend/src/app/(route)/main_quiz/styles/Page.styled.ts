@@ -15,6 +15,8 @@ flex-col
 gap-14
 
 flex-grow-[1]
+relative
+web:static
 `;
 
 export const WholeWrapper = tw.div` 
@@ -80,11 +82,15 @@ transition-all
 
 export const TutorialModalBg = tw.div`
 absolute
+top-0
+left-0
 w-full
-h-full
+h-[80vh]
+web:h-full
 flex
-items-center
 justify-center
+web:items-center
+z-[30]
 `
 
 // bg-[rgba(0,0,0,0.5)]
@@ -130,7 +136,6 @@ flex-col
 items-center
 h-[90%]
 web:h-[90%]
-pt-5
 web:pr-2
 pb-10
 web:pb-5

@@ -3,6 +3,7 @@ import tw from "tailwind-styled-components";
 export const Wrapper = tw.div`
 w-1/12
 flex
+z-10
 `;
 
 export const Profile = tw.button`
