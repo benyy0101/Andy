@@ -108,7 +108,7 @@ ArtBridge 프로젝트
 ### 2. 빌드하기
 ### 3. 배포하기
 빌드된 파일을 배포하기 위해서는 다음 절차를 따르세요
-1. docker run -p 3307:3306 -v /home/ubuntu/mysql:/etc/mysql/conf.d --name mysql mysql:latest
+1. docker run -p 3306:3306 -v /home/ubuntu/mysql:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD='ssafy102!' --name mysql mysql:latest
 
 ## II . Login 빌드 및 배포
 ### 1. 환경변수 형태
