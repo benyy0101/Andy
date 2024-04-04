@@ -8,15 +8,7 @@ const nextConfig = withPWA({
     styledComponents: true, // 추가
   },
   
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/main',
-        permanent: true,
-      },
-    ]
-  },
+  
 })
   
 module.exports = {
@@ -65,5 +57,14 @@ module.exports = {
       }
     ],
   },
-  
+
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/main',
+        permanent: true,
+      },
+    ]
+  },
 }
