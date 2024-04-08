@@ -41,7 +41,7 @@ Andy는 적극적 참여와 직접 경험을 통해 학습자에게 더 깊이 �
 | [이동훈](https://github.com/Alleestar)                                                    | [김태수](https://github.com/benyy0101)                                                     | [김아린](https://github.com/lynne921)                                                                                          | [박수민](https://github.com/sueminPark)                                                   | [유현종](https://github.com/Drawjustin)                                                   | [이윤정](https://github.com/jjeong41)                                                      |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
 | <img src="https://avatars.githubusercontent.com/u/147222319?v=4" width="150" height="150"> | <img src="https://avatars.githubusercontent.com/u/65917479?v=4" width="150" height="150"> | <img src="https://avatars.githubusercontent.com/u/53607089?v=4" width="150" height="150"> | <img src="https://avatars.githubusercontent.com/u/139521789?v=4" width="150" height="150"> | <img src="https://avatars.githubusercontent.com/u/91874809?v=4" width="150" height="150"> | <img src="https://avatars.githubusercontent.com/u/103355863?v=4" width="150" height="150"> |
-| Leader, AI                                                                             | Front                                                                               | Back                                                                                                                          | Back, CI&CD                                                                                       | Back                                                                                       | Front                                                                              |
+| Leader, AI                                                                             | Frontend                                                                               | Backend                                                                                                                          |  Frontend                                                                                      | Backend, CI&CD                                                                                       | Frontend                                                                              |
 | AI 모델 설계 및 학습<br/>AI 서버(Fast API) 구현                                                          | 로그인 <br/>전역상태 및 리액트 쿼리 캐싱<br/> 찰칵퀴즈 구현(카메라 및 반응형)<br/> PWA 환경구축<br/>                                         | 인증/인가<br/>마이페이지 API<br/>카카오 로그인<br/>S3 이미지 업로드                           | 찰칵/딸깍 퀴즈 및 결과 페이지 <br/> 카테고리  페이지 구현 <br/>페이지 반응형 작업<br/>                            | 인증/인가<br/> 게임 API<br/>카카오 로그인<br/> CI&CD                                                 | 프로필 생성 페이지<br/> 프로필 목록 페이지<br/> 마이페이지<br/> 이용 가이드 구현<br/>                                                                   |
 
 <br/>
@@ -98,9 +98,8 @@ Andy는 적극적 참여와 직접 경험을 통해 학습자에게 더 깊이 �
 [포팅 메뉴얼 바로가기](./exec/comeet_porting_manual.md)
 
 ## 🎨 아키텍처
+![webLogin](./images/structural_design.png)
 
-<img width="1000" alt="image" src="./images/structural_design.png
-">
 
 ## 💡 주요 기능
 
